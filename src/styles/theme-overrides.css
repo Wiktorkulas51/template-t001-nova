@@ -21,6 +21,28 @@
   font-family: var(--font-heading) !important;
 }
 
+/* Nova typography uses a restrained weight scale so the display text stays premium. */
+[data-theme="nova"] .ui-type-heading-hero {
+  font-weight: 700 !important;
+  line-height: 0.96 !important;
+}
+
+[data-theme="nova"] .ui-type-accent-label {
+  font-family: var(--font-sans) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.18em !important;
+}
+
+[data-theme="nova"] .ui-nav-bar-link {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="nova"] .ui-type-cta-label {
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+}
+
 @layer components {
   /*
    * BLUSH - one continuous "canvas": body pattern + gradient glow.

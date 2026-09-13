@@ -52,17 +52,17 @@ colors:
   brand-cream: "#f4f0e9"
 typography:
   display:
-    fontFamily: Outfit, sans-serif
+    fontFamily: Satoshi, sans-serif
     fontSize: 64px
-    fontWeight: "500"
-    lineHeight: 1.02
-    letterSpacing: -0.055em
+    fontWeight: "700"
+    lineHeight: 0.96
+    letterSpacing: -0.065em
   headline:
-    fontFamily: Outfit, sans-serif
+    fontFamily: Satoshi, sans-serif
     fontSize: 42px
-    fontWeight: "500"
-    lineHeight: 1.08
-    letterSpacing: -0.045em
+    fontWeight: "700"
+    lineHeight: 0.98
+    letterSpacing: -0.055em
   title:
     fontFamily: Satoshi, sans-serif
     fontSize: 20px
@@ -76,9 +76,9 @@ typography:
   label:
     fontFamily: Satoshi, sans-serif
     fontSize: 11px
-    fontWeight: "700"
+    fontWeight: "600"
     lineHeight: 1.2
-    letterSpacing: 0.2em
+    letterSpacing: 0.18em
 rounded:
   sm: 0.5rem
   DEFAULT: 0.75rem
@@ -106,7 +106,7 @@ ui:
   type-lead-tracking: "-0.01em"
   type-lead-leading: "1.55"
   type-body-leading: "1.65"
-  type-heading-tracking: "-0.045em"
+  type-heading-tracking: "-0.065em"
   button-radius: "9999px"
   button-hover-effect: "lift"
   bg-base: "var(--color-brand-cream)"
@@ -115,7 +115,7 @@ ui:
   bg-accent: "var(--color-brand-accent)"
 fonts:
   sans: "Satoshi, sans-serif"
-  heading: "Outfit, sans-serif"
+  heading: "Satoshi, sans-serif"
 animations:
   scroll: "scroll 36s linear infinite"
 ---

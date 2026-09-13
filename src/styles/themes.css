@@ -427,7 +427,7 @@
   --ui-type-lead-tracking: -0.01em;
   --ui-type-lead-leading: 1.55;
   --ui-type-body-leading: 1.65;
-  --ui-type-heading-tracking: -0.045em;
+  --ui-type-heading-tracking: -0.065em;
   --ui-button-radius: 9999px;
   --ui-button-hover-effect: lift;
   --ui-bg-base: var(--color-brand-cream);
@@ -435,7 +435,7 @@
   --ui-bg-surface: var(--color-surface);
   --ui-bg-accent: var(--color-brand-accent);
   --font-sans: Satoshi, sans-serif;
-  --font-heading: Outfit, sans-serif;
+  --font-heading: Satoshi, sans-serif;
   --animate-scroll: scroll 36s linear infinite;
 }
 
