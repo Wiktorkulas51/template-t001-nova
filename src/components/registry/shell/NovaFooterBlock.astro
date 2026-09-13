@@ -8,47 +8,28 @@ const footerLinks = jsonData.columns.flatMap((column) => column.links).slice(0, 
 
 ---
 
-<footer class="nova-footer">
-  <div class="nova-footer__inner">
-    <div class="nova-footer__copy">
-      <p class="nova-footer__eyebrow"><span>{ctaData.pl.eyebrow}</span></p>
-      <h2>{ctaData.pl.heading}</h2>
-      <p class="nova-footer__description">{ctaData.pl.description}</p>
-      <div class="nova-footer__actions">
+<footer class="relative overflow-hidden bg-brand-dark bg-[url('/assets/images/t001-nova/t001-nova-cta-mountains@1920.webp')] bg-cover bg-center bg-no-repeat text-brand-light">
+  <div class="absolute inset-0 bg-brand-dark/60" aria-hidden="true"></div>
+  <div class="relative z-10 mx-auto grid w-[min(100%-2rem,80rem)] gap-8 py-20 pb-6">
+    <div class="mx-auto max-w-5xl text-center">
+      <p class="mb-4 flex items-center justify-center gap-4 text-xs font-bold uppercase tracking-[0.14em] text-brand-accent">
+        <span class="h-px w-10 bg-brand-accent/70" aria-hidden="true"></span>
+        <span>{ctaData.pl.eyebrow}</span>
+        <span class="h-px w-10 bg-brand-accent/70" aria-hidden="true"></span>
+      </p>
+      <h2 class="m-0 max-w-none text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] tracking-[-0.06em] text-brand-light lg:whitespace-nowrap">{ctaData.pl.heading}</h2>
+      <p class="mx-auto mt-6 max-w-xl text-[clamp(1rem,1.5vw,1.2rem)] leading-[1.55] text-brand-light/80">{ctaData.pl.description}</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
         <Button href={ctaData.pl.ctaHref} variant="accent">{ctaData.pl.ctaLabel}</Button>
-        <Button href="/uslugi/" variant="outline" class="nova-footer__secondary">Poznaj ofertę</Button>
+        <Button href="/uslugi/" variant="outline" class="!border-brand-light/65 !bg-brand-dark/35 !text-brand-light">Poznaj ofertę</Button>
       </div>
     </div>
-    <nav aria-label="Nawigacja stopki" class="nova-footer__links">
+    <nav aria-label="Nawigacja stopki" class="flex flex-wrap gap-x-6 gap-y-4 lg:justify-end">
       {footerLinks.map((link) => <a href={link.href}>{link.label}</a>)}
     </nav>
-    <div class="nova-footer__bottom">
+    <div class="flex flex-wrap justify-between gap-3 border-t border-brand-light/25 pt-4 text-brand-light/75">
       <Text tag="span" variant="feature-body-sm">{jsonData.copyrightText}</Text>
       <Text tag="span" variant="feature-body-sm">{jsonData.attribution.label}</Text>
     </div>
   </div>
 </footer>
-
-<style>
-  .nova-footer {
-    position: relative;
-    overflow: hidden;
-    background: var(--color-brand-dark) url('/assets/images/t001-nova/t001-nova-cta-mountains@1920.webp') center / cover no-repeat;
-    color: var(--color-brand-light);
-  }
-  .nova-footer::before { content: ''; position: absolute; inset: 0; background: color-mix(in oklab, var(--color-brand-dark) 58%, transparent); }
-  .nova-footer__inner { position: relative; z-index: 1; display: grid; gap: 2rem; width: min(100% - 2rem, 80rem); margin: 0 auto; padding: 5rem 0 1.5rem; }
-  .nova-footer__copy { max-width: 60rem; margin: 0 auto; text-align: center; }
-  .nova-footer__eyebrow { display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 0 0 1rem; color: var(--color-brand-accent); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
-  .nova-footer__eyebrow::before, .nova-footer__eyebrow::after { content: ''; width: 2.5rem; height: 1px; background: color-mix(in oklab, var(--color-brand-accent) 70%, transparent); }
-  .nova-footer__copy h2 { max-width: none; margin: 0; color: var(--color-brand-light); font-size: clamp(2.5rem, 7vw, 5.5rem); line-height: 0.95; letter-spacing: -0.06em; }
-  .nova-footer__description { max-width: 34rem; margin: 1.5rem auto 0; color: color-mix(in oklab, var(--color-brand-light) 78%, transparent); font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.55; }
-  .nova-footer__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 2rem; }
-  .nova-footer__secondary { color: var(--color-brand-light) !important; border-color: color-mix(in oklab, var(--color-brand-light) 65%, transparent) !important; background: color-mix(in oklab, var(--color-brand-dark) 35%, transparent) !important; }
-  .nova-footer__links { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; }
-  .nova-footer__links a { color: var(--color-brand-light); text-decoration: none; transition: color 180ms ease; }
-  .nova-footer__links a:hover { color: var(--color-brand-accent); }
-  .nova-footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; padding-top: 1rem; border-top: 1px solid color-mix(in oklab, var(--color-brand-light) 25%, transparent); }
-  .nova-footer__bottom :global(.ui-text) { color: color-mix(in oklab, var(--color-brand-light) 72%, transparent); }
-  @media (min-width: 48rem) { .nova-footer__copy h2 { white-space: nowrap; } .nova-footer__links { justify-content: flex-end; } }
-</style>
