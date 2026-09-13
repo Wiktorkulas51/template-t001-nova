@@ -26,7 +26,10 @@ const items = props.items ?? jsonData.items;
         <Text variant="lead">{description}</Text>
       </div>
       <div class="nova-services-link-wrap">
-        <a href={linkHref}>{linkLabel} <span aria-hidden="true">→</span></a>
+        <a class="group inline-flex items-center gap-2" href={linkHref}>
+          <span class="transition-transform duration-300 ease-out group-hover:-translate-x-1 motion-reduce:transition-none">{linkLabel}</span>
+          <span class="inline-flex size-5 items-center justify-center leading-none transition-transform duration-300 ease-out group-hover:translate-x-1 motion-reduce:transition-none" aria-hidden="true">→</span>
+        </a>
       </div>
     </div>
     <div class="nova-services-grid">
