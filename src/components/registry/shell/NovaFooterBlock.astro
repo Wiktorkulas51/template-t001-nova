@@ -33,14 +33,16 @@ const legalLinks = [
         <Button href="/uslugi/" variant="outline" class="!border-brand-light/65 !bg-brand-dark/35 !text-brand-light">Poznaj ofertę</Button>
       </div>
     </div>
-    <nav aria-label="Nawigacja stopki" class="flex flex-wrap gap-x-6 gap-y-4 lg:justify-end">
-      {footerLinks.map((link) => <a href={link.href} class="text-sm text-brand-light transition-colors hover:text-brand-accent">{link.label}</a>)}
-    </nav>
-    <div class="flex flex-wrap items-center justify-between gap-6 border-t border-brand-light/25 pt-8 text-brand-light/75">
-      <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+    <div class="flex flex-wrap items-center justify-between gap-6">
+      <nav aria-label="Dokumenty prawne" class="flex flex-wrap gap-x-6 gap-y-3">
         {legalLinks.map((link) => <a href={link.href} class="text-sm text-brand-light/80 transition-colors hover:text-brand-accent">{link.label}</a>)}
-        <Text tag="span" variant="feature-body-sm">Wszelkie prawa zastrzeżone.</Text>
-      </div>
+      </nav>
+      <nav aria-label="Nawigacja stopki" class="flex flex-wrap gap-x-6 gap-y-4 lg:justify-end">
+        {footerLinks.map((link) => <a href={link.href} class="text-sm text-brand-light transition-colors hover:text-brand-accent">{link.label}</a>)}
+      </nav>
+    </div>
+    <div class="flex flex-wrap items-center justify-between gap-6 border-t border-brand-light/25 pt-8 text-brand-light/75">
+      <Text tag="span" variant="feature-body-sm">Wszelkie prawa zastrzeżone.</Text>
       <Text tag="span" variant="feature-body-sm" class="lg:text-right">Projekt i wdrożenie: WebScale</Text>
     </div>
   </div>
