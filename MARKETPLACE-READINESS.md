@@ -7,53 +7,53 @@ date: 2026-09-13
 
 # Marketplace readiness
 
-Ten dokument opisuje stan przygotowania `T001, Nova` do sprzedaży jako kod źródłowy template'u.
+This document describes the preparation status of `T001, Nova` for source template distribution.
 
-## Zrealizowane etapy
+## Completed stages
 
-### Etap 1, audyt repozytorium
+### Stage 1, repository audit
 
-- Zdefiniowano zakres aktywnego template'u: homepage, wersja polska, wersja angielska oraz strony prawne.
-- Potwierdzono build statyczny Astro i ścieżkę `dist/`.
-- Dodano listę dokumentów potrzebnych kupującemu.
+- Defined the active template scope: homepage, Polish version, English version and legal pages.
+- Confirmed the Astro static build and the `dist/` output path.
+- Added the documentation list required by a buyer.
 
-### Etap 2, porządek i separacja
+### Stage 2, cleanup and separation
 
-- Usunięto dwa niepowiązane pliki wideo z `public/assets/videos/`.
-- Dodano `.marketplaceignore` dla plików lokalnych i generowanych.
-- Dodano instrukcję assetów oraz obowiązek zastąpienia materiałów demonstracyjnych.
+- Removed two unrelated video files from `public/assets/videos/`.
+- Added `.marketplaceignore` for local and generated files.
+- Added asset guidance and a requirement to replace demonstration materials.
 
-### Etap 3, dokumentacja kupującego
+### Stage 3, buyer documentation
 
-- `CUSTOMIZATION.md` opisuje zmianę marki, danych, obrazów i tokenów.
-- `CONTENT-GUIDE.md` opisuje wymianę demonstracyjnej treści Nova.
-- `DEPLOYMENT.md` opisuje instalację, build i publikację.
-- `ASSETS-LICENSES.md` opisuje odpowiedzialność za fonty, zdjęcia, ikony i inne assety.
-- `CHANGELOG.md` zawiera pierwszą wersję release candidate.
+- `CUSTOMIZATION.md` explains brand, data, image and token customization.
+- `CONTENT-GUIDE.md` explains how to replace Nova demonstration content.
+- `DEPLOYMENT.md` explains installation, build and publication.
+- `ASSETS-LICENSES.md` explains responsibility for fonts, photographs, icons and other assets.
+- `CHANGELOG.md` contains the first release candidate entry.
 
-### Etap 4, licencja i legal
+### Stage 4, license and legal
 
-- `LICENSE.md` zawiera rozdział Personal, Agency, ograniczenia oraz prawa do zewnętrznych zależności.
-- Naprawiono polski link kontaktowy na stronach prawnych, aby nie generował ścieżki `/pl/pl/#kontakt`.
+- `LICENSE.md` contains Personal and Agency terms, restrictions and third-party dependency guidance.
+- Fixed the Polish contact link on legal pages so it does not generate `/pl/pl/#kontakt`.
 
-### Etap 7, QA i paczka źródłowa
+### Stage 7, QA and source package
 
-- Dodano `npm run package:marketplace`.
-- Skrypt tworzy `release/t001-nova.zip` wyłącznie z plików zapisanych w aktualnym commicie.
-- Build, linki, obrazy, SEO, dane sekcji i kontrola atomic design przechodzą.
+- Added `npm run package:marketplace`.
+- The script creates `release/t001-nova.zip` using only files saved in the current commit.
+- Build, links, images, SEO, section data and Atomic Design checks pass.
 
-## Pominięte etapy
+## Skipped stages
 
-Etap 5, materiały sprzedażowe marketplace, oraz etap 6, wybór kanału sprzedaży, zostały pominięte zgodnie z decyzją właściciela projektu.
+Stage 5, marketplace sales materials, and stage 6, sales channel selection, were skipped as requested by the project owner.
 
-## Warunki przed publiczną sprzedażą
+## Conditions before public sale
 
-1. Zastąpić demonstracyjne zdjęcia, avatary, dane kontaktowe i copy własnymi materiałami albo dołączyć potwierdzone licencje.
-2. Wykonać ręczny przegląd homepage'u w przeglądarce na telefonie i desktopie.
-3. Ustalić finalną treść licencji z prawnikiem.
-4. Uruchomić `npm run build`, `npm run check:links`, `npm run check:seo`, `npm run check:images` oraz `npm run package:marketplace` po ostatniej zmianie.
+1. Replace demonstration photographs, avatars, contact details and copy with owned materials or include confirmed licenses.
+2. Manually review the homepage in a browser on mobile and desktop.
+3. Confirm the final license wording with a lawyer.
+4. Run `npm run build`, `npm run check:links`, `npm run check:seo`, `npm run check:images` and `npm run package:marketplace` after the final change.
 
-## Znane ograniczenia release candidate
+## Known release candidate limitations
 
-- Repozytorium nadal zawiera pełną bibliotekę komponentów Starter Kit, dlatego nie jest to minimalny bundle tylko dla jednej strony.
-- Pełne `npm run qa` raportuje istniejące błędy kontraktów w testach tras dev oraz w niezatwierdzonych zmianach komponentów hero. Nie blokują one builda Nova, ale muszą zostać usunięte przed deklaracją pełnej zgodności QA.
+- The repository still contains the full Starter Kit component library, so it is not a minimal single-page bundle.
+- Full `npm run qa` reports existing contract errors in dev route tests and uncommitted hero component changes. They do not block the Nova build, but they must be resolved before claiming full QA compliance.
