@@ -3,20 +3,22 @@ import Layout from "./Layout.astro";
 import Heading from "@/components/ui/atoms/Heading.astro";
 import Text from "@/components/ui/atoms/Text.astro";
 import legalData from "@data/global/legal.json";
+import type { NovaLocale } from "@utils/nova-i18n";
 
 interface Props {
   title: string;
   description?: string;
   lastUpdated: string;
+  locale?: NovaLocale;
 }
 
-const { title, description, lastUpdated } = Astro.props;
+const { title, description, lastUpdated, locale = "en" } = Astro.props;
 ---
 
 <!-- Why: navbar and footer are rendered globally by Layout. Legal pages
      use plain (fixed bar with background immediately, like other subpages),
      so content gets header height compensation from Layout. -->
-<Layout title={title} description={description} navbarVariant="plain">
+<Layout title={title} description={description} navbarVariant="plain" locale={locale} lang={locale}>
   <div class="bg-brand-light pb-16 lg:pb-24">
     <div class="px-4 mx-auto max-w-4xl">
       <div class="mb-12 border-b border-brand-dark/10 pb-8">

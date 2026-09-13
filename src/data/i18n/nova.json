@@ -117,8 +117,8 @@
       "secondaryLabel": "Poznaj ofertę",
       "secondaryHref": "#uslugi",
       "legalLinks": [
-        { "label": "Polityka prywatności", "href": "#kontakt" },
-        { "label": "Cookies", "href": "#kontakt" }
+        { "label": "Polityka prywatności", "href": "/polityka-prywatnosci/" },
+        { "label": "Cookies", "href": "/cookies/" }
       ],
       "footerLinks": [
         { "label": "O nas", "href": "#zespol" },
@@ -250,8 +250,8 @@
       "secondaryLabel": "Explore services",
       "secondaryHref": "#uslugi",
       "legalLinks": [
-        { "label": "Privacy policy", "href": "#kontakt" },
-        { "label": "Cookies", "href": "#kontakt" }
+        { "label": "Privacy policy", "href": "/polityka-prywatnosci/" },
+        { "label": "Cookies", "href": "/cookies/" }
       ],
       "footerLinks": [
         { "label": "About us", "href": "#zespol" },

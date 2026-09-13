@@ -12,7 +12,7 @@ export function getNovaSectionCopy(locale: NovaLocale, dataKey?: string) {
 }
 
 export function getNovaLocalePath(locale: NovaLocale): string {
-  return locale === 'en' ? '/en/' : '/';
+  return locale === 'en' ? '/' : '/pl/';
 }
 
 export function getNovaNavigationPath(href: string, locale: NovaLocale): string {
@@ -21,6 +21,6 @@ export function getNovaNavigationPath(href: string, locale: NovaLocale): string 
   }
 
   const normalized = href.startsWith('/') ? href : `/${href}`;
-  if (locale === 'en') return normalized === '/' ? '/en/' : `/en${normalized}`;
-  return normalized;
+  if (locale === 'en') return normalized;
+  return normalized === '/' ? '/pl/' : `/pl${normalized}`;
 }
