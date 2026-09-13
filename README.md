@@ -1,50 +1,51 @@
 # Nova Template
 
-Nova to responsywny template strony internetowej dla agencji kreatywnych, studiów projektowych i ambitnych marek. Projekt korzysta z Astro, Tailwind CSS, TypeScript oraz danych przechowywanych w plikach JSON.
+Nova is a responsive website template for creative agencies, design studios and ambitious brands. The project uses Astro, Tailwind CSS, TypeScript and JSON based content files.
 
-## Najważniejsze elementy
+## Features
 
-- Dwujęzyczna strona główna w języku polskim i angielskim.
-- Sekcje hero, realizacje, usługi, zespół, FAQ, opinie oraz CTA.
-- Responsywny układ dla telefonu, tabletu i desktopu.
-- Dane treści oddzielone od komponentów.
-- Obsługa Decap CMS.
-- Favicony, obrazy responsywne, sitemap i podstawowe meta dane SEO.
-- Gotowy system motywu oraz lokalne fonty.
+- Bilingual homepage with English and Polish versions.
+- Hero, selected work, services, team, FAQ, testimonials and CTA sections.
+- Responsive layout for mobile, tablet and desktop.
+- Content separated from Astro components.
+- Decap CMS support.
+- Favicon generation, responsive images, sitemap and basic SEO metadata.
+- Local fonts and a documented theme system.
 
-## Uruchomienie
+## Getting started
 
-Wymagany jest Node.js zgodny z wersją określoną w `package.json`.
+Node.js 22 or newer is required, as specified in `package.json`.
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Strona będzie dostępna pod adresem wyświetlonym przez Astro.
+Astro will display the local development URL in the terminal.
 
-## Dokumentacja
+## Documentation
 
-- `CUSTOMIZATION.md`, konfiguracja marki, treści, obrazów i tokenów.
-- `CONTENT-GUIDE.md`, zasady przygotowania treści dla homepage'u.
-- `DEPLOYMENT.md`, build i publikacja na hostingu statycznym.
-- `ASSETS-LICENSES.md`, zasady dotyczące assetów demonstracyjnych.
-- `CHANGELOG.md`, historia wydań.
+- `CUSTOMIZATION.md`, brand, content, image and token customization.
+- `CONTENT-GUIDE.md`, rules for replacing Nova demonstration content.
+- `DEPLOYMENT.md`, build and static hosting instructions.
+- `ASSETS-LICENSES.md`, responsibilities for demonstration assets.
+- `MARKETPLACE-READINESS.md`, release status and final publication checklist.
+- `CHANGELOG.md`, release history.
 
-## Edycja treści
+## Editing content
 
-Najważniejsze pliki do personalizacji znajdują się tutaj:
+The main customization files are:
 
-- `src/data/i18n/nova.json`, treści strony Nova w języku polskim i angielskim.
-- `src/data/sections/*.json`, dane sekcji i wariantów.
-- `src/data/global/company.json`, dane firmy, kontakt i branding.
-- `src/data/global/seo.json`, tytuł, opis, obraz Open Graph i indeksowanie.
-- `src/data/pages/index.json`, kolejność sekcji strony głównej.
-- `site.config.mjs`, domena, język i zakres stron generowanych w buildzie.
+- `src/data/i18n/nova.json`, Nova content in English and Polish.
+- `src/data/sections/*.json`, section and variant data.
+- `src/data/global/company.json`, company, contact and branding data.
+- `src/data/global/seo.json`, title, description, Open Graph image and indexing settings.
+- `src/data/pages/index.json`, homepage section order.
+- `site.config.mjs`, domain, locale and build scope.
 
-Treści należy zmieniać w JSON, a nie bezpośrednio w komponentach Astro. Po zmianie danych warto uruchomić `npm run cms:check` oraz `npm run check:types`.
+Change content in JSON files instead of editing Astro components directly. After content changes, run `npm run cms:check` and `npm run check:types`.
 
-## Build i kontrola jakości
+## Build and quality checks
 
 ```bash
 npm run build
@@ -52,18 +53,26 @@ npm run check:types
 npm run check:seo
 npm run check:links
 npm run check:images
-npm run qa
+npm run package:marketplace
 ```
 
-Przed publikacją należy sprawdzić stronę ręcznie na telefonie i desktopie, przetestować nawigację, formularz, linki, podgląd Open Graph oraz działanie wersji językowych.
+Before publication, manually check the website on mobile and desktop, test navigation and forms, verify links, inspect Open Graph metadata, and check both language versions.
 
-## Licencja
+## Marketplace package
 
-Warunki użycia znajdują się w pliku `LICENSE.md`. Kod template'u może być modyfikowany i używany w gotowych projektach internetowych, ale nie może być odsprzedawany jako osobny template ani redystrybuowany jako paczka źródłowa.
+Run:
 
-## Ważne informacje
+```bash
+npm run package:marketplace
+```
 
-Licencja projektu nie zastępuje licencji zewnętrznych zależności, fontów, zdjęć, ikon ani innych materiałów. Przed użyciem w projekcie komercyjnym należy sprawdzić prawa do każdego assetu i zastąpić dane demonstracyjne własnymi materiałami.
+The command creates `release/t001-nova.zip` from the current Git commit. Generated files, local dependencies and unrelated uncommitted changes are not included in the archive.
+
+## License
+
+Usage terms are described in `LICENSE.md`. The template source may be modified and used in finished website projects, but it may not be resold or redistributed as a source template package.
+
+The template license does not replace the licenses of third-party dependencies, fonts, photographs, icons or other materials. Check every asset license and replace the demonstration materials before commercial use.
 
 ## Stack
 
