@@ -48,18 +48,18 @@ const stats = props.stats ?? jsonData.stats;
   ]}
 >
   <Container class="w-full max-w-none px-0">
-    <div class="overflow-hidden rounded-t-xl bg-surface">
+    <div class="relative overflow-hidden rounded-t-xl bg-surface">
       <div class="grid min-w-0 grid-cols-1 md:grid-cols-2">
         <div class="flex min-w-0 flex-col justify-start px-[clamp(1.5rem,5vw,5rem)] pb-[clamp(4rem,7vw,6rem)] pt-[clamp(4rem,5vw,5rem)] md:grid md:grid-rows-[1fr_auto] md:pb-[clamp(2rem,3vw,3rem)]">
-          <div class="flex min-w-0 flex-col justify-start gap-[clamp(1.25rem,2vw,2rem)] md:justify-center">
-            <Text tag="p" variant="accent-label" class="md:text-[clamp(0.75rem,0.85vw,0.95rem)]">{eyebrow}</Text>
-            <Heading tag="h1" variant="hero" class="max-w-[42rem] text-[clamp(2.5rem,3.6vw,4rem)] md:text-[clamp(3rem,4.4vw,4.75rem)]">
+          <div class="flex min-w-0 flex-col justify-start gap-[clamp(1.25rem,2vw,2rem)] md:-translate-y-6 md:justify-center">
+            <Text tag="p" variant="accent-label" class="font-sans font-semibold tracking-[0.18em] md:text-[clamp(0.75rem,0.85vw,0.95rem)]">{eyebrow}</Text>
+            <Heading tag="h1" variant="hero" class="max-w-[42rem] font-bold leading-[0.96] tracking-[-0.065em] text-[clamp(2.5rem,3.6vw,4rem)] md:text-[clamp(3rem,4.4vw,4.75rem)]">
               {heading}{' '}<span class="text-brand-accent">{headingAccent}</span>
             </Heading>
             <Text variant="lead" class="max-w-[38rem] md:text-[clamp(1.1rem,1.45vw,1.4rem)]">{description}</Text>
             <div class="flex flex-wrap items-center gap-3">
-              <Button href={primaryCTA.href} variant="primary" size="lg" class="min-h-11 md:text-[clamp(1rem,1.15vw,1.2rem)]">{primaryCTA.label}</Button>
-              <Button href={secondaryCTA.href} variant="outline" size="lg" class="min-h-11 md:text-[clamp(1rem,1.15vw,1.2rem)]">{secondaryCTA.label}</Button>
+              <Button href={primaryCTA.href} variant="primary" size="lg" class="min-h-11 font-semibold tracking-normal md:text-[clamp(1rem,1.15vw,1.2rem)]">{primaryCTA.label}</Button>
+              <Button href={secondaryCTA.href} variant="outline" size="lg" class="min-h-11 font-semibold tracking-normal md:text-[clamp(1rem,1.15vw,1.2rem)]">{secondaryCTA.label}</Button>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-4 gap-y-3 pt-4 text-[color-mix(in_oklab,var(--color-on-surface)_40%,var(--color-surface))] md:w-full md:flex-nowrap md:justify-between">
@@ -78,9 +78,28 @@ const stats = props.stats ?? jsonData.stats;
           </div>
         </div>
         
-        <figure class="relative grid min-w-0 place-items-center overflow-hidden rounded-[5rem_1rem_0_1rem] md:mb-[clamp(0.75rem,1vw,1rem)] md:h-[clamp(36rem,45vw,48rem)] md:grid-rows-[minmax(0,1fr)] md:rounded-[clamp(7rem,10vw,10rem)_0_0_clamp(7rem,10vw,10rem)] md:[&_picture]:block md:[&_picture]:h-full md:[&_picture]:min-h-0 md:[&_picture]:w-full md:[&_img]:w-full">
-          <SmartImage src={image} alt={imageAlt} width={900} height={1125} loading="eager" class="block h-full min-h-0 w-full object-cover" />
-        </figure>
+        <div class="relative min-w-0 md:mb-[clamp(0.75rem,1vw,1rem)] md:h-[clamp(36rem,45vw,48rem)] md:pb-[clamp(1rem,2vw,2rem)] md:pr-[clamp(1.25rem,3vw,3rem)]">
+          <svg class="pointer-events-none absolute -left-10 top-[24%] z-20 hidden h-[48%] w-20 overflow-visible lg:block" viewBox="0 0 80 220" fill="none" aria-hidden="true">
+            <path d="M 68 4 C 30 46 24 78 31 108 C 38 140 18 169 6 216" stroke="var(--color-brand-accent)" stroke-opacity=".65" stroke-width="1.5" stroke-linecap="round" />
+            <path d="M 78 20 C 48 54 43 82 49 108" stroke="var(--color-brand-accent)" stroke-opacity=".22" stroke-width="1" stroke-linecap="round" />
+          </svg>
+          <svg class="pointer-events-none absolute -inset-3 z-0 hidden size-[calc(100%+1.5rem)] overflow-visible md:block" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M .22 .08 C .38 .02 .64 0 .84 .05 C .98 .09 1.02 .2 .98 .38 C .96 .52 .86 .58 .74 .66 C .62 .74 .57 .9 .43 .97 C .29 1.04 .15 .93 .1 .78 C .05 .62 .02 .48 .1 .34 C .14 .26 .16 .16 .22 .08 Z" fill="none" stroke="var(--color-brand-accent)" stroke-opacity=".25" stroke-width=".0025" vector-effect="non-scaling-stroke" />
+            <defs>
+              <clipPath id="nova-photo-blob" clipPathUnits="objectBoundingBox">
+                <path d="M .22 .08 C .38 .02 .64 0 .84 .05 C .98 .09 1.02 .2 .98 .38 C .96 .52 .86 .58 .74 .66 C .62 .74 .57 .9 .43 .97 C .29 1.04 .15 .93 .1 .78 C .05 .62 .02 .48 .1 .34 C .14 .26 .16 .16 .22 .08 Z" />
+              </clipPath>
+            </defs>
+          </svg>
+          <figure class="relative z-10 grid h-full min-w-0 place-items-center overflow-hidden [clip-path:url(#nova-photo-blob)] md:grid-rows-[minmax(0,1fr)] md:[&_picture]:block md:[&_picture]:h-full md:[&_picture]:min-h-0 md:[&_picture]:w-full md:[&_img]:w-full">
+            <SmartImage src={image} alt={imageAlt} width={900} height={1125} loading="eager" class="block h-full min-h-0 w-full object-cover" />
+          </figure>
+          <span class="pointer-events-none absolute bottom-[-0.5rem] left-[38%] z-0 hidden size-28 rounded-full [background-image:radial-gradient(circle,var(--color-brand-accent)_1.5px,transparent_1.5px)] [background-size:12px_12px] opacity-45 lg:block" aria-hidden="true"></span>
+          <svg class="pointer-events-none absolute -bottom-2 right-[12%] z-20 hidden h-16 w-48 overflow-visible lg:block" viewBox="0 0 192 64" fill="none" aria-hidden="true">
+            <path d="M 8 48 C 54 48 78 42 108 24 C 133 9 155 5 184 10" stroke="var(--color-brand-accent)" stroke-opacity=".55" stroke-width="1.5" stroke-linecap="round" />
+            <path d="M 145 6 L 184 10 L 164 28" stroke="var(--color-brand-accent)" stroke-opacity=".55" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
       </div>
 
       <div class="hero-stats grid grid-cols-2 rounded-t-[var(--rounded-lg)] bg-brand-dark px-[clamp(1rem,3vw,2.5rem)] py-[clamp(2rem,3vw,2.5rem)] text-brand-light md:grid-cols-4">
