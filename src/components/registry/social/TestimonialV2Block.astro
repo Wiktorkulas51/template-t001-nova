@@ -19,7 +19,7 @@ const columns = [list, [...list.slice(2), ...list.slice(0, 2)], [...list.slice(1
         <div class:list={["w-full max-w-sm", columnIndex > 0 ? "hidden md:block" : ""]}>
           <div class:list={["testimonial-v2-track flex flex-col", columnIndex === 0 ? "testimonial-v2-scroll" : columnIndex === 1 ? "testimonial-v2-scroll-slow" : "testimonial-v2-scroll-fast"]}>
             {[0, 1, 2].map((copyIndex) => (
-              <div class="flex flex-col gap-5" aria-hidden={copyIndex > 0 ? "true" : undefined}>
+              <div class="flex flex-col gap-5 pb-5" aria-hidden={copyIndex > 0 ? "true" : undefined}>
                 {column.map((item) => (
                   <article class="ui-bg-surface ui-radius-lg shrink-0 border border-brand-dark/10 p-6 shadow-sm md:p-8">
                     <p class="text-brand-dark/75 leading-relaxed">{item.quote}</p>
@@ -45,8 +45,8 @@ const columns = [list, [...list.slice(2), ...list.slice(0, 2)], [...list.slice(1
 </Section>
 
 <style>
-  @keyframes testimonial-v2-up { from { transform: translateY(0); } to { transform: translateY(-33.333333%); } }
-  .testimonial-v2-scroll, .testimonial-v2-scroll-slow, .testimonial-v2-scroll-fast { will-change: transform; }
+  @keyframes testimonial-v2-up { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, -33.333333%, 0); } }
+  .testimonial-v2-scroll, .testimonial-v2-scroll-slow, .testimonial-v2-scroll-fast { backface-visibility: hidden; will-change: transform; }
   .testimonial-v2-scroll { animation: testimonial-v2-up 14s linear infinite; }
   .testimonial-v2-scroll-slow { animation: testimonial-v2-up 18s linear infinite; }
   .testimonial-v2-scroll-fast { animation: testimonial-v2-up 12s linear infinite; }
