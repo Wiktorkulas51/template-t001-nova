@@ -16,7 +16,7 @@ const legalLinks = copy.legalLinks.map((link) => ({ ...link, href: getNovaNaviga
 
 <footer id="kontakt" class="relative overflow-hidden rounded-t-[var(--rounded-lg)] bg-brand-dark bg-[url('/assets/images/t001-nova/t001-nova-cta-mountains@1920.webp')] bg-cover bg-center bg-no-repeat text-brand-light">
   <div class="absolute inset-0 bg-brand-dark/60" aria-hidden="true"></div>
-  <div class="relative z-10 mx-auto grid w-[min(100%-2rem,80rem)] gap-10 py-20 pb-8">
+  <div class="ui-container relative z-10 mx-auto grid w-[min(100%-2rem,80rem)] gap-10 py-20 pb-8">
     <div class="mx-auto max-w-5xl text-center">
       <p class="mb-4 flex items-center justify-center gap-4 text-xs font-bold uppercase tracking-[0.14em] text-brand-accent">
         <span class="h-px w-10 bg-brand-accent/70" aria-hidden="true"></span>
@@ -40,7 +40,7 @@ const legalLinks = copy.legalLinks.map((link) => ({ ...link, href: getNovaNaviga
     </div>
     <div class="flex flex-wrap items-center justify-between gap-6 border-t border-brand-light/25 pt-8 text-brand-light/75">
       <Text tag="span" variant="feature-body-sm">{copy.copyright}</Text>
-      <Text tag="span" variant="feature-body-sm" class="lg:text-right">{copy.attribution}</Text>
+      <Text tag="span" variant="feature-body-sm" class="lg:text-right">{copy.attribution.replace("WebScale", "")}<a href="https://webscale.pl" target="_blank" rel="noreferrer" class="text-brand-light transition-colors hover:text-brand-accent">WebScale</a></Text>
     </div>
   </div>
 </footer>
