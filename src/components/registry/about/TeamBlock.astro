@@ -34,19 +34,19 @@ const teamAvatars = props.teamAvatars ?? fallback?.teamAvatars ?? [];
       <div class="flex flex-col gap-4 px-0 py-6 md:p-8">
         <Heading tag="h2" variant="section-title">{title}</Heading>
         <Text variant="lead">{description}</Text>
-        <div class="flex items-center gap-4">
-          <div class="flex items-center -space-x-3 pr-1" aria-label={teamAriaLabel}>
+        <div class="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-3 sm:gap-4">
+          <div class="relative z-10 flex shrink-0 items-center -space-x-2.5 pr-1 sm:-space-x-3" aria-label={teamAriaLabel}>
               {teamAvatars.map((avatar, index) => (
-                <img src={avatar.src} alt={avatar.alt} width="48" height="48" loading="lazy" class="size-12 rounded-full border-2 border-surface object-cover" style={`z-index: ${teamAvatars.length - index};`} />
+                <img src={avatar.src} alt={avatar.alt} width="48" height="48" loading="lazy" class="relative size-10 rounded-full border-2 border-surface object-cover sm:size-12" style={`z-index: ${teamAvatars.length - index};`} />
               ))}
           </div>
-          <div class="flex items-baseline gap-3 whitespace-nowrap">
-            <strong class="text-2xl leading-none">{teamCount}</strong>
-            <Text tag="span" variant="body">{teamLabel}</Text>
+          <div class="relative z-20 flex min-w-0 flex-1 items-baseline gap-2 sm:flex-none sm:gap-3 sm:whitespace-nowrap">
+            <strong class="shrink-0 text-2xl leading-none">{teamCount}</strong>
+            <Text tag="span" variant="body" class="min-w-0 text-sm sm:text-base">{teamLabel}</Text>
           </div>
         </div>
         <ul class="m-0 grid list-none gap-3 py-4">{checks.map((check) => <li class="flex items-center gap-3"><span class="grid size-8 shrink-0 place-items-center rounded-full border border-white/45 bg-brand-accent text-xl leading-none text-brand-dark" aria-hidden="true">→</span><Text tag="span" variant="body">{check}</Text></li>)}</ul>
-        <Button href={buttonHref} variant="primary" size="md" class="w-fit">{buttonLabel}</Button>
+        <Button href={buttonHref} variant="primary" size="md" class="min-h-11 w-full sm:w-fit">{buttonLabel}</Button>
       </div>
     </div>
   </Container>
