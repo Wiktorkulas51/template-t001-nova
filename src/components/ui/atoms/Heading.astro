@@ -6,7 +6,6 @@ type Props = Record<string, any> & {
 	motion?: 'fade';
 	class?: string;
 	tag?: string;
-	contentKey?: string;
 };
 
 const {
@@ -14,7 +13,6 @@ const {
 	variant,
 	motion,
 	tag,
-	contentKey,
 	class: className = '',
 	...rest
 } = Astro.props as Props;
@@ -33,13 +31,11 @@ const variantClasses: Record<NonNullable<Props['variant']>, string> = {
 
 const appliedVariantClass = variant ? variantClasses[variant] : '';
 const motionAttrs = motion === 'fade' ? { 'data-motion': 'fade' } : {};
-const contentAttrs = contentKey ? { 'data-content-key': contentKey, 'data-review-type': 'text' } : {};
 ---
 
 <Tag 
 	class:list={["font-heading font-bold", appliedVariantClass, className]}
 	{...rest}
-	{...contentAttrs}
 	{...motionAttrs}
 >
 	<slot />

@@ -9,7 +9,6 @@
 @import "./patterns.css";
 @import "./motion.css";
 @import "./accordion.css";
-@import "./content-review.css";
 /* Override'y per-theme na koncu: najpierw musi wladowac sie root Tailwinda,
    zeby kolejnosc warstw (theme, base, components, utilities) byla wlasciwa. */
 @import "./theme-overrides.css";

@@ -411,9 +411,6 @@ const mainPaddingStyle = fullBleedTop
 		<!-- Analytics must not delay first render, defer keeps cookie consent compatibility. -->
 		{clientRuntime && <script is:inline data-astro-rerun src="/js/analytics.js" defer></script>}
 		{clientRuntime && <script is:inline data-astro-rerun src="/js/theme-switcher.js" defer></script>}
-		{/* The script gates itself on ?edit=1 so static builds can use the review mode. */}
-		{clientRuntime && <script is:inline data-astro-rerun src="/js/content-review.js" defer></script>}
-
 		{clientRuntime && hasOptionalTracking && <CookieConsent />}
 	        {clientRuntime && <Toast />}
 	        {clientRuntime && <FloatingBar />}
