@@ -19,7 +19,7 @@ const legalLinks = [
 
 <footer class="relative overflow-hidden bg-brand-dark bg-[url('/assets/images/t001-nova/t001-nova-cta-mountains@1920.webp')] bg-cover bg-center bg-no-repeat text-brand-light">
   <div class="absolute inset-0 bg-brand-dark/60" aria-hidden="true"></div>
-  <div class="relative z-10 mx-auto grid w-[min(100%-2rem,80rem)] gap-16 py-20 pb-8">
+  <div class="relative z-10 mx-auto grid w-[min(100%-2rem,80rem)] gap-24 py-20 pb-8">
     <div class="mx-auto max-w-5xl text-center">
       <p class="mb-4 flex items-center justify-center gap-4 text-xs font-bold uppercase tracking-[0.14em] text-brand-accent">
         <span class="h-px w-10 bg-brand-accent/70" aria-hidden="true"></span>
@@ -28,20 +28,20 @@ const legalLinks = [
       </p>
       <h2 class="m-0 max-w-none text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] tracking-[-0.06em] text-brand-light lg:whitespace-nowrap">{ctaData.pl.heading}</h2>
       <p class="mx-auto mt-6 max-w-xl text-[clamp(1rem,1.5vw,1.2rem)] leading-[1.55] text-brand-light/80">{ctaData.pl.description}</p>
-      <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <div class="mt-12 flex flex-wrap justify-center gap-3">
         <Button href={ctaData.pl.ctaHref} variant="accent">{ctaData.pl.ctaLabel}</Button>
         <Button href="/uslugi/" variant="outline" class="!border-brand-light/65 !bg-brand-dark/35 !text-brand-light">Poznaj ofertę</Button>
       </div>
     </div>
-    <nav aria-label="Nawigacja stopki" class="flex flex-wrap gap-x-6 gap-y-4 lg:justify-end">
-      {footerLinks.map((link) => <a href={link.href}>{link.label}</a>)}
-    </nav>
-    <div class="flex flex-wrap items-center justify-between gap-6 border-t border-brand-light/25 pt-8 text-brand-light/75">
+    <div class="grid gap-6 border-t border-brand-light/25 pt-8 text-brand-light/75 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
       <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
         {legalLinks.map((link) => <a href={link.href} class="text-sm text-brand-light/80 transition-colors hover:text-brand-accent">{link.label}</a>)}
         <Text tag="span" variant="feature-body-sm">Wszelkie prawa zastrzeżone.</Text>
       </div>
-      <Text tag="span" variant="feature-body-sm">Projekt i wdrożenie: WebScale</Text>
+      <nav aria-label="Nawigacja stopki" class="flex flex-wrap gap-x-6 gap-y-4 lg:justify-center">
+        {footerLinks.map((link) => <a href={link.href} class="text-sm text-brand-light transition-colors hover:text-brand-accent">{link.label}</a>)}
+      </nav>
+      <Text tag="span" variant="feature-body-sm" class="lg:text-right">Projekt i wdrożenie: WebScale</Text>
     </div>
   </div>
 </footer>
