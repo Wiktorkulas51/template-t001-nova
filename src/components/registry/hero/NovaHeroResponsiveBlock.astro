@@ -112,18 +112,37 @@ const stats = props.stats ?? fallback?.stats ?? [];
   }
 
   @media (max-width: 767px) {
-    .nova-responsive-hero .nova-stat:nth-child(even) {
-      border-left: 0.0625rem solid color-mix(in oklab, var(--color-brand-light) 35%, transparent);
+    .nova-responsive-hero .nova-stat:nth-child(even)::before {
+      position: absolute;
+      inset-block: 0.75rem;
+      left: 0;
+      width: 0.0625rem;
+      background-color: var(--color-brand-light);
+      content: "";
+      opacity: 0.35;
     }
 
-    .nova-responsive-hero .nova-stat:nth-child(-n + 2) {
-      border-bottom: 0.0625rem solid color-mix(in oklab, var(--color-brand-light) 35%, transparent);
+    .nova-responsive-hero .nova-stat:nth-child(-n + 2)::after {
+      position: absolute;
+      right: 0.75rem;
+      bottom: 0;
+      left: 0.75rem;
+      height: 0.0625rem;
+      background-color: var(--color-brand-light);
+      content: "";
+      opacity: 0.35;
     }
   }
 
   @media (min-width: 768px) {
-    .nova-responsive-hero .nova-stat + .nova-stat {
-      border-left: 0.0625rem solid color-mix(in oklab, var(--color-brand-light) 35%, transparent);
+    .nova-responsive-hero .nova-stat + .nova-stat::before {
+      position: absolute;
+      inset-block: 25%;
+      left: 0;
+      width: 0.0625rem;
+      background-color: var(--color-brand-light);
+      content: "";
+      opacity: 0.35;
     }
   }
 </style>
