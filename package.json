@@ -55,6 +55,7 @@
     "check:images": "tsx src/scripts/check-images.ts",
     "deploy:ftp": "tsx src/scripts/ftp-deploy.ts",
     "build:prod": "npm run build",
+    "package:marketplace": "node scripts/package-marketplace.mjs",
     "push": "npm run build:prod && npm run deploy:ftp",
     "push:zip": "npm run build:prod && node scripts/push.mjs",
     "deploy:turbo": "node scripts/push.mjs",

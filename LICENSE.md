@@ -1,23 +1,24 @@
 # Nova Template License
 
-Wersja licencji: darmowe wydanie Nova, 2026-09-13.
+Wersja licencji: commercial release candidate, 2026-09-13.
+
+To jest roboczy wzór licencji do weryfikacji prawnej przed publiczną sprzedażą.
 
 ## 1. Właściciel praw
 
 Kod, komponenty, style, skrypty i materiały autorskie zawarte w tym projekcie są własnością WebScale i autora projektu, z wyjątkiem elementów objętych osobnymi licencjami.
 
-## 2. Darmowa licencja
+## 2. Licencja Personal
 
-Każda osoba lub organizacja, która legalnie otrzymała tę wersję Nova bez opłat, otrzymuje bezterminową, niewyłączną i nieodpłatną licencję na:
+Po zakupie jednej licencji Personal jedna osoba może używać i modyfikować template w jednym końcowym projekcie internetowym. Gotową stronę można opublikować dla siebie albo dla jednego klienta.
 
-- używanie kodu w swoich projektach,
-- modyfikowanie kodu i treści,
-- tworzenie oraz publikowanie stron internetowych na podstawie template'u,
-- używanie template'u w projektach własnych i projektach realizowanych dla klientów.
+Licencja obejmuje używanie kodu, modyfikowanie kodu i treści oraz publikowanie gotowej strony internetowej.
 
-Powyższe prawa dotyczą dokładnie tej wersji projektu, którą odbiorca otrzymał bezpłatnie. Zmiana ceny przyszłych wersji nie odbiera praw do tej wersji.
+## 3. Licencja Agency
 
-## 3. Ograniczenia
+Licencja Agency pozwala jednej agencji używać i modyfikować template w wielu projektach własnych i klienckich. Licencja Agency nie daje prawa do odsprzedaży samego kodu ani do publikowania go jako osobnego produktu.
+
+## 4. Ograniczenia
 
 Bez pisemnej zgody WebScale nie wolno:
 
@@ -29,20 +30,18 @@ Bez pisemnej zgody WebScale nie wolno:
 
 Dozwolone jest publikowanie gotowych stron internetowych zbudowanych na podstawie template'u. Niedozwolone jest dalsze przekazywanie samego pakietu źródłowego jako produktu.
 
-## 4. Przyszłe wersje i usługi
+## 5. Przyszłe wersje i usługi
 
-WebScale może w przyszłości udostępniać nowe wersje Nova odpłatnie. Może również oferować odpłatne wdrożenie, personalizację, wsparcie i dodatkowe materiały. Nie zmienia to bezpłatnych praw do wersji, którą odbiorca otrzymał wcześniej bez opłat.
+WebScale może udostępniać nowe wersje Nova, aktualizacje, wdrożenia, personalizację i wsparcie jako osobne produkty lub usługi. Zakup jednej wersji nie oznacza automatycznego dostępu do przyszłych wersji.
 
-## 5. Elementy zewnętrzne
+## 6. Elementy zewnętrzne
 
 Ta licencja nie rozszerza praw do bibliotek npm, fontów, zdjęć, ikon, filmów, avatarów, znaków towarowych ani innych materiałów pochodzących od osób trzecich. Każdy zewnętrzny element podlega własnej licencji, którą należy sprawdzić przed użyciem.
 
-## 6. Brak gwarancji
+## 7. Brak gwarancji
 
 Projekt jest udostępniany w stanie, w jakim się znajduje. Autorzy nie gwarantują, że będzie działał w każdym środowisku, z każdą konfiguracją serwera ani po każdej zmianie zewnętrznych zależności. Odbiorca odpowiada za konfigurację, bezpieczeństwo i zgodność swojej wdrożonej strony z obowiązującymi przepisami.
 
-## 7. English summary
+## 8. English summary
 
-The current Nova release is free. Anyone who legally received this exact release for free keeps a perpetual, royalty-free right to use, modify and publish websites built with it. Future releases, support and customization may be paid, but they do not remove the rights granted for an earlier free release.
-
-The source template itself may not be resold, sublicensed, redistributed as a template product or used to create a competing template marketplace. Third-party libraries, fonts, images, icons and other assets remain subject to their own licenses.
+The Nova template is licensed, not sold as a transfer of copyright. A Personal license covers one final website project. An Agency license covers multiple client projects for one agency. The source template may not be resold, sublicensed, redistributed or published as a competing template product. Third-party assets remain subject to their own licenses.

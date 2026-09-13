@@ -40,5 +40,9 @@ src/assets/raw/
 
 # Lighthouse reports are generated evidence, not source files.
 audit-reports/lighthouse-*
+audit-reports/
+
+# Marketplace archives are generated locally and are not source files.
+release/
 
 dev-server.log

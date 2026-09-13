@@ -1,0 +1,14 @@
+# Never include generated or local-only files in a release archive.
+node_modules/
+dist/
+.astro/
+.git/
+audit-reports/
+dev-server.log
+.env
+.env.*
+src/assets/raw/
+.impeccable/
+.vscode/
+.docs/
+archive/

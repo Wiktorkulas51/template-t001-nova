@@ -23,6 +23,14 @@ npm run dev
 
 Strona będzie dostępna pod adresem wyświetlonym przez Astro.
 
+## Dokumentacja
+
+- `CUSTOMIZATION.md`, konfiguracja marki, treści, obrazów i tokenów.
+- `CONTENT-GUIDE.md`, zasady przygotowania treści dla homepage'u.
+- `DEPLOYMENT.md`, build i publikacja na hostingu statycznym.
+- `ASSETS-LICENSES.md`, zasady dotyczące assetów demonstracyjnych.
+- `CHANGELOG.md`, historia wydań.
+
 ## Edycja treści
 
 Najważniejsze pliki do personalizacji znajdują się tutaj:
@@ -51,7 +59,7 @@ Przed publikacją należy sprawdzić stronę ręcznie na telefonie i desktopie, 
 
 ## Licencja
 
-Aktualna wersja Nova jest udostępniana bezpłatnie na zasadach opisanych w pliku `LICENSE.md`. Późniejsze wersje, dodatkowe usługi i wsparcie mogą być płatne. Osoby, które otrzymały tę wersję bezpłatnie, zachowują bezpłatne prawo do korzystania z dokładnie tej wersji na warunkach licencji obowiązujących w dniu jej otrzymania.
+Warunki użycia znajdują się w pliku `LICENSE.md`. Kod template'u może być modyfikowany i używany w gotowych projektach internetowych, ale nie może być odsprzedawany jako osobny template ani redystrybuowany jako paczka źródłowa.
 
 ## Ważne informacje
 
