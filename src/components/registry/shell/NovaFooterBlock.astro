@@ -1,0 +1,35 @@
+---
+import Logo from "@components/ui/atoms/Logo.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import jsonData from "@data/navigation/footer.json";
+
+const footerLinks = jsonData.columns.flatMap((column) => column.links).slice(0, 4);
+
+---
+
+<footer class="nova-footer">
+  <div class="nova-footer__inner">
+    <div class="nova-footer__brand">
+      <Logo variant="light" />
+      <Text variant="body">{jsonData.about}</Text>
+    </div>
+    <nav aria-label="Nawigacja stopki" class="nova-footer__links">
+      {footerLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+    <div class="nova-footer__bottom">
+      <Text tag="span" variant="feature-body-sm">{jsonData.copyrightText}</Text>
+      <Text tag="span" variant="feature-body-sm">{jsonData.attribution.label}</Text>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .nova-footer { background: var(--color-brand-dark); color: var(--color-brand-light); }
+  .nova-footer__inner { display: grid; gap: 2rem; width: min(100% - 2rem, 80rem); margin: 0 auto; padding: 3rem 0 1.5rem; }
+  .nova-footer__brand { display: grid; gap: 1rem; max-width: 24rem; }
+  .nova-footer__brand :global(.ui-text) { color: color-mix(in oklab, var(--color-brand-light) 70%, transparent); }
+  .nova-footer__links { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; }
+  .nova-footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; padding-top: 1rem; }
+  .nova-footer__bottom :global(.ui-text) { color: color-mix(in oklab, var(--color-brand-light) 60%, transparent); }
+  @media (min-width: 48rem) { .nova-footer__inner { grid-template-columns: 1fr 1fr; } .nova-footer__links { justify-content: flex-end; align-content: start; } .nova-footer__bottom { grid-column: 1 / -1; } }
+</style>

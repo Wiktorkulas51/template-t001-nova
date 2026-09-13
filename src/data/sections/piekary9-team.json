@@ -1,0 +1,28 @@
+{
+  "sectionLabel": "Zespół",
+  "title": "Ludzie stojący za projektem",
+  "description": "Poznaj zespół specjalistów, którzy łączą doświadczenie, precyzję i uważność na potrzeby przyszłych mieszkańców.",
+  "image": {
+    "url": "/assets/piekary9/team/kinga-pawel.webp",
+    "alt": "Dwuosobowy zespół podczas pracy nad projektem",
+    "placeholderLabel": "Zdjęcie zespołu"
+  },
+  "members": [
+    {
+      "name": "Anna Kowalska",
+      "role": "Kierowniczka projektu"
+    },
+    {
+      "name": "Marek Nowak",
+      "role": "Opiekun sprzedaży"
+    },
+    {
+      "name": "Julia Wójcik",
+      "role": "Główna projektantka"
+    },
+    {
+      "name": "Tomasz i Piotr",
+      "role": "Nadzór techniczny"
+    }
+  ]
+}

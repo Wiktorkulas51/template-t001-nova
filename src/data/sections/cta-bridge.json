@@ -1,0 +1,22 @@
+{
+  "pl": {
+    "eyebrow": "Twoja marka zasługuje na więcej",
+    "heading": "Zacznijmy tworzyć razem",
+    "description": "Porozmawiajmy o Twoim projekcie i sprawdźmy, jak możemy pomóc w rozwoju Twojej marki.",
+    "ctaLabel": "Skontaktuj się",
+    "ctaHover": "Porozmawiajmy",
+    "ctaHref": "/kontakt/"
+  },
+  "en": {
+    "eyebrow": "Our offer",
+    "heading": "Book a free consultation",
+    "description": "Tell us about your project and we will suggest the best solution.",
+    "ctaLabel": "Contact us",
+    "ctaHover": "Write to us",
+    "ctaHref": "/kontakt/"
+  },
+  "image": {
+    "src": "/assets/images/t001-nova/t001-nova-cta-mountains.webp",
+    "alt": "Górski krajobraz jako tło sekcji kontaktowej"
+  }
+}

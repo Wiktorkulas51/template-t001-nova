@@ -1,0 +1,69 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Button from "@components/ui/atoms/Button.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import jsonData from "@data/sections/qualification-quiz.json";
+
+export interface Props { data?: typeof jsonData; locale?: "pl" | "en"; sectionId?: string; class?: string; }
+const { data: overrideData, sectionId = "quiz", class: className = "" } = Astro.props as Props;
+const t = overrideData ?? jsonData;
+---
+<Section id={sectionId} tone="base" class:list={["relative overflow-hidden", className]}>
+  <Container>
+    <div class="mx-auto max-w-3xl text-center">
+      <Text variant="accent-label" class="mb-8 italic text-brand-primary">{t.eyebrow}</Text>
+
+      <div data-qualification-quiz class="ui-card relative mx-auto flex min-h-[500px] flex-col items-center justify-center overflow-hidden border border-brand-primary/20 p-7 text-center shadow-[var(--ui-elevation-strong)] sm:p-10 md:min-h-[480px] md:p-14">
+        <div class="pointer-events-none absolute left-0 top-0 size-20 rounded-br-[2.5rem] bg-brand-primary/10 md:size-28 md:rounded-br-[4rem]"></div>
+        <div class="pointer-events-none absolute bottom-0 right-0 size-20 rounded-tl-[2.5rem] bg-brand-primary/10 md:size-28 md:rounded-tl-[4rem]"></div>
+        <Icon name="question" weight="regular" class="pointer-events-none absolute right-5 top-5 text-3xl text-brand-primary/25 md:right-8 md:top-8 md:text-4xl" />
+
+        <div data-quiz-screen="intro" class="flex flex-col items-center space-y-6 md:space-y-8">
+          <Heading tag="h2" variant="section-heading-lg" class="max-w-2xl px-2 text-brand-dark">
+            {t.title} <span class="italic text-brand-primary">{t.titleAccent}</span>
+          </Heading>
+          <Text variant="lead" class="mx-auto max-w-xl text-brand-dark/65">{t.description}</Text>
+          <Button type="button" data-quiz-start size="lg" class="shadow-[var(--ui-elevation-medium)]">{t.start}</Button>
+          <Text variant="accent-label" class="text-brand-dark/50">{t.duration}</Text>
+        </div>
+
+        {t.questions.map((question, index) => (
+          <div data-quiz-screen={`question-${index}`} class="hidden w-full flex-col items-center space-y-6 text-center md:space-y-8">
+            <Text variant="accent-label" class="rounded-full border border-brand-primary/10 bg-brand-primary/10 px-3 py-1 text-brand-primary">{question.pill}</Text>
+            <Heading tag="h3" variant="feature-heading-md" class="max-w-xl text-brand-dark">{question.question}</Heading>
+            <div class="flex w-full max-w-2xl flex-col justify-center gap-3 sm:flex-row md:gap-6">
+              <Button type="button" data-quiz-choice="primary" data-quiz-step={index} full class="sm:w-auto">{question.primary}</Button>
+              <Button type="button" data-quiz-choice="secondary" data-quiz-step={index} variant="outline" full class="sm:w-auto">{question.secondary}</Button>
+            </div>
+          </div>
+        ))}
+
+        <div data-quiz-screen="success" class="hidden flex-col items-center space-y-7 px-2 text-center md:space-y-9">
+          <div class="flex size-16 items-center justify-center rounded-full border border-brand-primary/20 bg-brand-primary/10 text-brand-primary md:size-20"><Icon name="check" weight="bold" class="text-3xl md:text-4xl" /></div>
+          <div class="space-y-3">
+            <Heading tag="h3" variant="feature-heading-md" class="text-brand-dark">{t.success.title} <span class="italic text-brand-primary">{t.success.titleAfter}</span></Heading>
+            <Text variant="feature-body-sm" class="mx-auto max-w-xl text-brand-dark/65">{t.success.description}</Text>
+          </div>
+          <Button href={t.success.ctaHref} size="lg">{t.success.cta}</Button>
+        </div>
+
+        <div data-quiz-screen="no-match" class="hidden flex-col items-center space-y-7 px-2 text-center md:space-y-9">
+          <div class="flex size-16 items-center justify-center rounded-full border border-brand-primary/10 bg-brand-primary/5 text-brand-primary md:size-20"><Icon name="x" weight="regular" class="text-3xl opacity-70 md:text-4xl" /></div>
+          <div class="space-y-3">
+            <Heading tag="h3" variant="feature-heading-md" class="text-brand-dark">{t.noMatch.title} <span class="italic text-brand-primary">{t.noMatch.titleAccent}</span></Heading>
+            <Text variant="feature-body-sm" class="mx-auto max-w-xl text-brand-dark/65">{t.noMatch.description}</Text>
+          </div>
+          <div class="flex flex-col items-center gap-4">
+            <Button href={t.noMatch.contactHref} variant="ghost" size="sm">{t.noMatch.contact}</Button>
+            <Button href={t.noMatch.socialHref} variant="primary" size="md" target="_blank" rel="noreferrer">{t.noMatch.social}</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<script is:inline src="/js/qualification-quiz.js"></script>

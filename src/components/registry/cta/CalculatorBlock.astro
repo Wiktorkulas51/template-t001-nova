@@ -1,0 +1,238 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Button from "@components/ui/atoms/Button.astro";
+
+type CalculatorItem = {
+  id: string;
+  name: string;
+  price: number;
+  icon?: string;
+};
+
+type CalculatorContent = {
+  title?: string;
+  description?: string;
+  servicesLabel?: string;
+  addonsLabel?: string;
+  summaryTitle?: string;
+  estimateLabel?: string;
+  emptyStateLabel?: string;
+  services?: CalculatorItem[];
+  addons?: CalculatorItem[];
+  currency?: string;
+  ctaLabel?: string;
+  ctaLink?: string;
+};
+
+export interface Props {
+  sectionId?: string;
+  title?: string;
+  description?: string;
+  servicesLabel?: string;
+  addonsLabel?: string;
+  summaryTitle?: string;
+  estimateLabel?: string;
+  emptyStateLabel?: string;
+  services?: CalculatorItem[];
+  addons?: CalculatorItem[];
+  currency?: string;
+  ctaLabel?: string;
+  ctaLink?: string;
+  /** Section heading tag: 'h2' by default, 'h1' when the block is the first section without hero (SEO). */
+  headingTag?: string;
+}
+
+const { sectionId = "kalkulator", title = "", description = "", servicesLabel = "", addonsLabel = "", summaryTitle = "", estimateLabel = "", emptyStateLabel = "", services = [], addons = [], currency = "PLN", ctaLabel = "", ctaLink = "", headingTag = "h2" } = Astro.props;
+
+const content: CalculatorContent = {
+  title, description, servicesLabel, addonsLabel, summaryTitle, estimateLabel, emptyStateLabel, services, addons, currency, ctaLabel, ctaLink
+};
+
+const calculatorRootId = `calculator-root-${sectionId}`;
+const summaryItemsId = `calculator-items-${sectionId}`;
+const summaryTotalId = `calculator-total-${sectionId}`;
+---
+
+<Section id={sectionId} tone="base">
+  <Container>
+    <div class="space-y-4">
+      <Heading tag={headingTag} variant="section-title">{content.title}</Heading>
+      <Text variant="body">{content.description}</Text>
+    </div>
+
+    <div
+      id={calculatorRootId}
+      class="mt-10 grid gap-8 md:grid-cols-2"
+      data-calculator-root
+      data-summary-items-id={summaryItemsId}
+      data-summary-total-id={summaryTotalId}
+      data-currency={content.currency}
+      data-empty-state={content.emptyStateLabel}
+    >
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <Text variant="accent-label">{content.servicesLabel}</Text>
+
+          <div class="grid gap-4">
+            {(content.services ?? []).map((service) => (
+              <label
+                class="flex cursor-pointer items-start gap-4 rounded-xl border border-brand-dark/10 ui-bg-page p-4 transition-colors hover:border-brand-primary/30"
+                for={`${sectionId}-${service.id}`}
+              >
+                <input
+                  id={`${sectionId}-${service.id}`}
+                  type="checkbox"
+                  class="mt-1 h-5 w-5 accent-brand-primary"
+                  data-calc-input
+                  data-calc-name={service.name}
+                  data-calc-price={service.price}
+                />
+
+                <div class="space-y-1">
+                  <Text variant="body" class="font-medium text-brand-dark">{service.name}</Text>
+                  <Text variant="accent-label">{service.price} {content.currency}</Text>
+                </div>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {
+          (content.addons ?? []).length > 0 && (
+            <div class="space-y-4">
+              <Text variant="accent-label">{content.addonsLabel}</Text>
+
+              <div class="grid gap-4">
+                {(content.addons ?? []).map((addon) => (
+                  <label
+                    class="flex cursor-pointer items-start gap-4 rounded-xl border border-brand-dark/10 ui-bg-page p-4 transition-colors hover:border-brand-primary/30"
+                    for={`${sectionId}-${addon.id}`}
+                  >
+                    <input
+                      id={`${sectionId}-${addon.id}`}
+                      type="checkbox"
+                      class="mt-1 h-5 w-5 accent-brand-primary"
+                      data-calc-input
+                      data-calc-name={addon.name}
+                      data-calc-price={addon.price}
+                    />
+
+                    <div class="space-y-1">
+                      <Text variant="body" class="font-medium text-brand-dark">{addon.name}</Text>
+                      <Text variant="accent-label">{addon.price} {content.currency}</Text>
+                    </div>
+                  </label>
+                ))}
+              </div>
+            </div>
+          )
+        }
+      </div>
+
+      <div class="h-fit rounded-2xl border border-brand-dark/10 ui-bg-page p-6 shadow-sm md:sticky md:top-24">
+        <div class="space-y-4">
+          <Heading tag="h3" variant="section-title">{content.summaryTitle}</Heading>
+          <div id={summaryItemsId} class="space-y-2"></div>
+        </div>
+
+        <div class="mt-6 flex items-center justify-between gap-4 border-t border-brand-dark/10 pt-4">
+          <Text variant="body" class="font-bold text-brand-dark">{content.estimateLabel}</Text>
+          <Text variant="body" class="text-right text-2xl font-bold text-brand-primary">
+            <span id={summaryTotalId}>0</span> {content.currency}
+          </Text>
+        </div>
+
+        {
+          content.ctaLink && content.ctaLabel && (
+            <div class="mt-6">
+              <Button href={content.ctaLink}>{content.ctaLabel}</Button>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<script is:inline>
+  (() => {
+    function setupCalculator(root) {
+      if (!(root instanceof HTMLElement)) return;
+
+      const itemsId = root.dataset.summaryItemsId || "";
+      const totalId = root.dataset.summaryTotalId || "";
+      const currency = root.dataset.currency || "PLN";
+      const emptyState = root.dataset.emptyState || "";
+      const itemsEl = document.getElementById(itemsId);
+      const totalEl = document.getElementById(totalId);
+      const inputs = [...root.querySelectorAll("[data-calc-input]")];
+
+      if (!(itemsEl instanceof HTMLElement) || !(totalEl instanceof HTMLElement) || !inputs.length) return;
+
+      // Podsumowanie powstaje dynamicznie na bazie zaznaczonych opcji.
+      const updateTotal = () => {
+        let total = 0;
+        const fragment = document.createDocumentFragment();
+
+        inputs.forEach((input) => {
+          if (!(input instanceof HTMLInputElement) || !input.checked) return;
+
+          const price = Number.parseInt(input.dataset.calcPrice || "0", 10) || 0;
+          const name = input.dataset.calcName || "";
+          total += price;
+
+          const row = document.createElement("div");
+          row.className = "flex items-center justify-between gap-4 text-sm text-brand-dark";
+
+          const nameEl = document.createElement("span");
+          nameEl.textContent = name;
+
+          const priceEl = document.createElement("span");
+          priceEl.className = "font-semibold text-brand-primary";
+          priceEl.textContent = `${price} ${currency}`;
+
+          row.append(nameEl, priceEl);
+          fragment.appendChild(row);
+        });
+
+        itemsEl.innerHTML = "";
+
+        if (fragment.childNodes.length === 0) {
+          const emptyEl = document.createElement("div");
+          emptyEl.className = "text-sm text-brand-dark/60";
+          emptyEl.textContent = emptyState;
+          itemsEl.appendChild(emptyEl);
+        } else {
+          itemsEl.appendChild(fragment);
+        }
+
+        totalEl.textContent = `${total}`;
+      };
+
+      inputs.forEach((input) => {
+        if (!(input instanceof HTMLInputElement) || input.dataset.calcBound === "true") return;
+        input.dataset.calcBound = "true";
+        input.addEventListener("change", updateTotal);
+      });
+
+      updateTotal();
+    }
+
+    const initCalculators = () => {
+      document.querySelectorAll("[data-calculator-root]").forEach((root) => {
+        setupCalculator(root);
+      });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initCalculators, { once: true });
+    } else {
+      initCalculators();
+    }
+
+    document.addEventListener("astro:page-load", initCalculators);
+  })();
+</script>

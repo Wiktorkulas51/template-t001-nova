@@ -1,0 +1,37 @@
+{
+  "howItWorks": {
+    "title": "Jak to działa?",
+    "description": "Zarezerwuj termin, ustal szczegóły dostawy, a my zajmiemy się resztą. Gotowa sauna pojawia się na miejscu, a odbiór również odbywa się bez Państwa udziału."
+  },
+  "features": [
+    {
+      "icon": "calendar-check",
+      "label": "Wybierz termin",
+      "desc": "Zdecyduj, kiedy chcesz skorzystać z sauny, i zarezerwuj wybrany dzień. Oferujemy elastyczne terminy, dopasowane do indywidualnych potrzeb i okazji.",
+      "details": [
+        "Rezerwacja online lub telefonicznie",
+        "Elastyczne terminy, także weekendy"
+      ]
+    },
+    {
+      "icon": "truck",
+      "label": "Dowóz i ustawienie",
+      "desc": "Sauna zostaje przywieziona we wskazane miejsce i ustawiona przez nasz zespół. Nie musisz martwić się o logistykę ani montaż.",
+      "details": [
+        "Dowóz na wskazane miejsce",
+        "Ustawienie i rozruch przez obsługę",
+        "Odbiór po zakończeniu wynajmu"
+      ]
+    },
+    {
+      "icon": "thermometer-hot",
+      "label": "Gotowa sauna",
+      "desc": "Po rozpaleniu sauna jest gotowa do użycia. Wystarczy cieszyć się relaksem i ciepłem, a my zadbamy o całą resztę.",
+      "details": [
+        "Instrukcja obsługi w cenie",
+        "Wsparcie telefoniczne w trakcie wynajmu",
+        "Czysta i przygotowana na przyjęcie"
+      ]
+    }
+  ]
+}

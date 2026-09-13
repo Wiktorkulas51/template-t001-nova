@@ -1,0 +1,96 @@
+---
+// Why: CtaBridgeBlock creates a calm transition between page content
+// and the light footer. The card partly overlaps the footer so the CTA
+// does not create another large empty section before the end of the page.
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Button from "@components/ui/atoms/Button.astro";
+import SmartImage from "@components/ui/atoms/SmartImage.astro";
+import { formatInternalLink } from "@utils/url";
+import jsonData from "@data/sections/cta-bridge.json";
+
+type CtaData = (typeof jsonData)["pl"];
+
+export interface Props {
+	data?: CtaData;
+	locale?: "pl" | "en";
+	headingTag?: string;
+	sectionId?: string;
+	imageSrc?: string;
+	imageAlt?: string;
+	pl?: CtaData;
+	en?: CtaData;
+}
+
+const props = Astro.props as Props;
+const localized = props.locale === "en" ? (props.en ?? props.pl) : (props.pl ?? props.en);
+const t = props.data || localized || jsonData[props.locale ?? "pl"];
+const imageSrc = props.imageSrc || jsonData.image.src;
+const imageAlt = props.imageAlt || jsonData.image.alt;
+---
+
+<Section
+	id={props.sectionId ?? "cta-bridge"}
+	tone="page"
+	class="relative overflow-visible pb-12 pt-12 sm:pb-16 sm:pt-16 md:pb-20 md:pt-20"
+>
+	<Container>
+		<div
+			class="group relative z-10 -mb-20 overflow-hidden rounded-3xl border border-brand-dark/15 bg-brand-dark text-white shadow-2xl shadow-brand-dark/20 sm:-mb-24 md:-mb-44"
+		>
+			<div
+				class="pointer-events-none absolute inset-3 z-20 rounded-2xl border border-white/15"
+				aria-hidden="true"
+			></div>
+
+			<div class="grid lg:grid-cols-5">
+				<div class="relative z-10 flex flex-col justify-center px-8 py-10 sm:px-10 sm:py-12 lg:col-span-3 lg:px-12 lg:py-14">
+					{t.eyebrow && (
+						<Text variant="accent-label" class="text-brand-accent">{t.eyebrow}</Text>
+					)}
+
+					<Heading
+						tag={props.headingTag ?? "h2"}
+						variant="section-title"
+						class="mt-4 max-w-xl text-balance text-white"
+					>
+						{t.heading}
+					</Heading>
+
+					<Text variant="lead" class="mt-5 max-w-xl text-white/70">
+						{t.description}
+					</Text>
+
+					<div class="mt-8">
+						<Button
+							href={formatInternalLink(t.ctaHref)}
+							variant="accent"
+							size="lg"
+							hoverText={t.ctaHover}
+						>
+							{t.ctaLabel}
+						</Button>
+					</div>
+				</div>
+
+				<div class="relative min-h-64 overflow-hidden lg:col-span-2 lg:min-h-80">
+					<SmartImage
+						src={imageSrc}
+						alt={imageAlt}
+						class="absolute inset-0 size-full object-cover transition duration-700 ease-out group-hover:scale-105"
+						loading="lazy"
+						width={900}
+						height={700}
+						sizes="(min-width: 1024px) 38vw, 100vw"
+					/>
+					<div
+						class="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-dark/65 via-transparent to-transparent lg:bg-gradient-to-r lg:from-brand-dark/10 lg:via-transparent lg:to-brand-dark/10"
+						aria-hidden="true"
+					></div>
+				</div>
+			</div>
+		</div>
+	</Container>
+</Section>

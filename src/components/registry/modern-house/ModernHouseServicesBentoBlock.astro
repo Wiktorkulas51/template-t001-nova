@@ -1,0 +1,60 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import ServiceBentoCard from "@components/ui/molecules/ServiceBentoCard.astro";
+import TrustCountBar from "@components/ui/molecules/TrustCountBar.astro";
+import trustBarData from "@data/sections/trust-bar.json";
+
+type ServiceItem = {
+  icon: string;
+  title: string;
+  description: string;
+  image?: string;
+  alt?: string;
+  size?: "large" | "medium" | "small";
+  tone?: "cream";
+};
+
+interface Props {
+  sectionId?: string;
+  title?: string;
+  subtitle?: string;
+  moreLabel?: string;
+  moreHref?: string;
+  items?: ServiceItem[];
+}
+
+const {
+  sectionId = "features",
+  title = "",
+  subtitle = "",
+  moreLabel = "",
+  moreHref = "",
+  items = [],
+} = Astro.props as Props;
+---
+
+<Section id={sectionId} tone="page" class="mh-services-section">
+  <Container>
+    <div class="mx-auto max-w-2xl text-center">
+      <Heading level={2} variant="section-heading-xl" class="mt-3 text-brand-dark">{title}</Heading>
+      <Text variant="lead" class="mt-4 text-brand-dark/65">{subtitle}</Text>
+    </div>
+
+    <div class="mt-10 grid gap-4 lg:grid-flow-col lg:grid-cols-3 lg:grid-rows-[auto_auto_auto]">
+      {items.map((item) => (
+        <ServiceBentoCard item={item} moreLabel={moreLabel} moreHref={moreHref} />
+      ))}
+    </div>
+
+    <TrustCountBar items={trustBarData.items} />
+  </Container>
+</Section>
+
+<style>
+  .mh-services-section {
+    padding-block: clamp(4rem, 8vw, 7rem);
+  }
+</style>

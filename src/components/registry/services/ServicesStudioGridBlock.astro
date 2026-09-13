@@ -1,0 +1,74 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import servicesData from "@data/sections/services-studio.json";
+
+// Why: ServicesStudioGridBlock is a visual copy of the services section from the heinrich
+// (filip-halucha) project: a grid of 5 columns with icons and "wave bars" at the bottom of
+// the tabs.
+type ServiceItem = {
+  icon?: string;
+  title: string;
+  desc: string;
+};
+
+export interface Props {
+  sectionId?: string;
+  heading?: string;
+  items?: ServiceItem[];
+  /** Section heading tag: 'h2' by default, 'h1' when the block is the first section without hero (SEO). */
+  headingTag?: string;
+}
+
+const { sectionId = "uslugi", heading = "", items = [], headingTag = "h2" } = Astro.props as Props;
+
+// Why: "props || json" pattern so that the block can work on its own with section data and
+// PageBuilder can overwrite the header or service list.
+const resolvedHeading = heading || servicesData.heading;
+const list = items.length > 0 ? items : servicesData.items;
+
+// Why: Fixed bar heights create the rhythm of the "sound wave" at the bottom of the card.
+const waveBars = [30, 50, 70, 45, 60];
+---
+
+<Section id={sectionId} tone="base" class="relative overflow-hidden">
+  <Container>
+    <div class="mx-auto max-w-2xl text-center">
+      <Heading tag={headingTag} class="text-3xl font-light! tracking-[0.08em] text-neutral-900 sm:text-4xl">
+        {resolvedHeading}
+      </Heading>
+    </div>
+
+    <!-- Why: gap-px + bg-neutral-200 creates thin lines between cards (the effect of "canal" as in the original). 5 columns only on the desktop. -->
+    <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-px bg-neutral-200">
+      {list.map((item) => (
+        <div class="ui-card-interactive group relative bg-white px-6 py-10 flex flex-col border border-neutral-200">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-neutral-100 via-neutral-400 to-neutral-100 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+          <div class="relative mb-6 flex items-center gap-3">
+            <div class="size-10 shrink-0 rounded-sm border border-neutral-200 flex items-center justify-center transition-all duration-500 group-hover:border-neutral-500 group-hover:shadow-sm">
+              <Icon name={item.icon || "star"} class="size-5 text-neutral-400 group-hover:text-neutral-700 transition-colors" />
+            </div>
+            <div class="flex-1 h-px bg-neutral-200" />
+            <div class="size-1 rounded-full bg-neutral-300" />
+          </div>
+
+          <div class="flex-1">
+            <h3 class="text-xs font-bold tracking-[0.15em] text-neutral-900 uppercase">{item.title}</h3>
+            <div class="mt-3 h-px w-6 bg-neutral-300" />
+            <Text class="mt-3 text-xs text-neutral-500">{item.desc}</Text>
+          </div>
+
+          <div class="mt-6 flex items-end gap-[2px] h-6">
+            {waveBars.map((height) => (
+              <div class="flex-1 bg-neutral-200 rounded-t transition-all duration-300 group-hover:bg-neutral-400" style={`height: ${height}%`} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</Section>

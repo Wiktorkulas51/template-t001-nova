@@ -1,0 +1,189 @@
+---
+// Why: CompetitionsBlock is a visual copy of the competition section from the tom-ros
+// project: a grid of medal cards (coach's credibility) + two masonry (CSS columns) with
+// photos from the competition, in natural proportions so that the faces are not cut off. The
+// lightbox is global from the starter kit (data-lightbox + data-href).
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import SmartImage from "@components/ui/atoms/SmartImage.astro";
+import competitionsData from "@data/sections/competitions.json";
+
+type CompetitionMedal = {
+  src?: string;
+  alt?: string;
+  title?: string;
+};
+
+type CompetitionImage = {
+  src?: string;
+  alt?: string;
+  year?: string;
+  featured?: boolean;
+  group?: "personal" | "athletes";
+};
+
+interface Props {
+  sectionId?: string;
+  label?: string;
+  title?: string;
+  description?: string;
+  medals?: CompetitionMedal[];
+  images?: CompetitionImage[];
+/** Fallback accessible labels, editable through JSON. */
+  medalFallback?: string;
+  photoFallback?: string;
+  athletesTitle?: string;
+  /** Section heading tag: 'h2' na homepage (hero ma h1), 'h1' na podstronach (SEO). */
+  headingTag?: string;
+}
+
+const {
+  sectionId = "zawody",
+  label = "",
+  title = "",
+  description = "",
+  medals: rawMedals = [],
+  images: rawImages = [],
+  medalFallback = "",
+  photoFallback = "",
+  athletesTitle = "",
+  headingTag = "h2",
+} = Astro.props as Props;
+
+// Why: the "props || json" pattern from the starter kit, thanks to which PageBuilder can
+// overwrite any field, and the rest comes from the section data. We cast JSON data to
+// component types because JSON has no optional fields.
+const sourceMedals = rawMedals.length > 0 ? rawMedals : (competitionsData.medals as CompetitionMedal[]);
+const sourceImages = rawImages.length > 0 ? rawImages : (competitionsData.images as CompetitionImage[]);
+const resolvedLabel = label || competitionsData.label;
+const resolvedTitle = title || competitionsData.title;
+const resolvedDescription = description || competitionsData.description;
+const resolvedMedalFallback = medalFallback || competitionsData.medalFallback;
+const resolvedPhotoFallback = photoFallback || competitionsData.photoFallback;
+const resolvedAthletesTitle = athletesTitle || competitionsData.athletesTitle;
+const medals = sourceMedals.filter((medal) => Boolean(medal?.src));
+const images = sourceImages.filter((image) => Boolean(image?.src));
+
+// Why: masonry with natural proportions, instead of grid with fixed aspect-ratio. Fixed ratio
+// (16/7) cut faces, and the grid with col-span cards left a hole in the last row. We divide
+// the photos into two groups: our own and the players'.
+const personalImages = images.filter((image) => image.group !== "athletes");
+const athleteImages = images.filter((image) => image.group === "athletes");
+
+// Why: a magnifying glass icon appears on hover, common to both masonry - kept in one
+// variable so as not to duplicate SVG.
+const zoomIconSvg = `<svg class="h-8 w-8 text-white opacity-0 transition-all duration-300 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 21l-4.35-4.35M17 10.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>`;
+---
+
+<Section id={sectionId} tone="page">
+  <Container class="relative">
+    <!-- Section heading: label + title + description, consistent with the rest of the page. -->
+    <div class="space-y-4">
+      <Text variant="accent-label">{resolvedLabel}</Text>
+      <Heading tag={headingTag} variant="section-title">{resolvedTitle}</Heading>
+      <Text variant="body" class="max-w-2xl">{resolvedDescription}</Text>
+    </div>
+
+    <!-- Medal bar: cards with photos, hover highlights with a frame and illuminates.
+Grid always 3 columns per lg, regardless of the number of medals. -->
+    {medals.length > 0 && (
+      <div class="mt-12 grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-3">
+        {medals.map((medal, index) => (
+          <figure
+            class="ui-glow-card group relative overflow-hidden rounded-lg border border-outline-variant bg-surface-container transition-all duration-300 hover:border-brand-primary"
+            data-lightbox
+            data-href={medal.src}
+            data-title={medal.title || resolvedMedalFallback}
+          >
+            <div class="relative aspect-[3/4] overflow-hidden">
+              <SmartImage
+                src={medal.src}
+                alt={medal.alt || ""}
+                width={600}
+                height={800}
+                loading={index < 2 ? "eager" : "lazy"}
+                class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+{/* The description of the medal appears on the hover as a gradient from the bottom of the card */}
+              <div class="absolute inset-0 flex items-end bg-gradient-to-t from-black/80 via-black/20 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <figcaption class="ui-type-accent-label">{medal.title || resolvedMedalFallback}</figcaption>
+              </div>
+            </div>
+{/* Thin red stripe under each card as section signature */}
+            <span class="absolute bottom-0 left-0 h-0.5 w-full origin-left scale-x-0 bg-brand-primary transition-transform duration-500 group-hover:scale-x-100" aria-hidden="true"></span>
+          </figure>
+        ))}
+      </div>
+    )}
+
+    <!-- Professions gallery: masonry (CSS columns) - photos in natural
+proportions, the columns fill without holes like in a grid. -->
+    {personalImages.length > 0 && (
+      <div class="mt-8 columns-1 gap-3 sm:columns-2 md:gap-4 lg:columns-3">
+        {personalImages.map((image, index) => (
+          <a
+            href={image.src}
+            data-lightbox
+            data-href={image.src}
+            data-title={image.alt || resolvedPhotoFallback}
+            class="ui-glow-card group relative mb-3 block break-inside-avoid overflow-hidden rounded-lg border border-outline-variant bg-surface-container transition-all duration-300 hover:border-brand-primary md:mb-4"
+            aria-label={image.alt || resolvedPhotoFallback}
+          >
+            <SmartImage
+              src={image.src}
+              alt={image.alt || ""}
+              width={900}
+              height={675}
+              loading={index < 6 ? "eager" : "lazy"}
+              class="w-full h-auto transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+{/* Year of the competition in the corner of the card }
+            {image.year && (
+              <span class="ui-type-accent-label absolute left-3 top-3 rounded bg-black/70 px-2 py-1 text-[11px] tracking-[0.2em]">
+                {image.year}
+              </span>
+            )}
+{/* Mask with magnification icon at hover */}
+            <div class="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/40" set:html={zoomIconSvg}></div>
+          </a>
+        ))}
+      </div>
+    )}
+
+{/* Second gallery: players, separate headlines and own Masonry. */}
+    {athleteImages.length > 0 && (
+      <div class="mt-16">
+        <Heading tag="h3" variant="section-title">{resolvedAthletesTitle}</Heading>
+        <div class="mt-8 columns-1 gap-3 sm:columns-2 md:gap-4 lg:columns-3">
+          {athleteImages.map((image, index) => (
+            <a
+              href={image.src}
+              data-lightbox
+              data-href={image.src}
+              data-title={image.alt || resolvedPhotoFallback}
+              class="ui-glow-card group relative mb-3 block break-inside-avoid overflow-hidden rounded-lg border border-outline-variant bg-surface-container transition-all duration-300 hover:border-brand-primary md:mb-4"
+              aria-label={image.alt || resolvedPhotoFallback}
+            >
+              <SmartImage
+                src={image.src}
+                alt={image.alt || ""}
+                width={900}
+                height={675}
+                loading={index < 3 ? "eager" : "lazy"}
+                class="w-full h-auto transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              {image.year && (
+                <span class="ui-type-accent-label absolute left-3 top-3 rounded bg-black/70 px-2 py-1 text-[11px] tracking-[0.2em]">
+                  {image.year}
+                </span>
+              )}
+              <div class="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/40" set:html={zoomIconSvg}></div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+  </Container>
+</Section>

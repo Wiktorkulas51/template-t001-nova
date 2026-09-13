@@ -1,0 +1,163 @@
+---
+// Dlaczego: KnowledgeCardsBlock to wierna kopia sekcji "WIEDZA" z projektu
+// lean-creative (centered header with a dash + grid of 3 article cards,
+// where the WHOLE tab is a link). Client color tokens replaced with
+// globalne tokeny brand starter-kita (mapa zamian w AGENTS.md), a klienckie
+// OEE and loss articles replaced with generic PL/EN data in JSON (zero
+// danych klienta w bibliotece).
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import { formatInternalLink } from "@utils/url";
+import jsonData from "@data/sections/knowledge-cards.json";
+
+interface Props {
+  /** Full section details; when missing, the block reads the fallback from the JSON.*/
+  data?: typeof jsonData;
+  /** JSON content language: "pl" (default) or "en".*/
+  locale?: "pl" | "en";
+  /** Section anchor id (default "knowledge").*/
+  id?: string;
+  /** Section header tag: 'h2' by default, 'h1' when the block is the first section of a page without hero (SEO).*/
+  headingTag?: string;
+  /** Additional classes per section (e.g. with PageBuilder).*/
+  class?: string;
+}
+
+const {
+  data,
+  locale = "pl",
+  id = "wiedza",
+  headingTag = "h2",
+  class: className = "",
+} = Astro.props as Props;
+
+// Dlaczego: wzorzec "props.data || jsonData[locale]" (jak w ServicesMediaCardsBlock),
+// so that the block can run on its own with the section data and PageBuilder or CMS can
+// overwrite content. When the date comes from outside, we select a variant there
+// language (pl/en) as JSON does.
+const t = (data ? data[locale] : jsonData[locale]) || jsonData.pl;
+const rawItems = t.items ?? [];
+
+// Why: formatInternalLink takes care of trailing slash and path cleanliness,
+// according to the SEO starter kit standard (each internal link with "/").
+const items = rawItems.map((item) => ({
+  ...item,
+  href: formatInternalLink(item.href),
+}));
+---
+
+<Section id={id} tone="page" class:list={["border-t border-brand-dark/10", className]}>
+  <Container>
+    {/* Why: Header centered as in the original. The client had a line
+        hidden, so the card is not hidden and the input supports global motion,
+        so that the decoration remains visible (ServiceMediaCardsBlock pattern).*/}
+    <div class="mx-auto max-w-4xl text-center">
+      <Heading tag={headingTag} variant="section-heading-lg" class="!font-extrabold">{t.heading}</Heading>
+      <div class="mx-auto mt-5 h-0.5 w-14 bg-brand-primary"></div>
+    </div>
+
+    {/* Dlaczego: grid 3 kolumn na desktopie, 2 na sm, 1 na mobile (mobile-first).
+        max-w-5xl and gap-6 exactly as in the original KNOWLEDGE section.*/}
+    <div class="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map((item) => (
+        // Why: The ENTIRE tab is an <a> link (as in the client) and not
+        // article with link inside. mt-auto on lc-arrow-link pushes the label
+        // down so that the cards in the row are aligned.
+        <a
+          href={item.href}
+          class="group flex flex-col overflow-hidden rounded-md border border-brand-dark/10 bg-white shadow-soft lc-card-hover hover:border-brand-primary/30"
+        >
+          {/* Why: the background under the image is the client --color-primary-container,
+              zamieniony na globalny token bg-brand-primary/10 (mapa zamian). */}
+          <div class="h-40 overflow-hidden bg-brand-primary/10">
+          <img
+            src={item.imageSrc}
+            alt={item.imageAlt}
+            width="800"
+            height="450"
+              class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
+              width="640"
+              height="256"
+            />
+          </div>
+          <div class="flex flex-col p-5">
+            <Heading
+              tag="h3"
+              class="text-base leading-snug !font-extrabold text-brand-dark transition group-hover:text-brand-primary"
+            >
+              {item.title}
+            </Heading>
+            <Text variant="feature-body-sm" class="mt-2 leading-relaxed !font-semibold text-brand-dark/70">
+              {item.description}
+            </Text>
+            {/* Why: "Read more" is a span in the middle of the tab link (not a separate one
+                <a>), exactly as in the original. mt-auto + pt-3 push it down.*/}
+            <Text tag="span" class="lc-arrow-link mt-auto pt-3">
+              {item.ctaLabel}
+              <span class="lc-arrow-link-icon" aria-hidden="true">→</span>
+            </Text>
+          </div>
+        </a>
+      ))}
+    </div>
+  </Container>
+</Section>
+
+<style>
+  /* Dlaczego: style lc-* przeniesione z lean-creative.css klienta, z kolorami
+     on brand tokens (var(--color-brand-primary)) so that they respond to active ones
+     theme starter kit. Preserved times and transition curves 1:1 from the original.*/
+  .lc-arrow-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--color-brand-primary);
+    transition: gap 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .lc-arrow-link:hover {
+    gap: 0.75rem;
+  }
+  .lc-arrow-link .lc-arrow-link-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 900;
+    line-height: 1;
+    position: relative;
+    top: -2px;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .lc-arrow-link:hover .lc-arrow-link-icon {
+    transform: translateX(6px);
+  }
+
+  /* Why: Hovering the card raises it and changes its shadow. It implements image scaling
+     Tailwind (group-hover:scale-105 on <img>), so we don't duplicate it here.*/
+  .lc-card-hover {
+    transition: border-color 0.3s ease, box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .lc-card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 40px -16px rgba(7, 22, 50, 0.2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lc-card-hover,
+    .lc-arrow-link,
+    .lc-arrow-link .lc-arrow-link-icon {
+      transition: none;
+    }
+    .lc-card-hover:hover,
+    .lc-arrow-link:hover,
+    .lc-arrow-link:hover .lc-arrow-link-icon {
+      transform: none;
+    }
+  }
+</style>

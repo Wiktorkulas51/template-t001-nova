@@ -1,0 +1,62 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import jsonData from "@data/sections/mystek-premium-board-risk.json";
+
+type Risk = { title: string; description: string; icon: string };
+type Copy = { eyebrow: string; title: string; titleAccent: string; description: string; quote: string; signature: string; risks: Risk[] };
+interface Props { data?: { pl: Copy; en?: Copy }; pl?: Copy; en?: Copy; locale?: "pl" | "en"; class?: string }
+
+const { data, pl, en, locale = "pl", class: className = "" } = Astro.props as Props;
+const source = data ?? (pl ? { pl, en } : (jsonData as { pl: Copy; en?: Copy }));
+const t = source[locale] ?? source.pl;
+---
+
+<Section tone="base" class:list={["relative overflow-hidden bg-white", className]}>
+	<div class="mystek-blueprint-grid pointer-events-none absolute inset-0 opacity-35"></div>
+	<div class="pointer-events-none absolute top-1/2 left-0 size-[30rem] -translate-y-1/2 rounded-full bg-brand-primary/5 blur-[100px]"></div>
+
+	<Container class="relative z-10">
+		<div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-12 lg:gap-20">
+			<div class="lg:col-span-5" data-motion="fade">
+				<Text variant="accent-label" class="mb-5 text-brand-primary">{t.eyebrow}</Text>
+				<Heading tag="h2" variant="section-heading-xl" class="mb-7">
+					{t.title}<br />
+					<span class="ui-text-gradient">{t.titleAccent}</span>
+				</Heading>
+				<Text variant="lead" class="mb-12 max-w-xl text-brand-dark/65">{t.description}</Text>
+
+				<div class="relative py-4 lg:pr-10">
+					<div class="pointer-events-none absolute -top-5 -left-3 font-serif text-8xl leading-none text-brand-primary/10">“</div>
+					<div class="relative z-10">
+						<Text variant="lead" class="mb-6 font-serif italic text-brand-dark/80">{t.quote}</Text>
+						<div class="flex items-center gap-4"><div class="h-[2px] w-12 bg-brand-primary"></div><Text variant="accent-label" class="text-brand-dark">{t.signature}</Text></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="lg:col-span-7">
+				<div class="grid gap-6">
+					{t.risks.map((risk, index) => (
+						<article class="group flex items-start gap-5 ui-card-interactive rounded-3xl border border-brand-dark/10 bg-brand-dark/[0.03] p-7 shadow-soft backdrop-blur-sm transition-[transform,box-shadow,border-color,background-color] duration-500 hover:bg-white" data-motion="fade" style={`--motion-delay: ${index * 120}ms`}>
+							<div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-brand-primary/10 text-brand-primary transition-[background-color,color] duration-300 group-hover:bg-brand-primary group-hover:text-white"><Icon name={risk.icon} size="1.35rem" /></div>
+							<div><Heading tag="h3" variant="feature-heading-md" class="mb-3">{risk.title}</Heading><Text variant="body" class="text-brand-dark/65">{risk.description}</Text></div>
+						</article>
+					))}
+				</div>
+			</div>
+		</div>
+	</Container>
+</Section>
+
+<style>
+	.mystek-blueprint-grid {
+		background-image:
+			linear-gradient(to right, color-mix(in oklab, var(--color-brand-dark) 6%, transparent) 1px, transparent 1px),
+			linear-gradient(to bottom, color-mix(in oklab, var(--color-brand-dark) 6%, transparent) 1px, transparent 1px);
+		background-size: 4rem 4rem;
+	}
+</style>

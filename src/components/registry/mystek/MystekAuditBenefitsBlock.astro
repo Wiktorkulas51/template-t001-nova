@@ -1,0 +1,49 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import jsonData from "@data/sections/mystek-audit-benefits.json";
+
+type Item = { icon: string; title: string; description: string };
+type Copy = { eyebrow: string; title: string; titleAccent: string; description: string; items: Item[] };
+interface Props { data?: { pl: Copy; en?: Copy }; pl?: Copy; en?: Copy; locale?: "pl" | "en"; class?: string }
+
+const { data, pl, en, locale = "pl", class: className = "" } = Astro.props as Props;
+const source = data ?? (pl ? { pl, en } : (jsonData as { pl: Copy; en?: Copy }));
+const t = source[locale] ?? source.pl;
+---
+
+<Section tone="page" class:list={["relative overflow-hidden", className]}>
+	<div class="mystek-blueprint-grid pointer-events-none absolute inset-0 opacity-35"></div>
+	<Container class="relative z-10">
+		<div class="mx-auto mb-16 max-w-3xl text-center lg:mb-20" data-motion="fade">
+			<Text variant="accent-label" class="mb-6 text-brand-primary">{t.eyebrow}</Text>
+			<Heading tag="h2" variant="section-heading-xl" class="mb-6">
+				{t.title}<br />
+				<span class="ui-text-gradient">{t.titleAccent}</span>
+			</Heading>
+			<Text variant="lead" class="mx-auto max-w-2xl text-brand-dark/65">{t.description}</Text>
+		</div>
+
+		<div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+			{t.items.map((item, index) => (
+				<article class="group ui-card-interactive rounded-3xl border border-brand-dark/10 bg-white p-8 shadow-soft lg:p-10" data-motion="fade" style={`--motion-delay: ${(index + 1) * 120}ms`}>
+					<div class="mb-7 flex size-14 items-center justify-center rounded-2xl bg-brand-primary/10 text-brand-primary transition-[background-color,color] duration-300 group-hover:bg-brand-primary group-hover:text-white"><Icon name={item.icon} size="1.45rem" /></div>
+					<Heading tag="h3" variant="feature-heading-md" class="mb-4">{item.title}</Heading>
+					<Text variant="body" class="text-brand-dark/65">{item.description}</Text>
+				</article>
+			))}
+		</div>
+	</Container>
+</Section>
+
+<style>
+	.mystek-blueprint-grid {
+		background-image:
+			linear-gradient(to right, color-mix(in oklab, var(--color-brand-dark) 6%, transparent) 1px, transparent 1px),
+			linear-gradient(to bottom, color-mix(in oklab, var(--color-brand-dark) 6%, transparent) 1px, transparent 1px);
+		background-size: 4rem 4rem;
+	}
+</style>

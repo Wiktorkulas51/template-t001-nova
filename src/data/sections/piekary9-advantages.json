@@ -1,0 +1,33 @@
+{
+  "pl": {
+    "sectionId": "atuty",
+    "eyebrow": "Kluczowe atuty",
+    "title": "Dlaczego ta inwestycja?",
+    "subtitle": "Trzy kluczowe atuty od pierwszego kontaktu z inwestycją",
+    "ctaLabel": "Dowiedz się więcej",
+    "ctaHref": "#kontakt",
+    "items": [
+      {
+        "id": "01",
+        "title": "Spokojna lokalizacja",
+        "description": "Wygodne położenie łączy codzienny dostęp do miejskiej infrastruktury z atmosferą kameralnej ulicy.",
+        "image": "/assets/piekary9/advantages/IMG_17.03.26-7-opt.webp",
+        "imageAlt": "Widok okolicy inwestycji"
+      },
+      {
+        "id": "02",
+        "title": "Kameralny dziedziniec",
+        "description": "Odrestaurowana elewacja oficyny i wewnętrzny dziedziniec tworzą prywatną enklawę w środku miasta.",
+        "image": "/assets/piekary9/advantages/IMG_28.02.26-2-opt.webp",
+        "imageAlt": "Widok dziedzińca inwestycji"
+      },
+      {
+        "id": "03",
+        "title": "Ponadczasowy charakter",
+        "description": "Historyczne detale spotykają się z nowoczesnym komfortem, tworząc przestrzeń z własną opowieścią.",
+        "image": "/assets/piekary9/advantages/IMG_17.03.26-7-opt.webp",
+        "imageAlt": "Architektoniczny detal inwestycji"
+      }
+    ]
+  }
+}

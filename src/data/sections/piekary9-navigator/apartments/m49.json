@@ -1,0 +1,27 @@
+{
+  "section": "oficyna_prawa",
+  "price": 379000,
+  "floor": 4,
+  "poly": [
+    6.26,
+    -0.53,
+    10.38,
+    15.87,
+    10.3,
+    21.79,
+    6.18,
+    7.39
+  ],
+  "area": 46.31,
+  "pdf": "/client-assets/folde3/Rzuty/lokal_49.pdf",
+  "status": "sold",
+  "finish": "Do remontu",
+  "label": "49",
+  "x": 8.81,
+  "images": [],
+  "rooms": 2,
+  "y": 14.87,
+  "id": "49",
+  "price_per_m2": 8184,
+  "comment": "2 pokoje - widok na dziedziniec"
+}

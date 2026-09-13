@@ -1,0 +1,226 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Button from "@components/ui/atoms/Button.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import data from "@data/sections/hero-tomros.json";
+
+// Why: texts and media are in props (SSOT - Single Source of Truth) with
+// fallback to JSON (src/data/sections/hero-tomros.json). JSON holds content
+// en/pl, and EN is the default language for this copy of hero. Props from CMS overwrite JSON.
+type HeroTrustItem = {
+  icon: string;
+  value: string;
+  label: string;
+};
+
+type Cta = { label: string; href: string; hoverText?: string };
+
+export interface Props {
+  sectionId?: string;
+  /** Content language with JSON. EN retains text from the original hero Tom Ros.*/
+  lang?: "pl" | "en";
+  title?: string;
+  /** Fragment of the title rendered inline, e.g. "Built for life."*/
+  accentTitle?: string;
+  subtitle?: string;
+  primaryCta?: Cta;
+  secondaryCta?: Cta;
+  trustItems?: HeroTrustItem[];
+  /** Trainer's photo - full-screen background for mobile and desktop (variant with background).*/
+  background?: { src: string; alt: string };
+  /** Company data injected by PageBuilder; hero does not render them (required only for type compatibility).*/
+  company?: { phone?: string; email?: string; address?: string };
+  /** Additional classes per section (e.g. with PageBuilder).*/
+  class?: string;
+}
+
+const {
+  sectionId = "hero-tomros",
+  lang = "en",
+  title,
+  accentTitle,
+  subtitle,
+  primaryCta,
+  secondaryCta,
+  trustItems,
+  background,
+  class: className = "",
+} = Astro.props as Props;
+
+const t = data[lang] ?? data.pl;
+
+// Why: The special hero retains the branded title from Tom Ros, regardless
+// general page heading used by other library components.
+const resolvedTitle = title || t.title;
+const resolvedAccentTitle = accentTitle || t.accentTitle;
+const resolvedSubtitle = subtitle || t.subtitle;
+const primary = primaryCta || t.primaryCta;
+const secondary = secondaryCta || t.secondaryCta;
+const trust = trustItems ?? t.trustItems ?? [];
+const isPl = lang === "pl";
+
+// Why: a photo is a media asset, so it lives outside the en/pl structure in JSON
+// (there is no point in duplicating paths per language). Props take precedence.
+const bg = background || data.background;
+---
+
+<!-- Dlaczego: wersja mobilna to osobna sekcja (wzorzec tom-ros HeroMobileBlock).
+     The photo fills the entire screen as a background, with a neutral shadow blending in the frame
+     in the background color from the bottom, and the content is glued to the bottom (mt-auto).
+     On md+ the section is hidden (md:hidden), this is also monitored by the is:inline style
+     na dole (ochrona FOUC, wzorzec z tom-ros/HeroCinematicBlock). -->
+<section
+  id={`${sectionId}-mobile`}
+  class="tom-ros-hero tom-ros-hero-mobile relative flex min-h-[calc(100svh-var(--site-header-height,5.75rem))] flex-col overflow-hidden md:hidden"
+  aria-label={resolvedTitle}
+>
+  <!-- A photo as a background for the entire hero. object-cover fills the section, object-top
+       trzyma kadr na sylwetce (twarz nie jest ucinana). -->
+  {bg && (
+    <img
+      src={bg.src}
+      alt={bg.alt}
+      class="absolute inset-0 h-full w-full object-cover object-top"
+      loading="eager"
+      width="1365"
+      height="1333"
+    />
+  )}
+  <div class="tom-ros-hero-shadow tom-ros-hero-shadow-mobile" aria-hidden="true"></div>
+
+  <Container class="flex flex-1 flex-col">
+    <!-- Why: content stuck to the bottom (mt-auto), because it is on Mobile Hero
+         poster style: text at the bottom, followed by a fade to a silhouette.-->
+    <div class="relative z-10 mt-auto flex w-full flex-col items-center pb-12 pt-16 text-center">
+      <Heading tag="h1" variant="hero" class="tom-ros-hero-heading tom-ros-mobile-hero-heading whitespace-pre-line text-brand-dark">
+        {resolvedTitle}{resolvedAccentTitle && <span class="ui-type-display-accent tom-ros-inline-accent" class:list={[{ block: isPl }]}>{isPl ? resolvedAccentTitle : ` ${resolvedAccentTitle}`}</span>}
+      </Heading>
+
+      {resolvedSubtitle && (
+        <Text variant="lead" class="mx-auto mt-4 max-w-md text-brand-dark/70">
+          {resolvedSubtitle}
+        </Text>
+      )}
+
+      <div class="mt-8 flex w-full max-w-xs flex-col items-center gap-3">
+        {primary && (
+          <Button href={primary.href} variant="primary" size="lg" class="w-full" hoverText={primary.hoverText}>
+            {primary.label}
+          </Button>
+        )}
+        {secondary && (
+          <Button href={secondary.href} variant="outline" size="lg" class="w-full" hoverText={secondary.hoverText}>
+            {secondary.label}
+          </Button>
+        )}
+      </div>
+
+      {trust.length > 0 && (
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+          {trust.map((item) => (
+            <div class="flex items-center gap-3">
+              <div class="flex size-10 items-center justify-center rounded-md bg-brand-primary/10 text-brand-primary">
+                <Icon name={item.icon} class="text-lg" />
+              </div>
+              <div class="text-left">
+                <div class="text-lg font-bold text-brand-dark">{item.value}</div>
+                <div class="text-xs uppercase tracking-wider text-brand-dark/60">{item.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </Container>
+</section>
+
+<!-- Why: desktop version of hero - an exact visual copy of tom-ros HeroBlock.
+     The default variant is full screen BACKGROUND PHOTO with neutral
+     a shadow that blends the frame into the global background; text is left (text-left,
+     max-w-3xl) and the section has hero-dock-bottom (screen height).-->
+<Section id={sectionId} tone="page" class:list={["tom-ros-hero tom-ros-hero-desktop relative hidden overflow-visible hero-dock-bottom md:block", className]}>
+  {bg && (
+    <>
+      <img
+        src={bg.src}
+        alt={bg.alt}
+        class="ui-hero-media absolute inset-0 size-full object-cover object-right-bottom"
+        loading="eager"
+        width="1365"
+        height="1333"
+      />
+      <div class="tom-ros-hero-shadow" aria-hidden="true"></div>
+    </>
+  )}
+
+  <Container>
+    <!-- Why: content vertically centered (hero-dock-bottom on section),
+         left aligned. h1 in one line in code + whitespace-pre-line
+         zachowuje entery z JSON, a akcent pozostaje INLINE w h1, tak jak
+         in the original arrangement Tom Ros.-->
+    <div class="relative z-10 flex flex-col items-start max-w-3xl py-20 text-left md:py-28">
+      <div class="space-y-6">
+        <Heading tag="h1" variant="hero" class="tom-ros-hero-heading whitespace-pre-line text-brand-dark">
+          {resolvedTitle}{resolvedAccentTitle && <span class="ui-type-display-accent tom-ros-inline-accent" class:list={[{ block: isPl }]}>{isPl ? resolvedAccentTitle : ` ${resolvedAccentTitle}`}</span>}
+        </Heading>
+        {resolvedSubtitle && (
+          <Text variant="lead" class="max-w-xl text-brand-dark/70">
+            {resolvedSubtitle}
+          </Text>
+        )}
+      </div>
+
+      <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row">
+        {primary && (
+          <Button href={primary.href} variant="primary" size="lg" hoverText={primary.hoverText}>
+            {primary.label}
+          </Button>
+        )}
+        {secondary && (
+          <Button href={secondary.href} variant="outline" size="lg" hoverText={secondary.hoverText}>
+            {secondary.label}
+          </Button>
+        )}
+      </div>
+
+      {trust.length > 0 && (
+        <div class="mt-16 flex flex-wrap justify-center gap-8 border-t border-brand-dark/10 pt-8">
+          {trust.map((item) => (
+            <div class="flex items-center gap-3">
+              <div class="flex size-10 items-center justify-center rounded-md bg-brand-primary/10 text-brand-primary">
+                <Icon name={item.icon} class="text-lg" />
+              </div>
+              <div class="text-left">
+                <div class="text-lg font-bold text-brand-dark">{item.value}</div>
+                <div class="text-xs uppercase tracking-wider text-brand-dark/60">{item.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </Container>
+</Section>
+
+<!-- Why: inline style prevents FOUC - proper hero variant (mobile or
+     desktop) is visible immediately, before the full Tailwind CSS is loaded.
+     Wzorzec z tom-ros HeroBlock/HeroMobileBlock. -->
+<style is:inline>
+  /* Why: mobile header size (as in the original tom-ros HeroMobileBlock).
+       A separate clamp, because mobile has less space than desktop hero.*/
+  .tom-ros-hero-mobile .tom-ros-mobile-hero-heading {
+    font-size: clamp(1.75rem, 8vw, 2rem);
+  }
+
+  .tom-ros-hero-desktop { display: none; }
+  .tom-ros-hero-mobile { display: none; }
+  @media (min-width: 768px) {
+    .tom-ros-hero-desktop { display: flex; }
+  }
+  @media (max-width: 767px) {
+    .tom-ros-hero-mobile { display: flex; }
+  }
+</style>

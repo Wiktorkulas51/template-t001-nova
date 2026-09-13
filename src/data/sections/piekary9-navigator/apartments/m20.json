@@ -1,0 +1,41 @@
+{
+  "rooms_list": [
+    {
+      "name": "SALON Z ANEKSEM",
+      "area": 16.59
+    },
+    {
+      "name": "ŁAZIENKA",
+      "area": 4.19
+    },
+    {
+      "name": "ANTRESOLA",
+      "area": 4.27
+    }
+  ],
+  "section": "front_courtyard",
+  "price": 319000,
+  "floor": 3,
+  "poly": [
+    14,
+    38.33,
+    27.27,
+    39.13,
+    27.35,
+    50.57,
+    14.09,
+    50.17
+  ],
+  "area": 25.05,
+  "pdf": "/client-assets/folde3/Rzuty/lokal_20.pdf",
+  "status": "sold",
+  "finish": "Do remontu",
+  "label": "20",
+  "x": 21.21,
+  "images": [],
+  "rooms": 1,
+  "y": 44.29,
+  "id": "20",
+  "price_per_m2": 12735,
+  "comment": "1/2 pokoje - widok na dziedziniec"
+}

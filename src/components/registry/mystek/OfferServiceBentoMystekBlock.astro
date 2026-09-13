@@ -1,0 +1,89 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import jsonData from "@data/sections/offer-service-bento.json";
+
+type Service = {
+  title: string;
+  description: string;
+  features?: string[];
+  tags?: string[];
+  ctaText: string;
+  href: string;
+  image?: string;
+  accent?: "primary" | "accent";
+};
+export interface Props { data?: typeof jsonData; locale?: "pl" | "en"; sectionId?: string; class?: string }
+
+const { data, locale = "pl", sectionId = "uslugi", class: className = "" } = Astro.props as Props;
+const source = data ?? jsonData;
+const t = source[locale] ?? source.pl;
+const services = (t.services ?? []) as Service[];
+const checkMarkup = '<svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+---
+
+<Section id={sectionId} tone="base" class:list={["relative overflow-hidden", className]}>
+  <Container>
+    <div class="mb-16 text-center">
+      <Heading tag="h2" variant="section-heading-xl" class="mb-4 text-brand-dark">{t.heading}</Heading>
+      <span class="mx-auto block h-1 w-20 bg-brand-primary" aria-hidden="true"></span>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-6 lg:grid-cols-12 lg:gap-8">
+      <article class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-brand-dark/10 bg-white p-8 shadow-soft ui-card-interactive md:col-span-6 lg:col-span-8 lg:p-12">
+        <div class="relative z-10 max-w-lg lg:max-w-[60%]">
+          <Text variant="accent-label" class="mb-4 text-brand-primary">{t.premiumLabel}</Text>
+          <Heading tag="h3" variant="section-heading-lg" class="mb-6 text-brand-dark"><Fragment set:html={services[0].title} /></Heading>
+          <Text variant="body" class="mb-8 leading-relaxed text-brand-dark/70">{services[0].description}</Text>
+          <ul class="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {(services[0].features ?? []).map((feature) => <li class="group/item flex items-start gap-3 text-sm font-medium text-brand-dark/65"><span class="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md bg-brand-primary/10 text-brand-primary transition-[background-color,color] group-hover/item:bg-brand-primary group-hover/item:text-white" aria-hidden="true" set:html={checkMarkup}></span><span class="leading-relaxed">{feature}</span></li>)}
+          </ul>
+          <a href={services[0].href} class="inline-flex items-center border-b-2 border-brand-primary/20 pb-1 font-bold text-brand-primary transition-[border-color] hover:border-brand-primary">{services[0].ctaText}<span class="ml-2" aria-hidden="true">→</span></a>
+        </div>
+        {services[0].image && <div class="absolute right-0 bottom-0 hidden h-full w-1/3 opacity-20 transition-opacity duration-700 group-hover:opacity-40 lg:block"><img src={services[0].image} alt="" width="1600" height="900" class="absolute inset-0 h-full w-full -scale-x-100 object-cover object-[100%_center]" /></div>}
+      </article>
+
+      <article class="group flex flex-col justify-between rounded-3xl border border-brand-dark/10 bg-white p-8 shadow-soft ui-card-interactive md:col-span-6 lg:col-span-4">
+        <div>
+          <span class="mb-6 flex size-12 items-center justify-center rounded-2xl bg-brand-primary/10 text-brand-primary" aria-hidden="true"><svg class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></span>
+          <Heading tag="h3" variant="section-heading-lg" class="mb-4 text-brand-dark">{services[1].title}</Heading>
+          <Text variant="body" class="mb-6 leading-relaxed text-brand-dark/70">{services[1].description}</Text>
+          <ul class="mb-8 space-y-3">{(services[1].features ?? []).map((feature) => <li class="group/item flex items-start gap-3 text-sm font-medium text-brand-dark/65"><span class="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md bg-brand-primary/10 text-brand-primary transition-[background-color,color] group-hover/item:bg-brand-primary group-hover/item:text-white" aria-hidden="true" set:html={checkMarkup}></span><span class="leading-relaxed">{feature}</span></li>)}</ul>
+        </div>
+        <a href={services[1].href} class="mt-auto text-sm font-bold text-brand-primary">{services[1].ctaText} →</a>
+      </article>
+
+      <article class="group flex flex-col justify-between rounded-3xl border border-brand-dark/10 bg-white p-8 shadow-soft ui-card-interactive md:col-span-6 lg:col-span-6">
+        <div>
+          <span class="mb-6 flex size-12 items-center justify-center rounded-2xl bg-brand-primary/10 text-brand-primary" aria-hidden="true"><svg class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg></span>
+          <Heading tag="h3" variant="section-heading-lg" class="mb-4 text-brand-dark">{services[2].title}</Heading>
+          <Text variant="body" class="mb-6 leading-relaxed text-brand-dark/70">{services[2].description}</Text>
+          <ul class="mb-8 grid grid-cols-1 gap-x-4 gap-y-3 sm:grid-cols-2">{(services[2].features ?? []).map((feature) => <li class="group/item flex items-start gap-3 text-sm font-medium text-brand-dark/65"><span class="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md bg-brand-primary/10 text-brand-primary transition-[background-color,color] group-hover/item:bg-brand-primary group-hover/item:text-white" aria-hidden="true" set:html={checkMarkup}></span><span class="leading-relaxed">{feature}</span></li>)}</ul>
+        </div>
+        <a href={services[2].href} class="mt-auto text-sm font-bold text-brand-primary">{services[2].ctaText} →</a>
+      </article>
+
+      <article class="group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-brand-primary p-8 text-white shadow-soft ui-card-interactive md:col-span-6 lg:col-span-6">
+        <div class="relative z-10">
+          <Heading tag="h3" variant="section-heading-lg" class="mb-4 text-white">{services[3].title}</Heading>
+          <Text variant="body" class="mb-8 leading-relaxed text-white/80">{services[3].description}</Text>
+          <div class="mb-10 flex flex-wrap gap-2">{(services[3].tags ?? []).map((tag) => <span class="rounded-md border border-white/20 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white/90">{tag}</span>)}</div>
+        </div>
+        <a href={services[3].href} class="relative z-10 mt-auto inline-flex self-start rounded-xl bg-white px-6 py-3 font-bold text-brand-primary transition-[background-color] hover:bg-white/90">{services[3].ctaText}</a>
+        <div class="pointer-events-none absolute -right-10 -bottom-10 size-40 rounded-[2rem] bg-white/5 blur-3xl transition-[background-color] group-hover:bg-white/10" aria-hidden="true"></div>
+      </article>
+
+      <article class="group flex flex-col items-center gap-8 rounded-3xl border border-brand-dark/10 bg-white p-8 shadow-soft ui-card-interactive md:col-span-6 lg:col-span-12 lg:flex-row lg:p-10">
+        <div class="lg:flex-1">
+          <Heading tag="h3" variant="section-heading-lg" class="mb-4 text-brand-dark">{services[4].title}</Heading>
+          <Text variant="body" class="mb-6 leading-relaxed text-brand-dark/70">{services[4].description}</Text>
+          <ul class="mb-8 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">{(services[4].features ?? []).map((feature) => <li class="group/item flex items-start gap-3 text-sm font-medium text-brand-dark/65"><span class="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md bg-brand-primary/10 text-brand-primary transition-[background-color,color] group-hover/item:bg-brand-primary group-hover/item:text-white" aria-hidden="true" set:html={checkMarkup}></span><span class="leading-relaxed">{feature}</span></li>)}</ul>
+          <a href={services[4].href} class="inline-flex w-fit border-b border-brand-primary/20 pb-0.5 text-sm font-bold text-brand-primary transition-[border-color] hover:border-brand-primary">{services[4].ctaText}</a>
+        </div>
+        {services[4].image && <div class="aspect-video w-full overflow-hidden rounded-2xl bg-brand-dark/5 shadow-inner md:aspect-[21/9] lg:w-1/3"><img src={services[4].image} alt="" width="1600" height="900" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" /></div>}
+      </article>
+    </div>
+  </Container>
+</Section>

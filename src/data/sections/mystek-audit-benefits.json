@@ -1,0 +1,12 @@
+{
+  "pl": {
+    "eyebrow": "WARTOŚĆ DODANA",
+    "title": "Zewnętrzny audyt RODO:",
+    "titleAccent": "Dlaczego warto zlecić go ekspertowi?",
+    "description": "Niezależna weryfikacja to klucz do obiektywnej diagnozy. Zobacz, co zyskujesz, powierzając ocenę bezpieczeństwa danych zewnętrznemu ekspertowi.",
+    "items": [
+      { "icon": "shield-check", "title": "Minimalizacja ryzyka kar i spokój podczas kontroli", "description": "Audyt to Twoje zabezpieczenie. Dzięki niemu wiesz, że w razie kontroli UODO masz kompletne dokumenty i procedury, które bronią się same. Zamiast stresu masz pewność, że zrobione jest to, co trzeba." },
+      { "icon": "scales", "title": "Obiektywizm i brak konfliktu interesów", "description": "Nawet najlepsi pracownicy po czasie przestają zauważać błędy, bo zawsze działają według tego samego schematu. Zewnętrzne spojrzenie wskazuje luki, które dla zespołu stały się niewidzialne." }
+    ]
+  }
+}

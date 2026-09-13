@@ -1,0 +1,37 @@
+{
+  "rooms_list": [
+    {
+      "name": "SALON Z ANEKSEM",
+      "area": 20.9
+    },
+    {
+      "name": "ŁAZIENKA",
+      "area": 4.02
+    }
+  ],
+  "section": "front",
+  "price": 319000,
+  "floor": 2,
+  "poly": [
+    52.94,
+    44.79,
+    61.82,
+    44.34,
+    61.44,
+    55.09,
+    52.61,
+    55.4
+  ],
+  "area": 25.01,
+  "pdf": "/client-assets/folde3/Rzuty/lokal_17.pdf",
+  "status": "sold",
+  "finish": "Do remontu",
+  "label": "17",
+  "x": 57.27,
+  "images": [],
+  "rooms": 2,
+  "y": 50.8,
+  "id": "17",
+  "price_per_m2": 12755,
+  "comment": "1/2 pokoje - widok na ul. Piekary"
+}

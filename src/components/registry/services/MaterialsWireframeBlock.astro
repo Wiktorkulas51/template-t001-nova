@@ -1,0 +1,81 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import SectionHeader from "@components/ui/molecules/SectionHeader.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+
+// Dane sekcji przekazywane z PageBuilder (src/data/sections/materials.json)
+interface MaterialItem {
+  grade: string;
+  title: string;
+  desc: string;
+  standard: string;
+  use: string;
+}
+
+interface Props {
+  tagline?: string;
+  title?: string;
+  description?: string;
+  materials?: MaterialItem[];
+}
+
+const {
+  tagline = "Materiały",
+  title = "Certyfikowane drewno konstrukcyjne",
+  description = "Pracujemy wyłącznie na materiałach z atestami. Każdy element ma udokumentowaną wytrzymałość i pochodzenie.",
+  materials = [],
+} = Astro.props;
+---
+
+<Section tone="page" id="materials">
+  <Container>
+    <SectionHeader
+      tagline={tagline}
+      title={title}
+      description={description}
+      align="center"
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+      {materials.map((m) => (
+        <div class="flex flex-col bg-white rounded-2xl border border-brand-dark/10 p-6 md:p-8 hover:border-brand-primary/20 transition-all duration-300">
+          <div class="flex items-center justify-between mb-5">
+            <span class="text-3xl font-bold text-brand-accent tracking-tight leading-none">{m.grade}</span>
+            <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-brand-primary/5 text-[10px] font-semibold uppercase tracking-widest text-brand-dark/40 border border-brand-dark/5">
+              {m.standard}
+            </span>
+          </div>
+
+          <Heading level={3} variant="feature-title" class="text-brand-dark mb-2">{m.title}</Heading>
+          <Text variant="body" class="text-brand-dark/60 text-sm leading-relaxed mb-6 flex-1">{m.desc}</Text>
+
+          <div class="pt-5 border-t border-brand-dark/5 mt-auto">
+            <div class="flex items-center gap-3">
+              <svg class="w-4 h-4 text-brand-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <Text variant="body" class="text-xs uppercase tracking-widest text-brand-accent font-semibold">{m.use}</Text>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 flex flex-wrap items-center justify-center gap-x-12 gap-y-5 px-4">
+      <div class="flex items-center gap-3 transition-opacity">
+        <img src="/assets/certifications/ce-mark.svg" alt="CE" width="28" height="28" class="h-7 w-auto" />
+        <span class="text-sm text-brand-dark/50 font-medium">CE</span>
+      </div>
+      <div class="flex items-center gap-3 transition-opacity">
+        <img src="/assets/certifications/pefc-logo.svg" alt="PEFC" width="28" height="28" class="h-7 w-auto" />
+        <span class="text-sm text-brand-dark/50 font-medium">PEFC</span>
+      </div>
+      <div class="flex items-center gap-3 transition-opacity">
+        <img src="/assets/certifications/fsc-logo.svg" alt="FSC" width="28" height="28" class="h-7 w-auto" />
+        <span class="text-sm text-brand-dark/40 font-medium">FSC</span>
+      </div>
+    </div>
+  </Container>
+</Section>

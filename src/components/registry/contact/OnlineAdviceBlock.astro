@@ -1,0 +1,146 @@
+---
+// Why: OnlineAdviceBlock is a visual copy of the "online advice" section of the timoteusz-juszczak
+// project (law firm). Layout: orb gradient in the corner, title with lead centered, separating
+// line, 3 online service step cards and form in the card. The content is generic, not
+// client-specific, and client-specific color tokens are converted into global brand starter-kita
+// tokens.
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import ContactForm from "@components/ui/molecules/ContactForm.astro";
+import data from "@data/sections/online-advice.json";
+
+type StepItem = {
+  title: string;
+  description: string;
+};
+
+// Why: field type compatible with the ContactForm molecule (name, label, type, required,
+// placeholder, rows, autoComplete, options), so that props hit without conversion.
+type FormField = {
+  name: string;
+  label: string;
+  type?: "text" | "email" | "tel" | "number" | "url" | "password" | "date" | "textarea" | "select" | "checkbox";
+  required?: boolean;
+  placeholder?: string;
+  rows?: number;
+  autoComplete?: string;
+  options?: { value: string; label: string }[];
+};
+
+export interface Props {
+  sectionId?: string;
+  /* * Content language from JSON (src/data/sections/online-advice.json). PL is the default. */
+  lang?: "pl" | "en";
+  title?: string;
+  lead?: string;
+  steps?: StepItem[];
+  /* * Section header tag: 'h2' by default, 'h1' when the block is the first section of the page without hero (SEO). */
+  headingTag?: string;
+}
+
+const {
+  sectionId = "porady-online",
+  lang = "pl",
+  title,
+  lead,
+  steps,
+  headingTag = "h2",
+} = Astro.props as Props;
+
+// Why: the "props || JSON" pattern, so that the block works independently with the section data,
+// and PageBuilder could overwrite each content separately.
+const t = data[lang] ?? data.pl;
+const resolvedTitle = title || t.title;
+const resolvedLead = lead || t.lead;
+const resolvedSteps = steps ?? t.steps;
+
+// Why: The original step icons (pencil, calculator, check-circle) have been added to
+// phosphor-min.css with codepoints from selection.json, so the block is a faithful visual copy of
+// the online tips section from the client's project.
+const stepIcons = ["pencil", "calculator", "check-circle"];
+
+// Why: form fields come from JSON ("form" field of the language section, editable by CMS). When
+// the "forms" section is missing, we use simple default fields in the block language so that the
+// section always has a complete form.
+const fallbackFields: FormField[] =
+  lang === "en"
+    ? [
+        { name: "name", label: "Full name", type: "text", required: true, placeholder: "John Doe", autoComplete: "name" },
+        { name: "email", label: "E-mail", type: "email", required: true, placeholder: "john@example.com", autoComplete: "email" },
+        { name: "message", label: "Describe your case", type: "textarea", required: true, rows: 6, placeholder: "Briefly describe your case..." },
+      ]
+    : [
+        { name: "name", label: "Imię i nazwisko", type: "text", required: true, placeholder: "Jan Kowalski", autoComplete: "name" },
+        { name: "email", label: "E-mail", type: "email", required: true, placeholder: "jan@example.com", autoComplete: "email" },
+        { name: "message", label: "Opisz swoją sprawę", type: "textarea", required: true, rows: 6, placeholder: "Opisz krótko swoją sprawę..." },
+      ];
+
+const formFields = (t.form && t.form.length > 0 ? t.form : fallbackFields) as FormField[];
+---
+
+<Section id={sectionId} tone="page" class="relative overflow-hidden" style="padding-top:clamp(7rem,12vw,10rem)">
+  <!-- Why: orb gradient in the upper right corner, as in the original, but with global
+       brand-primary token instead of the client accent-primary. -->
+  <div
+    class="pointer-events-none absolute top-0 right-0 h-96 w-96 max-w-full"
+    style="background:radial-gradient(ellipse 60% 60% at 100% 0%, color-mix(in oklab, var(--color-brand-primary) 12%, transparent) 0%, transparent 60%)"
+    aria-hidden="true"
+  ></div>
+  <Container>
+    <!-- Why: header and lead centered as in the original. data-motion="fade"
+         is a native starter-kit animation (motion.css) that replaces the client reveal. -->
+    <div class="mx-auto mb-16 max-w-3xl text-center">
+      <Heading tag={headingTag} variant="section-title" class="mb-4 text-brand-dark" motion="fade">
+        {resolvedTitle}
+      </Heading>
+      {resolvedLead && (
+        <Text variant="lead" class="mx-auto max-w-2xl text-brand-dark/70" motion="fade">
+          {resolvedLead}
+        </Text>
+      )}
+    </div>
+
+    {resolvedSteps.length > 0 && (
+      <div class="mb-12">
+        <!-- Why: a thin line separating the header from the steps (pattern from the original),
+             client border-subtle color changed to border-brand-dark/10. -->
+        <div class="mx-auto mb-12 w-3/4 border-t border-brand-dark/10"></div>
+
+        <!-- Why: Why: grid mobile-first, 3 columns of steps on the desktop (like the original). -->
+        <div class="grid gap-6 md:grid-cols-3">
+          {resolvedSteps.map((step, i) => (
+            <div class="ui-card-interactive step-card rounded-2xl border border-brand-dark/10 bg-white p-6">
+              <!-- Why: an icon in a square with a global brand-primary (in the original
+                   accent-primary) and a dark icon, as in the source. -->
+              <div class="mb-5 flex size-14 items-center justify-center rounded-xl bg-brand-primary text-2xl text-brand-dark">
+                <Icon name={stepIcons[i % stepIcons.length]} />
+              </div>
+              <!-- Why: step title 1.25rem (text-xl) because feature-title is
+                   too small in this card, and in the original it was font-size 1.25rem. -->
+              <Heading tag="h3" variant="feature-title" class="mb-2 text-xl text-brand-dark">
+                {step.title}
+              </Heading>
+              <Text variant="feature-body-sm" class="text-brand-dark/70">
+                {step.description}
+              </Text>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Why: Why: the second separating line, above the form card (as in the original). -->
+    <div class="mx-auto mb-14 w-3/4 border-t border-brand-dark/10"></div>
+
+    <!-- Why: the form in the max-in-2xl card, as in the original. ContactForm is
+         starter-kita molecule: gets "oa" identifiers and fields from JSON, and its own
+         header disables (showHeader=false), because the section already has a title at the top.
+         data-motion="fade" provides a controlled input to the form. -->
+    <div class="form-card mx-auto max-w-2xl rounded-2xl border border-brand-dark/10 bg-white p-6 sm:p-8" data-motion="fade">
+      <ContactForm formId="oa" fieldIdPrefix="oa" fields={formFields} showHeader={false} />
+    </div>
+  </Container>
+</Section>

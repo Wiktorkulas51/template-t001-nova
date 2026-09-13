@@ -1,0 +1,180 @@
+---
+// Why: TransformationsWallBlock is a visual copy of the "morph wall" from the tom-ros
+// project: 3 independent marquee rows (left/right/left) with different speeds. The animation
+// (keyframes ui-wall-scroll, hover pause, reduced-motion) is provided by core.css via the
+// .ui-wall class, so the component only sets the time and direction of the inline animation.
+// The photo list is doubled ([...group, ...group]) to make the eX(-50%) translate loop
+// infinite and smooth.
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import SmartImage from "@components/ui/atoms/SmartImage.astro";
+import wallData from "@data/sections/transformations-wall.json";
+
+type TransformImage = {
+  src?: string;
+  thumb?: string;
+  alt?: string;
+};
+
+interface Props {
+  sectionId?: string;
+  title?: string;
+  description?: string;
+  images?: TransformImage[];
+  /* * Label above section title (e.g. "Real Effects"), editable from JSON. */
+  wallLabel?: string;
+  /** Tekst stanu pustego, gdy brak metamorfoz. */
+  wallEmptyState?: string;
+  /** Section heading tag: 'h2' na homepage (hero ma h1), 'h1' na podstronach (SEO). */
+  headingTag?: string;
+}
+
+const {
+  sectionId = "metamorfozy",
+  title = "",
+  description = "",
+  images: rawImages = [],
+  wallLabel = "",
+  wallEmptyState = "",
+  headingTag = "h2",
+} = Astro.props as Props;
+
+// Why: the "props || json" pattern from the starter kit, thanks to which PageBuilder can
+// overwrite any field, and the rest comes from the section data. We cast the JSON data to the
+// TransformImage type because JSON does not have a thumb field.
+const sourceImages = rawImages.length > 0 ? rawImages : (wallData.images as TransformImage[]);
+const resolvedTitle = title || wallData.title;
+const resolvedDescription = description || wallData.description;
+const resolvedWallLabel = wallLabel || wallData.wallLabel;
+const resolvedWallEmptyState = wallEmptyState || wallData.wallEmptyState;
+const images = sourceImages.filter((image) => Boolean(image?.src));
+
+type WallRow = { direction: "normal" | "reverse"; duration: string };
+type WallLayout = { visibility: string; rows: WallRow[] };
+
+// Why: two responsive configurations - mobile and desktop get 3 rows. The photos are divided
+// into 3 groups (6 of each), so each photo only appears in ONE row and does not repeat itself
+// 3 times on the screen (like with a full list in each row). The middle row has direction:
+// reverse (goes right), and the speeds are different to make the wall live and not look like
+// one block.
+const layouts: WallLayout[] = [
+  {
+    // Visible only on mobile (< md), hidden on desktop: slower loops,
+    // because the screen is small and the card path around the screen is shorter.
+    visibility: "md:hidden",
+    rows: [
+      { direction: "normal", duration: "30s" },
+      { direction: "reverse", duration: "40s" },
+      { direction: "normal", duration: "50s" },
+    ],
+  },
+  {
+    // Visible from md up: faster loops because the cards are larger and have
+    // longer distance to cover (40s/55s/70s).
+    visibility: "hidden md:block",
+    rows: [
+      { direction: "normal", duration: "40s" },
+      { direction: "reverse", duration: "55s" },
+      { direction: "normal", duration: "70s" },
+    ],
+  },
+];
+
+// Why: photos are divided sequentially into groups (as many groups as rows), so that the
+// numbers go sequentially and each photo appears in only ONE row given layout. Global
+// numbering (#1..#N) is common because we map original photo indexes.
+const globalNumber = new Map<TransformImage, number>();
+images.forEach((image, index) => globalNumber.set(image, index + 1));
+
+const layoutsWithGroups = layouts.map((layout) => {
+  const splitAt = Math.ceil(images.length / layout.rows.length);
+  const groups: TransformImage[][] = [];
+  for (let i = 0; i < layout.rows.length; i++) {
+    groups.push(images.slice(i * splitAt, (i + 1) * splitAt));
+  }
+  return { ...layout, groups };
+});
+
+// Why: preloading the first few thumbnails shortens the time to first render the wall before
+// the rest is lazily loaded by SmartImage.
+const firstThumbsPreload = images.slice(0, 6).map((image) => image.thumb || image.src || "").filter(Boolean);
+---
+
+<Section id={sectionId} tone="page">
+  {firstThumbsPreload.map((href) => <link rel="preload" as="image" href={href} />)}
+
+  <Container>
+    <div class="space-y-4">
+      <span class="ui-type-accent-label block">{resolvedWallLabel}</span>
+      <Heading tag={headingTag} variant="section-title">{resolvedTitle}</Heading>
+      <Text variant="body">{resolvedDescription}</Text>
+    </div>
+  </Container>
+
+  {images.length > 0 ? (
+    <div class="relative isolate mt-10 space-y-4 md:space-y-5">
+      {layoutsWithGroups.map((layout) => (
+        <div class={layout.visibility}>
+          {layout.rows.map((row, rowIndex) => {
+            const group = layout.groups[rowIndex] ?? [];
+            return (
+              <div class="ui-wall relative z-10 overflow-hidden py-1">
+                {/* The masks on the sides blur the input and output of the cards, making it
+                    the row "leaves" from the edge of the screen instead of cutting out. */}
+                <div
+                  style="mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);"
+                >
+                  {/* Doubled grouplist + keyframes ui-wall-scroll moving
+                      by 50% = seamless infinite loop. direction: reverse reverses
+                      middle row movement. Hover pause supports core.css (.ui-wall). */}
+                  <div
+                    class="flex gap-3 md:gap-4"
+                    style={`width: max-content; animation: ui-wall-scroll ${row.duration} linear infinite; animation-direction: ${row.direction};`}
+                  >
+                    {[...group, ...group].map((image, index) => (
+                      <div
+                        class="group relative w-[150px] md:w-[260px] aspect-[3/4] shrink-0 cursor-zoom-in overflow-hidden border border-brand-dark/15 bg-surface-dim transition-colors duration-300 hover:border-brand-primary"
+                        data-lightbox
+                        data-href={image.src}
+                        data-title={image.alt || ""}
+                      >
+                        <SmartImage
+                          src={image.src}
+                          alt={image.alt || ""}
+                          width={600}
+                          height={800}
+                          class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        />
+
+                        {/* Dark gradient at the bottom to make the number legible */}
+                        <div class="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent"></div>
+
+                        {/* Blend number (global within the entire wall).
+                            font-accent (Barlow Condensed) inline because starter-kit
+                            there is no tailwind font-accent class. */}
+                        <span
+                          class="absolute bottom-3 left-3 text-sm font-bold uppercase tracking-[0.2em] text-white"
+                          style="font-family: var(--font-accent, 'Barlow Condensed'), sans-serif;"
+                        >
+                          #{globalNumber.get(image) ?? ((index % group.length) + 1)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ))}
+    </div>
+  ) : (
+    <Container>
+      <div class="mt-10 rounded-md border border-outline-variant bg-surface-dim py-20 text-center">
+        <Text variant="body">{resolvedWallEmptyState}</Text>
+      </div>
+    </Container>
+  )}
+</Section>

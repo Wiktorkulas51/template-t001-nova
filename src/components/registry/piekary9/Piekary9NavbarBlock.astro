@@ -1,0 +1,276 @@
+---
+import data from '@data/sections/piekary9-navbar.json';
+import { formatInternalLink } from '@utils/url';
+
+type NavbarData = (typeof data)['pl'];
+
+export interface Props {
+  data?: NavbarData;
+  locale?: 'pl';
+  isLight?: boolean;
+  class?: string;
+}
+
+const {
+  data: overrideData,
+  locale = 'pl',
+  isLight = false,
+  class: className = '',
+} = Astro.props as Props;
+
+const t = overrideData ?? data[locale] ?? data.pl;
+const anchors = t.anchors.filter((anchor) => anchor.priority);
+const linkPrefix = isLight ? '/' : '';
+const anchorHref = (id: string) => `${linkPrefix}#${id}`;
+---
+
+<header
+  class:list={[
+    'fixed inset-x-0 top-0 z-[150] border-b border-transparent py-4 transition-all duration-200 ease-in-out',
+    isLight ? 'header-scrolled text-brand-dark' : 'text-brand-light',
+    className,
+  ]}
+  data-piekary9-navbar
+  data-is-light={isLight ? 'true' : 'false'}
+>
+  <div class="ui-container">
+    <div class="flex items-center justify-between gap-8">
+      <a
+        href={formatInternalLink(`${linkPrefix}#start`)}
+        class="group relative z-10 flex shrink-0 items-center"
+        aria-label={t.logoAlt}
+      >
+        <img
+          src={t.logoInitialSrc}
+          alt={t.logoAlt}
+          width="200"
+          height="100"
+          class="header-initial-logo block h-12 w-auto object-contain transition-all duration-300 lg:h-16"
+          loading="eager"
+        />
+        <img
+          src={t.logoScrolledSrc}
+          alt={t.logoAlt}
+          width="200"
+          height="100"
+          class="header-scrolled-logo hidden h-12 w-auto object-contain transition-all duration-300 lg:h-16"
+          loading="eager"
+        />
+      </a>
+
+      <nav class="hidden flex-1 items-center justify-center lg:flex" aria-label={t.navLabel}>
+        <ul class="flex items-center gap-1">
+          {anchors.map((anchor) => (
+            <li>
+              <a
+                href={formatInternalLink(anchorHref(anchor.id))}
+                class="group relative px-4 py-2 text-sm font-semibold tracking-tight opacity-80 transition-all hover:opacity-100"
+                data-piekary9-nav-link
+              >
+                {anchor.label}
+                <span class="absolute inset-x-4 bottom-1 h-0.5 origin-right scale-x-0 bg-brand-accent transition-transform duration-300 group-hover:origin-left group-hover:scale-x-100"></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="flex items-center gap-6">
+        <a
+          href={`tel:${t.phone.tel.replace(/\s/g, '')}`}
+          class="hidden items-center gap-2 text-[11px] font-bold tracking-widest opacity-70 transition-all hover:opacity-100 lg:flex"
+        >
+          <i class="ph ph-phone text-brand-accent text-base" aria-hidden="true"></i>
+          <span>{t.phone.display}</span>
+        </a>
+
+        <a
+          href={formatInternalLink(t.cta.href)}
+          class="group relative hidden items-center justify-center gap-2 overflow-hidden rounded-full bg-brand-accent px-8 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] text-brand-dark shadow-[var(--ui-elevation-soft)] transition-all hover:shadow-[var(--ui-elevation-strong)] lg:flex"
+          data-piekary9-nav-cta
+        >
+          <span class="relative z-10 transition-colors duration-300">{t.cta.label}</span>
+          <i class="ph ph-arrow-right relative z-10 text-xs transition-transform group-hover:translate-x-1" aria-hidden="true"></i>
+          <span class="absolute inset-0 translate-y-full bg-brand-light/20 transition-transform duration-300 group-hover:translate-y-0" aria-hidden="true"></span>
+        </a>
+
+        <button
+          type="button"
+          class="group relative flex h-11 w-11 items-center justify-center rounded-full bg-brand-dark/5 transition-all hover:bg-brand-dark hover:text-brand-light lg:hidden"
+          data-piekary9-nav-toggle={t.navId}
+          aria-expanded="false"
+          aria-controls={t.navId}
+          aria-label={t.menuToggleLabel}
+        >
+          <span class="relative h-4 w-5" aria-hidden="true">
+            <span class="absolute top-0 block h-0.5 w-full bg-current transition-all duration-300 group-aria-expanded:top-2 group-aria-expanded:rotate-45"></span>
+            <span class="absolute top-1.5 block h-0.5 w-full bg-current transition-all duration-300 group-aria-expanded:opacity-0"></span>
+            <span class="absolute bottom-0 block h-0.5 w-full bg-current transition-all duration-300 group-aria-expanded:bottom-1.5 group-aria-expanded:-rotate-45"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div
+  id={t.navId}
+  class="fixed inset-0 z-[150] hidden lg:hidden"
+  data-piekary9-nav-panel={t.navId}
+  aria-hidden="true"
+>
+  <div class="absolute inset-0 bg-brand-dark/40 backdrop-blur-sm" data-piekary9-nav-close={t.navId}></div>
+
+  <div class="absolute inset-y-0 right-0 z-[2] flex w-full flex-col bg-brand-light shadow-2xl transition-transform duration-300 ease-out" data-piekary9-panel-content>
+    <div class="flex items-center justify-between border-b border-brand-dark/5 p-6">
+      <a href={formatInternalLink(`${linkPrefix}#start`)} class="group flex items-center" data-piekary9-nav-close={t.navId} aria-label={t.logoAlt}>
+        <img src={t.logoScrolledSrc} alt={t.logoAlt} width="200" height="100" class="h-12 w-auto object-contain" loading="eager" />
+      </a>
+      <button
+        type="button"
+        class="flex h-11 w-11 items-center justify-center rounded-full bg-brand-dark/5 text-brand-dark transition-colors hover:bg-brand-dark/10 active:scale-95"
+        data-piekary9-nav-close={t.navId}
+        aria-label={t.closeMenuLabel}
+      >
+        <i class="ph ph-x text-xl" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="flex flex-1 flex-col">
+      <nav aria-label={t.navLabel} class="flex flex-1 items-center justify-center px-6">
+        <ul class="flex w-full flex-col items-center gap-8">
+          {anchors.map((anchor, index) => (
+            <li class="piekary9-nav-item w-full text-center opacity-0 translate-y-4 transition-all duration-300 ease-out" style={`transition-delay: ${index * 60}ms`}>
+              <a
+                href={formatInternalLink(anchorHref(anchor.id))}
+                class="group inline-block py-2 text-3xl font-bold tracking-tight text-brand-dark transition-colors hover:text-brand-accent active:text-brand-accent"
+                data-piekary9-nav-close={t.navId}
+              >
+                {anchor.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="w-full border-t border-brand-dark/5 p-6 pb-10">
+        <div class="mx-auto flex w-full max-w-xs flex-col gap-4">
+          <a
+            href={formatInternalLink(t.cta.href)}
+            class="group relative flex h-14 items-center justify-center gap-3 overflow-hidden rounded-full bg-brand-accent px-8 text-base font-bold text-brand-dark shadow-[var(--ui-elevation-soft)] transition-all active:scale-[0.98]"
+            data-piekary9-nav-close={t.navId}
+          >
+            <span class="relative z-10">{t.cta.label}</span>
+            <i class="ph ph-arrow-right relative z-10 text-lg transition-transform group-hover:translate-x-1" aria-hidden="true"></i>
+            <span class="absolute inset-0 translate-y-full bg-brand-light/20 transition-transform duration-300 group-hover:translate-y-0" aria-hidden="true"></span>
+          </a>
+          <a
+            href={formatInternalLink(t.secondaryCta.href)}
+            class="flex h-14 items-center justify-center rounded-full border border-brand-dark/20 text-base font-bold text-brand-dark transition-all active:scale-[0.98] active:bg-brand-dark/5"
+            data-piekary9-nav-close={t.navId}
+          >
+            {t.secondaryCta.label}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  :global([data-piekary9-navbar].header-scrolled) {
+    border-color: color-mix(in oklab, var(--color-brand-dark) 5%, transparent);
+    background-color: color-mix(in oklab, var(--color-brand-light) 80%, transparent);
+    padding-block: 0.5rem;
+    color: var(--color-brand-dark);
+    box-shadow: var(--ui-elevation-soft);
+    backdrop-filter: blur(24px);
+  }
+
+  :global([data-piekary9-navbar].header-scrolled) [data-piekary9-nav-cta] {
+    border-color: var(--color-brand-dark);
+    color: var(--color-brand-dark);
+  }
+
+  :global([data-piekary9-navbar].header-scrolled) [data-piekary9-nav-cta] span {
+    color: var(--color-brand-dark);
+  }
+
+  :global([data-piekary9-navbar].header-scrolled) .header-initial-logo {
+    display: none !important;
+  }
+
+  :global([data-piekary9-navbar].header-scrolled) .header-scrolled-logo {
+    display: block !important;
+  }
+
+  [data-piekary9-nav-link] span {
+    display: block;
+  }
+
+  [data-piekary9-nav-link]:hover span {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  :global([data-piekary9-nav-panel]:not(.hidden)) .piekary9-nav-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  :global([data-piekary9-nav-panel].hidden) [data-piekary9-panel-content] {
+    transform: translateX(100%);
+  }
+
+  :global([data-piekary9-nav-panel]:not(.hidden)) [data-piekary9-panel-content] {
+    transform: translateX(0);
+  }
+</style>
+
+<script is:inline define:vars={{ navId: t.navId, isLight }}>
+  (() => {
+    const setup = () => {
+      const header = document.querySelector('[data-piekary9-navbar]');
+      const toggle = document.querySelector(`[data-piekary9-nav-toggle="${navId}"]`);
+      const panel = document.querySelector(`[data-piekary9-nav-panel="${navId}"]`);
+
+      if (!header || !toggle || !panel || header.getAttribute('data-piekary9-bound') === 'true') return;
+
+      const updateHeader = () => {
+        const shouldCompact = isLight || window.scrollY > 20;
+        header.classList.toggle('header-scrolled', shouldCompact);
+      };
+
+      const setOpen = (open) => {
+        panel.classList.toggle('hidden', !open);
+        panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.style.overflow = open ? 'hidden' : '';
+      };
+
+      const closePanel = () => setOpen(false);
+
+      toggle.addEventListener('click', () => setOpen(panel.classList.contains('hidden')));
+      panel.querySelectorAll(`[data-piekary9-nav-close="${navId}"]`).forEach((element) => {
+        element.addEventListener('click', closePanel);
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closePanel();
+      });
+      window.addEventListener('scroll', updateHeader, { passive: true });
+      updateHeader();
+      header.setAttribute('data-piekary9-bound', 'true');
+    };
+
+    const lifecycleKey = '__piekary9NavbarLifecycleBound';
+    if (!window[lifecycleKey]) {
+      document.addEventListener('astro:page-load', setup);
+      document.addEventListener('astro:after-swap', () => {
+        document.body.style.overflow = '';
+        setup();
+      });
+      window[lifecycleKey] = true;
+    }
+    setup();
+  })();
+</script>

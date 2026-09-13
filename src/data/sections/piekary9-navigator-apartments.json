@@ -1,0 +1,2213 @@
+[
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 30.56
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.5
+      },
+      {
+        "name": "POKÓJ",
+        "area": 8.44
+      },
+      {
+        "name": "POKÓJ",
+        "area": 14.99
+      }
+    ],
+    "section": "front_courtyard",
+    "price": 579000,
+    "floor": 0,
+    "poly": [
+      37.27,
+      62.64,
+      42.8,
+      62.11,
+      47.24,
+      63.01,
+      47.27,
+      76.81,
+      42.76,
+      74.72,
+      37.25,
+      75.88
+    ],
+    "area": 58.49,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_1_page-0001.jpg",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "1",
+    "x": 42.87,
+    "images": [],
+    "rooms": 3,
+    "y": 66.65,
+    "id": "1",
+    "price_per_m2": 9899,
+    "comment": "3 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 21.2
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 3.95
+      }
+    ],
+    "section": "front",
+    "price": 319000,
+    "floor": 1,
+    "poly": [
+      52.75,
+      55.76,
+      61.4,
+      55.51,
+      61.13,
+      66.31,
+      52.7,
+      66.57
+    ],
+    "area": 25.15,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "10",
+    "x": 57.33,
+    "images": [],
+    "rooms": 2,
+    "y": 61.51,
+    "id": "10",
+    "price_per_m2": 12684,
+    "comment": "1/2 pokoje - widok na ul. Piekary"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 26.62
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.9
+      },
+      {
+        "name": "POKÓJ",
+        "area": 8.64
+      }
+    ],
+    "section": "front",
+    "price": 439000,
+    "floor": 1,
+    "poly": [
+      61.47,
+      55.34,
+      70.67,
+      54.68,
+      70.23,
+      65.89,
+      61.13,
+      66.3
+    ],
+    "area": 40.16,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "11",
+    "x": 66.14,
+    "images": [],
+    "rooms": 2,
+    "y": 61.63,
+    "id": "11",
+    "price_per_m2": 10931,
+    "comment": "2 pokoje - widok na ul. Piekary"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 34.29
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 3.77
+      },
+      {
+        "name": "POKÓJ",
+        "area": 8.72
+      }
+    ],
+    "section": "front_courtyard",
+    "price": 465000,
+    "floor": 1,
+    "poly": [
+      10.14,
+      50.42,
+      14.01,
+      50.58,
+      14.09,
+      63.3,
+      10.15,
+      63.94
+    ],
+    "area": 46.78,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_12.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "12",
+    "x": 12.24,
+    "images": [],
+    "rooms": 2,
+    "y": 56.94,
+    "id": "12",
+    "price_per_m2": 9938,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 21.1
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 3.93
+      }
+    ],
+    "section": "front_courtyard",
+    "price": 319000,
+    "floor": 2,
+    "poly": [
+      14.15,
+      50.6,
+      27.18,
+      50.84,
+      27.34,
+      62.92,
+      14.2,
+      63.08
+    ],
+    "area": 25.03,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "13",
+    "x": 21.24,
+    "images": [],
+    "rooms": 2,
+    "y": 56.48,
+    "id": "13",
+    "price_per_m2": 12745,
+    "comment": "1/2 pokoje - widok na dziedziniec"
+  },
+  {
+    "id": "14",
+    "label": "14",
+    "status": "sold",
+    "rooms": 3,
+    "area": 57.57,
+    "floor": 2,
+    "price": 539000,
+    "price_per_m2": 9363,
+    "comment": "3 pokoje - widok na dziedziniec",
+    "pdf": null,
+    "x": 42.81,
+    "y": 44.48,
+    "finish": "Do remontu",
+    "images": [],
+    "section": "front_courtyard",
+    "poly": [
+      37.12,
+      38.6,
+      43.08,
+      39.32,
+      47.06,
+      38.92,
+      47.12,
+      49.88,
+      42.88,
+      49.8,
+      37.16,
+      49.56
+    ],
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 28.71
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 5.08
+      },
+      {
+        "name": "POKÓJ",
+        "area": 8.75
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 15.03
+      }
+    ]
+  },
+  {
+    "id": "15",
+    "label": "15",
+    "status": "sold",
+    "rooms": 2,
+    "area": 43.78,
+    "floor": 2,
+    "price": 449000,
+    "price_per_m2": 10256,
+    "comment": "2 pokoje - widok na ul. Piekary",
+    "pdf": null,
+    "x": 36.32,
+    "y": 51.69,
+    "finish": "Do remontu",
+    "images": [],
+    "section": "front",
+    "poly": [
+      30.08,
+      44.72,
+      39.96,
+      44.61,
+      40.2,
+      56.03,
+      30.49,
+      56.18
+    ],
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 27.99
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 8.83
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 6.96
+      }
+    ]
+  },
+  {
+    "id": "16",
+    "label": "16",
+    "status": "sold",
+    "rooms": 2,
+    "area": 42.14,
+    "floor": 2,
+    "price": 469000,
+    "price_per_m2": 11130,
+    "comment": "2 pokoje - widok na ul. Piekary",
+    "pdf": null,
+    "x": 46.45,
+    "y": 50.71,
+    "finish": "Do remontu",
+    "images": [],
+    "section": "front",
+    "poly": [
+      39.87,
+      45.04,
+      52.69,
+      44.64,
+      52.7,
+      55.49,
+      40.1,
+      55.8
+    ],
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 27.06
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 3.93
+      },
+      {
+        "name": "POKÓJ",
+        "area": 11.15
+      }
+    ]
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 20.9
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.02
+      }
+    ],
+    "section": "front",
+    "price": 319000,
+    "floor": 2,
+    "poly": [
+      52.94,
+      44.79,
+      61.82,
+      44.34,
+      61.44,
+      55.09,
+      52.61,
+      55.4
+    ],
+    "area": 25.01,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "17",
+    "x": 57.27,
+    "images": [],
+    "rooms": 2,
+    "y": 50.8,
+    "id": "17",
+    "price_per_m2": 12755,
+    "comment": "1/2 pokoje - widok na ul. Piekary"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 28.39
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 5.2
+      },
+      {
+        "name": "POKÓJ",
+        "area": 8.32
+      }
+    ],
+    "section": "front",
+    "price": 439000,
+    "floor": 2,
+    "poly": [
+      61.64,
+      44.47,
+      71.34,
+      43.71,
+      70.69,
+      54.62,
+      61.29,
+      55.02
+    ],
+    "area": 41.91,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "18",
+    "x": 66.06,
+    "images": [],
+    "rooms": 2,
+    "y": 50.1,
+    "id": "18",
+    "price_per_m2": 10475,
+    "comment": "2 pokoje - widok na ul. Piekary"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 36.65
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 3.76
+      },
+      {
+        "name": "POKÓJ",
+        "area": 7.1
+      }
+    ],
+    "section": "front_courtyard",
+    "price": 449000,
+    "floor": 2,
+    "poly": [
+      10.09,
+      36.56,
+      14.04,
+      38.24,
+      14.16,
+      50.32,
+      10.09,
+      50.16
+    ],
+    "area": 47.51,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_19.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "19",
+    "x": 12.27,
+    "images": [],
+    "rooms": 2,
+    "y": 43.8,
+    "id": "19",
+    "price_per_m2": 9451,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 26.47
+      },
+      {
+        "name": "POKÓJ",
+        "area": 8.83
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 5.89
+      }
+    ],
+    "section": "front",
+    "price": 469000,
+    "floor": 0,
+    "poly": [
+      31.21,
+      67.31,
+      40.51,
+      66.76,
+      40.9,
+      76.96,
+      31.59,
+      77.11
+    ],
+    "area": 41.19,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_2.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "2",
+    "x": 36.67,
+    "images": [],
+    "rooms": 2,
+    "y": 73.27,
+    "id": "2",
+    "price_per_m2": 11386,
+    "comment": "2 pokoje - widok na ul. Piekary"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 16.59
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.19
+      },
+      {
+        "name": "ANTRESOLA",
+        "area": 4.27
+      }
+    ],
+    "section": "front_courtyard",
+    "price": 319000,
+    "floor": 3,
+    "poly": [
+      14,
+      38.33,
+      27.27,
+      39.13,
+      27.35,
+      50.57,
+      14.09,
+      50.17
+    ],
+    "area": 25.05,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "20",
+    "x": 21.21,
+    "images": [],
+    "rooms": 1,
+    "y": 44.29,
+    "id": "20",
+    "price_per_m2": 12735,
+    "comment": "1/2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 32.32
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 5.32
+      },
+      {
+        "name": "POKÓJ",
+        "area": 9.07
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 14.88
+      }
+    ],
+    "section": "front_courtyard",
+    "price": 549000,
+    "floor": 3,
+    "poly": [
+      37.17,
+      28.53,
+      43,
+      29.97,
+      47.12,
+      29.21,
+      47.13,
+      38.85,
+      43.04,
+      39.41,
+      37.21,
+      38.61
+    ],
+    "area": 61.59,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_21.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "21",
+    "x": 42.74,
+    "images": [],
+    "rooms": 3,
+    "y": 35.05,
+    "id": "21",
+    "price_per_m2": 8914,
+    "comment": "3 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 27.99
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 9.83
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 5.96
+      }
+    ],
+    "section": "front",
+    "price": 469000,
+    "floor": 3,
+    "poly": [
+      29.7,
+      36.11,
+      40.44,
+      35.96,
+      40.6,
+      43.44,
+      29.98,
+      43.64
+    ],
+    "area": 43.78,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_22.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "22",
+    "x": 36.16,
+    "images": [],
+    "rooms": 2,
+    "y": 39.98,
+    "id": "22",
+    "price_per_m2": 10713,
+    "comment": "2 pokoje - widok na ul. Piekary"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 27.61
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.61
+      },
+      {
+        "name": "POKÓJ",
+        "area": 10.41
+      }
+    ],
+    "section": "front",
+    "price": 449000,
+    "floor": 3,
+    "poly": [
+      40.62,
+      35.61,
+      52.5,
+      35.76,
+      52.47,
+      43.14,
+      40.77,
+      43.14
+    ],
+    "area": 42.63,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "23",
+    "x": 46.39,
+    "images": [],
+    "rooms": 2,
+    "y": 39.6,
+    "id": "23",
+    "price_per_m2": 10532,
+    "comment": "2 pokoje - widok na ul. Piekary"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 21.54
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.07
+      }
+    ],
+    "section": "front",
+    "price": 309000,
+    "floor": 3,
+    "poly": [
+      52.65,
+      35.83,
+      61.92,
+      35.63,
+      61.62,
+      42.91,
+      52.62,
+      43.06
+    ],
+    "area": 25.61,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "24",
+    "x": 57.19,
+    "images": [],
+    "rooms": 2,
+    "y": 39,
+    "id": "24",
+    "price_per_m2": 12066,
+    "comment": "1/2 pokoje - widok na ul. Piekary"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 27.69
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 5.2
+      },
+      {
+        "name": "POKÓJ",
+        "area": 8.64
+      }
+    ],
+    "section": "front",
+    "price": 429000,
+    "floor": 3,
+    "poly": [
+      61.94,
+      35.73,
+      71.98,
+      35.68,
+      71.59,
+      43.06,
+      61.54,
+      43.06
+    ],
+    "area": 41.53,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "25",
+    "x": 65.93,
+    "images": [],
+    "rooms": 2,
+    "y": 38.8,
+    "id": "25",
+    "price_per_m2": 10330,
+    "comment": "2 pokoje - widok na ul. Piekary"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 36.44
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.08
+      },
+      {
+        "name": "POKÓJ",
+        "area": 7.92
+      }
+    ],
+    "section": "front_courtyard",
+    "price": 439000,
+    "floor": 3,
+    "poly": [
+      10.2,
+      23.95,
+      13.84,
+      25.96,
+      13.96,
+      37.8,
+      10.17,
+      36.12
+    ],
+    "area": 48.44,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_26.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "26",
+    "x": 12.23,
+    "images": [],
+    "rooms": 2,
+    "y": 30.64,
+    "id": "26",
+    "price_per_m2": 9063,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 21.09
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 3.93
+      }
+    ],
+    "section": "front_courtyard",
+    "price": 309000,
+    "floor": 3,
+    "poly": [
+      13.92,
+      25.93,
+      27.19,
+      27.85,
+      27.32,
+      39.21,
+      13.97,
+      38.09
+    ],
+    "area": 25.02,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "27",
+    "x": 21.17,
+    "images": [],
+    "rooms": 2,
+    "y": 32.77,
+    "id": "27",
+    "price_per_m2": 12350,
+    "comment": "1/2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 34.11
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 6.44
+      },
+      {
+        "name": "POKÓJ",
+        "area": 9.89
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 15.56
+      }
+    ],
+    "section": "front_courtyard",
+    "price": 549000,
+    "floor": 4,
+    "poly": [
+      37.19,
+      21.23,
+      43.1,
+      22.19,
+      47.07,
+      21.75,
+      47.23,
+      29.31,
+      43.09,
+      29.91,
+      37.23,
+      28.51
+    ],
+    "area": 66,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_28.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "28",
+    "x": 42.64,
+    "images": [],
+    "rooms": 2,
+    "y": 25.67,
+    "id": "28",
+    "price_per_m2": 8318,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 22.54
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.88
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 8.58
+      }
+    ],
+    "section": "front",
+    "price": 329000,
+    "floor": 4,
+    "poly": [
+      34.94,
+      32.37,
+      39.57,
+      32.37,
+      39.69,
+      35.05,
+      35.02,
+      35.16
+    ],
+    "area": 36,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "29",
+    "x": 37.09,
+    "images": [],
+    "rooms": 2,
+    "y": 29.47,
+    "id": "29",
+    "price_per_m2": 9139,
+    "comment": "2 pokoje - widok na ul. Piekary"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 20.89
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.19
+      }
+    ],
+    "section": "front",
+    "price": 319000,
+    "floor": 0,
+    "poly": [
+      40.81,
+      67.56,
+      47.52,
+      67.22,
+      47.57,
+      76.97,
+      40.91,
+      77.27
+    ],
+    "area": 25.01,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "3",
+    "x": 46.7,
+    "images": [],
+    "rooms": 2,
+    "y": 72.97,
+    "id": "3",
+    "price_per_m2": 12755,
+    "comment": "1/2 pokoje - widok na ul. Piekary"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 17.53
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.2
+      },
+      {
+        "name": "POKÓJ",
+        "area": 11.45
+      }
+    ],
+    "section": "front",
+    "price": 319000,
+    "floor": 4,
+    "poly": [
+      44.31,
+      32.16,
+      48.53,
+      32.06,
+      48.52,
+      35.51,
+      44.29,
+      35.41
+    ],
+    "area": 33.18,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "30",
+    "x": 46.51,
+    "images": [],
+    "rooms": 2,
+    "y": 29.3,
+    "id": "30",
+    "price_per_m2": 9614,
+    "comment": "2 pokoje - widok na ul. Piekary"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 22.2
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.14
+      }
+    ],
+    "section": "front",
+    "price": 289000,
+    "floor": 4,
+    "poly": [
+      53.21,
+      32.18,
+      57.73,
+      31.93,
+      57.65,
+      35.13,
+      53.18,
+      35.23
+    ],
+    "area": 26.34,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "31",
+    "x": 55.48,
+    "images": [],
+    "rooms": 2,
+    "y": 28.97,
+    "id": "31",
+    "price_per_m2": 10972,
+    "comment": "1/2 pokoje - widok na ul. Piekary"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 27.21
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 5.2
+      }
+    ],
+    "section": "front",
+    "price": 319000,
+    "floor": 4,
+    "poly": [
+      62.23,
+      31.87,
+      66.67,
+      31.92,
+      66.61,
+      35.07,
+      62.16,
+      35.07
+    ],
+    "area": 32.41,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "32",
+    "x": 64.32,
+    "images": [],
+    "rooms": 2,
+    "y": 28.81,
+    "id": "32",
+    "price_per_m2": 9843,
+    "comment": "2 pokoje - widok na ul. Piekary"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 35
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.08
+      },
+      {
+        "name": "POKÓJ",
+        "area": 7.71
+      }
+    ],
+    "section": "front_courtyard",
+    "price": 399000,
+    "floor": 4,
+    "poly": [
+      10.3,
+      14.72,
+      13.98,
+      17.2,
+      13.84,
+      26.16,
+      10.14,
+      23.84
+    ],
+    "area": 46.79,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_33.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "33",
+    "x": 12.36,
+    "images": [],
+    "rooms": 2,
+    "y": 19.32,
+    "id": "33",
+    "price_per_m2": 8527,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 22.13
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 3.93
+      }
+    ],
+    "section": "front_courtyard",
+    "price": 299000,
+    "floor": 4,
+    "poly": [
+      14.06,
+      16.91,
+      27.24,
+      19.15,
+      27.21,
+      27.39,
+      13.93,
+      26.03
+    ],
+    "area": 26.06,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_34.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "34",
+    "x": 21.1,
+    "images": [],
+    "rooms": 2,
+    "y": 21.27,
+    "id": "34",
+    "price_per_m2": 11474,
+    "comment": "1/2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "KORYTARZ",
+        "area": 8.13
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 10.23
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 5.86
+      },
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 26.27
+      }
+    ],
+    "section": "oficyna_lewa",
+    "price": 479000,
+    "floor": 0,
+    "poly": [
+      47.31,
+      63.57,
+      69.33,
+      69.01,
+      69.2,
+      89.48,
+      47.18,
+      76.29
+    ],
+    "area": 50.49,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_35.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "35",
+    "x": 56.33,
+    "images": [],
+    "rooms": 2,
+    "y": 70.82,
+    "id": "35",
+    "price_per_m2": 9487,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "KORYTARZ",
+        "area": 7.47
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 5.07
+      },
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 16.19
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 14.21
+      }
+    ],
+    "section": "oficyna_lewa",
+    "price": 439000,
+    "floor": 0,
+    "poly": [
+      71.4,
+      68.87,
+      95.01,
+      75.74,
+      95.02,
+      100.17,
+      71.47,
+      88.08
+    ],
+    "area": 46.18,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_36.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "36",
+    "x": 77.71,
+    "images": [],
+    "rooms": 2,
+    "y": 77.68,
+    "id": "36",
+    "price_per_m2": 9506,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "KORYTARZ",
+        "area": 7.94
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 10.38
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 5.57
+      },
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 25.68
+      }
+    ],
+    "section": "oficyna_lewa",
+    "price": 479000,
+    "floor": 1,
+    "poly": [
+      47.41,
+      50.91,
+      69.18,
+      51.55,
+      69.22,
+      68.59,
+      47.37,
+      63.07
+    ],
+    "area": 49.57,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_37_uklad_alternatywny.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "37",
+    "x": 56.46,
+    "images": [],
+    "rooms": 2,
+    "y": 56.55,
+    "id": "37",
+    "price_per_m2": 9663,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 23.1
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 2.66
+      },
+      {
+        "name": "POKÓJ",
+        "area": 5.17
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 14.21
+      }
+    ],
+    "section": "oficyna_lewa",
+    "price": 439000,
+    "floor": 1,
+    "poly": [
+      71.34,
+      52.64,
+      94.82,
+      53.12,
+      94.86,
+      75.68,
+      71.42,
+      68.48
+    ],
+    "area": 45.14,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_38.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "38",
+    "x": 77.77,
+    "images": [],
+    "rooms": 2,
+    "y": 58.92,
+    "id": "38",
+    "price_per_m2": 9725,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "KORYTARZ",
+        "area": 9.91
+      },
+      {
+        "name": "POKÓJ",
+        "area": 10.6
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 6.39
+      },
+      {
+        "name": "KUCHNIA",
+        "area": 6.01
+      },
+      {
+        "name": "POKÓJ",
+        "area": 19.2
+      }
+    ],
+    "section": "oficyna_lewa",
+    "price": 449000,
+    "floor": 2,
+    "poly": [
+      47.42,
+      40.42,
+      69.14,
+      34.9,
+      69.22,
+      51.86,
+      47.46,
+      50.82
+    ],
+    "area": 52.11,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "39",
+    "x": 56.38,
+    "images": [],
+    "rooms": 2,
+    "y": 44.46,
+    "id": "39",
+    "price_per_m2": 8616,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "KORYTARZ",
+        "area": 2.55
+      },
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 16.83
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.17
+      },
+      {
+        "name": "POKÓJ",
+        "area": 10.06
+      }
+    ],
+    "section": "front",
+    "price": 429000,
+    "floor": 0,
+    "poly": [
+      53.84,
+      68.14,
+      63.84,
+      67.54,
+      63.63,
+      76.88,
+      53.84,
+      77.49
+    ],
+    "area": 33.61,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "4",
+    "x": 57.48,
+    "images": [],
+    "rooms": 2,
+    "y": 72.4,
+    "id": "4",
+    "price_per_m2": 12764,
+    "comment": "2 pokoje - widok na ul. Piekary [FRYZJER]"
+  },
+  {
+    "id": "40",
+    "label": "40",
+    "status": "sold",
+    "rooms": 2,
+    "area": 48.18,
+    "floor": 2,
+    "price": 419000,
+    "price_per_m2": 8697,
+    "comment": "2 pokoje - widok na dziedziniec",
+    "pdf": null,
+    "x": 77.77,
+    "y": 40.77,
+    "finish": "Do remontu",
+    "images": [],
+    "section": "oficyna_lewa",
+    "poly": [
+      71.18,
+      35.6,
+      94.78,
+      29.29,
+      94.7,
+      53.21,
+      71.34,
+      52.49
+    ],
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 24.29
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 2.8
+      },
+      {
+        "name": "POKÓJ",
+        "area": 5.59
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 15.5
+      }
+    ]
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "KORYTARZ",
+        "area": 6.44
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 10.81
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 5.68
+      },
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 30.39
+      }
+    ],
+    "section": "oficyna_lewa",
+    "price": 449000,
+    "floor": 3,
+    "poly": [
+      47.57,
+      30.01,
+      69.4,
+      17.45,
+      69.45,
+      34.17,
+      47.52,
+      40.25
+    ],
+    "area": 53.32,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_41.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "41",
+    "x": 56.32,
+    "images": [],
+    "rooms": 2,
+    "y": 30.05,
+    "id": "41",
+    "price_per_m2": 8421,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 25.12
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 2.72
+      },
+      {
+        "name": "POKÓJ",
+        "area": 5.59
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 16.09
+      }
+    ],
+    "section": "oficyna_lewa",
+    "price": 439000,
+    "floor": 3,
+    "poly": [
+      71.31,
+      17.13,
+      94.63,
+      5.64,
+      94.75,
+      29.64,
+      71.31,
+      35.56
+    ],
+    "area": 49.52,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_42.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "42",
+    "x": 77.7,
+    "images": [],
+    "rooms": 2,
+    "y": 20.72,
+    "id": "42",
+    "price_per_m2": 8865,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "KORYTARZ",
+        "area": 6.64
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 3.19
+      },
+      {
+        "name": "POKÓJ",
+        "area": 6.12
+      },
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 24.52
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 13.04
+      }
+    ],
+    "section": "oficyna_lewa",
+    "price": 429000,
+    "floor": 4,
+    "poly": [
+      47.97,
+      20.48,
+      68.87,
+      1.36,
+      68.87,
+      8.96,
+      47.92,
+      24.4
+    ],
+    "area": 53.51,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_43.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "43",
+    "x": 56.11,
+    "images": [],
+    "rooms": 2,
+    "y": 16.12,
+    "id": "43",
+    "price_per_m2": 8017,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "id": "44",
+    "label": "44",
+    "status": "sold",
+    "rooms": 2,
+    "area": 49.6,
+    "floor": 4,
+    "price": 399000,
+    "price_per_m2": 8044,
+    "comment": "2 pokoje - widok na dziedziniec",
+    "pdf": null,
+    "x": 77.64,
+    "y": 4.19,
+    "finish": "Do remontu",
+    "images": [],
+    "section": "oficyna_lewa",
+    "poly": [
+      72.64,
+      -0.8099999999999996,
+      82.64,
+      -0.8099999999999996,
+      83.33,
+      0.55,
+      71.05,
+      9.51
+    ],
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 25.06
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 3.02
+      },
+      {
+        "name": "POKÓJ",
+        "area": 5.59
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 15.93
+      }
+    ]
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "KORYTARZ",
+        "area": 3.83
+      },
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 22.34
+      },
+      {
+        "name": "KORYTARZ",
+        "area": 4.53
+      },
+      {
+        "name": "POKÓJ",
+        "area": 13.86
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 7.47
+      }
+    ],
+    "section": "oficyna_prawa",
+    "price": 469000,
+    "floor": 0,
+    "poly": [
+      6.13,
+      73.69,
+      10.17,
+      64.89,
+      10.24,
+      80.57,
+      6.13,
+      99.14
+    ],
+    "area": 52.96,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "45",
+    "x": 8.6,
+    "images": [],
+    "rooms": 2,
+    "y": 78.77,
+    "id": "45",
+    "price_per_m2": 8856,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "KORYTARZ",
+        "area": 3.13
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.93
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 13.45
+      }
+    ],
+    "section": "oficyna_prawa",
+    "price": 409000,
+    "floor": 1,
+    "poly": [
+      6.2,
+      48.32,
+      10.04,
+      50.48,
+      10.12,
+      64.24,
+      6.32,
+      73.2
+    ],
+    "area": 45.51,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "46",
+    "x": 8.75,
+    "images": [],
+    "rooms": 2,
+    "y": 57.64,
+    "id": "46",
+    "price_per_m2": 8987,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "KORYTARZ",
+        "area": 3.5
+      },
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 24.82
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.46
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 14.07
+      }
+    ],
+    "section": "oficyna_prawa",
+    "price": 409000,
+    "floor": 2,
+    "poly": [
+      6.12,
+      27.95,
+      10.19,
+      36.43,
+      10.07,
+      50.59,
+      6.03,
+      48.43
+    ],
+    "area": 46.85,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "47",
+    "x": 8.75,
+    "images": [],
+    "rooms": 2,
+    "y": 42.39,
+    "id": "47",
+    "price_per_m2": 8730,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "KORYTARZ",
+        "area": 3.51
+      },
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 24.83
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.46
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 14.07
+      }
+    ],
+    "section": "oficyna_prawa",
+    "price": 399000,
+    "floor": 3,
+    "poly": [
+      6.18,
+      6.86,
+      10.34,
+      22.14,
+      10.18,
+      36.14,
+      6.06,
+      27.9
+    ],
+    "area": 46.87,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "48",
+    "x": 8.69,
+    "images": [],
+    "rooms": 2,
+    "y": 27.7,
+    "id": "48",
+    "price_per_m2": 8513,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "section": "oficyna_prawa",
+    "price": 379000,
+    "floor": 4,
+    "poly": [
+      6.26,
+      -0.53,
+      10.38,
+      15.87,
+      10.3,
+      21.79,
+      6.18,
+      7.39
+    ],
+    "area": 46.31,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "49",
+    "x": 8.81,
+    "images": [],
+    "rooms": 2,
+    "y": 14.87,
+    "id": "49",
+    "price_per_m2": 8184,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "KORYTARZ",
+        "area": 5.2
+      },
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 19.55
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 3.72
+      }
+    ],
+    "section": "front",
+    "price": 349000,
+    "floor": 0,
+    "poly": [
+      63.98,
+      67.2,
+      70.12,
+      67,
+      69.63,
+      76.39,
+      63.72,
+      76.9
+    ],
+    "area": 28.47,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "5",
+    "x": 66.13,
+    "images": [],
+    "rooms": 1,
+    "y": 72.06,
+    "id": "5",
+    "price_per_m2": 12259,
+    "comment": "1 pokój - widok na ul. Piekary"
+  },
+  {
+    "id": "50",
+    "label": "50",
+    "status": "sold",
+    "rooms": 1,
+    "area": 51.51,
+    "floor": -1,
+    "price": 399000,
+    "price_per_m2": 7746,
+    "comment": "oficyna lewa - widok podwórze - 1 pokój",
+    "pdf": null,
+    "x": 41.8,
+    "y": 80.75,
+    "finish": "Do remontu",
+    "images": [],
+    "section": "przyziemia",
+    "hidden": true
+  },
+  {
+    "id": "51",
+    "label": "51",
+    "status": "sold",
+    "rooms": 2,
+    "area": 51.63,
+    "floor": -1,
+    "price": 399000,
+    "price_per_m2": 7728,
+    "comment": "oficyna prawa - widok podwórze - 2 pokoje",
+    "pdf": null,
+    "x": 58.53,
+    "y": 94.97,
+    "finish": "Do remontu",
+    "images": [],
+    "section": "przyziemia",
+    "hidden": true
+  },
+  {
+    "id": "52",
+    "label": "52",
+    "status": "sold",
+    "rooms": 2,
+    "area": 45.59,
+    "floor": -1,
+    "price": 379000,
+    "price_per_m2": 8313,
+    "comment": "oficyna lewa - widok podwórze - 2 pak | dwupak",
+    "pdf": null,
+    "x": 47.64,
+    "y": 88.31,
+    "finish": "Do remontu",
+    "images": [],
+    "section": "przyziemia",
+    "hidden": true
+  },
+  {
+    "id": "53",
+    "label": "53",
+    "status": "sold",
+    "rooms": 2,
+    "area": 37.95,
+    "floor": -1,
+    "price": 329000,
+    "price_per_m2": 8669,
+    "comment": "oficyna lewa - widok podwórze - 2 pokoje",
+    "pdf": null,
+    "x": 50.14,
+    "y": 95.26,
+    "finish": "Do remontu",
+    "images": [],
+    "section": "przyziemia",
+    "hidden": true
+  },
+  {
+    "id": "54",
+    "label": "54",
+    "status": "sold",
+    "rooms": 2,
+    "area": 46.91,
+    "floor": -1,
+    "price": 369000,
+    "price_per_m2": 7866,
+    "comment": "oficyna prawa - widok podwórze - 2 pokoje",
+    "pdf": null,
+    "x": 32.78,
+    "y": 82.41,
+    "finish": "Do remontu",
+    "images": [],
+    "section": "przyziemia",
+    "hidden": true
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 34.3
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.59
+      },
+      {
+        "name": "POKÓJ",
+        "area": 14.97
+      }
+    ],
+    "section": "front_courtyard",
+    "price": 549000,
+    "floor": 0,
+    "poly": [
+      10.16,
+      65.17,
+      14.12,
+      64.13,
+      21.24,
+      63.45,
+      21.31,
+      77.49,
+      14,
+      78.09,
+      10.28,
+      79.97
+    ],
+    "area": 53.86,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_6.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "6",
+    "x": 12.26,
+    "images": [],
+    "rooms": 2,
+    "y": 69.85,
+    "id": "6",
+    "price_per_m2": 10193,
+    "comment": "2 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 32.81
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.5
+      },
+      {
+        "name": "POKÓJ",
+        "area": 9.02
+      },
+      {
+        "name": "SYPIALNIA",
+        "area": 14.48
+      }
+    ],
+    "section": "front_courtyard",
+    "price": 579000,
+    "floor": 1,
+    "poly": [
+      37.2,
+      49.94,
+      43.16,
+      50.26,
+      47.16,
+      49.9,
+      47.24,
+      62.66,
+      43.1,
+      62.22,
+      37.28,
+      62.42
+    ],
+    "area": 60.81,
+    "pdf": "/assets/piekary9/navigator/pdfs/lokal_7.pdf",
+    "status": "available",
+    "finish": "Do remontu",
+    "label": "7",
+    "x": 42.85,
+    "images": [],
+    "rooms": 3,
+    "y": 54.94,
+    "id": "7",
+    "price_per_m2": 9521,
+    "comment": "3 pokoje - widok na dziedziniec"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SYPIALNIA",
+        "area": 8.83
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 5.89
+      }
+    ],
+    "section": "front",
+    "price": 489000,
+    "floor": 1,
+    "poly": [
+      30.54,
+      55.59,
+      39.89,
+      55.2,
+      40.46,
+      66.81,
+      31.23,
+      67.31
+    ],
+    "area": 44.72,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "8",
+    "x": 36.59,
+    "images": [],
+    "rooms": 2,
+    "y": 62.29,
+    "id": "8",
+    "price_per_m2": 10935,
+    "comment": "2 pokoje - widok na ul. Piekary (stan db)"
+  },
+  {
+    "rooms_list": [
+      {
+        "name": "SALON Z ANEKSEM",
+        "area": 27.77
+      },
+      {
+        "name": "ŁAZIENKA",
+        "area": 4.11
+      },
+      {
+        "name": "POKÓJ",
+        "area": 11.45
+      }
+    ],
+    "section": "front",
+    "price": 499000,
+    "floor": 1,
+    "poly": [
+      40.02,
+      55.21,
+      52.9,
+      54.91,
+      52.85,
+      66.42,
+      40.51,
+      66.47
+    ],
+    "area": 43.33,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "9",
+    "x": 46.58,
+    "images": [],
+    "rooms": 2,
+    "y": 61.71,
+    "id": "9",
+    "price_per_m2": 11516,
+    "comment": "2 pokoje - widok na ul. Piekary"
+  },
+  {
+    "section": "front",
+    "price": 536973,
+    "floor": -1,
+    "poly": [
+      53.92,
+      77.77,
+      69.63,
+      77.16,
+      69.47,
+      83.39,
+      53.92,
+      84.14
+    ],
+    "area": 55.64,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "U1",
+    "x": 66.05,
+    "images": [],
+    "rooms": 2,
+    "y": 80.33,
+    "id": "U1",
+    "price_per_m2": 8990,
+    "comment": "witryna - front"
+  },
+  {
+    "section": "front",
+    "price": 536973,
+    "floor": -1,
+    "poly": [
+      31.51,
+      77.31,
+      47.27,
+      76.66,
+      47.4,
+      84.65,
+      31.82,
+      85.3
+    ],
+    "area": 59.73,
+    "pdf": null,
+    "status": "sold",
+    "finish": "Do remontu",
+    "label": "U2",
+    "x": 36.73,
+    "images": [],
+    "rooms": 2,
+    "y": 80.75,
+    "id": "U2",
+    "price_per_m2": 8990,
+    "comment": "witryna - front"
+  }
+]

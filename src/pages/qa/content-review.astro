@@ -1,0 +1,50 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/ui/layout/Container.astro';
+import Section from '@components/ui/layout/Section.astro';
+import Button from '@components/ui/atoms/Button.astro';
+import Heading from '@components/ui/atoms/Heading.astro';
+import Text from '@components/ui/atoms/Text.astro';
+---
+
+<Layout
+	title="Content Review QA"
+	description="Lokalny fixture trybu edycji treści Starter Kitu."
+	noIndex={true}
+	bodyClass="content-review-fixture"
+>
+	<Section tone="base" class="min-h-[65vh]">
+		<Container class="max-w-5xl">
+			<div class="mx-auto max-w-3xl text-center">
+				<Text contentKey="review.hero.tagline" variant="accent-label" class="mb-4">Lokalny test Starter Kitu</Text>
+				<Heading contentKey="review.hero.title" variant="hero" class="mb-6">Treść, którą klient może poprawić samodzielnie</Heading>
+				<Text contentKey="review.hero.description" variant="lead" class="mx-auto mb-8 max-w-2xl">
+					To jest test trybu edycji. Włącz edycję w rogu, kliknij tekst i zacznij pisać bezpośrednio na stronie.
+				</Text>
+				<div class="flex flex-wrap justify-center gap-4">
+					<Button contentKey="review.hero.cta" href="/qa/content-review/" variant="primary" size="lg">Wyślij poprawki tekstu</Button>
+				</div>
+			</div>
+
+			<div class="mt-16 grid gap-6 md:grid-cols-2">
+				<article class="ui-bg-page rounded-xl border border-brand-dark/10 p-6 shadow-sm">
+					<Heading contentKey="review.card.one.title" variant="feature-title" class="mb-3">Pierwszy zakres testu</Heading>
+					<Text contentKey="review.card.one.description" variant="body">Nagłówki, opisy i etykiety przycisków mają stabilne klucze, dzięki którym można przygotować czytelny diff.</Text>
+				</article>
+				<article class="ui-bg-page rounded-xl border border-brand-dark/10 p-6 shadow-sm">
+					<Heading contentKey="review.card.two.title" variant="feature-title" class="mb-3">Co zapisuje się lokalnie</Heading>
+					<Text contentKey="review.card.two.description" variant="body">Przeglądarka przechowuje wersję roboczą oraz JSON z wartościami przed i po zmianie.</Text>
+				</article>
+			</div>
+		</Container>
+	</Section>
+
+	<Section tone="page">
+		<Container class="max-w-3xl">
+			<div class="rounded-xl border border-brand-dark/10 ui-bg-page p-6 sm:p-8">
+				<Heading contentKey="review.instructions.title" variant="section-heading-lg" class="mb-4">Jak sprawdzić MVP</Heading>
+				<Text contentKey="review.instructions.description" variant="body">Włącz tryb edycji, zmień kilka treści bezpośrednio na stronie, odśwież ją i sprawdź, czy zmiany wróciły. Następnie kliknij „Wyślij wersję” i „Kopiuj JSON”.</Text>
+			</div>
+		</Container>
+	</Section>
+</Layout>

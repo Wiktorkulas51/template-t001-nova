@@ -1,0 +1,41 @@
+{
+  "rooms_list": [
+    {
+      "name": "SALON Z ANEKSEM",
+      "area": 27.61
+    },
+    {
+      "name": "ŁAZIENKA",
+      "area": 4.61
+    },
+    {
+      "name": "POKÓJ",
+      "area": 10.41
+    }
+  ],
+  "section": "front",
+  "price": 449000,
+  "floor": 3,
+  "poly": [
+    40.62,
+    35.61,
+    52.5,
+    35.76,
+    52.47,
+    43.14,
+    40.77,
+    43.14
+  ],
+  "area": 42.63,
+  "pdf": "/client-assets/folde3/Rzuty/lokal_23.pdf",
+  "status": "sold",
+  "finish": "Do remontu",
+  "label": "23",
+  "x": 46.39,
+  "images": [],
+  "rooms": 2,
+  "y": 39.6,
+  "id": "23",
+  "price_per_m2": 10532,
+  "comment": "2 pokoje - widok na ul. Piekary"
+}

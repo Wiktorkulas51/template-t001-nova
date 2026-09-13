@@ -1,0 +1,63 @@
+---
+/**
+ * FAQ Piekary with native details/summary accordion.
+ * Full questions and answers remain in the section data file.
+ */
+import Section from "@components/ui/layout/Section.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import faqData from "@data/sections/piekary9-faq.json";
+
+type FaqData = typeof faqData;
+
+export interface Props {
+  data?: FaqData;
+  id?: string;
+  class?: string;
+}
+
+const { data = faqData, id = "faq", class: className = "" } = Astro.props as Props;
+---
+
+<Section id={id} class:list={["scroll-mt-28 ui-bg-base", className]} aria-labelledby={`${id}-heading`}>
+  <div class="ui-container">
+    <div class="mb-16 text-center">
+      <div class="mb-6 flex items-center justify-center gap-4">
+        <span class="h-px w-8 bg-brand-accent" aria-hidden="true"></span>
+        <Text variant="accent-label" tag="span">{data.eyebrow}</Text>
+        <span class="h-px w-8 bg-brand-accent" aria-hidden="true"></span>
+      </div>
+      <Heading id={`${id}-heading`} variant="section-title" class="mx-auto max-w-2xl">{data.title}</Heading>
+    </div>
+
+    <ul class="mx-auto max-w-3xl space-y-3" role="list" data-accordion>
+      {data.items.map((item, index) => (
+        <li>
+          <details class="group rounded-2xl border border-brand-dark/10 bg-white shadow-sm transition-all duration-300 open:border-brand-accent/30 open:shadow-lg" id={`${id}-item-${index}`}>
+            <summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 transition-colors duration-200 hover:bg-brand-accent/5 [&::-webkit-details-marker]:hidden">
+              <Heading tag="h3" variant="feature-title" class="text-left text-brand-dark">{item.question}</Heading>
+              <span class="ml-4 flex size-8 shrink-0 items-center justify-center rounded-full border border-brand-dark/15 text-brand-dark/50 transition-all duration-300 group-open:border-brand-accent/40 group-open:bg-brand-accent group-open:text-white">
+                <Icon name="plus" class="text-sm group-open:hidden" aria-hidden="true" />
+                <Icon name="minus" class="hidden text-sm group-open:block" aria-hidden="true" />
+              </span>
+            </summary>
+            <div class="px-6 pb-6 pt-0">
+              <div class="border-t border-brand-dark/10 pt-4">
+                <Text variant="body" class="whitespace-pre-line text-brand-dark/70">{item.answer}</Text>
+              </div>
+            </div>
+          </details>
+        </li>
+      ))}
+    </ul>
+
+    <div class="mt-16 flex flex-col items-center gap-6 text-center">
+      <Text variant="lead" class="font-semibold text-brand-dark">{data.cta.text}</Text>
+      <a href={data.cta.href} aria-label={data.cta.label} class="group relative inline-flex min-h-11 items-center justify-center gap-3 overflow-hidden rounded-full bg-brand-accent px-10 py-4 text-sm font-bold uppercase tracking-widest text-brand-dark shadow-lg transition-all hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent">
+        <span class="relative z-10">{data.cta.label}</span>
+        <span class="absolute inset-0 translate-y-full bg-white/20 transition-transform duration-300 group-hover:translate-y-0" aria-hidden="true"></span>
+      </a>
+    </div>
+  </div>
+</Section>

@@ -1,0 +1,15 @@
+{
+  "pl": {
+    "eyebrow": "RYZYKO ZARZĄDCZE",
+    "title": "Ochrona Danych to",
+    "titleAccent": "odpowiedzialność Zarządu",
+    "description": "Kary UODO to tylko wierzchołek góry lodowej. Prawdziwe wyzwania to odpowiedzialność cywilna, karna oraz utrata zaufania kluczowych kontrahentów.",
+    "quote": "Pomagam zarządzać tym ryzykiem, zanim stanie się kryzysem. Moim celem jest przekucie wymogów prawnych w bezpieczny fundament dla biznesu.",
+    "signature": "dr Krzysztof Mystek",
+    "risks": [
+      { "title": "Compliance dla Zarządu", "description": "Zarządzanie osobistą i finansową odpowiedzialnością członków zarządu za uchybienia w ochronie danych. Budowanie kultury zgodności.", "icon": "scales" },
+      { "title": "Ciągłość działania BCP", "description": "Minimalizacja ryzyka operacyjnego. Zapewnienie, że incydent bezpieczeństwa lub kontrola UODO nie sparaliżuje kluczowych procesów biznesowych.", "icon": "activity" },
+      { "title": "Wartość i reputacja", "description": "Ochrona zaufania klientów i wartości rynkowej. Wyciek danych to nie tylko kara, ale także realna utrata reputacji budowanej latami.", "icon": "trend-up" }
+    ]
+  }
+}

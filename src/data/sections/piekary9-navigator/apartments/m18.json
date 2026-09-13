@@ -1,0 +1,41 @@
+{
+  "rooms_list": [
+    {
+      "name": "SALON Z ANEKSEM",
+      "area": 28.39
+    },
+    {
+      "name": "ŁAZIENKA",
+      "area": 5.2
+    },
+    {
+      "name": "POKÓJ",
+      "area": 8.32
+    }
+  ],
+  "section": "front",
+  "price": 439000,
+  "floor": 2,
+  "poly": [
+    61.64,
+    44.47,
+    71.34,
+    43.71,
+    70.69,
+    54.62,
+    61.29,
+    55.02
+  ],
+  "area": 41.91,
+  "pdf": "/client-assets/folde3/Rzuty/lokal_18.pdf",
+  "status": "sold",
+  "finish": "Do remontu",
+  "label": "18",
+  "x": 66.06,
+  "images": [],
+  "rooms": 2,
+  "y": 50.1,
+  "id": "18",
+  "price_per_m2": 10475,
+  "comment": "2 pokoje - widok na ul. Piekary"
+}

@@ -1,0 +1,10 @@
+{
+  "eyebrow": "Razem silniejsze",
+  "title": "Więcej niż tylko",
+  "titleAccent": "zwykły trening",
+  "description": "Dołącz do społeczności, która wspiera się w drodze po zdrowie i pewność siebie.",
+  "items": [
+    { "src": "/assets/kasia/community-training.webp", "alt": "Wspólny trening w kameralnej grupie", "label": "Wspólna motywacja", "title": "Energia grupy", "span": "md:col-span-2" },
+    { "src": "/assets/kasia/community-education.webp", "alt": "Materiały edukacyjne i certyfikaty", "label": "Wiedza i praktyka", "title": "Rozwój na każdym etapie", "span": "md:col-span-1" }
+  ]
+}

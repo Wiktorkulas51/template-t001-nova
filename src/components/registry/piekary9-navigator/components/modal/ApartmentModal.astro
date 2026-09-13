@@ -1,0 +1,208 @@
+---
+import ui from '@data/sections/piekary9-navigator-ui.json';
+// ApartmentModal.astro - Advanced modal mockup for "Karta {ui.local}u"
+import extractedData from '@data/sections/piekary9-navigator-extracted-pdf.json';
+---
+
+<div id="apartment-modal-overlay" class="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-4 opacity-0 pointer-events-none transition-opacity duration-300 bg-slate-900/60 backdrop-blur-sm" inert>
+  <script is:inline define:vars={{ extractedData }}>
+    window.__EXTRACTED_ROOMS = extractedData;
+  </script>
+  
+  <aside 
+    id="apartment-modal" 
+    class="relative w-full md:max-w-6xl h-[100dvh] md:h-auto md:max-h-[90vh] bg-white rounded-none md:rounded-2xl shadow-2xl flex flex-col md:flex-row overflow-hidden transition-transform duration-300 scale-100 md:scale-95"
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="modal-title"
+  >
+    <!-- Close Button Mobile (Absolute) -->
+    <button id="modal-close-btn-mobile" class="md:hidden absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 backdrop-blur shadow text-slate-600 hover:text-slate-900 z-10 cursor-pointer" aria-label="Zamknij">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- LEFT COLUMN: Visuals -->
+    <div class="w-full md:w-[55%] flex flex-col bg-slate-50 relative overflow-hidden shrink-0 border-r border-slate-100">
+      <!-- Main Image Container -->
+      <div id="modal-image-container" class="relative flex-1 w-full flex items-center justify-center bg-slate-50 px-4 md:px-8 py-10 group cursor-zoom-in">
+        <!-- Main Image -->
+        <img 
+          id="modal-main-image"
+          src="/images/piekary9/placeholder-plan.jpg" 
+          alt="Rzut 3D lokalu" 
+          class="max-w-full max-h-full object-contain filter drop-shadow-2xl transition-all duration-500 group-hover:scale-[1.01] rounded-2xl"
+        />
+        
+        <!-- Zoom Button (Lupa) - Centered on hover -->
+        <button 
+          id="modal-zoom-btn"
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 flex items-center justify-center rounded-full bg-slate-900/80 backdrop-blur text-white shadow-2xl transition-all duration-300 opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 pointer-events-none group-hover:pointer-events-auto cursor-pointer z-20"
+          aria-label="Powiększ zdjęcie"
+        >
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="11" y1="8" x2="11" y2="14"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+        </button>
+
+        <!-- Status Badge overlay on image for mobile -->
+        <div class="absolute top-4 left-4 md:hidden flex items-center gap-2 bg-white/90 backdrop-blur px-3 py-1.5 rounded-full shadow-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-green-600"></span>
+          <span class="text-[0.65rem] font-bold uppercase tracking-widest text-slate-800">{ui.available}</span>
+        </div>
+      </div>
+
+      <!-- Thumbnails (Relative to flow) -->
+      <div class="w-full p-4 pb-8 bg-slate-50 mt-auto">
+        <div id="modal-thumbnails-container" class="flex justify-center gap-3 overflow-x-auto custom-scrollbar no-scrollbar py-2">
+          <!-- Dynamic thumbs will be injected here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: Details -->
+    <div class="w-full md:w-[45%] flex flex-col flex-1 overflow-hidden min-h-0 bg-white">
+      
+      <!-- Desktop Header (Fixed) -->
+      <div class="hidden md:flex items-center justify-between p-6 pb-4 border-b border-slate-100 shrink-0">
+        <div class="flex items-center gap-4">
+          <h2 id="modal-title" class="text-3xl font-black text-slate-900 tracking-tight leading-none">{ui.local20}</h2>
+          <div id="modal-status-badge" class="flex items-center gap-2 px-2.5 py-1 rounded-full bg-green-50 border border-green-100">
+            <span id="modal-status-dot" class="w-2 h-2 rounded-full bg-green-600"></span>
+            <span id="modal-status-label" class="text-[0.6rem] font-bold uppercase tracking-widest text-green-800">{ui.available}</span>
+          </div>
+        </div>
+        <button id="modal-close-btn-desktop" class="w-8 h-8 flex items-center justify-center rounded-full text-slate-400 hover:bg-slate-100 hover:text-slate-900 transition-colors cursor-pointer" aria-label="Zamknij">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Content Body (Scrollable) -->
+      <div class="flex-1 overflow-y-auto custom-scrollbar p-5 md:p-6">
+        <div id="modal-main-content" class="min-h-full flex flex-col justify-center gap-4 md:gap-6">
+        
+        <!-- Mobile Title (Visible only on mobile) -->
+        <div class="md:hidden flex items-center justify-between">
+           <h2 id="modal-title-mobile" class="text-2xl font-black text-slate-900 tracking-tight">{ui.local20}</h2>
+           <div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-green-50 border border-green-100">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+            <span class="text-[0.55rem] font-bold uppercase tracking-widest text-green-800">{ui.available}</span>
+          </div>
+        </div>
+
+        <!-- Price & Main Stats -->
+        <div class="flex flex-wrap items-baseline gap-x-6 gap-y-3">
+          <div class="flex flex-col">
+            <span class="text-[0.6rem] font-bold uppercase tracking-widest text-slate-400 mb-0.5">{ui.price}</span>
+            <span id="modal-price" class="text-2xl md:text-3xl font-black text-slate-900 tracking-tighter">505 000 zł</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-[0.6rem] font-bold uppercase tracking-widest text-slate-400 mb-0.5">{ui.area}</span>
+            <span id="modal-area" class="text-2xl md:text-3xl font-black text-slate-900 tracking-tighter">48.6 <span class="text-lg md:text-xl font-bold text-slate-400">m²</span></span>
+          </div>
+        </div>
+
+        <!-- Additional Parameters Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-2 gap-4 p-4 bg-slate-50/50 border border-slate-100 rounded-2xl">
+          <div class="flex items-center gap-3 group">
+            <div class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-slate-400 border border-slate-100/50 group-hover:text-brand-primary transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[0.65rem] font-bold text-slate-400 uppercase tracking-widest">{ui.floorLabel}</span>
+              <span id="modal-floor" class="text-sm font-black text-slate-900 leading-none">3. piętro</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 group">
+            <div class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-slate-400 border border-slate-100/50 group-hover:text-brand-primary transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[0.65rem] font-bold text-slate-400 uppercase tracking-widest">{ui.pricePerM2}</span>
+              <span id="modal-price-m2" class="text-sm font-black text-slate-900 leading-none">-</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 group">
+            <div class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-slate-400 border border-slate-100/50 group-hover:text-brand-primary transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[0.65rem] font-bold text-slate-400 uppercase tracking-widest">{ui.type}</span>
+              <span id="modal-type" class="text-sm font-black text-slate-900 leading-none">{ui.residential}</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 group">
+            <div class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-slate-400 border border-slate-100/50 group-hover:text-brand-primary transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[0.65rem] font-bold text-slate-400 uppercase tracking-widest">{ui.standard}</span>
+              <span id="modal-finish" class="text-sm font-black text-slate-900 leading-none">{ui.renovation}</span>
+            </div>
+          </div>
+      </div>
+
+        <!-- Room List -->
+        <div id="modal-rooms-container" class="flex flex-col gap-3 hidden">
+          <div class="flex flex-col border border-slate-100 rounded-2xl overflow-hidden shadow-sm bg-white">
+            <div id="modal-rooms-list" class="flex flex-col">
+              <!-- Dynamic items -->
+            </div>
+          </div>
+        </div>
+
+
+        </div>
+      </div>
+
+      <!-- CTAs (Fixed at bottom) -->
+      <div class="p-4 md:p-6 bg-white border-t border-slate-100 flex flex-col gap-2 md:gap-3 shrink-0">
+        <a href="#kontakt" id="modal-purchase-btn" class="flex items-center justify-center w-full py-3.5 px-6 bg-slate-900 text-white font-bold text-sm rounded-xl hover:bg-slate-800 transition-colors shadow-md shadow-slate-900/10 cursor-pointer">
+          {ui.buyLocal} →
+        </a>
+        <div class="grid grid-cols-2 gap-3">
+          <a 
+            id="modal-pdf-btn"
+            href="#" 
+            target="_blank"
+            class="flex items-center justify-center gap-2 py-3 px-4 bg-white border-[1.5px] border-slate-200 text-slate-700 font-bold text-xs rounded-xl hover:border-slate-300 hover:bg-slate-50 transition-colors cursor-pointer"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Pobierz PDF
+          </a>
+          <a href="#kontakt" id="modal-contact-btn" class="flex items-center justify-center gap-2 py-3 px-4 bg-white border-[1.5px] border-slate-200 text-slate-700 font-bold text-xs rounded-xl hover:border-slate-300 hover:bg-slate-50 transition-colors cursor-pointer">
+            Zapytaj o szczegóły
+          </a>
+        </div>
+      </div>
+      
+    </div>
+  </aside>
+</div>
+
+<!-- Lightbox Overlay -->
+<div id="modal-lightbox" class="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/95 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+  <button id="lightbox-close" class="absolute top-6 right-6 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors cursor-pointer" aria-label="Zamknij podgląd">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+  <img id="lightbox-image" src="" alt="Pełny rzut lokalu" class="max-w-[95%] max-h-[95%] object-contain shadow-2xl rounded-2xl"/>
+</div>
+
+
+
+
+

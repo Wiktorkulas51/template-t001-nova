@@ -1,0 +1,15 @@
+# Starter Kit
+
+Szablon strony firmowej (Astro + Tailwind v4) dla firm usługowych: nowoczesny design, tryb ciemny, galeria komponentów, blog i panel CMS (Decap).
+
+## Struktura
+
+- Strona główna: oferta, sekcje usług, opinie, kontakt
+- Blog: artykuły o usługach i cenach (kolekcja src/content/blog)
+- Strony prawne: polityka prywatności, regulamin, cookies
+
+## Dla maszyn
+
+- Sitemap: /sitemap-index.xml
+- Contact: formularz kontaktowy na stronie głównej
+- Język: polski (lang konfigurowalny per strona w Layout)

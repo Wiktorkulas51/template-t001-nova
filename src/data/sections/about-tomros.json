@@ -1,0 +1,58 @@
+{
+  "eyebrow": "O nas",
+  "title": "Twoja droga\ndo formy",
+  "accentTitle": "Zacznij już dziś",
+  "intro": "Pomagamy budować sylwetkę, która odpowiada Twoim celom, niezależnie od tego, czy robisz pierwsze kroki na siłowni, czy chcesz wejść na wyższy poziom.",
+  "bio": [
+    "Pracujemy kompleksowo, łącząc odżywianie, trening i suplementację w jeden spójny, indywidualnie dopasowany plan.",
+    "Wspieramy osoby na każdym etapie: od pierwszych treningów po przygotowania do zawodów. Razem zbudujemy sylwetkę i nawyki, z których będziesz dumny.",
+    "Nasze metody opieramy na praktyce i ciągłym doskonaleniu. Sprawdzamy rozwiązania w realnych warunkach, dlatego wiedza, którą się dzielimy, pochodzi z tego, co naprawdę działa.",
+    "Zapewniamy pełne wsparcie na każdym etapie budowania formy i zdrowych nawyków."
+  ],
+  "categoriesLabel": "Zakres współpracy",
+  "categories": [
+    "Trening siłowy",
+    "Odchudzanie",
+    "Budowanie masy",
+    "Zdrowe nawyki"
+  ],
+  "video": {
+    "sources": [
+      {
+        "src": "/assets/placeholders/video-placeholder.mp4",
+        "type": "video/mp4"
+      }
+    ],
+    "ariaPlay": "Odtwarzaj lub zatrzymaj wideo",
+    "ariaMute": "Wycisz lub włącz dźwięk",
+    "ariaVolume": "Regulacja głośności",
+    "youtubeId": ""
+  },
+  "stats": [
+    {
+      "value": "15+",
+      "label": "Lat doświadczenia"
+    },
+    {
+      "value": "20+",
+      "label": "Ukończonych programów"
+    },
+    {
+      "value": "100+",
+      "label": "Zadowolonych klientów"
+    },
+    {
+      "value": "50+",
+      "label": "Celów osiągniętych"
+    }
+  ],
+  "joinTeam": {
+    "title": "Dołącz do nas",
+    "intro": "Nie czekaj dłużej! Wypełnij formularz i rozpocznij swoją transformację.",
+    "paragraphs": [
+      "Współpracujemy z osobami na każdym poziomie zaawansowania, stawiając na konkretne efekty i pełne zaangażowanie."
+    ],
+    "cta": "Wypełnij formularz",
+    "ctaHover": "Napisz do nas"
+  }
+}

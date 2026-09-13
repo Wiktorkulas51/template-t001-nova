@@ -1,0 +1,17 @@
+{
+  "eyebrow": "Kontakt",
+  "title": "Masz pytania?",
+  "description": "Porozmawiaj ze specjalistą, poznaj szczegóły projektu i sprawdź, które rozwiązanie najlepiej odpowiada Państwa potrzebom.",
+  "ctaLabel": "Dowiedz się więcej",
+  "ctaHref": "#kontakt",
+  "advisor": {
+    "name": "Natalia Zielińska",
+    "role": "Doradczyni ds. nieruchomości",
+    "phone": "500 600 700",
+    "phoneAriaLabel": "Zadzwoń do doradczyni",
+    "photo": {
+      "url": "/assets/piekary9/questions/advisor.jpg",
+      "alt": "Portret doradczyni projektu"
+    }
+  }
+}

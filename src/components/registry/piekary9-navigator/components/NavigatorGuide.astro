@@ -1,0 +1,157 @@
+---
+import ui from '@data/sections/piekary9-navigator-ui.json';
+// NavigatorGuide.astro - Mini guide for the building navigator
+---
+
+<div class="navigator-guide mt-4 mb-8">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-4 lg:gap-6">
+    <!-- Step 1 -->
+    <div class="guide-step group">
+      <div class="icon-wrapper">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 3h5v5"></path>
+          <path d="M8 21H3v-5"></path>
+          <path d="M12 8l9-5"></path>
+          <path d="M12 16l-9 5"></path>
+          <path d="M3 3l9 5"></path>
+          <path d="M21 21l-9-5"></path>
+        </svg>
+        <span class="step-number">01</span>
+      </div>
+      <div class="text-content">
+        <h4 class="step-title">{ui.chooseView}</h4>
+        <p class="step-desc">{ui.switchView}</p>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="guide-step group">
+      <div class="icon-wrapper">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        <span class="step-number">02</span>
+      </div>
+      <div class="text-content">
+        <h4 class="step-title">{ui.findLocal}</h4>
+        <p class="step-desc">{ui.clickPin}</p>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="guide-step group">
+      <div class="icon-wrapper">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        <span class="step-number">03</span>
+      </div>
+      <div class="text-content">
+        <h4 class="step-title">{ui.checkDetails}</h4>
+        <p class="step-desc">{ui.checkDetailsDescription}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .navigator-guide {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .guide-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    border-radius: 1rem;
+    background: transparent;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @media (min-width: 768px) {
+    .guide-step {
+      flex-direction: row;
+      text-align: left;
+      padding: 1rem;
+    }
+    
+    .guide-step:hover {
+      background: white;
+      box-shadow: 0 15px 40px -15px rgba(0, 0, 0, 0.08);
+      transform: translateY(-4px);
+    }
+  }
+
+  .icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    background: var(--color-brand-light);
+    border: 1px solid color-mix(in oklab, var(--color-brand-dark) 12%, transparent);
+    border-radius: 1rem;
+    color: var(--color-brand-dark);
+    flex-shrink: 0;
+    transition: all 0.4s ease;
+  }
+
+  .guide-step:hover .icon-wrapper {
+    background: var(--color-brand-dark);
+    color: var(--color-brand-light);
+    border-color: var(--color-brand-dark);
+    transform: scale(1.05);
+  }
+
+  .step-number {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--color-brand-accent); /* brand-accent color roughly */
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 900;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .text-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .step-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-brand-dark);
+    letter-spacing: -0.01em;
+  }
+
+  .step-desc {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--color-brand-dark);
+  }
+</style>
+
+
+

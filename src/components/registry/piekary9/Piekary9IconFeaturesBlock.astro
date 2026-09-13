@@ -1,0 +1,79 @@
+---
+import Section from '@components/ui/layout/Section.astro';
+import Container from '@components/ui/layout/Container.astro';
+import Heading from '@components/ui/atoms/Heading.astro';
+import Text from '@components/ui/atoms/Text.astro';
+import data from '@data/sections/piekary9-icon-features.json';
+
+type IconFeaturesData = (typeof data)['pl'];
+
+export interface Props {
+  data?: IconFeaturesData;
+  locale?: 'pl';
+  class?: string;
+}
+
+const {
+  data: overrideData,
+  locale = 'pl',
+  class: className = '',
+} = Astro.props as Props;
+
+const t = overrideData ?? data[locale] ?? data.pl;
+
+const iconMap: Record<string, string> = {
+  bus: 'ph-bus',
+  route: 'ph-path',
+  leaf: 'ph-leaf',
+  home: 'ph-house',
+  star: 'ph-star',
+  shield: 'ph-shield-check',
+  clock: 'ph-clock',
+  map: 'ph-map-pin',
+};
+
+const getIcon = (name: string) => iconMap[name] ?? 'ph-check-circle';
+---
+
+<Section
+  id={t.sectionId}
+  class:list={['bg-brand-cream scroll-mt-28', className]}
+  aria-labelledby="piekary9-icon-features-heading"
+  data-piekary9-icon-features
+>
+  <Container>
+    <div class="mb-16 grid gap-8 lg:grid-cols-2 lg:items-end">
+      <div>
+        <div data-motion="fade" class="mb-6 flex items-center gap-4">
+          <span class="h-px w-8 bg-brand-accent" aria-hidden="true"></span>
+          <Text variant="accent-label" tag="span">{t.eyebrow}</Text>
+        </div>
+        <Heading id="piekary9-icon-features-heading" variant="section-title" data-motion="fade">
+          {t.title}
+        </Heading>
+      </div>
+      <Text variant="lead" data-motion="fade" class="lg:ml-auto lg:text-right">
+        {t.supportingText}
+      </Text>
+    </div>
+
+    <ul data-motion="fade" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3" role="list">
+      {t.features.map((feature) => (
+        <li>
+          <article class="ui-card-interactive group flex flex-col rounded-2xl border border-brand-dark/10 bg-brand-light/80 p-8 shadow-sm">
+            <div class="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-brand-accent/20 bg-brand-accent/10 text-brand-accent transition-all duration-300 group-hover:bg-brand-accent group-hover:text-brand-light group-hover:shadow-[var(--ui-elevation-soft)]">
+              <i class:list={['ph', getIcon(feature.icon), 'text-2xl']} aria-hidden="true"></i>
+            </div>
+
+            <Heading variant="feature-title" tag="h3" class="transition group-hover:text-brand-dark">
+              {feature.title}
+            </Heading>
+            <Text variant="body" class="mt-3 flex-1">
+              {feature.description}
+            </Text>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</Section>

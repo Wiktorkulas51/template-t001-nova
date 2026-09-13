@@ -1,0 +1,88 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Button from "@components/ui/atoms/Button.astro";
+import data from "@data/sections/cta-tomros.json";
+
+// Why: CTA is the final section encouraging action (visual copy
+// tom-ros CtaBlock). Full screen background photo with fade out
+// (opacity + saturate), red glow ui-glow-cta from above and gradient
+// into the background color blending the image. Centered content: heading, description, button.
+type Cta = { label: string; href: string; hoverText?: string };
+
+export interface Props {
+  sectionId?: string;
+  /** Content language with JSON. PL is the main language (default).*/
+  lang?: "pl" | "en";
+  title?: string;
+  description?: string;
+  cta?: Cta;
+  /** Section header tag: 'h2' by default, 'h1' when the block is the first section of a page without hero (SEO).*/
+  headingTag?: string;
+}
+
+const { sectionId = "cta-tomros", lang = "pl", title, description, cta, headingTag = "h2" } = Astro.props as Props;
+
+const t = data[lang] ?? data.pl;
+
+// Why: CMS props overwrite JSON (props || json pattern from HeroCinematicBlock).
+const resolvedTitle = title || t.title;
+const resolvedDescription = description || t.description;
+const primaryCta = cta || t.cta;
+
+// Why: a photo is a media asset, so it lives outside the en/pl structure in JSON
+// (there is no point in duplicating paths per language).
+const bg = data.background;
+---
+
+<Section id={sectionId} tone="page" class="relative">
+  <div class="relative mx-auto max-w-7xl overflow-hidden border border-brand-dark/10">
+    <!-- Why: full screen background image is limited to CTA wrapper,
+         as in the original Tom Rosa layout, instead of spreading across the entire section.-->
+    <img
+      src={bg.src}
+      alt=""
+      class="absolute inset-0 size-full object-cover opacity-[0.52] saturate-[0.8]"
+      aria-hidden="true"
+      loading="lazy"
+      width="1600"
+      height="1066"
+    />
+
+  <!-- Why: red glow from the top of the section (ui-glow-cta class is
+       in core.css) - consistent brand accent as in hero.-->
+    <div class="absolute inset-0 ui-glow-cta" aria-hidden="true"></div>
+
+  <!-- Why: a background color gradient blends the photo into the top and bottom section,
+       thanks to which the image does not "break off" at the edges of the frame.-->
+    <div
+      class="absolute inset-0"
+      aria-hidden="true"
+      style="background: linear-gradient(to bottom, color-mix(in oklch, var(--color-surface) 46%, transparent) 0%, color-mix(in oklch, var(--color-surface) 68%, transparent) 100%);"
+    ></div>
+
+    <Container class="relative z-10">
+      <div class="mx-auto max-w-3xl py-24 text-center sm:py-32">
+      <Heading tag={headingTag} variant="section-title" class="mx-auto max-w-3xl">
+        {resolvedTitle}
+      </Heading>
+
+      {resolvedDescription && (
+        <Text variant="lead" class="mx-auto mt-6 max-w-2xl">
+          {resolvedDescription}
+        </Text>
+      )}
+
+      <div class="pt-8">
+        <!-- Dlaczego: hoverText przycisku pochodzi z JSON (cta.hoverText)
+             i jest edytowalny przez CMS. -->
+        <Button href={primaryCta.href} variant="primary" size="lg" hoverText={primaryCta.hoverText}>
+          {primaryCta.label}
+        </Button>
+      </div>
+      </div>
+    </Container>
+  </div>
+</Section>

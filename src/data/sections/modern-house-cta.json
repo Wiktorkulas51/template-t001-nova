@@ -1,0 +1,10 @@
+{
+  "sectionId": "cta",
+  "eyebrow": "Następny krok",
+  "title": "Gotowi na rozwiązanie, które pracuje na markę?",
+  "accentText": "pracuje na markę",
+  "description": "Opowiedz nam, czego potrzebuje projekt, a zaproponujemy konkretny kierunek dalszej pracy.",
+  "image": "/assets/placeholders/image-landscape.svg",
+  "imageAlt": "Neutralny panoramiczny obraz demonstracyjny",
+  "cta": { "label": "Porozmawiajmy o projekcie", "href": "/kontakt/", "hoverLabel": "Zacznijmy rozmowę" }
+}

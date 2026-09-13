@@ -1,0 +1,17 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Button from "@components/ui/atoms/Button.astro";
+import SmartImage from "@components/ui/atoms/SmartImage.astro";
+import jsonData from "@data/sections/kasia-about.json";
+import { formatInternalLink } from "@utils/url";
+export interface Props { data?: typeof jsonData; locale?: "pl" | "en"; sectionId?: string; class?: string; }
+const { data: overrideData, sectionId = "kasia-o-mnie", class: className = "" } = Astro.props as Props;
+const t = overrideData ?? jsonData;
+---
+<Section id={sectionId} tone="base" class:list={["relative overflow-hidden !pt-0 md:!py-20", className]}>
+  <Container class="relative z-10"><div class="mx-auto grid max-w-7xl items-center gap-12 md:grid-cols-2 lg:gap-20"><div class="relative order-1 flex flex-col items-center justify-end"><div class="absolute left-1/2 top-1/2 size-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-primary/15 blur-[5rem]" aria-hidden="true"></div><div class="relative mt-4 h-[37rem] w-full max-w-[31rem] md:mt-0"><SmartImage src={t.image.src} alt={t.image.alt} width={720} height={900} class="about-mask h-full w-full scale-110 object-contain object-top drop-shadow-2xl" /></div></div><div class="order-2 space-y-8 text-center md:text-left"><Text variant="accent-label" class="text-brand-primary">{t.eyebrow}</Text><Heading tag="h2" variant="section-heading-lg" class="text-brand-dark">{t.title} <span class="text-brand-primary">{t.titleAccent}</span></Heading><div class="space-y-6 text-brand-dark/70">{t.paragraphs.map((paragraph) => <Text variant="lead">{paragraph}</Text>)}</div><Button href={formatInternalLink(t.cta.href)} variant="primary" class="mt-2">{t.cta.label}</Button></div></div></Container>
+</Section>
+<style>.about-mask { mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 92%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 92%); }</style>

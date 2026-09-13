@@ -1,0 +1,141 @@
+---
+import Section from '@components/ui/layout/Section.astro';
+import Container from '@components/ui/layout/Container.astro';
+import Heading from '@components/ui/atoms/Heading.astro';
+import Text from '@components/ui/atoms/Text.astro';
+import FormStatus from '@components/ui/patterns/FormStatus.astro';
+import data from '@data/sections/piekary9-contact-form.json';
+
+type ContactFormData = (typeof data)['pl'];
+
+export interface Props {
+  data?: ContactFormData;
+  locale?: 'pl';
+  class?: string;
+}
+
+const {
+  data: overrideData,
+  locale = 'pl',
+  class: className = '',
+} = Astro.props as Props;
+
+const t = overrideData ?? data[locale] ?? data.pl;
+const normalizedFields = t.fields.map((field) => ({
+  ...field,
+  type: (field.type === 'email' || field.type === 'tel' ? field.type : 'text') as 'text' | 'email' | 'tel',
+}));
+const primaryFields = normalizedFields.slice(0, 3);
+const messageFields = normalizedFields.slice(3);
+---
+
+<Section
+  id={t.sectionId}
+  class:list={['relative overflow-hidden bg-brand-cream scroll-mt-28', className]}
+>
+  <Container>
+    <div class="grid min-w-0 gap-12 lg:grid-cols-12 lg:items-stretch">
+      <div class="flex min-w-0 flex-col lg:col-span-7" data-motion="fade">
+        <div class="mb-10">
+          <div class="mb-6 flex min-w-0 items-center gap-4">
+            <span class="h-px w-10 bg-brand-accent" aria-hidden="true"></span>
+            <Text variant="accent-label" tag="span">{t.eyebrow}</Text>
+          </div>
+          <Heading variant="section-title">
+            {t.title}
+          </Heading>
+          <Text variant="lead" class="mt-6">
+            {t.description}
+          </Text>
+        </div>
+
+        <form id="piekary9-contact-form" class="flex min-w-0 h-full flex-col justify-between space-y-8 rounded-[2rem] border border-brand-dark/5 bg-brand-light p-8 shadow-xl lg:p-12" method="post" action={t.endpoint} data-endpoint={t.endpoint} data-contact-form data-form-transport="json" data-source-label={t.sourceLabel} data-form-msg-original={t.submitLabel} data-form-msg-loading="Wysyłanie..." data-form-msg-success={t.successMessage} data-form-msg-error={t.errorMessage}>
+          <input type="hidden" name="source" value={t.sourceLabel} />
+          <div class="space-y-8">
+            <div class="grid min-w-0 gap-6 sm:grid-cols-2">
+              {primaryFields.map((field) => (
+                <div class="space-y-2">
+                  <Text variant="accent-label" tag="label" for={`piekary9-${field.name}`} class="ml-1 text-brand-dark/40 !tracking-widest">
+                    {field.label}
+                  </Text>
+                  <input id={`piekary9-${field.name}`} type={field.type} name={field.name} placeholder={field.label} required={field.required} class="h-11 w-full rounded-xl border border-brand-dark/10 bg-brand-cream/10 px-5 py-3 text-brand-dark placeholder:text-brand-dark/30 transition-[border-color,background-color] focus:border-brand-accent focus:bg-brand-light focus:outline-none" />
+                </div>
+              ))}
+            </div>
+
+            {messageFields.map((field) => (
+              <div class="space-y-2">
+                <Text variant="accent-label" tag="label" for={`piekary9-${field.name}`} class="ml-1 text-brand-dark/40 !tracking-widest">
+                  {field.label}
+                </Text>
+                <textarea id={`piekary9-${field.name}`} name={field.name} rows={4} placeholder={field.label} required={field.required} class="h-11 min-h-24 w-full resize-none rounded-2xl border border-brand-dark/10 bg-brand-cream/10 px-5 py-3 text-brand-dark placeholder:text-brand-dark/30 transition-[border-color,background-color] focus:border-brand-accent focus:bg-brand-light focus:outline-none">{field.defaultValue || ''}</textarea>
+              </div>
+            ))}
+
+            <div class="mt-4" data-motion="fade">
+              <Text variant="body" tag="p" class="!text-[10px] leading-relaxed text-brand-dark/50">
+                {t.privacy.before}{' '}
+                <a href={t.privacy.policyHref} aria-label={t.privacy.policyLabel} class="inline-flex h-11 items-center text-brand-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent">{t.privacy.policyLabel}</a>{' '}
+                {t.privacy.middle}{' '}
+                <a href={t.privacy.cookiesHref} aria-label={t.privacy.cookiesLabel} class="inline-flex h-11 items-center text-brand-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent">{t.privacy.cookiesLabel}</a>{t.privacy.after}
+              </Text>
+            </div>
+          </div>
+
+          <button type="submit" id="piekary9-contact-submit" class="group relative mt-auto flex h-12 w-full items-center justify-center gap-4 rounded-xl bg-brand-dark py-5 shadow-lg transition-[background-color,color,box-shadow] hover:bg-brand-accent hover:text-brand-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-dark" data-motion="fade" aria-label={t.submitLabel}>
+            <Text variant="accent-label" tag="span" id="piekary9-contact-submit-text" data-form-submit-text class="text-brand-light group-hover:text-brand-dark !tracking-[0.2em]">{t.submitLabel}</Text>
+            <i class="ph ph-paper-plane-tilt text-lg text-brand-light transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-brand-dark" aria-hidden="true"></i>
+            <svg id="piekary9-contact-submit-loader" data-form-spinner class="hidden h-5 w-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+            </svg>
+          </button>
+
+          <div id="piekary9-contact-success" class="hidden" data-form-feedback="success" tabindex="-1">
+            <FormStatus type="success" title={t.successTitle} description={t.successMessage} />
+          </div>
+          <div id="piekary9-contact-error" class="hidden" data-form-feedback="error" tabindex="-1">
+            <FormStatus type="error" title={t.errorTitle} description={t.errorMessage} />
+          </div>
+        </form>
+      </div>
+
+      <div class="flex min-w-0 flex-col lg:col-span-5" data-motion="fade">
+        <div class="relative h-full min-h-[500px] lg:min-h-full">
+          <div class="relative h-full overflow-hidden rounded-[3rem] shadow-2xl">
+            <img src={t.image.url} alt={t.image.alt} width="600" height="800" class="absolute inset-0 h-full w-full object-cover object-[65%]" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/40 to-transparent" aria-hidden="true"></div>
+
+            <div class="absolute bottom-10 left-10 right-10 min-w-0">
+              <div class="min-w-0 space-y-6">
+                {t.directContacts.map((contact) => (
+                  <a href={contact.href} aria-label={`${contact.label}: ${contact.value}`} class="group flex h-11 min-w-0 items-center gap-4 text-brand-light transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent">
+                    <span class="flex h-10 w-10 min-w-0 shrink-0 items-center justify-center rounded-full bg-brand-accent text-brand-dark transition-transform group-hover:scale-110">
+                      <i class:list={['ph-bold', contact.icon]} aria-hidden="true"></i>
+                    </span>
+                    <span class="min-w-0">
+                      <Text variant="accent-label" tag="span" class="!text-[9px] !tracking-widest text-brand-light/80">{contact.label}</Text>
+                      <Text variant="lead" tag="span" class="block font-bold text-brand-light">{contact.value}</Text>
+                    </span>
+                  </a>
+                ))}
+
+                <a href={t.location.href} target="_blank" rel="noopener noreferrer" aria-label={`${t.location.label}: ${t.location.value}`} class="group flex h-11 min-w-0 items-center gap-4 text-brand-light transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent">
+                  <span class="flex h-10 w-10 min-w-0 shrink-0 items-center justify-center rounded-full bg-brand-accent text-brand-dark transition-transform group-hover:scale-110">
+                    <i class="ph-bold ph-map-pin" aria-hidden="true"></i>
+                  </span>
+                  <span class="min-w-0">
+                    <Text variant="accent-label" tag="span" class="!text-[9px] !tracking-widest text-brand-light/80">{t.location.label}</Text>
+                    <Text variant="lead" tag="span" class="block font-bold text-brand-light">{t.location.value}</Text>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="absolute -right-6 -top-6 -z-10 h-64 w-64 rounded-full bg-brand-accent/20 blur-[80px]" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>

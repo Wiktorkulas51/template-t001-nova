@@ -1,0 +1,37 @@
+{
+  "heading": "Kontakt",
+  "infoItems": [
+    { "type": "address", "label": "Adres", "value": "ul. Przykładowa 1, 00-001 Warszawa", "href": "https://www.google.com/maps?q=52.2297,21.0122" },
+    { "type": "email", "label": "E-mail", "value": "kontakt@example.com", "href": "mailto:kontakt@example.com" },
+    { "type": "hours", "label": "Godziny pracy", "value": "Pon-Pt 9:00 - 17:00" }
+  ],
+  "socialsLabel": "Social media",
+  "socials": [
+    { "platform": "facebook", "href": "https://facebook.com/example" },
+    { "platform": "instagram", "href": "https://instagram.com/example" },
+    { "platform": "youtube", "href": "https://youtube.com/@example" }
+  ],
+  "formFields": [
+    { "name": "name", "label": "Imię i nazwisko", "type": "text", "required": true, "placeholder": "Jan Kowalski", "autoComplete": "name" },
+    { "name": "email", "label": "E-mail", "type": "email", "required": true, "placeholder": "jan@przyklad.pl", "autoComplete": "email" },
+    {
+      "name": "project",
+      "label": "Rodzaj projektu",
+      "type": "select",
+      "required": false,
+      "options": [
+        { "value": "strona", "label": "Strona internetowa" },
+        { "value": "sklep", "label": "Sklep internetowy" },
+        { "value": "grafika", "label": "Projekt graficzny" },
+        { "value": "marketing", "label": "Marketing i social media" },
+        { "value": "inne", "label": "Inne" }
+      ]
+    },
+    { "name": "message", "label": "Wiadomość", "type": "textarea", "required": true, "placeholder": "Opisz krótko swoją sprawę...", "rows": 5 }
+  ],
+  "submitLabel": "Wyślij wiadomość",
+  "successMessage": "Dziękujemy za wiadomość! Odezwiemy się najszybciej jak to możliwe.",
+  "errorMessage": "Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie później.",
+  "formId": "contact-studio-form",
+  "fieldIdPrefix": "cs"
+}

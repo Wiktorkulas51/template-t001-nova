@@ -1,0 +1,16 @@
+{
+  "pl": {
+    "heading": "Zastanawiasz się nad współpracą?<br />Porozmawiajmy o Twoim projekcie",
+    "description": "Opisz nam swój pomysł, a podpowiemy najlepsze rozwiązanie i przygotujemy ofertę dopasowaną do Twoich potrzeb.",
+    "ctaLabel": "Skontaktuj się z nami",
+    "ctaHref": "/kontakt/",
+    "variant": "simple"
+  },
+  "en": {
+    "heading": "Thinking about working together?<br />Let's talk about your project",
+    "description": "Tell us about your idea and we will suggest the best solution and prepare an offer tailored to your needs.",
+    "ctaLabel": "Contact us",
+    "ctaHref": "/kontakt/",
+    "variant": "simple"
+  }
+}

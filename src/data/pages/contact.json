@@ -1,0 +1,12 @@
+{
+  "seo": {
+    "title": "Contact | Company Name",
+    "description": "Get in touch. Free estimate and consultation."
+  },
+  "heading": "Contact",
+  "sections": [
+    { "id": "navbar", "variant": "plain" },
+    { "id": "contactInfoForm", "variant": "default" },
+    { "id": "footer", "variant": "columns" }
+  ]
+}

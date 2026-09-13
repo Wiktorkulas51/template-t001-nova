@@ -1,0 +1,20 @@
+{
+  "eyebrow": "Strona demonstracyjna",
+  "title": "Budowa domów szkieletowych\noraz konstrukcji drewnianych",
+  "subtitle": "Przykładowy opis sekcji hero. Tutaj może znaleźć się krótkie wprowadzenie do oferty, głównych usług lub produktów, wraz z zachętą do dalszego zapoznania się ze stroną.",
+  "ctas": [
+    {
+      "label": "Więcej informacji",
+      "href": "/#kontakt",
+      "variant": "primary"
+    },
+    {
+      "label": "Zobacz realizacje",
+      "href": "/#realizacje",
+      "variant": "outline"
+    }
+  ],
+  "imgSrc": "/assets/placeholders/image-landscape.svg",
+  "mobileImgSrc": "/assets/placeholders/image-landscape.svg",
+  "imgAlt": "Przykładowe zdjęcie przedstawiające wizualizację strony demonstracyjnej"
+}

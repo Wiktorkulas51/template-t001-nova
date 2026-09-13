@@ -1,0 +1,45 @@
+{
+  "pl": {
+    "sectionId": "kontakt",
+    "endpoint": "/contact.php",
+    "sourceLabel": "Formularz kontaktowy",
+    "eyebrow": "Bezpłatna konsultacja",
+    "title": "Umów się na bezpłatną konsultację",
+    "description": "Masz pytania o inwestycję? Wypełnij formularz lub zadzwoń. Odpowiemy na pytania i pomożemy wybrać najlepszy lokal.",
+    "fields": [
+      { "name": "name", "label": "Imię i nazwisko", "type": "text", "required": true },
+      { "name": "email", "label": "Email", "type": "email", "required": true },
+      { "name": "phone", "label": "Telefon (opcjonalnie)", "type": "tel", "required": false },
+      { "name": "message", "label": "Wiadomość", "type": "textarea", "required": true, "defaultValue": "Chętnie dowiem się więcej o dostępnych lokalach i umówię prezentację." }
+    ],
+    "privacy": {
+      "before": "Wysyłając formularz, wyrażasz zgodę na przetwarzanie danych osobowych zgodnie z naszą",
+      "policyLabel": "Polityką prywatności",
+      "policyHref": "/polityka-prywatnosci/",
+      "middle": "oraz polityką",
+      "cookiesLabel": "Cookies",
+      "cookiesHref": "/cookies/",
+      "after": "."
+    },
+    "submitLabel": "Umów konsultację",
+    "loadingTitle": "Wysyłanie wiadomości",
+    "loadingText": "Proszę chwilę poczekać.",
+    "successTitle": "Wiadomość wysłana",
+    "successMessage": "Dziękujemy! Skontaktujemy się wkrótce.",
+    "errorTitle": "Nie udało się wysłać wiadomości",
+    "errorMessage": "Wystąpił błąd podczas wysyłki. Spróbuj ponownie.",
+    "image": {
+      "url": "/assets/piekary9/hero/klatka_2.webp",
+      "alt": "Odrestaurowane detale części wspólnych"
+    },
+    "directContacts": [
+      { "label": "Biuro sprzedaży", "value": "+48 123 456 789", "href": "tel:+48123456789", "icon": "ph-phone" },
+      { "label": "Email", "value": "kontakt@example.pl", "href": "mailto:kontakt@example.pl", "icon": "ph-envelope" }
+    ],
+    "location": {
+      "label": "Odwiedź nas",
+      "value": "ul. Przykładowa 10, 00-001 Miasto",
+      "href": "https://www.google.com/maps/search/?api=1&query=ul.%20Przyk%C5%82adowa%2010%2C%2000-001%20Miasto"
+    }
+  }
+}

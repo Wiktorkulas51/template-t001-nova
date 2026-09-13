@@ -1,0 +1,18 @@
+{
+  "id": "50",
+  "label": "50",
+  "status": "sold",
+  "rooms": 1,
+  "area": 51.51,
+  "floor": -1,
+  "price": 399000,
+  "price_per_m2": 7746,
+  "comment": "oficyna lewa - widok podwórze - 1 pokój",
+  "pdf": "/client-assets/folde3/Rzuty/lokal_50.pdf",
+  "x": 41.8,
+  "y": 80.75,
+  "finish": "Do remontu",
+  "images": [],
+  "section": "przyziemia",
+  "hidden": true
+}

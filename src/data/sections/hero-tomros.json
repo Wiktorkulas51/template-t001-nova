@@ -1,0 +1,26 @@
+{
+  "background": {
+    "src": "/assets/placeholders/image-portrait.svg",
+    "alt": "Trener personalny w pełnej sylwetce"
+  },
+  "en": {
+    "title": "Team Tom Ros\nBody Transformation\nExpert",
+    "accentTitle": "Built for life.",
+    "subtitle": "Body Transformation Expert. Personal trainer since 2000. Let's build the body you're proud of.",
+    "primaryCta": { "label": "CHECK OUT MY OFFER", "href": "/offer/", "hoverText": "See my offer" },
+    "secondaryCta": { "label": "Watch videos", "href": "/video/", "hoverText": "Watch the videos" },
+    "trustItems": []
+  },
+  "pl": {
+    "title": "Ekspert w swojej dziedzinie\nTransformacja\nTwojego ciała\n",
+    "accentTitle": "Zbuduj to, o czym marzysz",
+    "subtitle": "Trener personalny z wieloletnim doświadczeniem. Pomogę Ci zbudować sylwetkę, z której będziesz dumny.",
+    "primaryCta": { "label": "Zobacz ofertę", "href": "/oferta/", "hoverText": "Sprawdź szczegóły" },
+    "secondaryCta": { "label": "Zobacz efekty", "href": "/#realizacje", "hoverText": "Zobacz naszą pracę" },
+    "trustItems": [
+      { "icon": "medal", "value": "15+", "label": "Lat doświadczenia" },
+      { "icon": "users", "value": "500+", "label": "Zadowolonych klientów" },
+      { "icon": "chart-line-up", "value": "100%", "label": "Zaangażowania" }
+    ]
+  }
+}

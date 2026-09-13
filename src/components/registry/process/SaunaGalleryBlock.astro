@@ -1,0 +1,281 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import SectionHeader from "@components/ui/molecules/SectionHeader.astro";
+import galleryData from "@data/sections/sauna-gallery.json";
+
+interface GalleryImage {
+  src: string;
+  thumb: string;
+  alt: string;
+}
+
+interface Props {
+  tagline?: string;
+  title?: string;
+  description?: string;
+  images?: GalleryImage[];
+}
+
+const defaultImages: GalleryImage[] = [
+  { src: "/assets/placeholders/image-landscape.svg", thumb: "/assets/placeholders/image-landscape.svg", alt: "Sauna ogrodowa widok zewnętrzny" },
+  { src: "/assets/placeholders/image-landscape.svg", thumb: "/assets/placeholders/image-landscape.svg", alt: "Sauna ogrodowa detale" },
+  { src: "/assets/placeholders/image-landscape.svg", thumb: "/assets/placeholders/image-landscape.svg", alt: "Balia ogrodowa z drewna" },
+  { src: "/assets/placeholders/image-landscape.svg", thumb: "/assets/placeholders/image-landscape.svg", alt: "Wnętrze sauny" },
+  { src: "/assets/placeholders/image-landscape.svg", thumb: "/assets/placeholders/image-landscape.svg", alt: "Sauna z piecem" },
+  { src: "/assets/placeholders/image-landscape.svg", thumb: "/assets/placeholders/image-landscape.svg", alt: "Sauna na przyczepie" },
+  { src: "/assets/placeholders/image-landscape.svg", thumb: "/assets/placeholders/image-landscape.svg", alt: "Balia z podgrzewaniem" },
+  { src: "/assets/placeholders/image-landscape.svg", thumb: "/assets/placeholders/image-landscape.svg", alt: "Sauna wieczorem" },
+  { src: "/assets/placeholders/image-landscape.svg", thumb: "/assets/placeholders/image-landscape.svg", alt: "Zestaw sauna i balia" },
+];
+
+const props = Astro.props as Props;
+const {
+  tagline = galleryData.tagline,
+  title = galleryData.title,
+  description = galleryData.description,
+} = props;
+
+const allImages = props.images?.length ? props.images : galleryData.images?.length ? galleryData.images : defaultImages;
+
+const firstThumbsPreload = allImages.slice(0, 6).map((i) => i.thumb);
+---
+
+<Section tone="page" id="sauna-gallery">
+  {firstThumbsPreload.map((href) => (
+    <link rel="preload" as="image" href={href} />
+  ))}
+  <Container>
+    <SectionHeader
+      tagline={tagline}
+      title={title}
+      description={description}
+      align="center"
+      class="max-w-4xl"
+    />
+
+    <div class="mt-12" data-sauna-gallery>
+      {allImages.length > 0 ? (
+        <div>
+          {/* Cover */}
+          <div class="relative overflow-hidden rounded-2xl bg-white border border-brand-dark/10 shadow-lg cursor-zoom-in" data-lightbox data-href={allImages[0].src}>
+            <div class="relative">
+              <div class="aspect-[16/10] lg:aspect-[20/9] overflow-hidden relative isolate" data-image-stage>
+                <img data-image-prev alt="" width="800" height="400" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-[opacity,transform] duration-600 ease-out pointer-events-none will-change-[opacity] z-10" />
+                <img
+                  data-main-image
+                  src={allImages[0].src}
+                  alt={allImages[0].alt}
+                  width="800"
+                  height="400"
+                  class="absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-600 ease-out will-change-[opacity]"
+                  style="opacity: 1;"
+                  loading="eager"
+                  decoding="async"
+                  fetchpriority="high"
+                />
+              </div>
+
+              <div class="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+
+              <div class="absolute right-4 top-4 flex items-center gap-1.5 rounded-md bg-black/55 px-3 py-1 text-[13px] font-medium tracking-wider text-white/90 backdrop-blur-sm">
+                <span data-main-index>01</span>
+                <span class="text-white/50">/</span>
+                <span data-total-count>{String(allImages.length).padStart(2, "0")}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Miniaturki */}
+          <div class="mt-4" data-thumb-track>
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+              {allImages.map((image, imageIndex) => (
+                <button
+                  type="button"
+                  data-thumb-button
+                  data-image-src={image.src}
+                  data-alt={image.alt}
+                  class={`relative h-16 w-24 shrink-0 overflow-hidden rounded-xl border-2 transition-all duration-300 cursor-pointer md:h-20 md:w-28 ${
+                    imageIndex === 0
+                      ? "border-brand-primary opacity-100"
+                      : "border-transparent opacity-60 hover:opacity-100"
+                  }`}
+                  aria-label={image.alt}
+                >
+                  <img
+                    src={image.thumb}
+                    alt=""
+                    width="200"
+                    height="125"
+                    class="h-full w-full object-cover"
+                    loading={imageIndex < 4 ? "eager" : "lazy"}
+                    decoding="async"
+                    fetchpriority={imageIndex < 4 ? "high" : "low"}
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Nawigacja */}
+          {allImages.length > 1 ? (
+            <div class="mt-4 flex items-center justify-between px-1">
+              <button type="button" data-prev class="flex items-center gap-1.5 text-sm font-medium text-brand-dark/50 transition-all duration-300 hover:text-brand-primary cursor-pointer">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                <span class="hidden sm:inline">Poprzedni</span>
+              </button>
+              <span class="text-[11px] font-medium uppercase tracking-[0.18em] text-brand-dark/30">przeglądaj</span>
+              <button type="button" data-next class="flex items-center gap-1.5 text-sm font-medium text-brand-dark/50 transition-all duration-300 hover:text-brand-primary cursor-pointer">
+                <span class="hidden sm:inline">Następny</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          ) : null}
+        </div>
+      ) : (
+        <div class="rounded-2xl border border-brand-dark/10 bg-white p-10 text-center text-brand-dark/60">
+          Brak zdjęć do wyświetlenia.
+        </div>
+      )}
+    </div>
+  </Container>
+</Section>
+
+<script>
+  const S = {
+    thumb: "[data-thumb-button]",
+    mainImg: "[data-main-image]",
+    prevImg: "[data-image-prev]",
+    counter: "[data-main-index]",
+    total: "[data-total-count]",
+    prev: "[data-prev]",
+    next: "[data-next]",
+    lightbox: "[data-lightbox]",
+  };
+
+  function $(el: Element, s: string): HTMLElement | null { return el.querySelector<HTMLElement>(s); }
+  function $$(el: Element, s: string): HTMLElement[] { return [...el.querySelectorAll<HTMLElement>(s)]; }
+
+  function setImage(root: Element, src: string, options: { force?: boolean; scrollThumb?: boolean } = {}) {
+    const { force = false, scrollThumb = true } = options;
+    const img = $(root, S.mainImg) as HTMLImageElement | null;
+    const prev = $(root, S.prevImg) as HTMLImageElement | null;
+    const cnt = $(root, S.counter);
+    const tot = $(root, S.total);
+    const lb = $(root, S.lightbox);
+    const thumbs = $$(root, S.thumb);
+    if (!img || !src) return;
+    if (!force && img.getAttribute("src") === src) return;
+    const idx = thumbs.findIndex((t) => t.getAttribute("data-image-src") === src);
+
+    const applyImage = () => {
+      img.src = src;
+      const alt = thumbs[idx]?.getAttribute("data-alt") || "";
+      img.alt = alt;
+      if (lb) lb.setAttribute("data-href", src);
+      if (cnt) cnt.textContent = String(idx >= 0 ? idx + 1 : 1).padStart(2, "0");
+      if (tot) tot.textContent = String(thumbs.length).padStart(2, "0");
+      if (prev) { prev.style.opacity = "0"; prev.removeAttribute("src"); }
+      img.style.opacity = "1";
+      img.style.transform = "scale(1)";
+      void img.offsetWidth;
+      setTimeout(() => { img.style.transform = "scale(1.04)"; }, 100);
+    };
+
+    const oldSrc = img.getAttribute("src");
+    if (!prev || !oldSrc) {
+      const preloader = new Image();
+      preloader.decoding = "async";
+      preloader.onload = applyImage;
+      preloader.onerror = applyImage;
+      preloader.src = src;
+    } else {
+      prev.setAttribute("src", oldSrc);
+      let crossfadeStarted = false;
+      const doCrossfade = () => {
+        if (crossfadeStarted) return;
+        crossfadeStarted = true; prev.onload = null; prev.onerror = null;
+        const preloader = new Image();
+        preloader.decoding = "async";
+        preloader.onload = () => {
+          prev.style.transition = "none";
+          prev.style.opacity = "1";
+          img.src = src;
+          img.style.transition = "none";
+          img.style.opacity = "1";
+          img.style.transform = "scale(1)";
+          void prev.offsetWidth;
+          prev.style.transition = "";
+          prev.style.opacity = "0";
+          img.style.transition = "opacity 0.6s ease-out";
+          setTimeout(() => {
+            if (prev) { prev.style.opacity = "0"; prev.removeAttribute("src"); prev.onload = null; prev.onerror = null; }
+            if (lb) lb.setAttribute("data-href", src);
+            if (cnt) cnt.textContent = String(idx >= 0 ? idx + 1 : 1).padStart(2, "0");
+            if (tot) tot.textContent = String(thumbs.length).padStart(2, "0");
+            img.style.transition = "opacity 0.6s ease-out, transform 3s ease-out";
+            img.style.opacity = "1";
+            img.style.transform = "scale(1)";
+            void img.offsetWidth;
+            img.style.transform = "scale(1.04)";
+          }, 650);
+        };
+        preloader.onerror = () => { img.src = oldSrc; img.style.opacity = "1"; prev.style.opacity = "0"; prev.removeAttribute("src"); };
+        preloader.src = src;
+      };
+      prev.onload = doCrossfade; prev.onerror = doCrossfade;
+      if (prev.complete) doCrossfade();
+    }
+
+    for (const t of thumbs) {
+      const on = t.getAttribute("data-image-src") === src;
+      t.classList.toggle("border-brand-primary", on);
+      t.classList.toggle("border-transparent", !on);
+      t.classList.toggle("opacity-60", !on);
+      t.setAttribute("data-active", on ? "true" : "false");
+    }
+    const a = thumbs[idx];
+    if (scrollThumb && a) a.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    const p = $(root, S.prev);
+    const n = $(root, S.next);
+    if (p) p.classList.toggle("invisible", idx <= 0);
+    if (n) n.classList.toggle("invisible", idx >= thumbs.length - 1);
+  }
+
+  function navImage(root: Element, dir: number) {
+    const thumbs = $$(root, S.thumb);
+    const ai = thumbs.findIndex((t) => t.getAttribute("data-active") === "true");
+    if (ai < 0) return;
+    const t = thumbs[ai + dir];
+    if (!t) return;
+    setImage(root, t.getAttribute("data-image-src") || "", { force: true, scrollThumb: true });
+  }
+
+  document.addEventListener("click", (e: Event) => {
+    const target = e.target as Element | null;
+    if (!target) return;
+    const root = target.closest("[data-sauna-gallery]");
+    if (!root) return;
+    const thumb = target.closest(S.thumb);
+    if (thumb) {
+      setImage(root, thumb.getAttribute("data-image-src") || "", { scrollThumb: true });
+      return;
+    }
+    const nav = target.closest(`${S.prev}, ${S.next}`);
+    if (nav) { navImage(root, nav.hasAttribute("data-prev") ? -1 : 1); }
+  });
+
+  {
+    const root = document.querySelector("[data-sauna-gallery]");
+    if (root) {
+      const first = $(root, S.thumb);
+      if (first) setImage(root, first.getAttribute("data-image-src") || "", { force: true, scrollThumb: false });
+    }
+  }
+</script>
+
+<style>
+  [data-main-image] {
+    transition: opacity 0.6s ease-out, transform 3s ease-out;
+  }
+</style>

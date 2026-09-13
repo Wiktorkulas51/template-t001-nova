@@ -24,7 +24,7 @@ export const servicesSections: Record<string, SectionEntry> = {
     id: 'novaServices', label: 'Oferta usług', groupId: 'services', hint: 'Autorska sekcja usług dla templateu Nova',
     icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" stroke-width="2"/><path d="M8 9h8M8 13h8M8 17h4" stroke-width="2" stroke-linecap="round"/></svg>',
     defaultVariant: 'default',
-    variants: { default: { component: 'NovaServicesWireframeBlock', dataKey: 'nova-services' } },
+    variants: { default: { component: 'ServicesHomeBlock', dataKey: 'nova-services' } },
   },
   servicesStudio: {
     id: 'servicesStudio', label: 'Usługi studio (5 kol)', groupId: 'services', hint: 'Grid 5 usług z ikonami i wave barami (biblioteka heinrich)',

@@ -1,0 +1,58 @@
+---
+// Dlaczego: CtaLeanBlock to prosta, wycentrowana sekcja CTA (kopia wizualna
+// sekcji "CTA" z projektu lean-creative). Wariant "simple" (z o-nas.astro):
+// Section tone="base" with border-t, h2 header, lead and one button, zero
+// gradients and decorations. The "linkedin" variant (from kontakt.astro) replaces the CTA
+// in an external link that opens in a new tab (target blank, rel noopener).
+// Client tokens (border-outline, btn-slide-teal) have been replaced with global ones
+// starter kit tokens, and the content input was taken over by the global motion system.
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Button from "@components/ui/atoms/Button.astro";
+import jsonData from "@data/sections/cta-lean.json";
+
+type CtaData = (typeof jsonData)["pl"];
+
+export interface Props {
+  /** Section data. When missing, jsonData for the selected locale is used.*/
+  data?: CtaData;
+  /** Content language with JSON. PL is the default language, EN is the English equivalent.*/
+  locale?: "pl" | "en";
+  /** Section header tag: 'h2' by default, 'h1' when the block is the first section of a page without hero (SEO).*/
+  headingTag?: string;
+}
+
+const props = Astro.props as Props;
+
+// Why: "props.data || jsonData[locale]" pattern to make the block work
+// alone with the default JSON and the CMS or PageBuilder could overwrite the content.
+const t = props.data || jsonData[props.locale ?? "pl"];
+
+// Why: the "linkedin" variant leads externally (e.g. to a LinkedIn profile),
+// so the button opens in a new tab with rel noopener (pattern with
+// kontakt.astro). The "simple" variant gets a regular internal link.
+const isLinkedin = t.variant === "linkedin";
+const buttonAttrs = isLinkedin ? { target: "_blank", rel: "noopener noreferrer" } : {};
+---
+
+<Section tone="base" class="border-t border-brand-dark/10">
+  <Container>
+    <div class="py-16 text-center">
+      <!-- Why: set:html allows <br /> in the header (pattern
+           HeroCinematicBlock), and font-extrabold reflects the thickness of the text
+           from o-nas.astro (!font-extbold at source).-->
+      <Heading tag={props.headingTag ?? "h2"} variant="section-heading-lg" class="font-extrabold" set:html={t.heading} />
+      <Text variant="lead" class="mx-auto mt-4 max-w-xl">{t.description}</Text>
+      <div class="mt-8 flex justify-center">
+        <!-- Why: Button.astro replaces the client button (same
+             appearance, but from the global ui-button-primary token). Attributes
+             linkedin (target/rel) go via rest props Button.astro.-->
+        <Button href={t.ctaHref} variant="primary" size="lg" {...buttonAttrs}>
+          {t.ctaLabel}
+        </Button>
+      </div>
+    </div>
+  </Container>
+</Section>

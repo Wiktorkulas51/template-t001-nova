@@ -1,0 +1,17 @@
+{
+  "pl": {
+    "eyebrow": "DLACZEGO WARTO?",
+    "title": "Darmowy wzór czy",
+    "titleAccent": "realna ochrona Twojej firmy?",
+    "description": "Darmowe, ogólnodostępne szablony z Internetu to tylko pozorna oszczędność. Zazwyczaj są nieaktualne, zbyt ogólne i niedopasowane do procesów w firmie. W razie kontroli UODO taki wzorzec nie stanowi realnej ochrony.",
+    "warning": {
+      "title": "Problem z darmowymi wzorami",
+      "description": "Stosowanie generycznych wzorców to prosta droga do wysokich kar administracyjnych. Brak indywidualnej analizy procesów sprawia, że dokumentacja staje się bezużytecznym plikiem, a nie tarczą ochronną przed kontrolą.",
+      "icon": "warning"
+    },
+    "solutions": [
+      { "title": "Indywidualne dopasowanie", "description": "Przygotuję dokumentację dopasowaną do specyfiki branży, opartą na aktualnych wytycznych i realnym obiegu danych.", "icon": "shield-check" },
+      { "title": "Bezpieczeństwo i oszczędność", "description": "Zapewniam realne zabezpieczenie na wypadek kontroli za ułamek ceny pełnego wdrożenia.", "icon": "trend-down" }
+    ]
+  }
+}

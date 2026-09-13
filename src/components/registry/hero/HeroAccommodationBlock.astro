@@ -1,0 +1,135 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Button from "@components/ui/atoms/Button.astro";
+import SmartImage from "@components/ui/atoms/SmartImage.astro";
+
+interface HeroImage {
+  src: string;
+  alt: string;
+}
+
+interface HeroCta {
+  label: string;
+  href: string;
+}
+
+interface HeroContent {
+  eyebrow?: string;
+  heading?: string;
+  title?: string;
+  lead?: string;
+  description?: string;
+  image?: HeroImage;
+  primaryCTA?: HeroCta;
+  secondaryCTA?: HeroCta;
+}
+
+type Locale = "pl" | "en";
+
+export interface Props {
+  data?: HeroContent;
+  pl?: HeroContent;
+  en?: HeroContent;
+  locale?: Locale;
+  pageHeading?: string;
+  eyebrow?: string;
+  heading?: string;
+  title?: string;
+  lead?: string;
+  description?: string;
+  image?: HeroImage;
+  primaryCTA?: HeroCta;
+  secondaryCTA?: HeroCta;
+  sectionId?: string;
+  class?: string;
+}
+
+const {
+  data,
+  pl,
+  en,
+  locale = "pl",
+  pageHeading,
+  eyebrow,
+  heading,
+  title,
+  lead,
+  description,
+  image,
+  primaryCTA,
+  secondaryCTA,
+  sectionId = "hero",
+  class: className = "",
+} = Astro.props as Props;
+
+const localizedContent = locale === "en" ? (en ?? pl) : (pl ?? en);
+const content = data ?? localizedContent ?? {};
+const resolvedEyebrow = eyebrow ?? content.eyebrow;
+const resolvedHeading = heading ?? title ?? content.heading ?? content.title ?? pageHeading ?? "";
+const resolvedLead = lead ?? description ?? content.lead ?? content.description;
+const resolvedImage = image ?? content.image;
+const resolvedPrimaryCTA = primaryCTA ?? content.primaryCTA;
+const resolvedSecondaryCTA = secondaryCTA ?? content.secondaryCTA;
+---
+
+<Section id={sectionId} tone="page" class:list={["relative overflow-hidden", className]}>
+  <Container>
+    <div class="grid items-center gap-[clamp(2.5rem,7vw,7rem)] py-[clamp(3rem,8vw,7rem)] lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)]">
+      <div class="relative z-10 max-w-2xl lg:py-8">
+        {resolvedEyebrow && (
+          <Text variant="accent-label" tag="p" class="mb-5">
+            {resolvedEyebrow}
+          </Text>
+        )}
+
+        {resolvedHeading && (
+          <Heading tag="h1" variant="hero" class="max-w-xl text-balance ui-text-on-light">
+            {resolvedHeading}
+          </Heading>
+        )}
+
+        {resolvedLead && (
+          <Text variant="lead" class="mt-6 max-w-lg ui-text-on-light-subtle">
+            {resolvedLead}
+          </Text>
+        )}
+
+        {(resolvedPrimaryCTA?.href || resolvedSecondaryCTA?.href) && (
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            {resolvedPrimaryCTA?.href && (
+              <Button href={resolvedPrimaryCTA.href} size="lg">
+                {resolvedPrimaryCTA.label}
+              </Button>
+            )}
+            {resolvedSecondaryCTA?.href && (
+              <Button href={resolvedSecondaryCTA.href} variant="outline" size="lg">
+                {resolvedSecondaryCTA.label}
+              </Button>
+            )}
+          </div>
+        )}
+      </div>
+
+      {resolvedImage && (
+        <div class="relative min-w-0 lg:pl-[clamp(0rem,3vw,3rem)]">
+          <div class="relative overflow-hidden ui-radius-xl ui-elevation-soft">
+            <SmartImage
+              src={resolvedImage.src}
+              alt={resolvedImage.alt}
+              width={1600}
+              height={1200}
+              class="aspect-[4/3] h-full w-full object-cover"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              sizes="(max-width: 1024px) 100vw, 58vw"
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  </Container>
+</Section>

@@ -1,0 +1,69 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import jsonData from "@data/sections/mystek-audit-report.json";
+
+type Item = { label: string; value: string; icon: string };
+type Copy = { eyebrow: string; title: string; titleAccent: string; description: string; ctaText: string; ctaHref: string; reportTitle: string; reportSubtitle: string; dossierLabel: string; dossierValue: string; auditorLabel: string; auditorValue: string; dateLabel: string; dateValue: string; statusLabel: string; statusValue: string; scoreLabel: string; scoreValue: string; findingsLabel: string; verifiedLabel: string; watermark: string; refId: string; items: Item[] };
+interface Props { data?: { pl: Copy; en?: Copy }; pl?: Copy; en?: Copy; locale?: "pl" | "en"; class?: string }
+
+const { data, pl, en, locale = "pl", class: className = "" } = Astro.props as Props;
+const source = data ?? (pl ? { pl, en } : (jsonData as { pl: Copy; en?: Copy }));
+const t = source[locale] ?? source.pl;
+---
+
+<Section tone="base" class:list={["relative overflow-hidden", className]}>
+	<Container class="relative z-10">
+		<div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-12 lg:gap-24">
+			<div class="lg:col-span-5" data-motion="fade">
+				<Text variant="accent-label" class="mb-6 text-brand-primary">{t.eyebrow}</Text>
+				<Heading tag="h2" variant="section-heading-xl" class="mb-6">
+					{t.title}<br />
+					<span class="ui-text-gradient">{t.titleAccent}</span>
+				</Heading>
+				<Text variant="lead" class="mb-10 text-brand-dark/65">{t.description}</Text>
+				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-6">
+					{t.items.map((item, index) => (
+						<article class="group ui-card-interactive rounded-2xl border border-brand-dark/10 bg-white p-6 shadow-sm" data-motion="fade" style={`--motion-delay: ${index * 100}ms`}>
+							<div class="mb-4 flex items-center justify-between"><div class="flex size-10 items-center justify-center rounded-xl bg-brand-primary/5 text-brand-primary transition-[background-color,color] group-hover:bg-brand-primary group-hover:text-white"><Icon name={item.icon} size="1.25rem" /></div><span class="font-mono text-[10px] font-bold text-brand-dark/20">0{index + 1}</span></div>
+							<Heading tag="h3" variant="feature-title" class="mb-2 transition-colors group-hover:text-brand-primary">{item.label}</Heading>
+							<Text variant="feature-body-sm" class="text-brand-dark/55">{item.value}</Text>
+						</article>
+					))}
+				</div>
+				<a href={t.ctaHref} class="mt-10 inline-flex min-h-11 items-center justify-center rounded-md bg-brand-primary px-6 py-3 text-sm font-bold text-white transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-brand-primary/90 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-primary/40">{t.ctaText}</a>
+			</div>
+
+			<div class="relative lg:col-span-7" data-motion="fade">
+				<div class="report-perspective relative mx-auto w-full max-w-[640px] lg:ml-auto">
+					<div class="pointer-events-none absolute inset-0 scale-95 rounded-[3rem] bg-brand-primary/10 blur-3xl"></div>
+					<div class="group relative z-20 overflow-hidden rounded-[2rem] border border-brand-dark/10 bg-white shadow-xl transition-[transform,box-shadow] duration-700 hover:rotate-0 hover:shadow-2xl lg:rotate-2 lg:rounded-[2.5rem]">
+						<div class="relative overflow-hidden bg-brand-dark p-8 text-white lg:p-12">
+							<div class="mystek-report-grid pointer-events-none absolute inset-0 opacity-20"></div>
+							<div class="relative z-10">
+								<div class="mb-12 flex items-start justify-between"><div class="flex size-14 items-center justify-center rounded-xl border border-white/20 bg-white/10 font-serif text-lg font-black">KM</div><div class="text-right"><span class="mb-1 block font-mono text-[9px] font-black tracking-[0.2em] text-brand-primary/80 uppercase">{t.dossierLabel}</span><span class="block font-mono text-xs text-white/85">{t.dossierValue}</span></div></div>
+								<Heading tag="h3" variant="section-heading-lg" class="mb-2 !text-white">{t.reportTitle}</Heading><Text variant="accent-label" class="!text-white/75">{t.reportSubtitle}</Text>
+							</div>
+						</div>
+						<div class="relative space-y-8 p-8 lg:p-12">
+							<div class="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden opacity-[0.06]"><span class="rotate-[-20deg] whitespace-nowrap font-mono text-4xl font-black tracking-[0.2em] text-brand-dark uppercase md:text-5xl">{t.watermark}</span></div>
+							<div class="relative z-10 flex items-start justify-between border-b border-brand-dark/10 pb-6"><div class="space-y-4"><div><Text variant="accent-label" class="mb-1 text-brand-dark/45">{t.auditorLabel}</Text><Text variant="body" class="font-bold text-brand-dark">{t.auditorValue}</Text></div><div class="flex gap-8"><div><Text variant="accent-label" class="mb-1 text-brand-dark/45">{t.dateLabel}</Text><Text variant="feature-body-sm" class="font-bold text-brand-dark/65">{t.dateValue}</Text></div><div><Text variant="accent-label" class="mb-1 text-brand-dark/45">{t.statusLabel}</Text><Text variant="feature-body-sm" class="font-bold uppercase text-success">{t.statusValue}</Text></div></div></div><div class="flex size-20 flex-col items-center justify-center rounded-full border-2 border-brand-primary/25 bg-white shadow-lg"><span class="text-xl font-black text-brand-primary">{t.scoreValue}</span><span class="text-[7px] font-bold text-brand-dark/45 uppercase">{t.scoreLabel}</span></div></div>
+							<div class="relative z-10 space-y-5 pt-2"><Text variant="accent-label" class="text-brand-dark/35">{t.findingsLabel}</Text>{["bg-error","bg-warning","bg-brand-primary"].map((color, index) => <div class="space-y-2"><div class="flex items-center justify-between text-[9px] font-bold text-brand-dark/70"><span>{t.items[index]?.label}</span><span class="font-mono text-[7px] text-brand-dark/30">{t.verifiedLabel}</span></div><div class="h-1.5 w-full overflow-hidden rounded-full bg-brand-dark/5"><div class:list={["h-full opacity-60", color, index === 0 ? "w-3/4" : index === 1 ? "w-full" : "w-5/6"]}></div></div></div>)}</div>
+							<div class="relative z-10 flex items-end justify-between border-t border-brand-dark/10 pt-8"><div class="w-40 border-b border-brand-dark/20 pb-1"></div><Text variant="accent-label" class="text-right text-brand-dark/35">{t.refId}</Text></div>
+						</div>
+					</div>
+					<div class="pointer-events-none absolute -bottom-6 -left-6 z-10 block h-0 w-0 -rotate-3 overflow-hidden rounded-[2rem] border border-brand-dark/10 bg-brand-dark/[0.02] shadow-xl lg:h-full lg:w-full"></div>
+					<div class="pointer-events-none absolute -bottom-10 -left-10 z-0 block h-0 w-0 -rotate-6 overflow-hidden rounded-[2rem] border border-brand-dark/5 bg-brand-dark/[0.01] shadow-lg lg:h-full lg:w-full"></div>
+				</div>
+			</div>
+		</div>
+	</Container>
+</Section>
+
+<style>
+	.report-perspective { perspective: 1000px; }
+	.mystek-report-grid { background-image: linear-gradient(to right, rgb(255 255 255 / 0.2) 1px, transparent 1px), linear-gradient(to bottom, rgb(255 255 255 / 0.2) 1px, transparent 1px); background-size: 1.5rem 1.5rem; }
+</style>

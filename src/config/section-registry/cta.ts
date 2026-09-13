@@ -57,7 +57,7 @@ export const ctaSections: Record<string, SectionEntry> = {
     id: 'novaCta', label: 'Końcowe wezwanie do działania', groupId: 'cta', hint: 'Autorska sekcja końcowego CTA dla templateu Nova',
     icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     defaultVariant: 'default',
-    variants: { default: { component: 'NovaCtaWireframeBlock', dataKey: 'nova-cta' } },
+    variants: { default: { component: 'CtaBlock', dataKey: 'nova-cta' } },
   },
   calculator: {
     id: 'calculator', label: 'Kalkulator', groupId: 'cta', hint: 'Interaktywny kalkulator wyceny',

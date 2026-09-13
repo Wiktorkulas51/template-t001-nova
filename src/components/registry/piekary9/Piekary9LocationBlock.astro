@@ -1,0 +1,128 @@
+---
+/**
+ * Interactive location with Leaflet map and POI list.
+ * Demo data is neutral and can be overridden by PageBuilder.
+ */
+import Section from "@components/ui/layout/Section.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import locationData from "@data/sections/piekary9-location.json";
+
+type LocationData = typeof locationData;
+type Point = LocationData["pl"]["points"][number];
+
+export interface Props {
+  data?: LocationData;
+  locale?: "pl" | "en";
+  id?: string;
+  class?: string;
+}
+
+const { data, locale = "pl", id = "lokalizacja", class: className = "" } = Astro.props as Props;
+const t = (data ?? locationData)[locale] ?? (data ?? locationData).pl;
+const mapId = `${id}-map`;
+const placeholderId = `${id}-map-placeholder`;
+---
+
+<Section id={id} class:list={["piekary9-location-map scroll-mt-28 ui-bg-page", className]} aria-labelledby={`${id}-heading`}>
+  <div class="ui-container">
+    <div class="mb-12">
+      <div data-motion="fade" class="mb-6 flex items-center gap-4">
+        <span class="h-px w-8 bg-brand-accent" aria-hidden="true"></span>
+        <Text variant="accent-label" tag="span">{t.eyebrow}</Text>
+      </div>
+      <Heading id={`${id}-heading`} variant="section-title" data-motion="fade" class="max-w-2xl">{t.title}</Heading>
+      <Text variant="lead" data-motion="fade" class="mt-4 max-w-xl">{t.description}</Text>
+    </div>
+
+    <div class="grid items-stretch gap-8 lg:grid-cols-3">
+      <div data-motion="fade" class="lg:col-span-2">
+        <div class="relative aspect-video overflow-hidden rounded-3xl border border-brand-dark/10 bg-brand-dark/5 shadow-2xl">
+          <div id={mapId} class="h-full w-full overflow-hidden rounded-3xl" aria-label={t.mapLabel}></div>
+          <div class="absolute right-3 top-3 z-[1000]">
+            <a href={`https://www.google.com/maps/search/?api=1&query=${t.investmentLocation.lat},${t.investmentLocation.lng}`} target="_blank" rel="noopener noreferrer" class="map-external-btn flex size-10 items-center justify-center rounded-xl bg-white text-brand-accent shadow-lg transition-all hover:bg-brand-accent hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent" title={t.externalMapLabel} aria-label={t.externalMapLabel}>
+              <Icon name="arrow-square-out" />
+            </a>
+          </div>
+          <div id={placeholderId} class="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-brand-light/95 transition-opacity duration-500">
+            <div class="flex size-16 items-center justify-center rounded-2xl bg-brand-accent/10 text-brand-accent"><Icon name="map-trifold" size="2rem" /></div>
+            <div class="px-6 text-center">
+              <Text variant="lead" class="font-bold text-brand-dark/70">{t.mapLabel}</Text>
+              <Text variant="body" class="mt-1 max-w-xs text-sm text-brand-dark/50">{t.mapPlaceholder}</Text>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside aria-label={t.pointsLabel} data-motion="fade" class="relative h-full lg:min-h-0">
+        <div class="flex h-full flex-col lg:absolute lg:inset-0">
+          <Text variant="accent-label" class="mb-4 text-brand-dark/50">{t.pointsLabel}</Text>
+          <div class="poi-scroll-container min-h-0 flex-1 overflow-y-auto pr-2">
+            <ul class="flex flex-col gap-4" role="list">
+              {t.points.map((point: Point) => (
+                <li data-motion="fade">
+                  <button type="button" class="poi-card ui-card-interactive group flex min-h-11 w-full cursor-pointer items-start gap-4 rounded-2xl border border-brand-dark/5 bg-white p-5 text-left shadow-sm transition-all active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent" data-lat={point.lat} data-lng={point.lng} data-name={point.name}>
+                    <span class="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-accent/10 text-brand-accent transition-colors group-hover:bg-brand-accent group-hover:text-white"><Icon name={point.icon || "map-pin"} size="1.25rem" /></span>
+                    <span class="min-w-0 flex-1">
+                      <Text variant="body" class="font-bold text-brand-dark transition-colors group-hover:text-brand-accent">{point.name}</Text>
+                      <span class="mt-1 inline-flex items-center gap-1.5 rounded-full bg-brand-cream px-3 py-1 text-[11px] font-bold text-brand-dark/60"><Icon name="footprints" size="0.75rem" />{point.distanceLabel} {t.walkingLabel}</span>
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div data-motion="fade" class="mt-6 shrink-0">
+            <a href={t.ctaHref} class="group flex min-h-11 items-center justify-center gap-3 rounded-2xl bg-brand-dark px-8 py-5 text-sm font-bold text-white transition-all hover:bg-brand-accent hover:text-brand-dark hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent">
+              <Icon name="chat-centered-dots" /><span>{t.ctaLabel}</span><Icon name="arrow-right" class="text-base transition-transform group-hover:translate-x-1" />
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</Section>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<style is:global>
+  .piekary9-location-map .leaflet-container { background: var(--color-brand-light) !important; font-family: inherit; }
+  .piekary9-location-map .leaflet-bar { border: 0 !important; box-shadow: var(--shadow-soft) !important; }
+  .piekary9-location-map .leaflet-bar a { display: flex !important; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; border: 0 !important; border-bottom: 1px solid color-mix(in oklab, var(--color-brand-dark) 8%, transparent) !important; border-radius: 0.75rem; background: var(--color-brand-cream) !important; color: var(--color-brand-accent) !important; }
+  .piekary9-location-map .investment-marker { width: 1.25rem; height: 1.25rem; border: 3px solid var(--color-brand-cream); border-radius: 999px; background: var(--color-brand-accent); box-shadow: var(--shadow-soft); }
+  .piekary9-location-map .leaflet-popup-content-wrapper { border-radius: 1rem; background: var(--color-brand-cream); color: var(--color-brand-dark); }
+  .piekary9-location-map .leaflet-popup-tip { background: var(--color-brand-cream); }
+  .piekary9-location-map .leaflet-popup-close-button { color: color-mix(in oklab, var(--color-brand-dark) 55%, transparent) !important; }
+  .poi-scroll-container { position: relative; overflow-x: hidden; padding-bottom: 2rem; }
+  @media (max-width: 1024px) { .poi-scroll-container { max-height: 22rem; } }
+  .poi-scroll-container::-webkit-scrollbar { width: 5px; }
+  .poi-scroll-container::-webkit-scrollbar-track { background: color-mix(in oklab, var(--color-brand-dark) 3%, transparent); border-radius: 10px; }
+  .poi-scroll-container::-webkit-scrollbar-thumb { background: var(--color-brand-accent); border-radius: 10px; }
+</style>
+
+<script is:inline define:vars={{ t, mapId, placeholderId }}>
+  function initPiekary9Map() {
+    const mapElement = document.getElementById(mapId);
+    if (!mapElement || mapElement.dataset.piekary9MapBound === 'true' || typeof L === 'undefined') return;
+    const styles = getComputedStyle(document.documentElement);
+    const brandDark = styles.getPropertyValue('--color-brand-dark').trim();
+    const brandCream = styles.getPropertyValue('--color-brand-cream').trim();
+    const map = L.map(mapElement, { center: [t.investmentLocation.lat, t.investmentLocation.lng], zoom: window.innerWidth < 768 ? 14 : 15, zoomControl: true, scrollWheelZoom: false });
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; OpenStreetMap contributors &copy; CARTO' }).addTo(map);
+    const investmentIcon = L.divIcon({ className: 'investment-marker', iconSize: [20, 20], iconAnchor: [10, 10] });
+    L.marker([t.investmentLocation.lat, t.investmentLocation.lng], { icon: investmentIcon, zIndexOffset: 1000 }).addTo(map).bindPopup(`<strong>${t.markerLabel}</strong>`);
+    const markers = {};
+    t.points.forEach((point) => {
+      const marker = L.circleMarker([point.lat, point.lng], { radius: 8, fillColor: brandDark, color: brandCream, weight: 2, opacity: 1, fillOpacity: 0.8 }).addTo(map).bindPopup(`<strong>${point.name}</strong><br>${point.distanceLabel} ${t.walkingLabel}`);
+      markers[point.name] = marker;
+    });
+    document.querySelectorAll(`[data-lat][data-lng][data-name]`).forEach((card) => card.addEventListener('click', () => { const name = card.dataset.name; map.flyTo([Number(card.dataset.lat), Number(card.dataset.lng)], 16, { duration: 1.5 }); if (markers[name]) setTimeout(() => markers[name].openPopup(), 1500); }));
+    document.getElementById(placeholderId)?.classList.add('pointer-events-none', 'opacity-0');
+    mapElement.dataset.piekary9MapBound = 'true';
+  }
+  document.addEventListener('astro:page-load', initPiekary9Map);
+  document.addEventListener('astro:after-swap', initPiekary9Map);
+  initPiekary9Map();
+</script>

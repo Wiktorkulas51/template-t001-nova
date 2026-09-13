@@ -1,0 +1,17 @@
+{
+  "pl": {
+    "layout": "scope",
+    "eyebrow": "TARGETOWANIE",
+    "title": "Kto najbardziej potrzebuje tych szkoleń?",
+    "description": "Programy moich szkoleń dopasowuję do konkretnych wyzwań różnych grup zawodowych. Inaczej rozmawiam z nowym pracownikiem, a inaczej z kadrą zarządzającą i IOD.",
+    "guaranteeLabel": "Moja Gwarancja",
+    "guaranteeTitle": "Wiedza dopasowana do Twojej roli",
+    "items": [
+      { "title": "Nowi Pracownicy (Onboarding)", "description": "Idealne rozwiązanie dla osób dołączających do zespołu. Zamiast czytania nudnych procedur, pracownik przechodzi przez praktyczne warsztaty, które od pierwszego dnia budują poprawne nawyki w pracy z danymi osobowymi." },
+      { "title": "HR, Medycyna, Finanse", "description": "Szkolenia dedykowane dla zespołów pracujących na danych wrażliwych lub o podwyższonym ryzyku. Skupiam się na specyficznych zagrożeniach w danej branży, od tajemnicy lekarskiej, przez rekrutację, aż po obieg dokumentów finansowych." },
+      { "title": "Firmy Technologiczne i AI", "description": "Dla organizacji wdrażających nowoczesne technologie. Uczę, jak legalnie korzystać z AI, jak dbać o Privacy by Design w procesach deweloperskich oraz jak bezpiecznie zarządzać chmurą obliczeniową." },
+      { "title": "Zespoły po Incydentach", "description": "Działania naprawcze po naruszeniach. Analizuję błędy, które wystąpiły, i szkolę zespół tak, aby w przyszłości potrafił zidentyfikować podobne ryzyka i odpowiednio na nie zareagować." },
+      { "title": "Profesjonaliści (IOD i Audytorzy)", "description": "Zaawansowane warsztaty dla osób merytorycznie odpowiedzialnych za ODO. Pogłębiam wiedzę z zakresu analizy ryzyka, DPIA oraz najnowszego orzecznictwa PUODO i EROD, kończąc szkolenie prestiżowym certyfikatem." }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "phoneLabel": "Zadzwoń teraz",
+  "menu": [
+    { "label": "O nas", "href": "/o-nas/" },
+    { "label": "Usługi", "href": "/uslugi/" },
+    { "label": "Cennik", "href": "/cennik/" },
+    { "label": "Blog", "href": "/blog/" }
+  ],
+  "cta": {
+    "label": "Kontakt",
+    "href": "/kontakt/",
+    "hoverText": "Pisz!"
+  },
+  "phone": "+48 123 456 789",
+  "email": "kontakt@twojafirma.pl",
+  "city": "Warszawa",
+  "hours": "Pon-Pt: 8:00 - 21:00",
+  "socials": {
+    "facebook": "https://www.facebook.com/twojafirma"
+  }
+}

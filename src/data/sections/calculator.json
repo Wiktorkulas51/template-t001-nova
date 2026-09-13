@@ -1,0 +1,24 @@
+{
+  "title": "Kalkulator wyceny",
+  "description": "Wybierz usługi i dodatki, aby poznać szacunkowy koszt realizacji.",
+  "servicesLabel": "Usługi",
+  "addonsLabel": "Dodatki",
+  "summaryTitle": "Podsumowanie",
+  "estimateLabel": "Szacunkowa cena:",
+  "emptyStateLabel": "Wybierz usługi lub dodatki powyżej.",
+  "services": [
+    { "id": "service-1", "name": "Strona główna", "price": 1500, "icon": "ph-browser" },
+    { "id": "service-2", "name": "Podstrona", "price": 800, "icon": "ph-file-text" },
+    { "id": "service-3", "name": "Blog", "price": 1200, "icon": "ph-pencil" },
+    { "id": "service-4", "name": "Panel administracyjny", "price": 2500, "icon": "ph-gear" },
+    { "id": "service-5", "name": "Optymalizacja SEO", "price": 600, "icon": "ph-trend-up" }
+  ],
+  "addons": [
+    { "id": "addon-1", "name": "Formularz kontaktowy", "price": 400 },
+    { "id": "addon-2", "name": "Integracja z CMS", "price": 700 },
+    { "id": "addon-3", "name": "Szkolenie z obsługi", "price": 300 }
+  ],
+  "currency": "PLN",
+  "ctaLabel": "Wyślij zapytanie",
+  "ctaLink": "#kontakt"
+}

@@ -1,0 +1,41 @@
+{
+  "rooms_list": [
+    {
+      "name": "SALON Z ANEKSEM",
+      "area": 36.44
+    },
+    {
+      "name": "ŁAZIENKA",
+      "area": 4.08
+    },
+    {
+      "name": "POKÓJ",
+      "area": 7.92
+    }
+  ],
+  "section": "front_courtyard",
+  "price": 439000,
+  "floor": 3,
+  "poly": [
+    10.2,
+    23.95,
+    13.84,
+    25.96,
+    13.96,
+    37.8,
+    10.17,
+    36.12
+  ],
+  "area": 48.44,
+  "pdf": "/uploads/lokal_26.pdf",
+  "status": "available",
+  "finish": "Do remontu",
+  "label": "26",
+  "x": 12.23,
+  "images": [],
+  "rooms": 2,
+  "y": 30.64,
+  "id": "26",
+  "price_per_m2": 9063,
+  "comment": "2 pokoje - widok na dziedziniec"
+}

@@ -1,0 +1,133 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import jsonData from "@data/sections/mystek-documentation-offer.json";
+
+type Product = { name: string; price: string };
+type Category = { title: string; subtitle: string; price: string; products: Product[] };
+type Copy = {
+	eyebrow: string;
+	title: string;
+	titleAccent: string;
+	description: string;
+	selectionLabel: string;
+	selectedLabel: string;
+	chooseLabel: string;
+	quickStartLabel: string;
+	quickStartTitle: string;
+	quickStartDescription: string;
+	quickStartPrice: string;
+	priceSuffix: string;
+	quickStartCta: string;
+	quickStartFeatures: string[];
+	infoLabel: string;
+	infoText: string;
+	infoAccent: string;
+	categories: Category[];
+};
+interface Props { data?: { pl: Copy; en?: Copy }; pl?: Copy; en?: Copy; locale?: "pl" | "en"; class?: string }
+
+const { data, pl, en, locale = "pl", class: className = "" } = Astro.props as Props;
+const source = data ?? (pl ? { pl, en } : (jsonData as { pl: Copy; en?: Copy }));
+const t = source[locale] ?? source.pl;
+---
+
+<Section id="oferta-dokumentacja" tone="base" class:list={["relative overflow-hidden", className]}>
+	<Container class="relative z-10">
+		<div class="mx-auto mb-12 max-w-4xl text-center lg:mb-16" data-motion="fade">
+			<Text variant="accent-label" class="mb-5 text-brand-primary">{t.eyebrow}</Text>
+			<Heading tag="h2" variant="section-heading-xl" class="mb-6">
+				{t.title}<br />
+				<span class="ui-text-gradient">{t.titleAccent}</span>
+			</Heading>
+			<Text variant="lead" class="mx-auto max-w-3xl text-brand-dark/65">{t.description}</Text>
+		</div>
+
+		<div class="documentation-offer relative overflow-hidden rounded-[2.5rem] border-2 border-brand-dark/10 bg-white shadow-xl" data-documentation-offer data-motion="fade">
+			<div class="grid lg:grid-cols-[0.32fr_0.68fr]">
+				<aside class="border-b border-brand-dark/10 bg-brand-dark/[0.03] p-5 lg:border-r lg:border-b-0 lg:p-7">
+					<Text variant="accent-label" class="mb-5 text-brand-primary">{t.selectionLabel}</Text>
+					<nav class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-1" aria-label={t.selectionLabel}>
+						{t.categories.map((category, index) => (
+							<button type="button" class:list={["doc-category-button group flex min-h-16 items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-left transition-[background-color,border-color,color,transform] duration-300 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-primary/40", index === 0 ? "border-brand-primary bg-white text-brand-primary shadow-sm" : "border-transparent text-brand-dark/60 hover:border-brand-primary/20 hover:bg-white"]} data-category-index={index} aria-pressed={index === 0 ? "true" : "false"}>
+								<span><span class="block text-sm font-bold">{category.title}</span><span class="mt-1 block text-[10px] text-brand-dark/45 group-hover:text-brand-primary/65">{category.subtitle}</span></span>
+								<span class="font-mono text-[10px] font-bold">0{index + 1}</span>
+							</button>
+						))}
+					</nav>
+				</aside>
+
+				<div class="min-w-0 p-6 md:p-8 lg:p-10">
+					<div class="mb-8 flex flex-wrap items-end justify-between gap-4 border-b border-brand-dark/10 pb-6">
+						<div>
+							<Text variant="accent-label" class="mb-2 text-brand-primary/65">{t.selectedLabel}</Text>
+							<Heading tag="h3" variant="section-heading-lg" class="doc-active-title">{t.categories[0]?.title}</Heading>
+						</div>
+						<span class="rounded-full bg-brand-primary/10 px-3 py-1 text-xs font-bold text-brand-primary"><span class="doc-active-price">{t.categories[0]?.price}</span> zł</span>
+					</div>
+
+					<div class="doc-category-panels">
+						{t.categories.map((category, index) => (
+							<div class:list={["doc-category-panel", index === 0 ? "" : "hidden"]} data-category-panel={index}>
+								<div class="grid gap-4 sm:grid-cols-2">
+									{category.products.map((product) => (
+										<article class="group ui-card-interactive rounded-2xl border border-brand-dark/10 bg-brand-dark/[0.02] p-5 transition-[border-color,transform,box-shadow] duration-300 hover:bg-white">
+											<div class="mb-7 flex items-center justify-between gap-3"><span class="flex size-9 items-center justify-center rounded-xl bg-brand-primary/10 text-brand-primary"><Icon name="file-text" size="1rem" /></span><span class="font-mono text-xs font-bold text-brand-primary">{product.price} zł</span></div>
+											<Heading tag="h4" variant="feature-title" class="mb-2">{product.name}</Heading>
+											<button type="button" class="doc-choose-product text-xs font-bold text-brand-primary transition-colors hover:text-brand-dark focus-visible:outline-none focus-visible:underline">{t.chooseLabel}</button>
+										</article>
+									))}
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+
+			<div class="grid border-t border-brand-dark/10 bg-brand-dark/[0.02] lg:grid-cols-[0.42fr_0.58fr]">
+				<div class="p-7 md:p-10">
+					<Text variant="accent-label" class="mb-4 text-brand-primary">{t.quickStartLabel}</Text>
+					<Heading tag="h3" variant="section-heading-lg" class="mb-4">{t.quickStartTitle}</Heading>
+					<Text variant="body" class="mb-7 max-w-xl text-brand-dark/65">{t.quickStartDescription}</Text>
+					<ul class="grid gap-3 sm:grid-cols-2">
+						{t.quickStartFeatures.map((feature) => <li class="flex items-start gap-3 text-sm font-medium text-brand-dark/65"><span class="mt-1 flex size-4 shrink-0 items-center justify-center rounded bg-brand-primary/10 text-brand-primary"><Icon name="check" weight="bold" size="0.7rem" /></span><span>{feature}</span></li>)}
+					</ul>
+				</div>
+					<div class="flex flex-col justify-between gap-8 bg-brand-primary p-7 text-white md:p-10">
+						<div><Text variant="accent-label" class="mb-4 !text-white/65">{t.selectedLabel}</Text><span class="block text-5xl font-black tracking-tight md:text-6xl">{t.quickStartPrice}<small class="ml-2 text-base font-bold tracking-normal">{t.priceSuffix}</small></span></div>
+					<a href="#doc-hero-conversion" class="inline-flex min-h-11 items-center justify-center rounded-md bg-white px-6 py-3 text-sm font-bold text-brand-primary transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-white/90 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-white/60">{t.quickStartCta}</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="mx-auto mt-10 max-w-4xl rounded-3xl border border-brand-primary/15 bg-brand-primary/[0.04] p-7 text-center md:p-10" data-motion="fade">
+			<div class="mb-4 flex flex-col items-center gap-3"><span class="flex size-10 items-center justify-center rounded-full bg-brand-primary text-white"><Icon name="info" weight="bold" size="1.2rem" /></span><Text variant="accent-label" class="text-brand-primary">{t.infoLabel}</Text></div>
+			<Text variant="body" class="text-brand-dark/65">{t.infoText} <span class="font-bold text-brand-primary">{t.infoAccent}</span></Text>
+		</div>
+	</Container>
+</Section>
+
+<script>
+	function initDocumentationOffer() {
+		document.querySelectorAll<HTMLElement>('[data-documentation-offer]').forEach((root) => {
+			if (root.dataset.initialized === 'true') return;
+			root.dataset.initialized = 'true';
+			const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>('.doc-category-button'));
+			const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-category-panel]'));
+			const title = root.querySelector<HTMLElement>('.doc-active-title');
+			const price = root.querySelector<HTMLElement>('.doc-active-price');
+			const values = buttons.map((button) => ({ title: button.querySelector('span span')?.textContent ?? '', price: panels.find((panel) => panel.dataset.categoryPanel === button.dataset.categoryIndex)?.querySelector('.font-mono')?.textContent?.replace(' zł', '') ?? '' }));
+			buttons.forEach((button, index) => button.addEventListener('click', () => {
+				buttons.forEach((item, itemIndex) => { item.classList.toggle('border-brand-primary', itemIndex === index); item.classList.toggle('bg-white', itemIndex === index); item.classList.toggle('text-brand-primary', itemIndex === index); item.setAttribute('aria-pressed', itemIndex === index ? 'true' : 'false'); });
+				panels.forEach((panel, panelIndex) => panel.classList.toggle('hidden', panelIndex !== index));
+				if (title) title.textContent = values[index]?.title ?? '';
+				if (price) price.textContent = values[index]?.price ?? '';
+			}));
+		});
+	}
+	initDocumentationOffer();
+	document.addEventListener('astro:page-load', initDocumentationOffer);
+</script>

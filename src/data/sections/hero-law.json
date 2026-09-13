@@ -1,0 +1,36 @@
+{
+  "background": {
+    "src": "/assets/placeholders/image-landscape.svg",
+    "alt": "Placeholder zdjęcia panoramicznego"
+  },
+  "pl": {
+    "title": "Kancelaria prawna. Polsko-niemiecka obsługa prawna.",
+    "titleAccent": "Profesjonalna obsługa prawna",
+    "description": "Kompleksowa obsługa prawna dla firm i osób prywatnych. Prowadzimy sprawy przed sądami polskimi i niemieckimi, doradzamy w negocjacjach i reprezentujemy klientów na każdym etapie postępowania.",
+    "primaryCTA": {
+      "label": "Umów konsultację",
+      "hoverText": "Rezerwuj termin",
+      "href": "/#kontakt"
+    },
+    "secondaryCTA": {
+      "label": "Zakres usług",
+      "hoverText": "Zobacz specjalizacje",
+      "href": "/#uslugi"
+    }
+  },
+  "en": {
+    "title": "Law firm. Polish-German legal services.",
+    "titleAccent": "Professional legal services",
+    "description": "Comprehensive cross-border legal services for businesses and individuals. We handle cases before Polish and German courts and support clients at every stage of proceedings.",
+    "primaryCTA": {
+      "label": "Book a consultation",
+      "hoverText": "Reserve a slot",
+      "href": "/#kontakt"
+    },
+    "secondaryCTA": {
+      "label": "Our services",
+      "hoverText": "See specializations",
+      "href": "/#uslugi"
+    }
+  }
+}

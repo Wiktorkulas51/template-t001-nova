@@ -1,0 +1,5 @@
+{
+  "image": { "src": "/assets/placeholders/image-landscape.svg", "alt": "Dr Krzysztof Mystek, oferta" },
+  "pl": { "eyebrow": "Zakres usług", "title": "Oferta współpracy", "subtitle": "Kompleksowe wsparcie w zakresie ochrony danych osobowych, audytów i szkoleń RODO.", "detail": "Wspieram organizacje w budowaniu trwałych fundamentów ochrony prywatności. Moja oferta łączy twardą wiedzę prawniczą z praktycznym podejściem do procesów biznesowych.", "ctaLabel": "Zobacz szczegóły", "ctaHref": "#architektura-zgodnosci" },
+  "en": { "eyebrow": "Services", "title": "Collaboration offer", "subtitle": "Comprehensive support in personal data protection, audits and GDPR training.", "detail": "I help organizations build lasting privacy foundations by combining legal expertise with a practical approach to business processes.", "ctaLabel": "See the details", "ctaHref": "#architektura-zgodnosci" }
+}

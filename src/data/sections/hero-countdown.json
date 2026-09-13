@@ -1,0 +1,46 @@
+{
+  "pl": {
+    "eyebrow": "Rekrutacja 2026/27",
+    "heading": "Zacznij swoją przygodę",
+    "description": "Wybierz ścieżkę, która otwiera możliwości. Dołącz do społeczności i zacznij naukę już od października.",
+    "ctas": [
+      { "label": "Zobacz ofertę", "hoverLabel": "Przeglądaj", "href": "/#oferta" },
+      { "label": "Aplikuj", "hoverLabel": "Rejestracja", "href": "/#aplikuj" }
+    ],
+    "countdown": {
+      "title": "Zapisy trwają",
+      "subtitle": "Do końca rekrutacji pozostało:",
+      "deadline": "2030-01-01T00:00:00+02:00",
+      "units": {
+        "days": "Dni",
+        "hours": "Godz.",
+        "minutes": "Min.",
+        "seconds": "Sek."
+      },
+      "dateValue": "10.09.2026",
+      "dateLabel": "koniec rekrutacji"
+    }
+  },
+  "en": {
+    "eyebrow": "Enrollment 2026/27",
+    "heading": "Start your journey",
+    "description": "Choose a path that opens possibilities. Join the community and start learning this October.",
+    "ctas": [
+      { "label": "Browse offer", "hoverLabel": "Explore", "href": "/#offer" },
+      { "label": "Apply", "hoverLabel": "Register", "href": "/#apply" }
+    ],
+    "countdown": {
+      "title": "Enrollment open",
+      "subtitle": "Time left until the deadline:",
+      "deadline": "2030-01-01T00:00:00+02:00",
+      "units": {
+        "days": "Days",
+        "hours": "Hrs",
+        "minutes": "Min",
+        "seconds": "Sec"
+      },
+      "dateValue": "Sep 10, 2026",
+      "dateLabel": "deadline"
+    }
+  }
+}

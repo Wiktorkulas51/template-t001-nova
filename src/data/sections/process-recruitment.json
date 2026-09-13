@@ -1,0 +1,62 @@
+{
+  "pl": {
+    "eyebrow": "3 kroki do studiów",
+    "heading": "Proces rekrutacji jest prosty",
+    "ariaLabel": "Trzy kroki procesu rekrutacji",
+    "steps": [
+      {
+        "num": "01",
+        "icon": "fileText",
+        "title": "Zarejestruj się",
+        "description": "Załóż konto w systemie e-rekrutacyjnym i wypełnij formularz zgłoszeniowy."
+      },
+      {
+        "num": "02",
+        "icon": "fileCheck",
+        "title": "Dostarcz dokumenty",
+        "description": "Prześlij wymagane dokumenty i dokonaj opłaty rekrutacyjnej online."
+      },
+      {
+        "num": "03",
+        "icon": "bellPlus",
+        "title": "Oczekuj na wynik",
+        "description": "Otrzymasz informację o decyzji rekrutacyjnej drogą mailową. Dołącz do nas!"
+      }
+    ],
+    "cta": {
+      "label": "Dowiedz się więcej o rekrutacji",
+      "hoverLabel": "Rejestracja",
+      "href": "/#rekrutacja"
+    }
+  },
+  "en": {
+    "eyebrow": "3 steps to enrollment",
+    "heading": "The enrollment process is simple",
+    "ariaLabel": "Three steps of the enrollment process",
+    "steps": [
+      {
+        "num": "01",
+        "icon": "fileText",
+        "title": "Register",
+        "description": "Create an account in the enrollment system and complete the application form."
+      },
+      {
+        "num": "02",
+        "icon": "fileCheck",
+        "title": "Submit documents",
+        "description": "Send the required documents and complete the online enrollment fee."
+      },
+      {
+        "num": "03",
+        "icon": "bellPlus",
+        "title": "Await the result",
+        "description": "You will receive the enrollment decision by email. Join us!"
+      }
+    ],
+    "cta": {
+      "label": "Learn more about enrollment",
+      "hoverLabel": "Register",
+      "href": "/#recruitment"
+    }
+  }
+}

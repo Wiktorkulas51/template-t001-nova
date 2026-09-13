@@ -1,0 +1,45 @@
+{
+  "rooms_list": [
+    {
+      "name": "KORYTARZ",
+      "area": 2.55
+    },
+    {
+      "name": "SALON Z ANEKSEM",
+      "area": 16.83
+    },
+    {
+      "name": "ŁAZIENKA",
+      "area": 4.17
+    },
+    {
+      "name": "POKÓJ",
+      "area": 10.06
+    }
+  ],
+  "section": "front",
+  "price": 429000,
+  "floor": 0,
+  "poly": [
+    53.84,
+    68.14,
+    63.84,
+    67.54,
+    63.63,
+    76.88,
+    53.84,
+    77.49
+  ],
+  "area": 33.61,
+  "pdf": "/client-assets/folde3/Rzuty/lokal_4.pdf",
+  "status": "sold",
+  "finish": "Do remontu",
+  "label": "4",
+  "x": 57.48,
+  "images": [],
+  "rooms": 2,
+  "y": 72.4,
+  "id": "4",
+  "price_per_m2": 12764,
+  "comment": "2 pokoje - widok na ul. Piekary [FRYZJER]"
+}

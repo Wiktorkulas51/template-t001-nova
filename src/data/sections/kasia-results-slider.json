@@ -1,0 +1,8 @@
+{
+  "eyebrow": "Rezultaty",
+  "title": "Zobacz zmianę",
+  "titleAccent": "z bliska",
+  "description": "Przeciągnij suwak, aby porównać dwa etapy tej samej drogi.",
+  "before": { "src": "/assets/placeholders/image-landscape.svg", "alt": "Placeholder rezultatu przed zmianą", "label": "Początek" },
+  "after": { "src": "/assets/placeholders/image-landscape.svg", "alt": "Placeholder rezultatu po zmianie", "label": "Kolejny etap" }
+}

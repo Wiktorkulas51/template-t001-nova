@@ -1,0 +1,12 @@
+{
+  "en": {
+    "title": "Ready to make your<br /><span class=\"font-bold\">sound unforgettable</span>",
+    "description": "I invite you to my home. Every project is treated individually, so get in touch and tell me about your music.",
+    "cta": { "label": "Book a Session", "href": "/kontakt/" }
+  },
+  "pl": {
+    "title": "Gotowy, aby Twoje<br /><span class=\"font-bold\">brzmienie zapadło w pamięć</span>",
+    "description": "Zapraszam do mojego domu. Każdy projekt traktuję indywidualnie, więc skontaktuj się i opowiedz o swojej muzyce.",
+    "cta": { "label": "Umów sesję", "href": "/kontakt/" }
+  }
+}

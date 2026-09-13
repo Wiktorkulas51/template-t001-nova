@@ -1,0 +1,15 @@
+{
+  "seo": {
+    "title": "Services | Company Name",
+    "description": "Explore our construction and finishing services."
+  },
+  "heading": "Our services",
+  "sections": [
+    { "id": "navbar", "variant": "plain" },
+    { "id": "features", "variant": "default" },
+    { "id": "processTimelineScroll", "variant": "default" },
+    { "id": "faq", "variant": "simple" },
+    { "id": "ctaTomRos", "variant": "default" },
+    { "id": "footer", "variant": "columns" }
+  ]
+}

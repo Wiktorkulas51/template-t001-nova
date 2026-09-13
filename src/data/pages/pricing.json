@@ -1,0 +1,14 @@
+{
+  "seo": {
+    "title": "Pricing | Company Name",
+    "description": "Check our service pricing. Transparent prices, no hidden costs. Online estimate calculator."
+  },
+  "heading": "Pricing",
+  "sections": [
+    { "id": "navbar", "variant": "plain" },
+    { "id": "features", "variant": "default" },
+    { "id": "faq", "variant": "simple" },
+    { "id": "ctaTomRos", "variant": "default" },
+    { "id": "footer", "variant": "columns" }
+  ]
+}

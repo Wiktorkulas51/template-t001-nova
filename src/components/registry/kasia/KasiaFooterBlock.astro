@@ -1,0 +1,69 @@
+---
+/**
+ * Footer inspired by Kasia's design layout: branding on the left, navigation,
+ * social media and the bottom legal bar. The contents are neutral demo data.
+ */
+import Container from "@components/ui/layout/Container.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import jsonData from "@data/sections/kasia-footer.json";
+import { formatInternalLink } from "@utils/url";
+
+type FooterData = typeof jsonData;
+
+export interface Props {
+  data?: FooterData;
+  locale?: "pl" | "en";
+  id?: string;
+  class?: string;
+}
+
+const { data, locale = "pl", id, class: className = "" } = Astro.props as Props;
+const t = (data ?? jsonData)[locale] ?? (data ?? jsonData).pl;
+---
+
+<footer id={id} transition:animate="none" class:list={["border-t border-brand-dark/10 bg-white/40 py-16 backdrop-blur-sm md:py-24", className]}>
+  <Container>
+    <div class="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
+      <div class="flex flex-col items-center gap-8 md:flex-row md:items-start md:gap-10 lg:col-span-6">
+        <a href={formatInternalLink("/")} class="shrink-0 transition-transform duration-300 hover:scale-105 focus-visible:rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-primary">
+          <img src={t.logoSrc} alt="Logo studia" width="180" height="48" class="h-10 w-auto object-contain lg:h-12" loading="lazy" />
+        </a>
+        <div class="space-y-6 text-center md:text-left">
+          <Text variant="body" class="max-w-md text-brand-dark/65">{t.description}</Text>
+          <div class="space-y-2">
+            <Text variant="accent-label" class="text-brand-primary">{t.locationsLabel}</Text>
+            <Text tag="p" variant="feature-body-sm" class="font-semibold text-brand-dark/80">{t.locations.join(" | ")}</Text>
+          </div>
+        </div>
+      </div>
+
+      <nav aria-label={t.exploreLabel} class="flex flex-col items-center gap-4 text-center md:items-start md:text-left lg:col-span-3">
+        <Text variant="accent-label" class="text-brand-primary">{t.exploreLabel}</Text>
+        <ul class="flex flex-col gap-3">
+          {t.links.map((link) => (
+            <li>
+              <a href={formatInternalLink(link.href)} class="text-sm font-semibold text-brand-dark/80 transition-colors hover:text-brand-primary focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-primary">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="flex flex-col items-center gap-6 text-center md:items-start md:text-left lg:col-span-3">
+        <Text variant="accent-label" class="text-brand-primary">{t.socialLabel}</Text>
+        <div class="flex gap-3">
+          {t.socials.map((social) => (
+            <a href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label} class="flex size-12 items-center justify-center rounded-2xl border border-brand-primary/20 text-brand-primary shadow-sm transition-all duration-300 hover:bg-brand-primary hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-primary">
+              <Icon name={social.icon} size="1.25rem" />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center justify-between gap-6 border-t border-brand-primary/10 py-8 text-center md:flex-row md:text-left lg:col-span-12">
+        <Text variant="disclaimer" class="text-brand-dark/55">© {new Date().getFullYear()} {t.copyright}</Text>
+        <a href={formatInternalLink(t.privacyHref)} class="text-xs font-semibold uppercase tracking-[0.12em] text-brand-dark/55 transition-colors hover:text-brand-primary focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-primary">{t.privacyLabel}</a>
+      </div>
+    </div>
+  </Container>
+</footer>

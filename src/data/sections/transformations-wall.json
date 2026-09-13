@@ -1,0 +1,26 @@
+{
+  "title": "Metamorfozy",
+  "description": "Realne efekty pracy z podopiecznymi. Każda metamorfoza to historia konsekwencji, dyscypliny i dobrze dobranego planu.",
+  "wallLabel": "Realne efekty",
+  "wallEmptyState": "Brak metamorfoz do wyświetlenia.",
+  "images": [
+    {   "src": "/assets/placeholders/image-portrait.svg", "alt": "Metamorfoza pierwsza" },
+    {   "src": "/assets/placeholders/image-square.svg", "alt": "Metamorfoza druga" },
+    {   "src": "/assets/placeholders/image-landscape.svg", "alt": "Metamorfoza trzecia" },
+    {   "src": "/assets/placeholders/image-portrait.svg", "alt": "Metamorfoza czwarta" },
+    {   "src": "/assets/placeholders/image-square.svg", "alt": "Metamorfoza piąta" },
+    {   "src": "/assets/placeholders/image-landscape.svg", "alt": "Metamorfoza szósta" },
+    {   "src": "/assets/placeholders/image-portrait.svg", "alt": "Metamorfoza siódma" },
+    {   "src": "/assets/placeholders/image-square.svg", "alt": "Metamorfoza ósma" },
+    {   "src": "/assets/placeholders/image-landscape.svg", "alt": "Metamorfoza dziewiąta" },
+    {   "src": "/assets/placeholders/image-portrait.svg", "alt": "Metamorfoza dziesiąta" },
+    {   "src": "/assets/placeholders/image-square.svg", "alt": "Metamorfoza jedenasta" },
+    {   "src": "/assets/placeholders/image-landscape.svg", "alt": "Metamorfoza dwunasta" },
+    {   "src": "/assets/placeholders/image-portrait.svg", "alt": "Metamorfoza trzynasta" },
+    {   "src": "/assets/placeholders/image-square.svg", "alt": "Metamorfoza czternasta" },
+    {   "src": "/assets/placeholders/image-landscape.svg", "alt": "Metamorfoza piętnasta" },
+    {   "src": "/assets/placeholders/image-portrait.svg", "alt": "Metamorfoza szesnasta" },
+    {   "src": "/assets/placeholders/image-square.svg", "alt": "Metamorfoza siedemnasta" },
+    {   "src": "/assets/placeholders/image-landscape.svg", "alt": "Metamorfoza osiemnasta" }
+  ]
+}

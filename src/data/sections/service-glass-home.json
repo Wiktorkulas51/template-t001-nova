@@ -1,0 +1,26 @@
+{
+  "pl": {
+    "eyebrow": "Zakres Usług",
+    "heading": "Obszary Współpracy",
+    "description": "Specjalistyczne wsparcie w obszarze ochrony danych osobowych, audytów oraz bezpiecznego wdrażania nowych technologii i sztucznej inteligencji.",
+    "services": [
+      { "title": "Inspektor Ochrony Danych", "description": "Powierzenie mi funkcji IOD gwarantuje rzetelne monitorowanie przetwarzania danych osobowych. Zapewniam zgodność z przepisami i bezpieczeństwo, dbając o płynność procesów biznesowych Twojej organizacji.", "icon": "shield", "href": "/oferta/outsourcing-iod/", "cta": "Sprawdź zakres wsparcia" },
+      { "title": "Audyty RODO", "description": "Szczegółowa analiza czynności przetwarzania, identyfikacja luk i ryzyka. Weryfikacja procesów, dokumentacji oraz Compliance ODO.", "icon": "audit", "href": "/oferta/audyt-rodo/", "cta": "Zobacz, jak wygląda audyt" },
+      { "title": "Dokumentacja RODO", "description": "Opracowanie kompletu procedur, polityk i rejestrów dostosowanych do Twojego biznesu. Gwarantuję zgodność z aktualnym orzecznictwem i wytycznymi PUODO.", "icon": "document", "href": "/oferta/dokumentacja-rodo/", "cta": "Poznaj ofertę dokumentacji" },
+      { "title": "Szkolenia i Warsztaty", "description": "Praktyczne warsztaty dla pracowników i kadry zarządzającej. Autorskie programy edukacyjne oparte na realnych scenariuszach i bezpiecznym korzystaniu z AI.", "icon": "training", "href": "/oferta/szkolenia/", "cta": "Zobacz katalog szkoleń" },
+      { "title": "Doradztwo Biznesowe", "description": "Wsparcie w podejmowaniu strategicznych decyzji dotyczących bezpieczeństwa informacji oraz wdrażania innowacji technologicznych w pełnej zgodności z prawem.", "icon": "monitor", "href": "/oferta/doradztwo-biznesowe/", "cta": "Szczegóły wsparcia" }
+    ]
+  },
+  "en": {
+    "eyebrow": "Services",
+    "heading": "Areas of collaboration",
+    "description": "Specialist support in personal data protection, audits and the safe adoption of new technologies and artificial intelligence.",
+    "services": [
+      { "title": "Data Protection Officer", "description": "Entrusting me with the DPO role provides reliable monitoring of personal data processing. I support compliance and security while protecting business continuity.", "icon": "shield", "href": "/services/outsourcing/", "cta": "Explore the support scope" },
+      { "title": "GDPR audits", "description": "A detailed analysis of processing activities, gaps and risks, including processes, documentation and compliance controls.", "icon": "audit", "href": "/services/audit/", "cta": "See how the audit works" },
+      { "title": "GDPR documentation", "description": "A complete set of procedures, policies and registers adapted to the organization and current guidance.", "icon": "document", "href": "/services/documentation/", "cta": "Explore documentation" },
+      { "title": "Training and workshops", "description": "Practical workshops for employees and management, based on realistic scenarios and safe use of AI.", "icon": "training", "href": "/services/training/", "cta": "See the training catalog" },
+      { "title": "Business advice", "description": "Support with strategic decisions about information security and technology adoption in line with the law.", "icon": "monitor", "href": "/services/advice/", "cta": "Explore the support" }
+    ]
+  }
+}

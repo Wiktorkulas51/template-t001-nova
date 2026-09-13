@@ -1,0 +1,86 @@
+---
+import Section from '@components/ui/layout/Section.astro';
+import Container from '@components/ui/layout/Container.astro';
+import Heading from '@components/ui/atoms/Heading.astro';
+import Text from '@components/ui/atoms/Text.astro';
+import data from '@data/sections/piekary9-image-text.json';
+import { formatInternalLink } from '@utils/url';
+
+type ImageTextData = (typeof data)['pl'];
+
+export interface Props {
+  data?: ImageTextData;
+  locale?: 'pl';
+  class?: string;
+}
+
+const {
+  data: overrideData,
+  locale = 'pl',
+  class: className = '',
+} = Astro.props as Props;
+
+const t = overrideData ?? data[locale] ?? data.pl;
+---
+
+<Section
+  id={t.sectionId}
+  class:list={['relative overflow-hidden bg-brand-cream scroll-mt-28', className]}
+  data-piekary9-image-text
+>
+  <Container class="space-y-16 lg:space-y-32">
+    {t.items.map((item, index) => (
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-24">
+        <div class:list={['relative', index % 2 !== 0 ? 'lg:col-start-2' : 'lg:col-start-1']}>
+          <div class="group relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-brand-dark/5 shadow-xl lg:aspect-[5/4]">
+            {item.image.url.startsWith('/placeholder') ? (
+              <div class="flex h-full w-full items-center justify-center">
+                <i class="ph ph-image text-7xl text-brand-dark/5" aria-hidden="true"></i>
+              </div>
+            ) : (
+              <img
+                src={item.image.url}
+                alt={item.image.alt}
+                width="800"
+                height="640"
+                class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                loading={index === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
+            )}
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/10 to-transparent" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <div class:list={['relative', index % 2 !== 0 ? 'lg:col-start-1 lg:row-start-1' : 'lg:col-start-2']}>
+          <div class="max-w-md lg:max-w-none">
+            <Heading variant="section-subtitle">
+              {item.title}
+            </Heading>
+            <Text variant="lead" class="mt-8">
+              {item.description}
+            </Text>
+
+            <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-1" role="list">
+              {item.features?.map((feature) => (
+                <li class="flex items-center gap-4 text-[13px] font-medium text-brand-dark/70 transition-colors hover:text-brand-accent">
+                  <i class="ph ph-check-circle text-brand-accent text-lg" aria-hidden="true"></i>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-12 flex items-center gap-4">
+              <a href={formatInternalLink(t.ctaHref)} class="group inline-flex items-center gap-3 transition">
+                <Text variant="accent-label" tag="span" class="group-hover:text-brand-accent">
+                  {t.ctaLabel}
+                </Text>
+                <i class="ph ph-arrow-right text-brand-dark transition group-hover:translate-x-1 group-hover:text-brand-accent" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </Container>
+</Section>

@@ -1,0 +1,156 @@
+---
+// Why: the block is a visual copy of the contact section of the filip-halucha (heinrich) project:
+// spectrum bars in the background (ui-spectrum-bar class + ui-spectrum-pulse keyframes from
+// core.css) and split for information and form. The form is delegated to the ContactForm molecule,
+// which itself handles AJAX submit via form-handler.js (data-contact-form).
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import ContactForm from "@components/ui/molecules/ContactForm.astro";
+import contact from "@data/sections/contact-studio.json";
+
+// Why: social media labels are mapped from the platform key to the display name so that JSON does
+// not have to repeat the texts.
+const SOCIAL_LABELS: Record<string, string> = {
+  facebook: "Facebook",
+  instagram: "Instagram",
+  youtube: "YouTube",
+};
+
+// Why: The type of icon in infoItems determines the Phosphor icon, with a fallback on the map-pin.
+const ICON_BY_TYPE: Record<string, string> = {
+  address: "map-pin",
+  email: "envelope",
+  hours: "clock",
+};
+
+// Why: JSON does not know the literal type of the form field, and the ContactForm molecule
+// requires a narrow union. We map the fields and narrow the type openly.
+interface StudioContactField {
+  name: string;
+  label: string;
+  type: "text" | "email" | "tel" | "number" | "url" | "password" | "date" | "textarea" | "select" | "checkbox";
+  required?: boolean;
+  placeholder?: string;
+  autoComplete?: string;
+  rows?: number;
+  options?: { value: string; label: string }[];
+}
+
+interface Props {
+  sectionId?: string;
+  heading?: string;
+  /* * Section header tag: 'h2' by default, 'h1' when the block is the first section of the page without hero (SEO). */
+  headingTag?: string;
+}
+
+const { sectionId = "kontakt", heading = "", headingTag = "h2" } = Astro.props as Props;
+const t = contact;
+const formFields: StudioContactField[] = (t.formFields || []).map((field) => ({
+  ...field,
+  type: field.type as StudioContactField["type"],
+}));
+
+// Random heights of spectrum posts; on mobile every second post (lighter rhythm).
+const barHeights = Array.from({ length: 100 }, () => Math.floor(Math.random() * 80) + 10);
+const mobileBars = barHeights.filter((_, index) => index % 2 === 0);
+---
+
+<Section id={sectionId} class="relative bg-neutral-50 py-28 sm:py-40 overflow-hidden">
+  <!-- Spectrum bars: the gradient mask reveals the posts only in the middle zone,
+       with a soft transition at the top and bottom (same as in the heinrich source). -->
+  <div
+    class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none"
+    style="mask-image: linear-gradient(to bottom, transparent 15%, black 30%, black 70%, transparent 85%), linear-gradient(to right, black 5%, transparent 20%, transparent 80%, black 95%); mask-composite: intersect; -webkit-mask-image: linear-gradient(to bottom, transparent 15%, black 30%, black 70%, transparent 85%), linear-gradient(to right, black 5%, transparent 20%, transparent 80%, black 95%); -webkit-mask-composite: source-in;"
+    aria-hidden="true"
+  >
+    <div class="hidden w-full items-center justify-center gap-[2px] px-4 sm:flex" style="height: 40%;">
+      {barHeights.map((height, index) => (
+        <div
+          class="ui-spectrum-bar flex-1"
+          style={`height: ${height}%; animation: ui-spectrum-pulse ${1.0 + (index % 5) * 0.3}s ease-in-out infinite; animation-delay: ${index * 0.03}s;`}
+        ></div>
+      ))}
+    </div>
+    <div class="flex w-full items-center justify-center gap-[2px] px-4 sm:hidden" style="height: 40%;">
+      {mobileBars.map((height, index) => (
+        <div
+          class="ui-spectrum-bar flex-1"
+          style={`height: ${height}%; animation: ui-spectrum-pulse ${1.0 + (index % 5) * 0.3}s ease-in-out infinite; animation-delay: ${index * 0.06}s;`}
+        ></div>
+      ))}
+    </div>
+  </div>
+
+  <Container class="relative">
+    <div class="mx-auto max-w-lg text-center">
+      <Heading tag={headingTag} variant="section-title" class="mt-4">
+        {heading || t.heading}
+      </Heading>
+    </div>
+
+    <!-- Karta split: lewa kolumna to dane kontaktowe, prawa to formularz. -->
+    <div class="mt-16 grid gap-0 overflow-hidden rounded-sm border border-neutral-200 bg-white shadow-sm lg:grid-cols-12">
+      <div class="p-8 sm:p-10 lg:col-span-5 lg:border-r lg:border-neutral-200">
+        <div class="flex h-full flex-col justify-center">
+          <div class="space-y-6">
+            {(t.infoItems || []).map((item) => (
+              <div class="flex items-center gap-2 text-sm leading-none text-neutral-500">
+                <span class="flex items-center text-neutral-300">
+                  <Icon name={ICON_BY_TYPE[item.type] || "map-pin"} size={16} />
+                </span>
+                <span class="text-[10px] font-semibold uppercase tracking-wider text-neutral-400">{item.label}:</span>
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    target={item.href.startsWith("http") ? "_blank" : undefined}
+                    rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    class="ui-inline-link inline-flex items-center gap-1.5 whitespace-nowrap text-neutral-700 transition-colors hover:text-neutral-900"
+                  >
+                    {item.value}
+                  </a>
+                ) : (
+                  <span class="inline-flex items-center text-neutral-700">{item.value}</span>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <!-- Social media as buttons: dark background after hover. -->
+          <div class="mt-6 border-t border-neutral-100 pt-6">
+            <p class="mb-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-400">{t.socialsLabel}</p>
+            <div class="flex flex-wrap gap-2">
+              {(t.socials || []).map((social) => (
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 rounded-sm border border-neutral-200 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-neutral-500 transition-all duration-200 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white"
+                >
+                  <Icon name={`${social.platform}-logo`} size={13} class="opacity-60" />
+                  {SOCIAL_LABELS[social.platform] || social.platform}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form: ContactForm molecule renders fields with JSON, messages
+           and AJAX support (data-contact-form + data-form-msg-* for form-handler.js). -->
+      <div class="p-10 sm:p-12 lg:col-span-7">
+        <ContactForm
+          formId={t.formId}
+          fieldIdPrefix={t.fieldIdPrefix}
+          fields={formFields}
+          submitLabel={t.submitLabel}
+          successMessage={t.successMessage}
+          errorMessage={t.errorMessage}
+          showHeader={false}
+          includeRodoConsent={false}
+        />
+      </div>
+    </div>
+  </Container>
+</Section>

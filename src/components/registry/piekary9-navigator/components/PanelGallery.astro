@@ -1,0 +1,37 @@
+---
+import ui from '@data/sections/piekary9-navigator-ui.json';
+// PanelGallery.astro - Atom: gallery with prev/next nav and dot indicators
+// Images are injected at runtime by gallery.ts
+---
+
+<div
+  class="relative w-full h-full overflow-hidden"
+  id="panel-gallery"
+>
+  <button
+    class="gallery-nav absolute top-1/2 -translate-y-1/2 left-3 bg-slate-900/80 backdrop-blur-sm border border-white/10 w-11 h-11 rounded-full flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.3)] text-white text-2xl cursor-pointer transition-all duration-200 z-30 hover:bg-slate-900 hover:scale-110 disabled:hidden"
+    id="gallery-prev"
+    type="button"
+    aria-label="Poprzednie zdjęcie"
+  >
+    ‹
+  </button>
+
+  <div class="w-full h-full flex transition-transform duration-300 ease-in-out" id="gallery-track">
+    <!-- Images injected by gallery.ts -->
+  </div>
+
+  <button
+    class="gallery-nav absolute top-1/2 -translate-y-1/2 right-3 bg-slate-900/80 backdrop-blur-sm border border-white/10 w-11 h-11 rounded-full flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.3)] text-white text-2xl cursor-pointer transition-all duration-200 z-30 hover:bg-slate-900 hover:scale-110 disabled:hidden"
+    id="gallery-next"
+    type="button"
+    aria-label="Następne zdjęcie"
+  >
+    ›
+  </button>
+
+  <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-wrap justify-center gap-1.5 px-4 w-full" id="gallery-dots"></div>
+</div>
+
+
+

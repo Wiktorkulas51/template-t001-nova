@@ -1,0 +1,24 @@
+{
+  "pl": {
+    "eyebrow": "O mnie",
+    "heading": "Nauka i praktyka",
+    "paragraphOne": "Jako Inspektor Ochrony Danych i wykładowca akademicki, łączę teorię z praktyką. Wiem, jak ważne jest budowanie zaufania poprzez rzetelne procedury i edukację.",
+    "paragraphTwo": "Moje podejście opiera się na zrozumieniu procesów biznesowych, a nie tylko na jałowym cytowaniu paragrafów. Dbam o bezpieczeństwo Twoich danych przy zachowaniu płynności operacyjnej.",
+    "cta": { "label": "Poznaj moją historię", "href": "/o-mnie/", "hoverText": "Zobacz szczegóły" },
+    "stats": [
+      { "value": "10+", "label": "Lat doświadczenia", "tone": "light" },
+      { "value": "400+", "label": "Zweryfikowanych procesów", "tone": "dark" }
+    ]
+  },
+  "en": {
+    "eyebrow": "About me",
+    "heading": "Theory and practice",
+    "paragraphOne": "As a Data Protection Officer and academic lecturer, I connect theory with practice. Trust grows through reliable procedures and education.",
+    "paragraphTwo": "My approach starts with understanding business processes instead of quoting regulations in isolation. I protect data while keeping operations moving.",
+    "cta": { "label": "Read my story", "href": "/about/", "hoverText": "See details" },
+    "stats": [
+      { "value": "10+", "label": "Years of experience", "tone": "light" },
+      { "value": "400+", "label": "Verified processes", "tone": "dark" }
+    ]
+  }
+}

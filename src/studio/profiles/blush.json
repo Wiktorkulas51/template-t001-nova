@@ -1,0 +1,15 @@
+{
+  "template": "blush",
+  "updatedAt": "2026-05-07T16:14:00+02:00",
+  "studioTab": "hero",
+  "sections": {
+    "navbar": { "variant": "centered" },
+    "hero": { "variant": "blush-lead" },
+    "features": { "variant": "grid" },
+    "pricing": { "variant": "simple" },
+    "cta": { "variant": "centered" },
+    "section-pattern": { "variant": "off" },
+    "footer": { "variant": "columns" },
+    "theme": { "variant": "blush" }
+  }
+}

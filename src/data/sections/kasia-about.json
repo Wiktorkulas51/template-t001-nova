@@ -1,0 +1,11 @@
+{
+  "eyebrow": "Poznajmy się",
+  "title": "Moja droga do",
+  "titleAccent": "Twojej metamorfozy",
+  "paragraphs": [
+    "Uczę się razem z osobami, które chcą odzyskać energię i poczuć się pewniej we własnym ciele.",
+    "Wiem, jak wygląda powrót do ruchu od zera. Pokazuję prosty proces, który można dopasować do codziennego życia."
+  ],
+  "cta": { "label": "Moja historia", "href": "/o-nas/" },
+  "image": { "src": "/assets/kasia/about.webp", "alt": "Portret trenerki w naturalnym świetle" }
+}

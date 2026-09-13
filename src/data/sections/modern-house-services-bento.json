@@ -1,0 +1,15 @@
+{
+  "sectionId": "features",
+  "eyebrow": "Zakres możliwości",
+  "title": "Rozwiązania, które porządkują rozwój marki",
+  "subtitle": "Od pierwszej decyzji do dopracowanego wdrożenia, każdy element pracuje na jeden spójny kierunek.",
+  "moreLabel": "Zobacz pełny zakres",
+  "moreHref": "/uslugi/",
+  "items": [
+    { "icon": "sparkle", "title": "Kierunek marki", "description": "Porządkujemy najważniejsze decyzje i przekładamy je na czytelny system doświadczeń.", "image": "/assets/placeholders/image-landscape.svg", "alt": "Neutralny panoramiczny obraz demonstracyjny", "size": "large" },
+    { "icon": "layout", "title": "Spójny system", "description": "Łączymy strukturę, treść i interakcje w rozwiązanie, które łatwo rozwijać.", "image": "/assets/placeholders/image-landscape.svg", "alt": "Neutralny panoramiczny obraz demonstracyjny", "size": "large" },
+    { "icon": "gear", "title": "Dopracowany detal", "description": "Dbamy o rytm, hierarchię i jakość każdego punktu styku.", "size": "medium" },
+    { "icon": "chat-circle", "title": "Jasna współpraca", "description": "Kolejne kroki są konkretne, zrozumiałe i łatwe do zweryfikowania.", "size": "small" },
+    { "icon": "check-circle", "title": "Gotowość do wzrostu", "description": "Budujemy fundament, który można rozszerzać bez dokładania chaosu.", "size": "small" }
+  ]
+}

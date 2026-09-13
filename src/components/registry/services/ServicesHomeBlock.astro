@@ -1,0 +1,293 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import jsonData from "@data/sections/nova-services.json";
+
+type Service = { number: string; icon?: string; title: string; description: string };
+interface Props { title?: string; description?: string; linkLabel?: string; linkHref?: string; items?: Service[]; class?: string; }
+const props = Astro.props as Props;
+const title = props.title ?? jsonData.title;
+const description = props.description ?? jsonData.description;
+const linkLabel = props.linkLabel ?? jsonData.linkLabel;
+const linkHref = props.linkHref ?? jsonData.linkHref;
+const items = props.items ?? jsonData.items;
+---
+
+<Section id="uslugi" tone="page" class:list={["services-section", props.class]}>
+  <Container class="w-full max-w-none px-[clamp(1.5rem,5vw,5rem)]">
+    <div class="nova-services-intro">
+      <div>
+        <Heading tag="h2" variant="section-title">{title}</Heading>
+      </div>
+      <div>
+        <Text variant="lead">{description}</Text>
+      </div>
+      <div class="nova-services-link-wrap">
+        <a href={linkHref}>{linkLabel} <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <div class="nova-services-grid">
+      {items.map((item) => (
+        <article class="nova-service-card">
+          <div class="nova-service-icon" aria-hidden="true">
+            <Icon name={item.icon ?? "sparkle"} />
+          </div>
+          <div class="nova-service-content">
+            <div class="nova-service-title-line">
+              <Text tag="span" variant="accent-label" class="nova-service-number">{item.number}</Text>
+              <Heading tag="h3" variant="feature-title" class="nova-service-title">{item.title}</Heading>
+            </div>
+            <Text variant="body" class="nova-service-description">{item.description}</Text>
+          </div>
+          <span class="nova-service-arrow" aria-hidden="true">
+            <Icon name="arrow-up-right" />
+          </span>
+        </article>
+      ))}
+    </div>
+  </Container>
+</Section>
+
+<style>
+  :global(section.services-section) {
+    padding-block: clamp(4rem, 7vw, 6.5rem);
+  }
+
+  .nova-services-intro {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .nova-services-intro > div:last-child {
+    display: flex;
+    max-width: 32rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .nova-services-intro a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-brand-dark);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    transition: color 300ms ease, transform 300ms ease;
+  }
+
+  .nova-services-intro a:hover {
+    color: var(--color-brand-accent);
+    transform: translateX(0.25rem);
+  }
+
+  .nova-services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .nova-service-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.875rem;
+    min-height: 4.5rem;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--color-outline-variant);
+    border-radius: var(--ui-radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--ui-elevation-soft);
+    transition: border-color 300ms ease, box-shadow 300ms ease, transform 300ms ease;
+  }
+
+  .nova-service-card:hover {
+    border-color: var(--color-brand-accent);
+    box-shadow: var(--ui-elevation-strong);
+    transform: translateY(-0.25rem);
+  }
+
+  .nova-service-icon {
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    flex: none;
+    place-items: center;
+    border: 1px solid color-mix(in oklab, var(--color-brand-accent) 20%, transparent);
+    border-radius: var(--ui-radius-full);
+    background: var(--color-brand-cream);
+    color: var(--color-brand-accent);
+    font-size: 1.125rem;
+  }
+
+  .nova-service-content {
+    min-width: 0;
+  }
+
+  .nova-service-title-line {
+    display: flex;
+    min-width: 0;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .nova-service-number {
+    flex: none;
+    color: var(--ui-text-on-light-subtle);
+    font-size: clamp(0.95rem, 1.2vw, 1.125rem) !important;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+  }
+
+  .nova-service-title {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: clamp(0.95rem, 1.2vw, 1.125rem) !important;
+    line-height: 1.2;
+  }
+
+  .nova-service-description {
+    display: none;
+    margin-top: 0.625rem;
+    color: var(--ui-text-on-light-subtle);
+    font-size: clamp(0.8125rem, 0.35rem + 0.45vw, 0.9375rem);
+    line-height: 1.45;
+  }
+
+  .nova-service-arrow {
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    flex: none;
+    place-items: center;
+    border: 1px solid var(--color-outline-variant);
+    border-radius: var(--ui-radius-full);
+    color: var(--color-brand-dark);
+    font-size: 0.9375rem;
+    transition: border-color 300ms ease, background-color 300ms ease, color 300ms ease;
+  }
+
+  .nova-service-card:hover .nova-service-arrow {
+    border-color: var(--color-brand-accent);
+    background: var(--color-brand-accent);
+    color: var(--color-brand-light);
+  }
+
+  @media (min-width: 48rem) and (max-width: 63.99rem) {
+    .nova-services-intro {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 1.5rem;
+    }
+
+    .nova-services-intro > div:nth-child(2) {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      max-width: 42rem;
+    }
+
+    .nova-services-link-wrap {
+      align-self: end;
+      justify-self: end;
+    }
+
+    .nova-services-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .nova-service-card {
+      min-height: 14rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .nova-services-intro {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: end;
+      gap: clamp(1.5rem, 2vw, 2.5rem);
+    }
+
+    .nova-services-intro > div:nth-child(2) {
+      display: block;
+      align-self: end;
+      justify-self: center;
+      max-width: none;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .nova-services-link-wrap {
+      align-self: end;
+      justify-self: end;
+      padding-top: 0;
+    }
+
+    .nova-services-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(0.75rem, 1.5vw, 1.5rem);
+    }
+
+    .nova-service-card {
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 0.875rem;
+      min-height: clamp(12rem, 18vw, 16rem);
+      padding: clamp(1rem, 1.6vw, 1.5rem);
+    }
+
+    .nova-service-icon {
+      grid-column: 1 / -1;
+      width: 3rem;
+      height: 3rem;
+      font-size: 1.35rem;
+    }
+
+    .nova-service-content {
+      grid-column: 1 / -1;
+      align-self: start;
+    }
+
+    .nova-service-title-line {
+      display: flex;
+      align-items: baseline;
+      gap: 0.625rem;
+    }
+
+    .nova-service-number {
+      display: inline;
+    }
+
+    .nova-service-title {
+      display: block;
+      overflow: visible;
+      white-space: normal;
+    }
+
+    .nova-service-description {
+      display: block;
+    }
+
+    .nova-service-arrow {
+      grid-column: 2;
+      justify-self: end;
+      align-self: end;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nova-service-card,
+    .nova-services-intro a,
+    .nova-service-arrow {
+      transition: none;
+    }
+  }
+</style>

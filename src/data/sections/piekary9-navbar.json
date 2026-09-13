@@ -1,0 +1,29 @@
+{
+  "pl": {
+    "navId": "site-nav-v1",
+    "logoInitialSrc": "/assets/piekary9/logo-footer.png",
+    "logoScrolledSrc": "/assets/piekary9/logo-menu.png",
+    "logoAlt": "Logo inwestycji",
+    "navLabel": "Nawigacja główna",
+    "menuToggleLabel": "Otwórz menu",
+    "closeMenuLabel": "Zamknij menu",
+    "anchors": [
+      { "id": "lokalizacja", "label": "Lokalizacja", "priority": true },
+      { "id": "oferta", "label": "Oferta", "priority": true },
+      { "id": "galeria", "label": "Galeria", "priority": true },
+      { "id": "kontakt", "label": "Kontakt", "priority": true }
+    ],
+    "phone": {
+      "tel": "+48123456789",
+      "display": "+48 123 456 789"
+    },
+    "cta": {
+      "label": "Zobacz ofertę",
+      "href": "#oferta"
+    },
+    "secondaryCta": {
+      "label": "Skontaktuj się",
+      "href": "#kontakt"
+    }
+  }
+}

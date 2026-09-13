@@ -1,0 +1,21 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import defaultData from "@data/sections/mystek-training-targets.json";
+type Item = { title: string; description: string; icon?: string };
+type Copy = { eyebrow: string; title: string; description?: string; guaranteeLabel?: string; guaranteeTitle?: string; items?: Item[] };
+type Data = { pl: Copy; en?: Copy };
+export interface Props { data?: Data; locale?: "pl" | "en"; sectionId?: string; class?: string }
+const { data, locale = "pl", sectionId = "mystek-training-targets", class: className = "" } = Astro.props as Props;
+const t = ((data ?? (defaultData as Data))[locale] ?? (data ?? (defaultData as Data)).pl) as Copy;
+const iconName = (name?: string) => name?.replace(/^ph-/, "") || "users";
+---
+<Section id={sectionId} tone="page" class:list={["relative overflow-hidden", className]}>
+  <Container>
+    <div class="mb-12 flex flex-col justify-between gap-8 lg:mb-16 lg:flex-row lg:items-end"><div class="max-w-3xl"><Text variant="accent-label" class="text-brand-primary">{t.eyebrow}</Text><Heading tag="h2" variant="section-heading-xl" class="mt-4 text-brand-dark">{t.title}</Heading>{t.description && <Text variant="lead" class="mt-5 max-w-2xl text-brand-dark/65">{t.description}</Text>}</div><div class="max-w-xs lg:text-right"><Text variant="accent-label" class="text-brand-primary/70">{t.guaranteeLabel}</Text><Text variant="body" class="mt-2 font-semibold text-brand-dark">{t.guaranteeTitle}</Text></div></div>
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{(t.items ?? []).map((item, index) => (<article class:list={["rounded-2xl border border-brand-dark/10 bg-white p-6 shadow-soft", index === 0 ? "lg:col-span-2" : ""]}><div class="mb-7 flex items-center justify-between"><span class="flex size-10 items-center justify-center rounded-xl bg-brand-primary/10 text-brand-primary"><Icon name={iconName(item.icon)} class="text-xl" /></span><Text variant="accent-label" class="text-brand-primary/60">0{index + 1}</Text></div><Heading tag="h3" variant="feature-title" class="text-brand-dark">{item.title}</Heading><Text variant="body" class="mt-3 text-brand-dark/65">{item.description}</Text></article>))}</div>
+  </Container>
+</Section>

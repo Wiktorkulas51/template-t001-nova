@@ -1,0 +1,99 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import aboutContent from "@data/sections/piekary9-about.json";
+
+type AboutData = typeof aboutContent;
+
+export interface Props {
+	data?: AboutData;
+	id?: string;
+	class?: string;
+}
+
+const { data, id = "o-projekcie", class: className = "" } = Astro.props as Props;
+const content = data ?? aboutContent;
+---
+
+<Section id={id} tone="page" class:list={["relative scroll-mt-28 bg-brand-cream", className]}>
+	<Container>
+		<div class="grid min-w-0 overflow-hidden rounded-[2.5rem] bg-white shadow-2xl shadow-brand-dark/5 lg:grid-cols-2">
+			<div class="relative min-h-[500px] min-w-0 bg-brand-dark lg:min-h-[700px]">
+				<img
+					src={content.image.url}
+					alt={content.image.alt}
+					width="800"
+					height="1000"
+					loading="lazy"
+					class="absolute inset-0 h-full w-full object-cover object-[45%] opacity-65 grayscale transition-[filter] duration-1000 hover:grayscale-0"
+				/>
+				<div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/40 to-transparent"></div>
+
+				<div class="relative flex min-w-0 h-full flex-col justify-center p-12 lg:p-20">
+					<div data-motion="fade" class="space-y-12">
+						{content.stats.map((stat) => (
+							<div class="group min-w-0">
+								<Heading
+									variant="section-subtitle"
+									tag="p"
+									class="!text-5xl text-brand-accent transition-transform group-hover:scale-105 lg:!text-6xl"
+								>
+									{stat.value}
+								</Heading>
+								<Text variant="accent-label" class="mt-2 text-white">{stat.label}</Text>
+								<Text variant="body" class="mt-1 text-xs text-white/40">{stat.description}</Text>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+
+			<div class="flex min-w-0 flex-col justify-center bg-white p-12 lg:p-20">
+				<div class="min-w-0 max-w-xl">
+					<div data-motion="fade" class="mb-10 flex min-w-0 items-center gap-4">
+						<span class="h-px w-12 shrink-0 bg-brand-accent" aria-hidden="true"></span>
+						<Text variant="accent-label" tag="span">{content.sectionLabel}</Text>
+					</div>
+
+					<Heading variant="section-subtitle" class="text-balance" motion="fade">
+						{content.title}
+					</Heading>
+
+					<Text variant="lead" class="mt-8" motion="fade">
+						{content.lead}
+					</Text>
+
+					<div data-motion="fade" class="mt-12 min-w-0 space-y-8">
+						{content.points.map((point) => (
+							<article class="group flex min-w-0 gap-6">
+								<div class="shrink-0 pt-1">
+									<div class="h-2 w-2 rounded-full bg-brand-accent transition-transform group-hover:scale-[2]" aria-hidden="true"></div>
+								</div>
+								<div class="min-w-0">
+									<Heading variant="feature-title" tag="h3">{point.title}</Heading>
+									<Text variant="body" class="mt-2 text-sm text-brand-dark/50">{point.description}</Text>
+								</div>
+							</article>
+						))}
+					</div>
+
+					<div data-motion="fade" class="mt-16 border-t border-brand-dark/5 pt-10">
+						<a
+							href={content.cta.href}
+							class="group inline-flex h-11 min-w-0 items-center gap-4 transition-colors hover:text-brand-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent"
+							aria-label={content.cta.label}
+						>
+							<Text variant="accent-label" tag="span" class="group-hover:text-brand-accent">{content.cta.label}</Text>
+							<span class="flex h-10 w-10 min-w-0 shrink-0 items-center justify-center rounded-full border border-brand-dark/10 transition-colors group-hover:border-brand-accent group-hover:bg-brand-accent group-hover:text-white group-hover:translate-x-1">
+								<Icon name="arrow-right" class="text-lg" />
+							</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</Container>
+</Section>

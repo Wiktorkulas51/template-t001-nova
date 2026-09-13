@@ -1,0 +1,68 @@
+{
+  "title": "Dane kontaktowe",
+  "homeHref": "#start",
+  "logo": {
+    "url": "/assets/piekary9/logo-footer.png",
+    "alt": "Logo inwestycji Piekary"
+  },
+  "tagline": "Przemyślane przestrzenie do życia, blisko miejskiego rytmu.",
+  "office": {
+    "label": "Biuro sprzedaży",
+    "addressLine": "ul. Słoneczna 12/U1",
+    "city": "00-001 Warszawa",
+    "hours": "Pn-Pt 9:00-17:00"
+  },
+  "company": {
+    "label": "Spółka",
+    "name": "Pracownia Mieszkań sp. z o.o.",
+    "nip": "NIP: 0000000000"
+  },
+  "contactLabel": "Kontakt",
+  "contacts": [
+    {
+      "label": "Telefon",
+      "value": "500 600 700",
+      "href": "tel:+48500600700",
+      "icon": "phone"
+    },
+    {
+      "label": "Email",
+      "value": "kontakt@przyklad.pl",
+      "href": "mailto:kontakt@przyklad.pl",
+      "icon": "email"
+    }
+  ],
+  "socials": [
+    {
+      "label": "Facebook",
+      "value": "przyklad.inwestycja",
+      "href": "https://facebook.com/",
+      "icon": "facebook"
+    }
+  ],
+  "copyrightPrefix": "©",
+  "copyrightSuffix": "Wszelkie prawa zastrzeżone.",
+  "adminLink": {
+    "label": "CMS",
+    "title": "Panel administracyjny",
+    "href": "/zarzadzanie/index.html"
+  },
+  "legal": [
+    {
+      "label": "Polityka prywatności",
+      "href": "/polityka-prywatnosci/"
+    },
+    {
+      "label": "RODO",
+      "href": "/polityka-prywatnosci/#rodo"
+    },
+    {
+      "label": "Cookies",
+      "href": "/cookies/"
+    }
+  ],
+  "attribution": {
+    "label": "Realizacja webscale.pl",
+    "href": "https://webscale.pl"
+  }
+}

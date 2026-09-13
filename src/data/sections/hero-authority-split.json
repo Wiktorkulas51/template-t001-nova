@@ -1,0 +1,41 @@
+{
+  "image": { "src": "/assets/placeholders/image-portrait.svg", "alt": "Portret eksperta" },
+  "pl": {
+    "authorLabel": "Dr Krzysztof Mystek, ekspert RODO i audytor",
+    "authorSupport": "EDPB Support Pool of Experts",
+    "titleLight": "Outsourcing",
+    "titleBold": "Inspektora Ochrony Danych (IOD)",
+    "description": "Pełna odpowiedzialność prawna i operacyjna za RODO w Twojej organizacji. Zredukuj ryzyko kar i zoptymalizuj koszty ochrony danych.",
+    "benefits": [
+      { "title": "Pewność i bezpieczeństwo", "description": "Zapewnienie zgodności z przepisami i minimalizacja ryzyka kar." },
+      { "title": "Optymalizacja kosztów", "description": "Tańsze rozwiązanie niż zatrudnienie specjalisty na etat." },
+      { "title": "Ciągłość opieki", "description": "Stała gotowość na kontrole z UODO i bieżące audyty procesów." }
+    ],
+    "stats": [
+      { "value": "10+", "label": "Lat doświadczenia" },
+      { "value": "400+", "label": "Zweryfikowanych procesów" },
+      { "value": "ISO", "label": "Audytor 27001 / 22301" }
+    ],
+    "formHeading": "Zapytaj o wycenę<br />outsourcingu",
+    "formSubheading": "Indywidualna propozycja przejęcia obowiązków IOD przygotowana przez eksperta."
+  },
+  "en": {
+    "authorLabel": "Dr Krzysztof Mystek, GDPR expert and auditor",
+    "authorSupport": "EDPB Support Pool of Experts",
+    "titleLight": "Outsourcing",
+    "titleBold": "Data Protection Officer services",
+    "description": "Full legal and operational responsibility for GDPR in your organization. Reduce penalty risk and optimize data protection costs.",
+    "benefits": [
+      { "title": "Confidence and security", "description": "Compliance support that reduces regulatory risk." },
+      { "title": "Cost optimization", "description": "A practical alternative to hiring an internal specialist." },
+      { "title": "Continuous care", "description": "Ongoing readiness for reviews and internal process audits." }
+    ],
+    "stats": [
+      { "value": "10+", "label": "Years of experience" },
+      { "value": "400+", "label": "Verified processes" },
+      { "value": "ISO", "label": "27001 / 22301 auditor" }
+    ],
+    "formHeading": "Ask for an outsourcing<br />proposal",
+    "formSubheading": "An individual proposal for taking over DPO responsibilities, prepared by an expert."
+  }
+}

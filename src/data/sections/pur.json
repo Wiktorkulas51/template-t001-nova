@@ -1,0 +1,14 @@
+{
+  "tagline": "Ocieplenia pianą PUR",
+  "title": "Szczelne ocieplenie domu na lata",
+  "description": "Ocieplenie pianą PUR to skuteczny sposób na ograniczenie strat ciepła w nowych i istniejących budynkach. Poprawia komfort użytkowania i obniża rachunki za ogrzewanie.",
+  "stats": [
+    { "label": "Dla kogo", "value": "Domy nowe i modernizowane" },
+    { "label": "Gdzie", "value": "Dachy i poddasza" }
+  ],
+  "ctaLabel": "Zapytaj o wycenę",
+  "ctaHref": "/#kontakt",
+  "imgSrc": "/assets/placeholders/image-landscape.svg",
+  "imgAlt": "Ocieplanie konstrukcji dachu pianą PUR",
+  "imgBadge": "Ocieplenia pianą PUR"
+}

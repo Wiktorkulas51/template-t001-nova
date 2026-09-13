@@ -1,0 +1,16 @@
+{
+  "pl": {
+    "eyebrow": "PROCES WDROŻENIA",
+    "title": "Jak wygląda wdrożenie outsourcingu IOD? Bezbolesny proces krok po kroku",
+    "description": "Rozpoczęcie współpracy nie wymaga angażowania całego Twojego zespołu ani przestojów w firmie. Korzystam ze sprawdzonej metodologii, która pozwala przejąć obowiązki IOD w sposób niemal niezauważalny dla Twoich bieżących operacji biznesowych.",
+    "ctaLabel": "Ustal termin konsultacji",
+    "ctaHref": "#kontakt",
+    "stepLabel": "Krok",
+    "items": [
+      { "title": "Analiza potrzeb i dopasowanie zakresu współpracy", "description": "Współpracę zaczynam od bezpłatnej konsultacji i audytu potrzeb. Poznaję specyfikę Twojej branży, analizuję procesy biznesowe oraz skalę przetwarzania danych w firmie. Na tej podstawie przygotowuję optymalny, szyty na miarę model współpracy." },
+      { "title": "Kompleksowy audyt otwarcia (tzw. audyt zerowy)", "description": "Przeprowadzam kompleksowy audyt otwarcia, który pozwala zidentyfikować faktyczny stan zabezpieczeń w organizacji. Wynikiem mojej pracy jest precyzyjny raport wskazujący luki w dokumentacji i procedurach oraz gotowy plan naprawczy." },
+      { "title": "Oficjalna rejestracja funkcji IOD", "description": "Przejmuję na siebie kwestie formalne i dbam o prawidłową rejestrację funkcji IOD w Urzędzie Ochrony Danych Osobowych. Od tego momentu stoję na straży Twojego bezpieczeństwa i wspieram w komunikacji z urzędem." },
+      { "title": "Stała i bieżąca obsługa", "description": "Przechodzimy do modelu stałej, bieżącej obsługi. Monitoruję przestrzeganie RODO, opiniuję nowe projekty, szkolę zespół i jestem dostępny jako Twój wyspecjalizowany doradca. Ty zyskujesz pełen spokój i pewność, że dane są bezpieczne." }
+    ]
+  }
+}

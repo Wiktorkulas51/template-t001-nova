@@ -1,0 +1,307 @@
+---
+import Section from '@components/ui/layout/Section.astro';
+import Container from '@components/ui/layout/Container.astro';
+import Heading from '@components/ui/atoms/Heading.astro';
+import Text from '@components/ui/atoms/Text.astro';
+import data from '@data/sections/piekary9-gallery.json';
+
+type GalleryData = (typeof data)['pl'];
+
+export interface Props {
+  data?: GalleryData;
+  locale?: 'pl';
+  class?: string;
+}
+
+const {
+  data: overrideData,
+  locale = 'pl',
+  class: className = '',
+} = Astro.props as Props;
+
+const t = overrideData ?? data[locale] ?? data.pl;
+const mobilePreviewCount = 4;
+const galleryItems = t.items;
+const hasGalleryTail = galleryItems.length > 9;
+const hasMobileOnlyOverflow = galleryItems.length > mobilePreviewCount && galleryItems.length <= 9;
+const showGalleryToggle = galleryItems.length > mobilePreviewCount;
+const mobileBridgeItems = galleryItems.slice(mobilePreviewCount, Math.min(9, galleryItems.length));
+const completedMilestones = t.milestones.filter((milestone) => milestone.done).length;
+const progressWidth = t.milestones.length > 1
+  ? (Math.max(0, completedMilestones - 1) / (t.milestones.length - 1)) * 100
+  : 0;
+const lightboxItems = galleryItems.map(({ url, alt }) => ({ url, alt }));
+
+const categoryLabel = (category: string) => t.categoryLabels[category as keyof typeof t.categoryLabels] ?? category;
+---
+
+<Section
+  id={t.sectionId}
+  class:list={['bg-brand-cream scroll-mt-28', className]}
+  aria-labelledby="piekary9-gallery-heading"
+  data-piekary9-gallery
+>
+  <Container>
+    <div class="mb-20 flex flex-col items-center text-center">
+      <div class="mb-6 flex items-center gap-4">
+        <span class="h-px w-8 bg-brand-accent" aria-hidden="true"></span>
+        <Text variant="accent-label" tag="span">{t.eyebrow}</Text>
+        <span class="h-px w-8 bg-brand-accent" aria-hidden="true"></span>
+      </div>
+      <Heading id="piekary9-gallery-heading" variant="section-title">
+        {t.title}
+      </Heading>
+      <Text variant="lead" class="mt-6 max-w-xl">
+        {t.description}
+      </Text>
+    </div>
+
+    <div class="mb-24 px-4">
+      <div class="piekary9-gallery-timeline-container -mx-4 overflow-x-auto px-4 pb-8 lg:mx-0 lg:overflow-visible lg:px-0 lg:pb-0">
+        <div class="relative mx-auto min-w-[43.75rem] max-w-5xl lg:min-w-0">
+          <div class="absolute left-0 top-6 h-px w-full bg-brand-dark/10" aria-hidden="true">
+            <div class="h-full bg-brand-accent transition-all duration-1000" style={`width: ${progressWidth}%`}></div>
+          </div>
+
+          <ol class="relative flex justify-between gap-4" aria-label={t.timelineLabel}>
+            {t.milestones.map((milestone) => (
+              <li class="group flex flex-col items-center px-2">
+                <div class:list={[
+                  'relative z-10 flex h-12 w-12 items-center justify-center rounded-full border bg-brand-cream transition-all duration-500',
+                  milestone.done
+                    ? 'border-brand-accent text-brand-accent shadow-[var(--ui-elevation-soft)]'
+                    : 'border-brand-dark/10 text-brand-dark/20',
+                ]}>
+                  <i class:list={['ph text-xl', milestone.icon]} aria-hidden="true"></i>
+                  {milestone.done && (
+                    <span class="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-brand-accent text-[8px] text-brand-light">
+                      <i class="ph ph-check-bold" aria-hidden="true"></i>
+                    </span>
+                  )}
+                </div>
+                <div class="mt-6 text-center">
+                  <Text variant="accent-label" tag="span" class:list={['whitespace-nowrap transition-colors', milestone.done ? 'text-brand-dark' : 'text-brand-dark/30']}>
+                    {milestone.label}
+                  </Text>
+                  <Text variant="body" tag="span" class:list={['mt-1 block whitespace-nowrap text-[10px] transition-colors', milestone.done ? 'text-brand-accent' : 'text-brand-dark/20']}>
+                    {milestone.date}
+                  </Text>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">
+      {galleryItems.slice(0, 9).map((image, index) => (
+        <div class:list={[
+          'group relative overflow-hidden rounded-[2rem] bg-brand-dark/5 shadow-sm transition-all duration-500 hover:shadow-2xl',
+          index === 0 ? 'lg:col-span-2 lg:row-span-2 aspect-[4/5] lg:aspect-auto' : 'aspect-square',
+          index >= mobilePreviewCount && 'max-sm:hidden',
+        ]}>
+          {image.label && (
+            <div class="pointer-events-none absolute left-5 top-5 z-20">
+              <div class="rounded-full border border-brand-light/20 bg-brand-light/80 px-3 py-1.5 text-[9px] font-bold uppercase tracking-widest text-brand-dark shadow-sm backdrop-blur-md">
+                {image.label}
+              </div>
+            </div>
+          )}
+
+          <img src={image.url} alt={image.alt} width={index === 0 ? 800 : 400} height={index === 0 ? 1000 : 400} class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
+          <button type="button" class="js-piekary9-gallery-open absolute inset-0 flex min-h-11 min-w-11 cursor-pointer items-center justify-center bg-brand-dark/40 opacity-0 transition-opacity duration-500 group-hover:opacity-100" data-index={index} aria-label={image.alt}>
+            <span class="flex h-16 w-16 scale-50 items-center justify-center rounded-full border border-brand-light/20 bg-brand-light/10 text-brand-light backdrop-blur-md transition-all duration-500 group-hover:scale-100">
+              <i class="ph ph-magnifying-glass-plus text-2xl" aria-hidden="true"></i>
+            </span>
+            <span class="absolute bottom-0 left-0 w-full translate-y-4 p-8 text-center transition-transform duration-500 group-hover:translate-y-0">
+              <Text variant="accent-label" tag="span">{categoryLabel(image.category)}</Text>
+              <Text variant="body" class="mt-2 line-clamp-1 text-brand-light">{image.alt}</Text>
+            </span>
+          </button>
+        </div>
+      ))}
+    </div>
+
+    {showGalleryToggle && (
+      <div id="piekary9-gallery-extra" class="hidden mt-10 space-y-8" role="region" aria-label={t.lightboxLabel}>
+        {mobileBridgeItems.length > 0 && (
+          <div class="grid grid-cols-2 gap-4 sm:hidden">
+            {mobileBridgeItems.map((image, index) => {
+              const itemIndex = mobilePreviewCount + index;
+              return (
+                <div class="group relative aspect-square overflow-hidden rounded-[2rem] bg-brand-dark/5 shadow-sm transition-all duration-500 hover:shadow-2xl">
+                  {image.label && (
+                    <div class="pointer-events-none absolute left-4 top-4 z-20">
+                      <div class="rounded-full border border-brand-light/20 bg-brand-light/80 px-3 py-1.5 text-[8px] font-bold uppercase tracking-widest text-brand-dark shadow-sm backdrop-blur-md">{image.label}</div>
+                    </div>
+                  )}
+                  <img src={image.url} alt={image.alt} width="400" height="400" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110" loading="lazy" decoding="async" />
+                  <button type="button" class="js-piekary9-gallery-open absolute inset-0 flex min-h-11 min-w-11 cursor-pointer items-center justify-center bg-brand-dark/40 opacity-0 transition-opacity duration-500 group-hover:opacity-100" data-index={itemIndex} aria-label={image.alt}>
+                    <span class="flex h-16 w-16 scale-50 items-center justify-center rounded-full border border-brand-light/20 bg-brand-light/10 text-brand-light backdrop-blur-md transition-all duration-500 group-hover:scale-100"><i class="ph ph-magnifying-glass-plus text-2xl" aria-hidden="true"></i></span>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {hasGalleryTail && (
+          <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {galleryItems.slice(9).map((image, index) => {
+              const itemIndex = index + 9;
+              return (
+                <div class="group relative aspect-square overflow-hidden rounded-[2rem] bg-brand-dark/5 shadow-sm transition-all duration-500 hover:shadow-2xl">
+                  {image.label && (
+                    <div class="pointer-events-none absolute left-4 top-4 z-20">
+                      <div class="rounded-full border border-brand-light/20 bg-brand-light/80 px-3 py-1.5 text-[8px] font-bold uppercase tracking-widest text-brand-dark shadow-sm backdrop-blur-md">{image.label}</div>
+                    </div>
+                  )}
+                  <img src={image.url} alt={image.alt} width="400" height="400" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110" loading="lazy" decoding="async" />
+                  <button type="button" class="js-piekary9-gallery-open absolute inset-0 flex min-h-11 min-w-11 cursor-pointer items-center justify-center bg-brand-dark/40 opacity-0 transition-opacity duration-500 group-hover:opacity-100" data-index={itemIndex} aria-label={image.alt}>
+                    <span class="flex h-16 w-16 scale-50 items-center justify-center rounded-full border border-brand-light/20 bg-brand-light/10 text-brand-light backdrop-blur-md transition-all duration-500 group-hover:scale-100"><i class="ph ph-magnifying-glass-plus text-2xl" aria-hidden="true"></i></span>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    )}
+
+    {showGalleryToggle && (
+      <div class:list={['mt-16 flex justify-center', hasMobileOnlyOverflow && 'sm:hidden']}>
+        <button type="button" id="piekary9-gallery-extra-toggle" class="group flex items-center gap-4 transition" aria-expanded="false" aria-controls="piekary9-gallery-extra">
+          <Text variant="accent-label" tag="span" id="piekary9-gallery-toggle-label" class="transition-colors group-hover:text-brand-accent">{t.toggleOpenLabel}</Text>
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand-dark/10 transition-all group-hover:translate-x-1 group-hover:border-brand-accent group-hover:bg-brand-accent group-hover:text-brand-light group-hover:shadow-lg">
+            <i id="piekary9-gallery-toggle-arrow" class="ph ph-arrow-right transition-transform duration-300" aria-hidden="true"></i>
+          </span>
+        </button>
+      </div>
+    )}
+  </Container>
+</Section>
+
+<div id="piekary9-gallery-lightbox" class="fixed inset-0 z-[1000] hidden items-center justify-center bg-brand-dark/95 p-4 opacity-0 backdrop-blur-xl transition-opacity duration-300 lg:p-12" role="dialog" aria-modal="true" aria-label={t.lightboxLabel} aria-hidden="true">
+  <button type="button" id="piekary9-gallery-close" class="absolute right-8 top-8 text-brand-light/50 transition-colors hover:text-brand-light" aria-label={t.closeLabel}><i class="ph ph-x text-3xl" aria-hidden="true"></i></button>
+  <button type="button" id="piekary9-gallery-prev" class="absolute left-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-brand-light/10 bg-brand-light/5 text-brand-light transition-all hover:border-brand-accent hover:bg-brand-accent lg:left-8" aria-label={t.previousLabel}><i class="ph ph-caret-left text-xl" aria-hidden="true"></i></button>
+  <button type="button" id="piekary9-gallery-next" class="absolute right-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-brand-light/10 bg-brand-light/5 text-brand-light transition-all hover:border-brand-accent hover:bg-brand-accent lg:right-8" aria-label={t.nextLabel}><i class="ph ph-caret-right text-xl" aria-hidden="true"></i></button>
+  <div class="flex max-h-[80vh] w-full max-w-5xl flex-col items-center">
+    <img id="piekary9-gallery-lightbox-image" src="" alt="" width="1600" height="1000" class="max-h-full max-w-full rounded-2xl object-contain shadow-2xl" />
+    <Text id="piekary9-gallery-lightbox-caption" variant="body" tag="p" class="mt-6 text-center text-sm font-medium tracking-wide text-brand-light/70"></Text>
+  </div>
+</div>
+
+<style is:global>
+  .piekary9-gallery-timeline-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .piekary9-gallery-timeline-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<script define:vars={{ lightboxItems, openLabel: t.toggleOpenLabel, closeLabel: t.toggleCloseLabel }}>
+  const globalScope = globalThis;
+
+  const initPiekary9Gallery = () => {
+    const root = document.querySelector('[data-piekary9-gallery]');
+    const lightbox = document.getElementById('piekary9-gallery-lightbox');
+    const lightboxImage = document.getElementById('piekary9-gallery-lightbox-image');
+    const caption = document.getElementById('piekary9-gallery-lightbox-caption');
+    const closeButton = document.getElementById('piekary9-gallery-close');
+    const previousButton = document.getElementById('piekary9-gallery-prev');
+    const nextButton = document.getElementById('piekary9-gallery-next');
+    const toggleButton = document.getElementById('piekary9-gallery-extra-toggle');
+    const extraRegion = document.getElementById('piekary9-gallery-extra');
+    const toggleLabel = document.getElementById('piekary9-gallery-toggle-label');
+    const toggleArrow = document.getElementById('piekary9-gallery-toggle-arrow');
+
+    if (!root || !lightbox || !lightboxImage || !caption || !closeButton || root.dataset.piekary9GalleryBound === 'true') return;
+
+    const items = lightboxItems;
+    let currentIndex = 0;
+    let lastFocused = null;
+
+    const updateLightbox = () => {
+      const item = items[currentIndex];
+      if (!item) return;
+      lightboxImage.style.opacity = '0';
+      window.setTimeout(() => {
+        lightboxImage.src = item.url;
+        lightboxImage.alt = item.alt;
+        caption.textContent = item.alt;
+        lightboxImage.style.opacity = '1';
+      }, 200);
+    };
+
+    const openLightbox = (index, opener) => {
+      if (!items[index]) return;
+      currentIndex = index;
+      lastFocused = opener;
+      updateLightbox();
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      lightbox.setAttribute('aria-hidden', 'false');
+      requestAnimationFrame(() => lightbox.classList.add('opacity-100'));
+      document.body.style.overflow = 'hidden';
+      closeButton.focus();
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('opacity-100');
+      window.setTimeout(() => {
+        lightbox.classList.remove('flex');
+        lightbox.classList.add('hidden');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        lastFocused?.focus();
+        lastFocused = null;
+      }, 300);
+    };
+
+    const navigate = (direction) => {
+      currentIndex = (currentIndex + direction + items.length) % items.length;
+      updateLightbox();
+    };
+
+    root.addEventListener('click', (event) => {
+      const target = event.target;
+      const opener = target.closest('.js-piekary9-gallery-open');
+      if (opener instanceof HTMLElement) openLightbox(Number(opener.dataset.index), opener);
+    });
+    closeButton.addEventListener('click', closeLightbox);
+    previousButton?.addEventListener('click', () => navigate(-1));
+    nextButton?.addEventListener('click', () => navigate(1));
+
+    if (toggleButton && extraRegion && toggleLabel) {
+      toggleButton.addEventListener('click', () => {
+        const willShow = extraRegion.classList.contains('hidden');
+        extraRegion.classList.toggle('hidden', !willShow);
+        toggleButton.setAttribute('aria-expanded', willShow ? 'true' : 'false');
+        toggleLabel.textContent = willShow ? closeLabel : openLabel;
+        toggleArrow?.classList.toggle('rotate-180', willShow);
+        if (willShow) extraRegion.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    }
+
+    window.addEventListener('keydown', (event) => {
+      if (lightbox.classList.contains('hidden')) return;
+      if (event.key === 'Escape') closeLightbox();
+      if (event.key === 'ArrowLeft') navigate(-1);
+      if (event.key === 'ArrowRight') navigate(1);
+    });
+
+    root.dataset.piekary9GalleryBound = 'true';
+  };
+
+  if (!globalScope.__piekary9GalleryLifecycleBound) {
+    globalScope.__piekary9GalleryLifecycleBound = true;
+    document.addEventListener('astro:page-load', initPiekary9Gallery);
+    document.addEventListener('astro:after-swap', initPiekary9Gallery);
+  }
+
+  initPiekary9Gallery();
+</script>

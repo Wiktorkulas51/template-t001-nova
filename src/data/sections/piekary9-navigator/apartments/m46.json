@@ -1,0 +1,41 @@
+{
+  "rooms_list": [
+    {
+      "name": "KORYTARZ",
+      "area": 3.13
+    },
+    {
+      "name": "ŁAZIENKA",
+      "area": 4.93
+    },
+    {
+      "name": "SYPIALNIA",
+      "area": 13.45
+    }
+  ],
+  "section": "oficyna_prawa",
+  "price": 409000,
+  "floor": 1,
+  "poly": [
+    6.2,
+    48.32,
+    10.04,
+    50.48,
+    10.12,
+    64.24,
+    6.32,
+    73.2
+  ],
+  "area": 45.51,
+  "pdf": "/client-assets/folde3/Rzuty/lokal_46.pdf",
+  "status": "sold",
+  "finish": "Do remontu",
+  "label": "46",
+  "x": 8.75,
+  "images": [],
+  "rooms": 2,
+  "y": 57.64,
+  "id": "46",
+  "price_per_m2": 8987,
+  "comment": "2 pokoje - widok na dziedziniec"
+}

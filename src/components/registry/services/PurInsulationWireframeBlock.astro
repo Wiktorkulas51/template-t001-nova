@@ -1,0 +1,86 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Button from "@components/ui/atoms/Button.astro";
+
+// Dane sekcji przekazywane z PageBuilder (src/data/sections/pur.json)
+interface StatItem {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  tagline?: string;
+  title?: string;
+  description?: string;
+  stats?: StatItem[];
+  ctaLabel?: string;
+  ctaHref?: string;
+  imgSrc?: string;
+  imgAlt?: string;
+  imgBadge?: string;
+}
+
+const {
+  tagline = "Ocieplenia pianą PUR",
+  title = "Szczelne ocieplenie domu na lata",
+  description = "Wykonujemy ocieplenia pianą PUR w nowych i istniejących budynkach. Pomagamy ograniczyć straty ciepła i poprawić komfort użytkowania domu.",
+  stats = [
+    { label: "Dla kogo", value: "Domy nowe i modernizowane" },
+    { label: "Zakres", value: "Dachy i poddasza" },
+  ],
+  ctaLabel = "Zapytaj o wycenę",
+  ctaHref = "/#kontakt",
+  imgSrc = "/assets/placeholders/image-landscape.svg",
+  imgAlt = "Ocieplanie konstrukcji dachu pianą PUR",
+  imgBadge = "Ocieplenia pianą PUR",
+} = Astro.props;
+---
+
+<Section tone="page" id="pur-insulation">	<Container>
+		<div class="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+			<div class="order-2 space-y-7 text-center lg:order-1 lg:text-left">
+				<div class="space-y-4">
+					<Text variant="accent-label" class="text-brand-accent">{tagline}</Text>
+					<Heading level={2} variant="section-heading-lg" class="mx-auto max-w-xl text-brand-dark lg:mx-0">
+						{title}
+					</Heading>
+					<Text variant="lead" class="mx-auto max-w-2xl text-brand-dark/70 lg:mx-0">
+						{description}
+					</Text>
+				</div>
+
+				<div class="grid gap-4 border-y border-brand-dark/10 py-5 sm:grid-cols-2">
+					{stats.map((s) => (
+						<div class="space-y-1">
+							<Text variant="accent-label" class="text-brand-accent">{s.label}</Text>
+							<Text variant="body" class="text-brand-dark">{s.value}</Text>
+						</div>
+					))}
+				</div>
+
+				<div class="flex justify-center lg:justify-start">
+					<Button href={ctaHref} variant="primary" size="lg">{ctaLabel}</Button>
+				</div>
+			</div>
+
+			<div class="order-1 lg:order-2">
+				<div class="relative aspect-[4/3] overflow-hidden ui-radius-xl ui-elevation-soft bg-brand-cream">
+					<img
+						src={imgSrc}
+						alt={imgAlt}
+						width="1448"
+						height="1086"
+						class="size-full object-cover"
+						loading="lazy"
+					/>
+					<div class="absolute inset-x-0 bottom-0 bg-brand-dark/70 p-5 sm:p-7">
+						<Text variant="accent-label" class="text-brand-light">{imgBadge}</Text>
+					</div>
+				</div>
+			</div>
+		</div>
+	</Container>
+</Section>

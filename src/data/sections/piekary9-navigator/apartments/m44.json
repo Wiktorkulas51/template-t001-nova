@@ -1,0 +1,45 @@
+{
+  "id": "44",
+  "label": "44",
+  "status": "sold",
+  "rooms": 2,
+  "area": 49.6,
+  "floor": 4,
+  "price": 399000,
+  "price_per_m2": 8044,
+  "comment": "2 pokoje - widok na dziedziniec",
+  "pdf": "/client-assets/folde3/Rzuty/lokal_44.pdf",
+  "x": 77.64,
+  "y": 4.19,
+  "finish": "Do remontu",
+  "images": [],
+  "section": "oficyna_lewa",
+  "poly": [
+    72.64,
+    -0.8099999999999996,
+    82.64,
+    -0.8099999999999996,
+    83.33,
+    0.55,
+    71.05,
+    9.51
+  ],
+  "rooms_list": [
+    {
+      "name": "SALON Z ANEKSEM",
+      "area": 25.06
+    },
+    {
+      "name": "ŁAZIENKA",
+      "area": 3.02
+    },
+    {
+      "name": "POKÓJ",
+      "area": 5.59
+    },
+    {
+      "name": "SYPIALNIA",
+      "area": 15.93
+    }
+  ]
+}

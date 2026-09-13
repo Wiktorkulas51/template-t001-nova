@@ -1,0 +1,144 @@
+{
+  "pl": {
+    "eyebrow": "Oferta",
+    "heading": "Wybierz formę pobytu",
+    "description": "Komfortowe pokoje i domki letniskowe w otoczeniu natury. Idealne miejsce na weekendowy odpoczynek i rodzinne wakacje.",
+    "roomsHeading": "Pokoje",
+    "cottagesHeading": "Domki",
+    "rooms": [
+      {
+        "title": "Pokój z widokiem",
+        "description": "Przestronny pokój z dużym oknem, z którego roztacza się widok na las i okoliczne wzgórza.",
+        "image": {
+          "src": "/assets/placeholders/image-landscape.svg",
+          "alt": "Pokój z widokiem z dużym oknem i wygodnym łóżkiem"
+        },
+        "href": "/uslugi/",
+        "ctaLabel": "Zobacz szczegóły"
+      },
+      {
+        "title": "Pokój rodzinny",
+        "description": "Pokój dla całej rodziny z oddzielnym aneksem sypialnym i łazienką.",
+        "image": {
+          "src": "/assets/placeholders/image-square.svg",
+          "alt": "Pokój rodzinny z aneksem sypialnym"
+        },
+        "href": "/uslugi/",
+        "ctaLabel": "Zobacz szczegóły"
+      },
+      {
+        "title": "Pokój dwuosobowy",
+        "description": "Kameralny pokój dla dwojga z wygodnym łóżkiem i przytulnym wnętrzem.",
+        "image": {
+          "src": "/assets/placeholders/image-landscape.svg",
+          "alt": "Pokój dwuosobowy z wygodnym łóżkiem"
+        },
+        "href": "/uslugi/",
+        "ctaLabel": "Zobacz szczegóły"
+      }
+    ],
+    "cottages": [
+      {
+        "title": "Domek letniskowy",
+        "description": "Wolnostojący domek z tarasem, idealny na spokojny wypoczynek na łonie natury.",
+        "image": {
+          "src": "/assets/placeholders/image-landscape.svg",
+          "alt": "Domek letniskowy z drewnianym tarasem"
+        },
+        "href": "/uslugi/",
+        "ctaLabel": "Zobacz szczegóły"
+      },
+      {
+        "title": "Domek rodzinny",
+        "description": "Domek z dwiema sypialniami i aneksem kuchennym dla rodzin z dziećmi.",
+        "image": {
+          "src": "/assets/placeholders/image-square.svg",
+          "alt": "Domek rodzinny z aneksem kuchennym"
+        },
+        "href": "/uslugi/",
+        "ctaLabel": "Zobacz szczegóły"
+      },
+      {
+        "title": "Domek premium",
+        "description": "Ekskluzywny domek z sauną i panoramicznym tarasem dla wymagających gości.",
+        "image": {
+          "src": "/assets/placeholders/image-landscape.svg",
+          "alt": "Domek premium z panoramicznym tarasem"
+        },
+        "href": "/uslugi/",
+        "ctaLabel": "Zobacz szczegóły"
+      }
+    ]
+  },
+  "en": {
+    "eyebrow": "Our offer",
+    "heading": "Choose your stay",
+    "description": "Comfortable rooms and holiday cottages surrounded by nature. Perfect for a weekend getaway and family holidays.",
+    "roomsHeading": "Rooms",
+    "cottagesHeading": "Cottages",
+    "rooms": [
+      {
+        "title": "Room with a View",
+        "description": "A spacious room with a large window overlooking the forest and surrounding hills.",
+        "image": {
+          "src": "/assets/placeholders/image-landscape.svg",
+          "alt": "Room with a view with a large window and a comfortable bed"
+        },
+        "href": "/uslugi/",
+        "ctaLabel": "See details"
+      },
+      {
+        "title": "Family Room",
+        "description": "A room for the whole family with a separate sleeping area and a bathroom.",
+        "image": {
+          "src": "/assets/placeholders/image-square.svg",
+          "alt": "Family room with a separate sleeping area"
+        },
+        "href": "/uslugi/",
+        "ctaLabel": "See details"
+      },
+      {
+        "title": "Double Room",
+        "description": "An intimate room for two with a comfortable bed and a cosy interior.",
+        "image": {
+          "src": "/assets/placeholders/image-landscape.svg",
+          "alt": "Double room with a comfortable bed"
+        },
+        "href": "/uslugi/",
+        "ctaLabel": "See details"
+      }
+    ],
+    "cottages": [
+      {
+        "title": "Holiday Cottage",
+        "description": "A detached cottage with a terrace, ideal for a peaceful break in nature.",
+        "image": {
+          "src": "/assets/placeholders/image-landscape.svg",
+          "alt": "Holiday cottage with a wooden terrace"
+        },
+        "href": "/uslugi/",
+        "ctaLabel": "See details"
+      },
+      {
+        "title": "Family Cottage",
+        "description": "A cottage with two bedrooms and a kitchenette, perfect for families with children.",
+        "image": {
+          "src": "/assets/placeholders/image-square.svg",
+          "alt": "Family cottage with a kitchenette"
+        },
+        "href": "/uslugi/",
+        "ctaLabel": "See details"
+      },
+      {
+        "title": "Premium Cottage",
+        "description": "An exclusive cottage with a sauna and a panoramic terrace for discerning guests.",
+        "image": {
+          "src": "/assets/placeholders/image-landscape.svg",
+          "alt": "Premium cottage with a panoramic terrace"
+        },
+        "href": "/uslugi/",
+        "ctaLabel": "See details"
+      }
+    ]
+  }
+}

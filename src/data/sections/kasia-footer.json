@@ -1,0 +1,42 @@
+{
+  "pl": {
+    "logoSrc": "/assets/kasia/logo.webp",
+    "description": "Budujemy doświadczenia, które pomagają markom rosnąć spokojnie i świadomie.",
+    "locationsLabel": "Obszar działania",
+    "locations": ["Online", "Cała Polska"],
+    "exploreLabel": "Odkrywaj",
+    "links": [
+      { "label": "O nas", "href": "/o-nas/" },
+      { "label": "Oferta", "href": "/oferta/" },
+      { "label": "Kontakt", "href": "/kontakt/" }
+    ],
+    "socialLabel": "Obserwuj nas",
+    "socials": [
+      { "label": "Instagram", "icon": "instagram-logo", "href": "https://example.com/instagram" },
+      { "label": "Facebook", "icon": "facebook-logo", "href": "https://example.com/facebook" }
+    ],
+    "copyright": "Wszelkie prawa zastrzeżone.",
+    "privacyLabel": "Polityka prywatności",
+    "privacyHref": "/polityka-prywatnosci/"
+  },
+  "en": {
+    "logoSrc": "/assets/kasia/logo.webp",
+    "description": "We build experiences that help brands grow with clarity and confidence.",
+    "locationsLabel": "Service area",
+    "locations": ["Online", "Across Poland"],
+    "exploreLabel": "Explore",
+    "links": [
+      { "label": "About us", "href": "/about/" },
+      { "label": "Services", "href": "/services/" },
+      { "label": "Contact", "href": "/contact/" }
+    ],
+    "socialLabel": "Follow us",
+    "socials": [
+      { "label": "Instagram", "icon": "instagram-logo", "href": "https://example.com/instagram" },
+      { "label": "Facebook", "icon": "facebook-logo", "href": "https://example.com/facebook" }
+    ],
+    "copyright": "All rights reserved.",
+    "privacyLabel": "Privacy policy",
+    "privacyHref": "/privacy-policy/"
+  }
+}

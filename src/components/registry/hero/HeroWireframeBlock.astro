@@ -1,0 +1,162 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Button from "@components/ui/atoms/Button.astro";
+import Container from "@components/ui/layout/Container.astro";
+
+interface Props {
+  class?: string;
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
+  ctas?: { label: string; href: string; variant: string }[];
+  imgSrc?: string;
+  mobileImgSrc?: string;
+  imgAlt?: string;
+}
+
+const {
+  class: className = "",
+  eyebrow = "Twoja Firma",
+  title = "Budujemy Twoją wizję",
+  subtitle = "Opisz krótko, czym zajmuje się Twoja firma i jaką wartość dostarczasz klientom. Ten tekst możesz łatwo zmienić w propsach komponentu.",
+  ctas = [
+    { label: "Poznaj ofertę", href: "/#kontakt", variant: "primary" },
+    { label: "Zobacz realizacje", href: "/#portfolio", variant: "outline" },
+  ],
+  imgSrc = "/assets/placeholders/image-landscape.svg",
+  mobileImgSrc = "/assets/placeholders/image-landscape.svg",
+  imgAlt = "Ilustracja prezentująca ofertę Twojej firmy",
+} = Astro.props;
+---
+
+<Section class:list={["ui-bg-page px-3 pb-3 pt-3 sm:px-6 sm:pb-5 lg:px-8", className]}>
+	<div class="mx-auto w-full" style="max-width: min(90vw, 1800px);">
+	<div class="hero-card relative isolate flex flex-col overflow-hidden ui-radius-xl ui-elevation-strong bg-brand-dark lg:min-h-[min(100dvh-8rem,52rem)] lg:justify-center">
+    <!-- Background image: desktop only -->
+    <div class="absolute inset-0 hidden lg:block flex-1">
+      <div class="hero-card-mask absolute inset-0 z-10" />
+    {imgSrc && (
+      <img
+        src={imgSrc}
+        alt={imgAlt}
+			width="1672"
+			height="941"
+			class="hero-card-image absolute inset-0 h-full w-full object-cover object-[68%_50%] opacity-75"
+        loading="eager"
+      />
+    )}
+    </div>
+
+    <Container class="relative z-20 py-12 sm:py-16 md:py-28">
+      <div class="max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
+      <Text variant="accent-label" class="text-brand-accent/80 mb-4 md:mb-6 block">
+        {eyebrow}
+      </Text>
+
+      <Heading level={1} variant="hero" class="text-white mb-4 md:mb-8 leading-[1.15] md:leading-[1.05]" style="font-size:clamp(1.65rem,4.5vw,3rem)">
+        {title}
+      </Heading>
+
+      <Text variant="lead" class="text-white/70 mb-6 md:mb-10 max-w-xl mx-auto lg:mx-0 text-[clamp(0.9rem,2.5vw,1.125rem)] md:text-lg">
+        {subtitle}
+      </Text>
+
+      <!-- Mobile image: przed przyciskami -->
+      <div class="relative mb-7 lg:hidden">
+        <img
+          src={mobileImgSrc}
+          alt={imgAlt}
+          width="1051"
+          height="768"
+          class="w-full h-56 md:h-80 object-cover object-[68%_50%] rounded-xl"
+          loading="eager"
+        />
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-3 md:gap-4 justify-center lg:justify-start">
+        {ctas.map((cta) => (
+          cta.href?.startsWith('tel:') ? (
+            <>
+              <a
+                href={cta.href}
+                class="ui-button-primary relative inline-flex items-center justify-center gap-3 px-5 sm:px-8 h-11 sm:h-12 rounded-md bg-brand-primary text-on-primary font-medium text-sm sm:text-lg transition-all duration-300 hover:brightness-110 whitespace-nowrap w-full md:hidden shadow-xl shadow-brand-primary/20"
+              >
+                {cta.label}
+              </a>
+              <a
+                href="#dcontact"
+                class="ui-button-primary relative hidden md:inline-flex flex-1 items-center justify-center gap-3 px-5 sm:px-8 h-11 sm:h-12 rounded-md bg-brand-primary text-on-primary font-medium text-sm sm:text-lg transition-all duration-300 hover:brightness-110 whitespace-nowrap w-full md:w-auto shadow-xl shadow-brand-primary/20"
+              >
+                {cta.label}
+              </a>
+            </>
+          ) : cta.href && cta.href.startsWith('mailto:') ? (
+            <a
+              href={cta.href}
+              class="ui-button-primary relative inline-flex items-center justify-center gap-3 px-5 sm:px-8 h-11 sm:h-12 rounded-md bg-brand-primary text-on-primary font-medium text-sm sm:text-lg transition-all duration-300 hover:brightness-110 whitespace-nowrap w-full md:w-auto shadow-xl shadow-brand-primary/20"
+            >
+              {cta.label}
+            </a>
+          ) : cta.variant === "outline" ? (
+            <a
+              href={cta.href}
+              class="inline-flex items-center justify-center gap-3 px-5 sm:px-8 h-11 sm:h-12 rounded-md border-2 border-white/25 text-white font-medium text-sm sm:text-lg tracking-widest transition-all duration-300 hover:border-white/60 hover:bg-white/5 whitespace-nowrap w-full md:w-auto"
+            >
+              {cta.label}
+            </a>
+          ) : (
+            <Button href={cta.href} variant={cta.variant as any} size="lg" class="w-full md:w-auto">
+              {cta.label}
+            </Button>
+          )
+        ))}
+      </div>
+      </div>
+    </Container>
+  </div>
+	</div>
+</Section>
+
+<style>
+  .hero-card {
+    box-shadow:
+      0 24px 60px rgba(67, 37, 21, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  }
+
+  .hero-card::after {
+    content: '';
+    position: absolute;
+    inset: 0.55rem;
+    z-index: 20;
+    border: 1px solid rgba(240, 229, 216, 0.2);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  .hero-card-mask {
+    background:
+      linear-gradient(90deg, rgba(43, 26, 17, 0.96) 0%, rgba(43, 26, 17, 0.7) 18%, rgba(43, 26, 17, 0.15) 32%, transparent 42%),
+      linear-gradient(180deg, rgba(43, 26, 17, 0.22), transparent 38%, rgba(43, 26, 17, 0.32));
+  }
+
+  .hero-card-image {
+    transform: scale(1.1);
+    transform-origin: 72% 50%;
+  }
+
+  @media (max-width: 767px) {
+    .hero-card-mask {
+      background:
+        linear-gradient(180deg, rgba(43, 26, 17, 0.85), transparent 35%, rgba(43, 26, 17, 0.4) 75%, rgba(43, 26, 17, 0.9));
+    }
+
+    .hero-card-image {
+      transform: scale(1.06);
+      transform-origin: 68% 50%;
+    }
+
+  }
+</style>

@@ -1,0 +1,216 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Button from "@components/ui/atoms/Button.astro";
+import { formatInternalLink } from "@utils/url";
+import data from "@data/sections/hero-law.json";
+
+// Dlaczego: HeroLawBlock to kopia wizualna hero kancelarii prawnej z projektu
+// tymoteusz-juszczak: fullscreen background photo, overlay feathering gradient
+// frame in the background of the page, header with automatic line break before the element
+// "Polsko-" oraz dwa przyciski CTA (primary i outline z hoverText). Klienckie
+// color tokens have been replaced with global starter kit tokens
+// (brand-dark, brand-primary, ui-bg-page), a kliencki system reveal (auto-reveal
+// item) removed because starter-kit has its own data-motion="fade" mechanism which
+// it is applied from within the PageBuilder, not inside the block.
+type Cta = { label: string; href: string; hoverText?: string };
+
+export interface Props {
+  /** Section id, default "hero-law".*/
+  sectionId?: string;
+  /** Content language with JSON. PL is the default language for this copy of hero.*/
+  lang?: "pl" | "en";
+  title?: string;
+  /** Short accent label above the title.*/
+  titleAccent?: string;
+  description?: string;
+  primaryCTA?: Cta;
+  secondaryCTA?: Cta;
+  /** Full screen background. The media asset lives outside the en/pl structure in JSON.*/
+  background?: { src: string; alt: string };
+  /** Additional classes per section (e.g. with PageBuilder).*/
+  class?: string;
+}
+
+const {
+  sectionId = "hero-law",
+  lang = "pl",
+  title,
+  titleAccent,
+  description,
+  primaryCTA,
+  secondaryCTA,
+  background,
+  class: className = "",
+} = Astro.props as Props;
+
+const t = data[lang] ?? data.pl;
+
+// Why: "props || json" pattern (like ServicesStudioGridBlock) to block
+// ran on its own with section data and PageBuilder or CMS could overwrite
+// any text or CTA. Props take precedence over fallback from JSON.
+const resolvedTitle = title || t.title;
+const resolvedTitleAccent = titleAccent || t.titleAccent;
+const resolvedDescription = description || t.description;
+const primary = primaryCTA || t.primaryCTA;
+const secondary = secondaryCTA || t.secondaryCTA;
+const bg = background || data.background;
+
+// Why: in the PL title, the part "Polish-German" is broken before the word
+// "Polish-" (regex 1:1 from the original) so that the hero header has a visual break
+// at a stable point, not on a random word. EN title does not match the pattern,
+// so it renders as one line.
+const polishTitleBreak = resolvedTitle.match(/^(.*\.)\s*([Pp]olsko[‑-].*)$/);
+---
+
+<Section
+  id={sectionId}
+  tone="page"
+  class={`hero-law relative flex min-h-dvh items-center overflow-hidden py-0 ${className}`}
+>
+  <!-- Why: the photo and overlay live in absolute inset-0 under the content (z-0),
+       and the content container gets relative z-10. Overlay is a feathering gradient
+       crop in the background color of the page (ui-bg-page) from the bottom and left side, thanks
+       czemu tekst pozostaje czytelny na jasnym tle. -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src={bg.src}
+      alt={bg.alt}
+      class="h-full w-full object-cover"
+      width="1672"
+      height="941"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+    <div class="absolute inset-0 hero-overlay" aria-hidden="true"></div>
+  </div>
+
+  <Container class="relative z-10 w-full">
+    <!-- Why: hero-pad is a vertical padding in clamp() to push content away
+         from the edge of the screen depending on its height (mobile more,
+         desktop less). Content centered on mobile and left centered on md+, as
+         w oryginale kancelarii. -->
+    <div class="hero-pad" style="padding-top:clamp(8rem,18vw,11rem);padding-bottom:clamp(5rem,10vw,8rem)">
+      <div class="mx-auto max-w-3xl text-center md:mx-0 md:text-left">
+        <Text variant="accent-label" class="mb-5 text-brand-dark md:mb-6">
+          {resolvedTitleAccent}
+        </Text>
+
+        <Heading tag="h1" variant="hero" class="hero-title mb-6 text-brand-dark md:mb-8">
+          {polishTitleBreak ? (
+            <>
+              {polishTitleBreak[1]}
+              <br />
+              {polishTitleBreak[2]}
+            </>
+          ) : (
+            resolvedTitle
+          )}
+        </Heading>
+
+        <Text class="hero-description mx-auto mb-10 max-w-xl text-brand-dark/70 md:mx-0">
+          {resolvedDescription}
+        </Text>
+
+        <div class="hero-actions flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4 md:justify-start">
+          <Button
+            class="w-fit self-center sm:self-auto"
+            href={formatInternalLink(primary.href)}
+            variant="primary"
+            size="lg"
+            hoverText={primary.hoverText}
+          >
+            {primary.label}
+          </Button>
+          <Button
+            class="w-fit self-center sm:self-auto"
+            href={formatInternalLink(secondary.href)}
+            variant="outline"
+            size="lg"
+            hoverText={secondary.hoverText}
+          >
+            {secondary.label}
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  /* Why: The hero-title scale reflects the original typography (clamp
+     between mobile and desktop), and text-wrap: pretty with hyphens: none maintains
+     breaking lines in natural places, without hyphenating the word "Poland".*/
+  .hero-title {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+    text-wrap: pretty;
+    hyphens: none;
+  }
+
+  /* Why: the hero description has a readable size and spacing as in the original
+     (1.125 rem / 1.7). Set in class, not inline style, so that the block does not
+     generated long style= attributes in the output HTML.*/
+  .hero-description {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+
+  .hero-actions .ui-button {
+    min-height: 3rem;
+  }
+
+  /* Dlaczego: starter-kit Button pokazuje hoverText w span .ui-button-text-hover
+     (kliencka klasa .btn-slide__label nie istnieje tutaj), dlatego line-height 1
+     lands on this class so that the hover text is perfectly centered.*/
+  .hero-actions .ui-button-text-hover {
+    line-height: 1;
+  }
+
+  /* Why: an overlay blends the photo into the background of the page. Client color
+     --color-background-primary replaced with global token --ui-bg-page.*/
+  .hero-overlay {
+    background:
+      linear-gradient(to top, var(--ui-bg-page) 0%, transparent 60%),
+      linear-gradient(to right, var(--ui-bg-page) 0%, transparent 50%);
+  }
+
+  /* Dlaczego: outline button na jasnym hero potrzebuje delikatnej ramki
+     w kolorze tekstu (zamiast klienckiego --color-text-primary) i na hover
+     branded glow with elation, as in the original. Selectors
+     .ui-button-outline refer to the Button.astro classes from the starter-kit
+     (kliencka klasa .btn-slide nie istnieje). */
+  .hero-law .ui-button-outline {
+    border-color: color-mix(in oklch, var(--color-brand-dark) 20%, transparent);
+  }
+
+  .hero-law .ui-button-outline:hover {
+    border-color: var(--color-brand-primary);
+    background: color-mix(in oklch, var(--color-brand-primary) 18%, transparent);
+    color: var(--color-brand-primary);
+    box-shadow: 0 0 40px color-mix(in oklch, var(--color-brand-primary) 35%, transparent);
+    transform: translateY(-2px);
+  }
+
+  /* Why: on low screens (max-height 700px) hero must fit
+     in viewport without scroll, so we reduce padding and typography.
+     Client selector [data-hero-section] replaced with .hero-law class, because
+     Section in starter-kit does not pass additional attributes to the DOM.*/
+  @media (max-height: 700px) {
+    .hero-law .hero-pad {
+      padding-top: 5rem !important;
+    }
+    .hero-law .hero-title {
+      font-size: clamp(1.375rem, 3.5vw, 2rem) !important;
+    }
+    .hero-law .ui-type-accent-label {
+      font-size: clamp(0.6rem, 1.8vw, 0.7rem) !important;
+      margin-bottom: 0.5rem !important;
+    }
+  }
+</style>

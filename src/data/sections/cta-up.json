@@ -1,0 +1,20 @@
+{
+  "pl": {
+    "wordmark": "Uniwersytet Pomorski",
+    "headingHtml": "Twoja przyszłość zaczyna <span class=\"nowrap\">się teraz!</span>",
+    "text": "Nie czekaj, aplikuj już dziś i dołącz do społeczności.",
+    "ctas": [
+      { "label": "Aplikuj teraz", "hoverLabel": "Dołącz", "href": "/#aplikuj" },
+      { "label": "Sprawdź kierunki", "hoverLabel": "Zobacz", "href": "/#oferta" }
+    ]
+  },
+  "en": {
+    "wordmark": "Your University",
+    "headingHtml": "Your future starts <span class=\"nowrap\">now!</span>",
+    "text": "Don't wait, apply today and join our community.",
+    "ctas": [
+      { "label": "Apply now", "hoverLabel": "Join", "href": "/#apply" },
+      { "label": "Check fields", "hoverLabel": "Browse", "href": "/#offer" }
+    ]
+  }
+}

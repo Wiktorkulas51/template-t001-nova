@@ -1,0 +1,49 @@
+{
+  "rooms_list": [
+    {
+      "name": "SALON Z ANEKSEM",
+      "area": 30.56
+    },
+    {
+      "name": "ŁAZIENKA",
+      "area": 4.5
+    },
+    {
+      "name": "POKÓJ",
+      "area": 8.44
+    },
+    {
+      "name": "POKÓJ",
+      "area": 14.99
+    }
+  ],
+  "section": "front_courtyard",
+  "price": 579000,
+  "floor": 0,
+  "poly": [
+    37.27,
+    62.64,
+    42.8,
+    62.11,
+    47.24,
+    63.01,
+    47.27,
+    76.81,
+    42.76,
+    74.72,
+    37.25,
+    75.88
+  ],
+  "area": 58.49,
+  "pdf": "/uploads/lokal_1_page-0001.jpg",
+  "status": "available",
+  "finish": "Do remontu",
+  "label": "1",
+  "x": 42.87,
+  "images": [],
+  "rooms": 3,
+  "y": 66.65,
+  "id": "1",
+  "price_per_m2": 9899,
+  "comment": "3 pokoje - widok na dziedziniec"
+}

@@ -1,0 +1,13 @@
+{
+  "eyebrow": "Bez stresu",
+  "title": "Jak wygląda nasz",
+  "titleAccent": "pierwszy trening?",
+  "description": "Zobacz, czego się spodziewać krok po kroku, bez niespodzianek.",
+  "cardTitle": "Twój pierwszy krok",
+  "steps": [
+    { "number": "1", "title": "Konsultacja", "description": "Rozmawiamy o celu, obawach i codziennych możliwościach." },
+    { "number": "2", "title": "Poznanie ruchu", "description": "Sprawdzamy podstawowe wzorce ruchowe bez presji." },
+    { "number": "3", "title": "Trening próbny", "description": "Wykonujemy kilka ćwiczeń, żebyś poznała sposób pracy." },
+    { "number": "4", "title": "Plan działania", "description": "Ustalamy dalsze kroki dopasowane do Twojego celu." }
+  ]
+}

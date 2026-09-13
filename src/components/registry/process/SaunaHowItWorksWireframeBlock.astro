@@ -1,0 +1,71 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import SectionHeader from "@components/ui/molecules/SectionHeader.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+
+// Dane sekcji przekazywane z PageBuilder (src/data/sections/sauna-how-it-works.json)
+interface SaunaFeature {
+  icon: string;
+  label: string;
+  desc: string;
+  details: string[];
+}
+
+interface Props {
+  howItWorks?: { title: string; description: string };
+  features?: SaunaFeature[];
+}
+
+const {
+  howItWorks = {
+    title: "Jak to działa?",
+    description: "Wybierz termin, rodzaj i ustal szczegóły odbioru. Zajmujemy się logistyką, a Państwo korzystają z gotowej sauny lub balii.",
+  },
+  features = [],
+} = Astro.props;
+---
+
+<Section tone="page">
+  <Container>
+    <SectionHeader
+      title={howItWorks.title}
+      description={howItWorks.description}
+      align="center"
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+      {features.map((f, i) => (
+        <div
+          class="flex flex-col bg-white rounded-2xl border border-brand-dark/5 p-8 hover:border-brand-accent/30 transition-all duration-300"
+        >
+          <div class="w-14 h-14 rounded-xl bg-brand-primary/10 flex items-center justify-center shrink-0 mb-6">
+            <i class={`ph ph-${f.icon} text-2xl text-brand-primary`} aria-hidden="true"></i>
+          </div>
+
+          <div class="flex flex-col flex-1">
+            <Heading level={3} variant="feature-title" class="text-brand-dark mb-3">
+              {f.label}
+            </Heading>
+
+            <Text variant="body" class="text-brand-dark/60 text-sm leading-relaxed mb-6">
+              {f.desc}
+            </Text>
+
+            <div class="mt-auto space-y-2">
+              {f.details.map((d) => (
+                <div class="flex items-center gap-2 text-sm text-brand-dark/50">
+                  <svg class="w-4 h-4 text-brand-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                  {d}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</Section>

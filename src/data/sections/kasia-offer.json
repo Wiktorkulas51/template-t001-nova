@@ -1,0 +1,12 @@
+{
+  "eyebrow": "Proces współpracy",
+  "title": "Dobieramy etap współpracy",
+  "titleAccent": "indywidualnie do celu",
+  "description": "Nie musisz zaczynać od początku. Spotykamy się tam, gdzie jesteś teraz, i wspólnie wybieramy kolejny krok.",
+  "items": [
+    { "name": "START", "subtitle": "Wracam do ruchu", "description": "Dobry początek, gdy chcesz oswoić trening i odzyskać pewność siebie.", "features": ["Analiza potrzeb", "Nauka wzorców ruchowych", "Bezpieczne tempo"], "cta": "Wybieram", "href": "/kontakt/", "featured": false },
+    { "name": "FORMA", "subtitle": "Modeluję sylwetkę", "description": "Plan dla osób, które chcą pracować nad konkretnym celem i regularnością.", "features": ["Indywidualny plan", "Progresja ćwiczeń", "Monitorowanie postępów"], "cta": "Wybieram", "href": "/kontakt/", "featured": true },
+    { "name": "METAMORFOZA", "subtitle": "Zmieniam nawyki", "description": "Kompleksowe wsparcie dla osób, które chcą zmienić styl życia na stałe.", "features": ["Stała opieka", "Wsparcie w trudniejszych dniach", "Plan długoterminowy"], "cta": "Wybieram", "href": "/kontakt/", "featured": false }
+  ],
+  "note": "Szczegółowy zakres współpracy ustalamy po krótkiej rozmowie."
+}

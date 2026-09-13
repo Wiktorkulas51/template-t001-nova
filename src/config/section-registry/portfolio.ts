@@ -17,7 +17,7 @@ export const portfolioSections: Record<string, SectionEntry> = {
     defaultVariant: 'bento',
     variants: {
       bento: { component: 'PortfolioBentoBlock', dataKey: 'portfolio' },
-      novaWireframe: { label: 'Realizacje z kartami projektów', component: 'NovaProjectsWireframeBlock', dataKey: 'nova-projects' },
+      nova: { label: 'Realizacje z kartami projektów', component: 'ProjectsBlock', dataKey: 'nova-projects' },
       carousel: { component: 'PortfolioCarouselBlock', dataKey: 'portfolio' },
       categorized: { component: 'PortfolioCategorizedBlock', dataKey: 'portfolio' },
       marquee: { component: 'PortfolioMarqueeBlock', dataKey: 'portfolio' },

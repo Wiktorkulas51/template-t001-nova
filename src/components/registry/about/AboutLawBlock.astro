@@ -1,0 +1,111 @@
+---
+// Why: AboutLawBlock is a visual copy of the "About / biography" section from the
+// tymoteusz-juszczak project (AboutLawV2Block v2: bio on left, photo + creds on right).
+// Client color tokens were replaced with GLOBAL brand tokens of starter-kit,
+// and the addLinks function with links to client bar associations was DELIBERATELY
+// removed (client data must not leak into the library). Bio renders as
+// plain <Text> paragraphs.
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import data from "@data/sections/about-law.json";
+
+type CredItem = {
+  label: string;
+  value: string;
+};
+
+export interface Props {
+  /** Section anchor id (defaults to "o-nas"). */
+  sectionId?: string;
+  /** Content language from JSON. PL is the default, EN is the English equivalent. */
+  lang?: "pl" | "en";
+  title?: string;
+  /** Biography paragraphs. Props override JSON. */
+  bio?: string[];
+  /** Trust card items (label + value). Props override JSON. */
+  creds?: CredItem[];
+  /** Portrait photo. Defaults to library placeholder. */
+  image?: { src: string; alt: string };
+  /** Additional classes for the section (e.g. from PageBuilder). */
+  class?: string;
+}
+
+const {
+  sectionId = "o-nas",
+  lang = "pl",
+  title,
+  bio,
+  creds,
+  image,
+  class: className = "",
+} = Astro.props as Props;
+
+// Why: "props || json" pattern (as in HeroTomRosBlock), so the block works
+// standalone with section data, and PageBuilder or CMS can override content.
+const t = data[lang] ?? data.pl;
+const resolvedTitle = title || t.title;
+const resolvedBio = bio ?? t.bio ?? [];
+const resolvedCreds = creds ?? t.creds ?? [];
+
+// Why: image is a media asset, so it lives outside the en/pl structure in JSON
+// (no need to duplicate paths per language). Props take precedence.
+const img = image || data.image;
+---
+
+<Section id={sectionId} tone="page" class:list={["relative overflow-hidden scroll-mt-28", className]}>
+  <Container>
+    <div class="mx-auto max-w-6xl">
+      {/* Why: centered title (pattern of original v2 section), color
+           from text-brand-dark token instead of client var(--color-text-primary). */}
+      <Heading tag="h1" variant="section-title" class="mb-14 text-center text-brand-dark">{resolvedTitle}</Heading>
+
+      {/* Why: 2-column grid in 1.35fr (bio) to 0.85fr (photo
+           and creds) ratio, exactly as in original. On mobile columns stack
+           on top of each other (mobile-first). */}
+      <div class="grid gap-12 md:grid-cols-[minmax(0,1.35fr)_minmax(18rem,0.85fr)] lg:gap-16">
+        {/* Why: min-w-0 prevents column overflow with long
+             paragraphs (flex child without min-width cannot shrink). */}
+        <div class="min-w-0">
+          <div class="flex max-w-[46rem] flex-col gap-4">
+            {resolvedBio.map((paragraph) => (
+              <Text variant="body" class="text-brand-dark/70">{paragraph}</Text>
+            ))}
+          </div>
+        </div>
+
+        <div class="md:pl-2">
+          {/* Why: .ui-glow-card class replaces client box-shadow
+               var(--ui-glow) and provides consistent brand glow from token
+               var(--color-brand-primary). */}
+          <div class="ui-glow-card aspect-[3/4] w-full overflow-hidden rounded-2xl">
+            <img
+              src={img.src}
+              alt={img.alt}
+              class="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+              width="336"
+              height="474"
+            />
+          </div>
+
+          {/* Why: creds card uses global tokens: bg-white instead of
+               var(--color-surface-elevated) i border-brand-dark/10 zamiast
+               var(--color-border-subtle). */}
+          <div class="mt-5 rounded-2xl border border-brand-dark/10 bg-white p-5">
+            <div class="flex flex-col gap-3">
+              {resolvedCreds.map((item) => (
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-dark/50">{item.label}</span>
+                  <span class="text-xs font-semibold text-brand-primary">{item.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>

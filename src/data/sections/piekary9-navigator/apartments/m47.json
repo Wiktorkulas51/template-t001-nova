@@ -1,0 +1,45 @@
+{
+  "rooms_list": [
+    {
+      "name": "KORYTARZ",
+      "area": 3.5
+    },
+    {
+      "name": "SALON Z ANEKSEM",
+      "area": 24.82
+    },
+    {
+      "name": "ŁAZIENKA",
+      "area": 4.46
+    },
+    {
+      "name": "SYPIALNIA",
+      "area": 14.07
+    }
+  ],
+  "section": "oficyna_prawa",
+  "price": 409000,
+  "floor": 2,
+  "poly": [
+    6.12,
+    27.95,
+    10.19,
+    36.43,
+    10.07,
+    50.59,
+    6.03,
+    48.43
+  ],
+  "area": 46.85,
+  "pdf": "/client-assets/folde3/Rzuty/lokal_47.pdf",
+  "status": "sold",
+  "finish": "Do remontu",
+  "label": "47",
+  "x": 8.75,
+  "images": [],
+  "rooms": 2,
+  "y": 42.39,
+  "id": "47",
+  "price_per_m2": 8730,
+  "comment": "2 pokoje - widok na dziedziniec"
+}

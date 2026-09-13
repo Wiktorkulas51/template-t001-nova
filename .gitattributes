@@ -1,0 +1,17 @@
+# Normalizacja końców linii: wszystkie pliki tekstowe w LF (konwencja Windows→git).
+# Chroni przed commitami typu "EOL change" (np. CtaBlock w mklegal, 8daf039).
+* text=auto eol=lf
+
+# Pliki binarne bez konwersji
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.zip binary
+*.pdf binary

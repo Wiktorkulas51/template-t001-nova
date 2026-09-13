@@ -1,0 +1,434 @@
+---
+import ui from '@data/sections/piekary9-navigator-ui.json';
+// v1.0.1 - Data sync fix
+import { Image } from "astro:assets";
+import pricingSettings from "@data/sections/piekary9-navigator-settings.json";
+import apartmentsSource from "@data/sections/piekary9-navigator-apartments.json";
+import type { Apartment } from "./scripts/types";
+import PinLayer from "./components/PinLayer.astro";
+import NavigatorLegend from "./components/NavigatorLegend.astro";
+import ApartmentPanel from "./components/ApartmentPanel.astro";
+import ApartmentModal from "./components/modal/ApartmentModal.astro";
+import PurchaseDrawer from "./components/modal/PurchaseDrawer.astro";
+import Text from "@components/ui/atoms/Text.astro";
+
+const apartmentsData = (apartmentsSource as Apartment[]).filter((apt) => !apt.hidden);
+
+// Sort apartments by ID to maintain consistent order
+apartmentsData.sort((a, b) => parseInt(a.id) - parseInt(b.id));
+
+// Split apartments by view (based on orientation comment)
+const frontApartments = apartmentsData.filter((apt) => apt.section === "front");
+const rearApartments = apartmentsData.filter((apt) => apt.section !== "front");
+
+const buildingImage =
+  pricingSettings.buildingImage || "/images/piekary9/building-front.jpg";
+const apartmentsJson = JSON.stringify(apartmentsData);
+---
+
+{
+  (
+    <div id="dev-editor-bar" class="pin-editor-bar" style="display: none;">
+      <div class="flex items-center gap-3 bg-white/10 p-2 rounded-lg border border-white/20">
+        <button
+          id="toggle-edit-btn"
+          class="editor-btn editor-btn--primary"
+          type="button"
+        >
+          ✏️ Piny
+        </button>
+        <button
+          id="toggle-area-btn"
+          class="editor-btn editor-btn--primary"
+          type="button"
+        >
+          📐 Obszary
+        </button>
+      </div>
+
+      <div class="flex items-center gap-3 bg-white/10 p-2 rounded-lg border border-white/20">
+        <span class="text-[0.7rem] font-bold text-white uppercase tracking-wider">
+          Zoom:
+        </span>
+        <input
+          type="range"
+          id="zoom-slider"
+          min="1"
+          max="3"
+          step="0.1"
+          value="1"
+          class="w-32 accent-blue-500"
+        />
+        <span id="zoom-value" class="text-[0.7rem] font-mono text-blue-400 w-8">
+          1.0x
+        </span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button
+          id="save-to-files-btn"
+          class="editor-btn editor-btn--success"
+          type="button"
+          style="display:none"
+        >
+          💾 Zapisz do plików
+        </button>
+        <button
+          id="download-json-btn"
+          class="editor-btn editor-btn--secondary"
+          type="button"
+        >
+          📥 Pobierz JSON
+        </button>
+        <button
+          id="copy-json-btn"
+          class="editor-btn editor-btn--secondary"
+          type="button"
+        >
+          📋 Kopiuj
+        </button>
+        <button
+          id="reset-editor-btn"
+          class="editor-btn bg-rose-600/80 hover:bg-rose-600 text-white border-rose-500"
+          type="button"
+        >
+          🗑️ Resetuj
+        </button>
+      </div>
+
+      <span id="edit-hint" class="editor-hint" style="display:none" />
+    </div>
+  )
+}
+
+<div class="relative w-full mb-8">
+  <!-- View Toggle (Switch between Front and Rear) -->
+  <div class="flex justify-center gap-4 mb-4 ">
+    <button
+      class="view-toggle-btn active px-6 py-2 rounded-full border border-primary transition-all font-bold"
+      data-target-view="front"
+    >
+      {ui.front}
+    </button>
+    <button
+      class="view-toggle-btn px-6 py-2 rounded-full border border-slate-300 transition-all font-bold"
+      data-target-view="rear"
+    >
+      {ui.rear}
+    </button>
+  </div>
+
+  <!-- Area Draw Indicator (legacy or simple rect) -->
+  <div id="area-draw-indicator" class="area-draw-indicator"></div>
+
+  <!-- Navigator Wrapper (Fix for panel positioning) -->
+  <div class="navigator-wrapper relative w-full">
+    <!-- Rounded Container for Mobile/Desktop -->
+    <div class="rounded-[1rem] overflow-hidden border border-slate-200 shadow-sm">
+      <!-- Panning Container -->
+      <div
+        class="overflow-x-auto cursor-grab active:cursor-grabbing hide-scrollbar select-none"
+        id="navigator-panning-container"
+      >
+      <div
+        class="building-canvas "
+        id="building-canvas"
+        data-apartments={apartmentsJson}
+      >
+        <!-- Polygon Edit Handles -->
+        <div id="poly-handles" class="poly-handles" style="display:none"></div>
+
+        {/* Front View */}
+        <div
+          class="navigator-view active absolute inset-0 transition-opacity duration-500"
+          data-view-id="front"
+        >
+          <img
+            src="/assets/piekary9/navigator-front-optimized.webp"
+            alt="Piekary - {ui.front}"
+            class="h-full w-full"
+            loading="eager"
+          />
+          <PinLayer apartments={apartmentsData} view="front" />
+        </div>
+
+        {/* Rear View (Courtyard) scale-[1.2]*/}
+        <div
+          class="navigator-view absolute inset-0 opacity-0 transition-opacity duration-500"
+          data-view-id="rear"
+        >
+          <img
+            src="/assets/piekary9/navigator-rear-optimized.webp"
+            alt="Piekary - {ui.rear}"
+            class="h-full w-full"
+            loading="lazy"
+          />
+          <PinLayer apartments={apartmentsData} view="rear" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <NavigatorLegend />
+    <ApartmentPanel />
+  </div>
+
+
+  <!-- Mobile Panning Hint -->
+  <div
+    class="flex justify-center gap-2 mt-4 mb-8 md:hidden text-slate-400 animate-pulse"
+    id="panning-hint"
+  >
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      ><path d="M18 8L22 12L18 16"></path><path d="M6 8L2 12L6 16"></path><line
+        x1="2"
+        y1="12"
+        x2="22"
+        y2="12"></line></svg
+    >
+    <span class="text-[10px] font-bold uppercase tracking-widest"
+      >{ui.panHint}</span
+    >
+  </div>
+</div>
+
+<ApartmentModal />
+<PurchaseDrawer />
+
+<style>
+  /* ── Dev Editor Bar ─────────────────────────────────────────────── */
+  .pin-editor-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .editor-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1.1rem;
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.15s ease;
+  }
+
+  .editor-btn--primary {
+    background: var(--color-brand-dark);
+    color: var(--color-brand-light);
+    border-color: var(--color-brand-dark);
+  }
+  .editor-btn--primary:hover {
+    background: var(--color-brand-dark);
+  }
+  .editor-btn--primary.active {
+    background: var(--color-brand-primary);
+    border-color: var(--color-brand-primary);
+    color: var(--color-brand-light);
+  }
+  .editor-btn--secondary {
+    background: var(--color-brand-primary);
+    color: var(--color-brand-light);
+    border-color: var(--color-brand-primary);
+  }
+  .editor-btn--secondary:hover {
+    background: var(--color-brand-primary);
+  }
+  .editor-btn--success {
+    background: var(--color-brand-primary);
+    color: var(--color-brand-light);
+    border-color: var(--color-brand-primary);
+  }
+  .editor-btn--success:hover {
+    background: var(--color-brand-primary);
+  }
+  .editor-hint {
+    font-size: 0.78rem;
+    color: var(--color-brand-dark);
+    font-style: italic;
+  }
+
+  /* ── Zoom Container ────────────────────────────────────────────── */
+  #navigator-panning-container {
+    position: relative;
+    width: 100%;
+    overflow: auto;
+    background: var(--color-brand-light);
+  }
+
+  /* ── View Transitions ───────────────────────────────────────────── */
+  .navigator-view {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.05); /* Slight zoom for the incoming/outgoing view */
+    transition:
+      opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+  }
+
+  .navigator-view.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: scale(1);
+    z-index: 20;
+  }
+
+  /* ── Toggle Buttons Style ────────────────────────────────────────── */
+  .view-toggle-btn {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-brand-light);
+    color: var(--color-brand-dark);
+    border: 1px solid color-mix(in oklab, var(--color-brand-dark) 12%, transparent);
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .view-toggle-btn.active {
+    background-color: var(--color-brand-dark);
+    color: var(--color-brand-light);
+    border-color: var(--color-brand-dark);
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+
+  .view-toggle-btn:not(.active):hover {
+    border-color: var(--color-brand-dark);
+    color: var(--color-brand-dark);
+    background-color: var(--color-brand-light);
+  }
+
+  /* ── Building Canvas ────────────────────────────────────────────── */
+  .building-canvas {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 70vh;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1);
+    line-height: 0;
+  }
+
+  /* Hide scrollbar utility */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  @media (max-width: 768px) {
+    .building-canvas {
+      aspect-ratio: auto;
+      height: 380px;
+      width: 900px;
+      flex-shrink: 0;
+    }
+
+    #navigator-panning-container {
+      touch-action: pan-x;
+      -webkit-overflow-scrolling: touch;
+      cursor: grab;
+      display: flex;
+      border-radius: 1rem;
+      border: 1px solid color-mix(in oklab, var(--color-brand-dark) 12%, transparent);
+    }
+
+    .navigator-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+    }
+  }
+
+  .building-canvas.edit-mode {
+    cursor: default;
+    outline: 3px solid var(--color-brand-primary);
+    outline-offset: -3px;
+  }
+
+  .building-canvas.area-mode {
+    cursor: crosshair;
+    outline: 3px solid var(--color-brand-primary);
+    outline-offset: -3px;
+  }
+
+  .building-canvas.edit-mode,
+  .building-canvas.area-mode {
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  :global(.poly-handles) {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  :global(.handle) {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--color-brand-primary);
+    border: 1.5px solid var(--color-brand-light);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: all;
+    cursor: move;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+
+  :global(.handle:hover) {
+    background: var(--color-brand-primary);
+    transform: translate(-50%, -50%) scale(1.3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .building-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+  }
+
+  /* ── Pins Layer & Legend → see PinLayer.astro and NavigatorLegend.astro ── */
+</style>
+
+<script>
+  import "./scripts/navigator";
+</script>
+
+

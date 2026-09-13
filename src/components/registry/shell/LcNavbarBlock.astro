@@ -1,0 +1,103 @@
+---
+// Dlaczego: LcNavbarBlock to kopia wizualna LcNavbar z projektu lean-creative:
+// glass floating navbar NAD hero (absolute top, nie sticky), logo 2x2 z czterech
+// squares, navigation links and CTA with slide animation. Client tokens
+// (--ui-navbar-glass-bg, --ui-logo-deep) replaced with brand starter-kit tokens
+// inline, a dane klienta (nazwa "Lean Creative", linki /rozwiazania, /wiedza)
+// deliberately removed and replaced with generic pl/en content.
+import { formatInternalLink } from "@utils/url";
+import data from "@data/sections/lc-navbar.json";
+
+type LcNavData = (typeof data)["pl"];
+
+export interface Props {
+  /** Navigation data. Props overwrite JSON (single language data).*/
+  data?: LcNavData;
+  /** Content language with JSON. PL is the default language, EN is the English equivalent.*/
+  locale?: "pl" | "en";
+}
+
+const { data: blockData, locale = "pl" } = Astro.props as Props;
+
+// Why: "props || json" pattern (like in AboutLawBlock) to make the block work
+// alone with the section data, and PageBuilder or CMS may have overwritten the content.
+// props.data can be a full {pl, en} object or a language content, therefore
+// we recognize which character we are dealing with by the brandName field.
+const resolved = blockData ?? data[locale] ?? data.pl;
+const t = "brandName" in resolved ? resolved : (resolved as typeof data)[locale] ?? (resolved as typeof data).pl;
+---
+
+<header data-site-header data-lc-navbar class="pointer-events-none absolute left-0 top-0 z-50 w-full">
+  <div class="pointer-events-auto mx-auto mt-8 flex w-[calc(100%-2rem)] max-w-[1280px] items-center justify-between gap-3">
+    {/* Why: glass background with brand token instead of client --ui-navbar-glass-bg
+        (token nie istnieje w kicie, mapa zamian: var(--color-brand-dark)). */}
+    <div class="flex h-14 shrink-0 items-center rounded-[0.25rem] border border-white/15 px-5 backdrop-blur-xl" style="background-color: color-mix(in oklab, var(--color-brand-dark) 55%, transparent)">
+      <a href={formatInternalLink("/")} class="flex items-center gap-2.5" aria-label={t.brandName}>
+        {/* Dlaczego: logo 2x2 zostaje inline (to nie jest ikona Phosphor), czwarty
+            kwadrat z tokena brand zamiast klienckiego --ui-logo-deep. */}
+        <span data-lc-logo class="relative grid h-6 w-6 grid-cols-2 gap-0.5" aria-hidden="true">
+          <span class="rounded-xs bg-brand-primary"></span>
+          <span class="rounded-xs bg-white/80"></span>
+          <span class="rounded-xs bg-brand-accent"></span>
+          <span class="rounded-xs bg-[var(--color-brand-dark)]"></span>
+        </span>
+        {/* Why: JSON string, no hard client code; accent element
+            with a brand gradient, exactly like the original.*/}
+        <span class="text-[0.95rem] font-extrabold tracking-normal text-white uppercase">{t.brandName} <span class="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">{t.brandAccent}</span></span>
+      </a>
+    </div>
+
+    <div class="flex h-14 min-w-0 items-center gap-0.5 overflow-hidden rounded-[0.25rem] border border-white/15 pl-1 pr-1 backdrop-blur-xl lg:pl-2 lg:pr-1" style="background-color: color-mix(in oklab, var(--color-brand-dark) 55%, transparent)">
+      <div class="hidden items-center gap-0.5 lg:flex">
+        {t.links.map((link) => (
+          <a class="lc-nav-link rounded-[0.25rem] px-3 py-1.5 text-[0.82rem] font-bold text-white/70 transition hover:bg-white/10 hover:text-white" href={formatInternalLink(link.href)}>{link.label}</a>
+        ))}
+      </div>
+      <a href={formatInternalLink(t.cta.href)} class="lc-nav-link lc-btn-slide lc-btn-slide-teal hidden items-center rounded-[0.25rem] bg-brand-accent px-4 py-2.5 text-[0.82rem] font-extrabold text-brand-dark hover:text-white sm:inline-flex">
+        {t.cta.label}
+      </a>
+      <button data-lc-nav-toggle class="lc-nav-link inline-flex shrink-0 items-center justify-center rounded-[0.25rem] text-white/60 transition hover:bg-white/10 hover:text-white lg:hidden" type="button" aria-label={t.navToggleLabel} aria-controls="site-nav-drawer" style="width: clamp(2.75rem, 6vw, 2.75rem); height: clamp(2.75rem, 6vw, 2.75rem);">
+        <span class="flex w-4 flex-col gap-[3px]" aria-hidden="true">
+          <span class="h-[2px] w-full rounded-full bg-current"></span>
+          <span class="h-[2px] w-full rounded-full bg-current"></span>
+          <span class="h-[2px] w-full rounded-full bg-current"></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+<style>
+  /* Why: LcNavbar client fix: nav links cannot inherit
+     min-height/min-width z systemu ui-button. */
+  .lc-nav-link {
+    min-height: auto;
+    min-width: auto;
+  }
+
+  /* Why: btn-slide-teal client animation (::before top:100% -> 0, background
+     brand-dark) nie istnieje w kicie, a kitowy .btn-slide ma inny mechanizm
+     (text slide) and sets padding: 0, which would break the CTA. Block defines
+     own .lc-btn-slide* classes so as not to conflict with core.css.*/
+  .lc-btn-slide {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .lc-btn-slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    top: 100%;
+    transition: top 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: -1;
+  }
+
+  .lc-btn-slide:hover::before {
+    top: 0;
+  }
+
+  .lc-btn-slide-teal::before {
+    background: var(--color-brand-dark);
+  }
+</style>

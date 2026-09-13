@@ -1,0 +1,262 @@
+---
+import ui from '@data/sections/piekary9-navigator-ui.json';
+// ApartmentPanel.astro - Detail panel shell, populated at runtime by panel.ts
+import PanelGallery from "./PanelGallery.astro";
+---
+
+<!-- Panel Backdrop (Mobile only) -->
+<div
+  id="panel-backdrop"
+  class="fixed inset-0 bg-slate-900/80 backdrop-blur-md z-[190] opacity-0 pointer-events-none transition-opacity duration-300 md:hidden md:z-[110]"
+  inert
+></div>
+
+<aside
+  id="apartment-panel"
+  class="apt-panel fixed md:absolute inset-0 md:inset-auto md:top-4 md:right-4 md:bottom-4 h-[100dvh] md:h-auto w-full md:w-[21rem] bg-white md:bg-white/98 backdrop-blur-md md:border border-black/10 rounded-none md:rounded-2xl shadow-none md:shadow-[0_10px_40px_rgba(0,0,0,0.15)] flex flex-col overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] z-[200] md:z-[120] opacity-0 pointer-events-none"
+  inert
+  role="dialog"
+  aria-label="Szczegóły lokalu"
+>
+  <!-- Header & Price -->
+  <div
+    class="relative px-6 pt-6 pb-5 border-b border-black/5 shrink-0 flex flex-col gap-3 bg-white/95 backdrop-blur-md z-10"
+  >
+    <button
+      class="absolute top-2.5 right-2.5 w-8 h-8 flex items-center justify-center rounded-full text-slate-400 transition-colors duration-200 hover:bg-slate-100 hover:text-slate-800 cursor-pointer"
+      id="panel-close-btn"
+      type="button"
+      aria-label="Zamknij panel"
+    >
+      <svg
+        width="12"
+        height="12"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="3"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M18 6L6 18M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <!-- {ui.local} + Status Badge -->
+    <div class="flex items-center gap-3 pr-8">
+      <div class="flex items-baseline gap-1.5">
+        <span
+          class="text-[0.65rem] font-bold tracking-[0.1em] uppercase text-slate-400"
+          >{ui.local}</span
+        >
+        <h3
+          class="text-[1.65rem] font-extrabold text-slate-900 leading-none m-0 tracking-tight"
+          id="panel-title"
+        >
+          -
+        </h3>
+      </div>
+      <div
+        id="panel-status-badge"
+        class="inline-flex items-center gap-1.5 text-[0.65rem] font-bold tracking-wider uppercase"
+      >
+        <span class="w-2 h-2 rounded-full shrink-0" id="panel-status-dot"
+        ></span>
+        <span id="panel-status-label">-</span>
+      </div>
+    </div>
+
+
+    <!-- Price -->
+    <div
+      id="panel-price-container"
+      class="flex items-baseline gap-2 hidden pt-1"
+    >
+      <span
+        class="text-[0.65rem] font-bold uppercase text-slate-400 tracking-[0.08em]"
+        >{ui.price}</span
+      >
+      <div
+        class="text-[1.35rem] font-black text-slate-900 tracking-tight"
+        id="panel-price"
+      >
+        -
+      </div>
+    </div>
+  </div>
+
+  <!-- Middle Content (Scrollable) -->
+  <div class="flex-1 flex flex-col min-h-0 overflow-y-auto overscroll-contain">
+    <!-- Gallery: Flexible height to fill space -->
+    <div class="flex-1 min-h-[120px] md:min-h-[160px] relative">
+      <PanelGallery />
+    </div>
+
+    <!-- Stats -->
+    <div
+      class="grid grid-cols-2 divide-x divide-black/10 border-t border-b border-black/5 shrink-0 bg-slate-50/30"
+    >
+      <div class="flex flex-col items-center py-4 gap-1">
+        <span class="text-xl font-black text-slate-900" id="panel-rooms">-</span
+        >
+        <span
+          class="text-[0.65rem] font-bold tracking-[0.1em] uppercase text-slate-500"
+          >{ui.rooms}</span
+        >
+      </div>
+      <div class="flex flex-col items-center py-4 gap-1">
+        <span class="text-xl font-black text-slate-900" id="panel-area">-</span>
+        <span
+          class="text-[0.65rem] font-bold tracking-[0.1em] uppercase text-slate-500"
+          >{ui.area}</span
+        >
+      </div>
+      <div
+        class="flex flex-col items-center py-4 gap-1 border-t border-black/10"
+      >
+        <div class="flex items-baseline gap-1">
+          <span class="text-xl font-black text-slate-900" id="panel-floor"
+            >-</span
+          >
+          <span
+            class="text-[0.65rem] font-bold text-slate-400 uppercase tracking-tighter"
+            id="panel-section-inline"></span>
+        </div>
+        <span
+          class="text-[0.65rem] font-bold tracking-[0.1em] uppercase text-slate-500"
+          >{ui.floorSection}</span
+        >
+      </div>
+      <div
+        class="flex flex-col items-center py-4 gap-1 border-t border-black/10"
+      >
+        <span class="text-lg font-black text-slate-900 text-center px-1" id="panel-price-m2"
+          >-</span
+        >
+        <span
+          class="text-[0.65rem] font-bold tracking-[0.1em] uppercase text-slate-500"
+          >{ui.pricePerM2}</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div
+    class="flex flex-col gap-2 p-4 md:p-5 shrink-0 border-t border-black/5 bg-white"
+  >
+    <a
+      href="#kontakt"
+      id="panel-main-btn"
+      class="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-brand-accent py-4 px-4 text-sm font-bold uppercase tracking-widest text-brand-dark shadow-[0_0_40px_rgba(197,168,107,0.25)] transition-all hover:shadow-[0_0_50px_rgba(197,168,107,0.4)]"
+    >
+      <span class="relative z-10">{ui.buyLocal}</span>
+      <i
+        class="ph ph-arrow-right relative z-10 text-base transition-transform group-hover:translate-x-1"
+        aria-hidden="true"></i>
+      <div
+        class="absolute inset-0 translate-y-full bg-white/20 transition-transform duration-300 group-hover:translate-y-0"
+      >
+      </div>
+    </a>
+    <div class="grid grid-cols-2 gap-2">
+      <button
+        type="button"
+        id="panel-card-btn"
+        class="flex items-center justify-center py-2.5 px-3 rounded-lg text-[0.75rem] font-bold border-[1.5px] border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50 transition-colors cursor-pointer"
+      >
+        Karta lokalu
+      </button>
+      <a
+        id="panel-pdf-btn"
+        href="#"
+        target="_blank"
+        class="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg text-[0.75rem] font-bold border-[1.5px] border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50 transition-colors cursor-pointer"
+      >
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline
+            points="7 10 12 15 17 10"></polyline><line
+            x1="12"
+            y1="15"
+            x2="12"
+            y2="3"></line></svg
+        >
+        PDF
+      </a>
+    </div>
+  </div>
+</aside>
+
+<style is:global>
+  /* Panel open/close animation */
+  .apt-panel {
+    transform: translateY(100%);
+    pointer-events: none;
+  }
+  
+  @media (min-width: 768px) {
+    .apt-panel {
+      transform: translateX(calc(100% + 2rem));
+    }
+  }
+
+  .apt-panel.is-open {
+    transform: translate(0, 0) !important;
+    opacity: 1 !important;
+    pointer-events: all !important;
+  }
+
+  /* Backdrop state */
+  #panel-backdrop.is-active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Gallery image fill */
+  #gallery-track img {
+    min-width: 100%;
+    width: 100%;
+    height: 100%;
+    flex: 0 0 100%;
+    box-sizing: border-box;
+    display: block;
+    object-fit: contain;
+
+    padding: 0; /* PADDING REMOVED AS REQUESTED - IT WILL BE FULL*/
+    margin: 0;
+  }
+
+  /* Gallery dots */
+  .gallery-dot {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.22);
+    transition: background 0.2s ease;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    min-width: 0;
+    min-height: 0;
+  }
+
+  /* Some builds end up without the `cursor-pointer` utility on this button.
+     Force expected cursor to avoid a "dead" looking CTA. */
+  #panel-card-btn {
+    cursor: pointer;
+  }
+  .gallery-dot.active {
+    background: var(--color-brand-dark);
+  }
+</style>
+
+
+

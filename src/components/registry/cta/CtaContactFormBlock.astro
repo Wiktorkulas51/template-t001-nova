@@ -1,0 +1,161 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import ContactForm from "@components/ui/molecules/ContactForm.astro";
+import company from "@data/global/company.json";
+import data from "@data/sections/cta-contact-form.json";
+
+// Why: CtaContactFormBlock is a faithful copy of the "Contact CTA" section from the
+// tymoteusz-juszczak project (CtaContactFormBlock, "form" variant used on all
+// client pages): heading with lead, two contact boxes (phone and email)
+// and a contact form in a card. Client color tokens (color-text-primary,
+// color-accent-primary, color-surface-elevated etc.) replaced with global
+// starter-kit tokens (brand-dark, brand-primary, bg-white, border-brand-dark/10),
+// and content entry was taken over by the global motion mechanism.
+
+type FormField = {
+  name: string;
+  label: string;
+  type?: "text" | "email" | "tel" | "textarea" | "select" | "checkbox";
+  required?: boolean;
+  placeholder?: string;
+  rows?: number;
+  autoComplete?: string;
+};
+
+export interface Props {
+  /** Section id, defaults to "kontakt". */
+  sectionId?: string;
+  /** Content language from JSON. PL is the default language for this section copy. */
+  lang?: "pl" | "en";
+  title?: string;
+  description?: string;
+  /** Form fields (props override JSON, "props || json" pattern). */
+  formFields?: FormField[];
+  /** Numer telefonu do boxa kontaktowego (fallback: company.json). */
+  phone?: string;
+  /** E-mail do boxa kontaktowego (fallback: company.json). */
+  email?: string;
+  /** Section heading tag: 'h2' by default, 'h1' when the block is the first section without hero (SEO). */
+  headingTag?: string;
+  /** Additional classes for the section (e.g. from PageBuilder). */
+  class?: string;
+}
+
+const {
+  sectionId = "kontakt",
+  lang = "pl",
+  title,
+  description,
+  formFields,
+  phone = company.phone,
+  email = company.email,
+  headingTag = "h2",
+  class: className = "",
+} = Astro.props as Props;
+
+const t = data[lang] ?? data.pl;
+
+// Why: "props || json" pattern so the block works standalone with section
+// data, while PageBuilder or CMS can override any text.
+const resolvedTitle = title || t.title;
+const resolvedDescription = description || t.description;
+const resolvedFormFields = formFields && formFields.length > 0 ? formFields : (t.form as FormField[] | undefined) ?? [];
+
+// Why: contact box labels live in JSON (section content is kept in
+// data, not in the component) because the client edited them via CMS.
+const resolvedPhoneLabel = t.phoneLabel;
+const resolvedEmailLabel = t.emailLabel;
+---
+
+<Section id={sectionId} tone="page" class={`relative overflow-hidden scroll-mt-28 ${className}`}>
+  <!-- Why: gradient glow (orb) attached to the bottom of the section,
+       exactly as in the client original. Accent replaced with the global
+       brand-primary (10% opacity via color-mix). -->
+  <div
+    class="pointer-events-none absolute bottom-0 left-1/2 h-64 w-full max-w-[500px] -translate-x-1/2"
+    style="background:radial-gradient(ellipse 50% 100% at center bottom, color-mix(in oklab, var(--color-brand-primary) 10%, transparent) 0%, transparent 60%)"
+  ></div>
+  <Container>
+    <!-- Why: thin line separating the section from the previous one. In the original
+         border-white/10, in the starter-kit border-brand-dark/10 because the section
+         background is light and the line must be dark with low opacity. -->
+    <div class="mx-auto mb-14 w-3/4 border-t border-brand-dark/10"></div>
+
+    <div class="mx-auto max-w-2xl text-center">
+      <Heading tag={headingTag} variant="section-title" class="mb-5 text-brand-dark">
+        {resolvedTitle}
+      </Heading>
+      <Text variant="lead" class="mb-10 text-brand-dark/70">
+        {resolvedDescription}
+      </Text>
+    </div>
+
+    <div class="mx-auto max-w-2xl space-y-8">
+      <!-- Why: contact boxes (phone + email) faithfully reproduce
+           ContactBoxes from the client project: card with an icon in a square, label
+           and value. Hover enhances the border and background with a brand tint. -->
+      <div class="flex flex-col gap-4 sm:flex-row">
+        <a
+          href={`tel:${phone}`}
+          class="contact-box flex flex-1 items-center gap-4 rounded-2xl border border-brand-dark/10 bg-white p-5 transition-all duration-200"
+        >
+          <div class="contact-box__icon flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-primary/40 text-brand-dark transition-all duration-200">
+            <Icon name="phone" size={20} />
+          </div>
+          <div class="min-w-0">
+            <div class="text-xs font-medium uppercase tracking-wider text-brand-dark/50">{resolvedPhoneLabel}</div>
+            <div class="text-sm font-semibold text-brand-dark">{phone}</div>
+          </div>
+        </a>
+        <a
+          href={`mailto:${email}`}
+          class="contact-box flex min-w-0 flex-1 items-center gap-4 rounded-2xl border border-brand-dark/10 bg-white p-5 transition-all duration-200"
+        >
+          <div class="contact-box__icon flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-primary/40 text-brand-dark transition-all duration-200">
+            <Icon name="envelope" size={20} />
+          </div>
+          <div class="min-w-0">
+            <div class="text-xs font-medium uppercase tracking-wider text-brand-dark/50">{resolvedEmailLabel}</div>
+            <div class="break-all text-sm font-semibold text-brand-dark">{email}</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Why: contact form in a card. ContactForm is a
+           starter-kit molecule (fields from JSON, custom submit logic and messages),
+           with showHeader={false} because the section header is above. -->
+      <div class="rounded-2xl border border-brand-dark/10 bg-white p-6 sm:p-8">
+        <ContactForm
+          formId="cta-contact-form"
+          fieldIdPrefix="ccf"
+          fields={resolvedFormFields}
+          showHeader={false}
+        />
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  /* Why: hover on contact boxes highlights the border, background and icon
+       with a brand accent, exactly as in the client original (ContactBoxes).
+       Accent color replaced with the global brand-primary. */
+  .contact-box,
+  .contact-box__icon {
+    transition-duration: 0.25s !important;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+  .contact-box:hover {
+    border-color: var(--color-brand-primary) !important;
+    background: color-mix(in oklab, var(--color-brand-primary) 15%, transparent) !important;
+    box-shadow: 0 0 30px color-mix(in oklab, var(--color-brand-primary) 20%, transparent) !important;
+  }
+  .contact-box:hover .contact-box__icon {
+    background: var(--color-brand-primary) !important;
+    color: var(--color-brand-dark) !important;
+  }
+</style>

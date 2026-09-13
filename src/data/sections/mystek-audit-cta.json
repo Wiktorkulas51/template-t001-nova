@@ -1,0 +1,9 @@
+{
+  "pl": {
+    "layout": "cta",
+    "eyebrow": "NASTĘPNY KROK",
+    "title": "Zadbaj o bezpieczeństwo swojej organizacji.",
+    "description": "Końcowa sekcja CTA z oryginalnej podstrony zamyka ścieżkę decyzji i prowadzi do kontaktu.",
+    "cta": { "label": "Porozmawiajmy o audycie", "href": "/kontakt/" }
+  }
+}

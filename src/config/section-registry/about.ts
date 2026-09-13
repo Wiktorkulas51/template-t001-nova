@@ -89,7 +89,7 @@ export const aboutSections: Record<string, SectionEntry> = {
     id: 'novaTeam', label: 'Zespół i wartości', groupId: 'about', hint: 'Autorska sekcja zespołu dla templateu Nova',
     icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3" stroke-width="2"/><path d="M5 20c.8-3.3 3.1-5 7-5s6.2 1.7 7 5" stroke-width="2" stroke-linecap="round"/></svg>',
     defaultVariant: 'default',
-    variants: { default: { component: 'NovaTeamWireframeBlock', dataKey: 'nova-team' } },
+    variants: { default: { component: 'TeamBlock', dataKey: 'nova-team' } },
   },
   audienceSplit: {
     id: 'audienceSplit', label: 'Dla kogo (split + grupy)', groupId: 'about', hint: 'Split z listą grup docelowych i separatorami (biblioteka lean-creative)',

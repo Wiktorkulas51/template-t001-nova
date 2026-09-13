@@ -1,0 +1,15 @@
+{
+  "eyebrow": "Trener personalny kobiet",
+  "titleBefore": "Jeśli zaczynałaś już",
+  "titleAccent": "kilka razy",
+  "titleMiddle": "tu zrobisz to",
+  "titleAfter": "ostatni raz.",
+  "motto": "Porusz swoje ciało. Zmień życie na lepsze.",
+  "description": "Uczę kobiety trenować tak, żeby forma nie była projektem na chwilę, tylko stylem życia.",
+  "primaryCta": { "label": "Umów pierwszy trening", "href": "/kontakt/" },
+  "secondaryCta": { "label": "Sprawdź ofertę", "href": "#kasia-oferta" },
+  "image": { "src": "/assets/kasia/hero.webp", "alt": "Portret trenerki podczas pracy z podopieczną" },
+  "mobileImage": { "src": "/assets/kasia/hero-mobile.webp", "alt": "Portret trenerki na jasnym tle" },
+  "watermark": "/assets/kasia/watermark.webp",
+  "socialProof": { "strong": "16 opinii", "text": "5.0/5 w profilu społecznościowym" }
+}

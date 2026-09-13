@@ -1,0 +1,130 @@
+---
+// Dlaczego: LcSubnavBlock to kopia wizualna sticky subnawigacji z projektu
+// lean-creative (LcSubnav.astro): sticky header z logo 2x2, linkami nawigacji,
+// CTA i mobile toggle. Klienckie tokeny (border-outline, bg-primary-container,
+// text-on-surface-variant, --ui-logo-deep) zamieniono na globalne tokeny
+// starter-kita, a klienckie hooki JS (data-lc-logo, data-lc-nav-toggle)
+// removed because the block is supposed to be clean.
+// UWAGA: w projekcie klienta subnav jest pokazywana po scrollu przez fixed
+// wrapper #lc-scroll-nav z JS w index.astro. Tutaj blok to czysty sticky
+// top-0, and the display logic and drawer interaction are managed by the page
+// (PageBuilder lub wrapper).
+import Button from "@components/ui/atoms/Button.astro";
+import { formatInternalLink } from "@utils/url";
+import data from "@data/sections/lc-subnav.json";
+
+type LinkItem = { label: string; href: string };
+
+export interface Props {
+  /** Content language with JSON. PL is the default language, EN is the English equivalent.*/
+  locale?: "pl" | "en";
+  /** The first part of the name in the logo (e.g. "NOVA"). Props overwrite JSON.*/
+  brandName?: string;
+  /** The second part of the name in the logo, accented with the brand-primary color.*/
+  brandAccent?: string;
+  /** Navigation links. Props overwrite JSON.*/
+  links?: LinkItem[];
+  /** Etykieta CTA. */
+  ctaLabel?: string;
+  /** Adres CTA. */
+  ctaHref?: string;
+  /** Dodatkowe klasy na header (np. z PageBuilder). */
+  class?: string;
+}
+
+const {
+  locale = "pl",
+  brandName,
+  brandAccent,
+  links,
+  ctaLabel,
+  ctaHref,
+  class: className = "",
+} = Astro.props as Props;
+
+// Why: "props || json" pattern (like AboutLawBlock) to make the block work
+// alone with the section data, and PageBuilder or CMS may have overwritten the content.
+const t = data[locale] ?? data.pl;
+const resolvedBrandName = brandName || t.brandName;
+const resolvedBrandAccent = brandAccent || t.brandAccent;
+const resolvedLinks = links ?? t.links ?? [];
+const resolvedCtaLabel = ctaLabel || t.ctaLabel;
+const resolvedCtaHref = ctaHref || t.ctaHref;
+const brandFull = `${resolvedBrandName} ${resolvedBrandAccent}`;
+---
+
+<header
+  class:list={[
+    "sticky left-0 top-0 z-50 w-full border-b border-brand-dark/10 bg-brand-light",
+    className,
+  ]}
+>
+  <div
+    class="mx-auto flex h-18 w-full max-w-[1360px] items-center justify-between gap-3 px-5 sm:px-[var(--spacing-container-px)]"
+  >
+    <a href={formatInternalLink("/")} class="flex shrink-0 items-center gap-2.5" aria-label={brandFull}>
+      {/* Why: 2x2 logo (grid of 4 squares) 1:1 from the original. The fourth color
+          --ui-logo-deep does not exist in the starter kit, so it was replaced
+          tokenem brand-dark. */}
+      <span class="relative grid h-6 w-6 grid-cols-2 gap-0.5" aria-hidden="true">
+        <span class="rounded-xs bg-brand-primary"></span>
+        <span class="rounded-xs bg-brand-dark"></span>
+        <span class="rounded-xs bg-brand-accent"></span>
+        <span class="rounded-xs" style="background:var(--color-brand-dark)"></span>
+      </span>
+      <span class="text-sm font-extrabold text-brand-dark">
+        {resolvedBrandName} <span class="text-brand-primary">{resolvedBrandAccent}</span>
+      </span>
+    </a>
+
+    <div class="hidden items-center gap-0.5 lg:flex">
+      {resolvedLinks.map((link) => (
+        <a
+          href={formatInternalLink(link.href)}
+          class="lc-subnav-link rounded-sm px-3 py-1.5 text-[0.82rem] font-bold text-brand-dark/60 transition hover:bg-brand-primary/10 hover:text-brand-primary"
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+
+    <div class="flex items-center gap-2">
+      {/* Dlaczego: CTA z Button.astro (wariant primary, rozmiar sm) zamiast
+          client class btn-slide-teal, because the copy is supposed to use putty atoms.
+          Hidden on mobile, visible from sms, exactly like the original.*/}
+      <Button
+        href={resolvedCtaHref}
+        variant="primary"
+        size="sm"
+        class="hidden rounded-sm font-extrabold sm:inline-flex"
+      >
+        {resolvedCtaLabel}
+      </Button>
+
+      {/* Why: 3-line hamburger from the original, without the client hook
+          data-lc-nav-toggle. The drawer interaction is added to the page.*/}
+      <button
+        type="button"
+        class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-sm text-brand-dark/60 transition hover:bg-brand-primary/10 hover:text-brand-primary lg:hidden"
+        aria-label="Otwórz menu"
+        aria-controls="site-nav-drawer"
+      >
+        <span class="flex w-4 flex-col gap-1" aria-hidden="true">
+          <span class="h-[2px] w-full rounded-full bg-current"></span>
+          <span class="h-[2px] w-full rounded-full bg-current"></span>
+          <span class="h-[2px] w-full rounded-full bg-current"></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* Why: the .lc-subnav-link class copies the client fix which resets
+     min-height and min-width from the ui-nav-bar-link system to link in subnav
+     it was compact and did not extend to the entire height of the header.*/
+  .lc-subnav-link {
+    min-height: auto;
+    min-width: auto;
+  }
+</style>

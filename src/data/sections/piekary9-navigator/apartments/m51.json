@@ -1,0 +1,18 @@
+{
+  "id": "51",
+  "label": "51",
+  "status": "sold",
+  "rooms": 2,
+  "area": 51.63,
+  "floor": -1,
+  "price": 399000,
+  "price_per_m2": 7728,
+  "comment": "oficyna prawa - widok podwórze - 2 pokoje",
+  "pdf": "/client-assets/folde3/Rzuty/lokal_51.pdf",
+  "x": 58.53,
+  "y": 94.97,
+  "finish": "Do remontu",
+  "images": [],
+  "section": "przyziemia",
+  "hidden": true
+}

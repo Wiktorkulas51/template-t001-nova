@@ -1,0 +1,51 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import SmartImage from "@components/ui/atoms/SmartImage.astro";
+import Button from "@components/ui/atoms/Button.astro";
+import jsonData from "@data/sections/nova-team.json";
+
+interface Props { title?: string; description?: string; image?: string; imageAlt?: string; checks?: string[]; teamLabel?: string; teamCount?: string; class?: string; }
+const props = Astro.props as Props;
+const title = props.title ?? jsonData.title;
+const description = props.description ?? jsonData.description;
+const image = props.image ?? jsonData.image;
+const imageAlt = props.imageAlt ?? jsonData.imageAlt;
+const checks = props.checks ?? jsonData.checks;
+const teamLabel = props.teamLabel ?? jsonData.teamLabel;
+const teamCount = props.teamCount ?? jsonData.teamCount;
+const teamAvatars = [
+  "/assets/images/t001-nova/t001-nova-avatar-01@220.webp",
+  "/assets/images/t001-nova/t001-nova-avatar-02@220.webp",
+  "/assets/images/t001-nova/t001-nova-avatar-03@220.webp",
+];
+---
+
+<Section id="zespol" tone="page" class:list={["py-12", props.class]}>
+  <Container class="w-full max-w-none px-[clamp(1.5rem,5vw,5rem)]">
+    <div class="grid grid-cols-1 items-center gap-6 md:grid-cols-2 md:gap-12">
+      <figure class="m-0 grid min-h-80 place-items-center overflow-hidden rounded-[var(--ui-radius-xl)]">
+        <SmartImage src={image} alt={imageAlt} width={1280} height={900} loading="lazy" class="h-full min-h-80 w-full object-cover" />
+      </figure>
+      <div class="flex flex-col gap-4 px-0 py-6 md:p-8">
+        <Heading tag="h2" variant="section-title">{title}</Heading>
+        <Text variant="lead">{description}</Text>
+        <div class="flex items-center gap-4">
+          <div class="flex items-center -space-x-3 pr-1" aria-label="Nasz zespół">
+              {teamAvatars.map((avatar, index) => (
+                <img src={avatar} alt="" width="48" height="48" loading="lazy" class="size-12 rounded-full border-2 border-surface object-cover" style={`z-index: ${teamAvatars.length - index};`} />
+              ))}
+          </div>
+          <div class="flex items-baseline gap-3 whitespace-nowrap">
+            <strong class="text-2xl leading-none">{teamCount}</strong>
+            <Text tag="span" variant="body">{teamLabel}</Text>
+          </div>
+        </div>
+        <ul class="m-0 grid list-none gap-3 py-4">{checks.map((check) => <li class="flex items-center gap-3"><span class="grid size-8 shrink-0 place-items-center rounded-full border border-white/45 bg-brand-accent text-xl leading-none text-brand-dark" aria-hidden="true">→</span><Text tag="span" variant="body">{check}</Text></li>)}</ul>
+        <Button href="/o-nas/" variant="primary" size="md" class="w-fit">Poznaj zespół</Button>
+      </div>
+    </div>
+  </Container>
+</Section>

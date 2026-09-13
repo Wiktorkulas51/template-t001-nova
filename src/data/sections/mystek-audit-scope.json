@@ -1,0 +1,19 @@
+{
+  "pl": {
+    "eyebrow": "ZAKRES DIAGNOSTYKI",
+    "title": "Zakres audytu:",
+    "titleAccent": "Co badam w czasie sprawdzeń?",
+    "description": "Sprawdzam każdy element systemu ochrony danych. Od dokumentacji, przez systemy informatyczne, aż po wiedzę pracowników i zabezpieczenia fizyczne.",
+    "standardLabel": "Standard Audytu",
+    "standard": "Zgodny z wytycznymi ISO 27001 i UODO",
+    "items": [
+      { "code": "01", "title": "Dokumentacja i RCP", "description": "Fundament audytu to rzetelna analiza dokumentacji. Weryfikujemy Rejestr Czynności Przetwarzania, polityki bezpieczeństwa, klauzule informacyjne oraz umowy powierzenia. Szukamy nieaktualnych podstaw prawnych, braków w dokumentacji procesowej oraz niezgodności z aktualną linią orzeczniczą organu nadzorczego." },
+      { "code": "02", "title": "Technologie i IT", "description": "Analizujemy zabezpieczenia systemów, metody szyfrowania, politykę haseł oraz procedury backupowe. Audytujemy odporność infrastruktury cyfrowej na incydenty." },
+      { "code": "03", "title": "Obszary fizyczne", "description": "Kontrolujemy szafy ogniotrwałe, dostęp do archiwów oraz zabezpieczenia biura. Sprawdzamy, jak dane są chronione fizycznie przed niepowołanym dostępem." },
+      { "code": "04", "title": "Procesorzy i dostawcy", "description": "Audytujemy umowy powierzenia z biurami księgowymi, firmami hostingowymi i agencjami. Weryfikujemy, czy partnerzy dają gwarancję bezpieczeństwa danych." },
+      { "code": "05", "title": "Analiza ryzyka i DPIA", "description": "Weryfikujemy poprawność przeprowadzonych ocen skutków dla ochrony danych. Wskazujemy procesy wymagające pogłębionej analizy ryzyka zgodnie z wytycznymi UODO." },
+      { "code": "06", "title": "Kierownictwo i kadry", "description": "Badamy świadomość personelu, procesy nadawania upoważnień oraz procedury obiegu dokumentów HR. Eliminujemy błędy wynikające z czynnika ludzkiego." },
+      { "code": "07", "title": "Zakres indywidualny", "description": "Każda organizacja jest inna. Dostosowujemy zakres audytu do specyficznych procesów biznesowych, struktury organizacji, integracji z zewnętrznymi systemami i wymogów sektorowych." }
+    ]
+  }
+}

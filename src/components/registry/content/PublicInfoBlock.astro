@@ -1,0 +1,119 @@
+---
+// Dlaczego: PublicInfoBlock to kopia wizualna sekcji "Informacja publiczna"
+// from the tymoteusz-juszczak project, translated into global starter-kit tokens
+// (brand-dark, brand-primary) zamiast klienckich zmiennych (text-primary, accent).
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import company from "@data/global/company.json";
+import publicInfoData from "@data/sections/public-info.json";
+
+// Why: "stack" layout arranges content vertically (e.g. multi-line charges),
+// and "row" (default) puts the narrow label on the left and the content on the right.
+type PublicInfoItem = {
+  title: string;
+  content: string;
+  layout?: "stack" | "row";
+  link?: { label: string; href: string };
+};
+
+type PublicInfoSection = {
+  id?: string;
+  heading: string;
+  items: PublicInfoItem[];
+};
+
+export interface Props {
+  sectionId?: string;
+  lang?: "pl" | "en";
+  title?: string;
+  description?: string;
+  sections?: PublicInfoSection[];
+  /** Section header tag: 'h1' by default (this block is the title section of the page), 'h2' when inserted lower.*/
+  headingTag?: string;
+}
+
+const {
+  sectionId = "informacja-publiczna",
+  lang = "pl",
+  title = "",
+  description = "",
+  sections = [],
+  headingTag = "h1",
+} = Astro.props as Props;
+
+// Why: "props || json" pattern to make the block work independently with the data
+// sections, and PageBuilder may have overwritten the title, description, or section list.
+const data = publicInfoData[lang] || publicInfoData.pl;
+const resolvedTitle = title || data.title;
+const resolvedDescription = description || data.description;
+const resolvedSections: PublicInfoSection[] = sections.length > 0
+  ? sections
+  : data.sections as PublicInfoSection[];
+
+// Why: {{COMPANY_PHONE}} and {{COMPANY_EMAIL}} replacements take values ​​from
+// company.json starter-kit, so the content does not require editing when changing the company.
+function resolveVars(str: string): string {
+  return str
+    .replace(/{{COMPANY_PHONE}}/g, company.phone)
+    .replace(/{{COMPANY_EMAIL}}/g, company.email);
+}
+---
+
+<Section id={sectionId} tone="page" class="relative overflow-hidden">
+  <!-- Why: The gradient ball in the right corner gently enlivens the background without being heavy
+       decoration; pointer-events-none prevents click blocking.-->
+  <div class="absolute top-0 right-0 h-96 w-96 max-w-full pointer-events-none" style="background:radial-gradient(ellipse 60% 60% at 100% 0%, color-mix(in oklab, var(--color-brand-primary) 8%, transparent) 0%, transparent 60%)"></div>
+  <Container>
+    <div class="mx-auto max-w-3xl">
+      <Heading tag={headingTag} variant="section-title" class="mb-4 text-brand-dark">
+        {resolvedTitle}
+      </Heading>
+      {resolvedDescription && (
+        <Text variant="body" class="mb-14 max-w-2xl text-brand-dark/50" style="line-height:1.7">
+          {resolvedDescription}
+        </Text>
+      )}
+
+      {resolvedSections.map((section) => (
+        <div class="mb-10 last:mb-0 scroll-mt-[40vh]" id={section.id}>
+          <!-- Why: h2 with a thin line underneath separates groups of information;
+               font-weight and font-size inline win over font-bold with Heading,
+               so we faithfully reproduce the light headline of the original.-->
+          <Heading tag="h2" class="pb-3 text-brand-dark/70 border-b border-brand-dark/10" style="font-weight:500;font-size:clamp(1.1rem,2vw,1.25rem)">
+            {section.heading}
+          </Heading>
+          <!-- Dlaczego: karta jako delikatne pole 3% brand-dark odtwarza
+               the appearance of the original on the global starter-kit tokens.-->
+          <div class="grid gap-3">
+            {section.items.map((item) => (
+              <div class="rounded-xl px-5 py-4" style="background:color-mix(in oklab, var(--color-brand-dark) 3%, transparent)">
+                {item.layout === "stack" ? (
+                  <div class="flex flex-col gap-2">
+                    <span class="text-xs font-medium uppercase tracking-wider text-brand-dark/50">{item.title}</span>
+                    <!-- Why: white-space:pre-line preserves line breaks
+                         with \n in multi-line content (e.g. fees).-->
+                    <div class="text-sm leading-relaxed text-brand-dark/70" style="white-space:pre-line">{resolveVars(item.content)}</div>
+                  </div>
+                ) : (
+                  <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4">
+                    <span class="text-xs font-medium uppercase tracking-wider text-brand-dark/50" style="width:8rem;flex-shrink:0;word-break:break-word">{item.title}</span>
+                    <div class="flex-1">
+                      <span class="text-sm text-brand-dark/70" style="line-height:1.6">{resolveVars(item.content)}</span>
+                      {item.link && (
+                        <a href={resolveVars(item.link.href)} class="ml-2 text-sm font-medium transition-colors hover:opacity-80 text-brand-primary">
+                          {item.link.label} &rarr;
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</Section>

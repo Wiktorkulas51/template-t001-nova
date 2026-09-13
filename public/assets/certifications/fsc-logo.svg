@@ -1,0 +1,5 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="60" cy="60" r="56" fill="#006847"/>
+  <path d="M60 25L67 42L85 42L71 53L76 70L60 60L44 70L49 53L35 42L53 42L60 25Z" fill="white"/>
+  <text x="60" y="95" text-anchor="middle" fill="white" font-family="Arial" font-weight="bold" font-size="10">FSC</text>
+</svg>

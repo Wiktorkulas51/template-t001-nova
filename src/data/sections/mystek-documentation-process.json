@@ -1,0 +1,17 @@
+{
+  "pl": {
+    "eyebrow": "JAK TO DZIAŁA?",
+    "title": "Twoja dokumentacja w 4 krokach",
+    "titleAccent": "Bez zbędnych formalności",
+    "description": "Stawiam na konkretne rozwiązania i prosty proces. Całość odbywa się zdalnie i sprawnie, pozwalając skupić się na prowadzeniu biznesu, podczas gdy dbam o bezpieczeństwo prawne.",
+    "ctaTitle": "Gotowy na szybkie wdrożenie RODO?",
+    "ctaText": "Wyceń dokumentację",
+    "ctaHref": "#doc-hero-conversion",
+    "items": [
+      { "stepLabel": 1, "title": "Wybór dokumentacji", "tag": "// KROK 01", "description": "Wybierasz konkretny dokument, na przykład politykę prywatności, lub gotowy pakiet Szybki Start dopasowany do branży i skali działalności." },
+      { "stepLabel": 2, "title": "Brief i analiza potrzeb", "tag": "// KROK 02", "description": "Otrzymujesz krótką, konkretną ankietę, która pozwala poznać specyfikę firmy i procesy przetwarzania danych. Dzięki temu dokumenty są szyte na miarę." },
+      { "stepLabel": 3, "title": "Profesjonalne opracowanie", "tag": "// KROK 03", "description": "Przygotowuję kompletną dokumentację. Zazwyczaj zajmuje to od trzech do czterech dni roboczych, zależnie od stopnia skomplikowania procesów." },
+      { "stepLabel": 4, "title": "Wdrożenie i instruktaż", "tag": "// KROK 04", "description": "Otrzymujesz gotowe do użycia pliki wraz z prostą instrukcją ich wdrożenia i utrzymania. Masz pewność, że wszystko jest zgodne z aktualnym prawem." }
+    ]
+  }
+}

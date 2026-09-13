@@ -1,0 +1,16 @@
+{
+  "tagline": "Galeria",
+  "title": "Zobacz nasze sauny i balie",
+  "description": "Prezentacja przykładowych realizacji. Każda sauna i balia jest wykonywana z dbałością o każdy detal.",
+  "images": [
+    { "src": "/assets/placeholders/image-landscape.svg", "thumb": "/assets/placeholders/image-landscape.svg", "alt": "Sauna ogrodowa widok zewnętrzny" },
+    { "src": "/assets/placeholders/image-landscape.svg", "thumb": "/assets/placeholders/image-landscape.svg", "alt": "Sauna ogrodowa detale" },
+    { "src": "/assets/placeholders/image-landscape.svg", "thumb": "/assets/placeholders/image-landscape.svg", "alt": "Balia ogrodowa z drewna" },
+    { "src": "/assets/placeholders/image-landscape.svg", "thumb": "/assets/placeholders/image-landscape.svg", "alt": "Wnętrze sauny" },
+    { "src": "/assets/placeholders/image-landscape.svg", "thumb": "/assets/placeholders/image-landscape.svg", "alt": "Sauna z piecem" },
+    { "src": "/assets/placeholders/image-landscape.svg", "thumb": "/assets/placeholders/image-landscape.svg", "alt": "Sauna na przyczepie" },
+    { "src": "/assets/placeholders/image-landscape.svg", "thumb": "/assets/placeholders/image-landscape.svg", "alt": "Balia z podgrzewaniem" },
+    { "src": "/assets/placeholders/image-landscape.svg", "thumb": "/assets/placeholders/image-landscape.svg", "alt": "Sauna wieczorem" },
+    { "src": "/assets/placeholders/image-landscape.svg", "thumb": "/assets/placeholders/image-landscape.svg", "alt": "Zestaw sauna i balia" }
+  ]
+}

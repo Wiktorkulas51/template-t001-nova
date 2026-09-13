@@ -1,0 +1,60 @@
+{
+  "pl": {
+    "heading": "Wiedza, która pomaga podejmować lepsze decyzje",
+    "items": [
+      {
+        "title": "Jak poprawić wydajność zespołu produkcyjnego",
+        "description": "Praktyczne metody organizacji pracy, które pomagają zespołowi działać sprawniej bez dodatkowego wysiłku.",
+        "imageSrc": "/assets/placeholders/image-landscape.svg",
+        "imageAlt": "Placeholder zdjęcia panoramicznego",
+        "href": "/blog/wydajnosc-zespolu-produkcyjnego/",
+        "ctaLabel": "Czytaj dalej"
+      },
+      {
+        "title": "5 sposobów na redukcję kosztów operacyjnych",
+        "description": "Sprawdzone kierunki optymalizacji kosztów, od analizy danych po zmiany w codziennych nawykach pracy.",
+        "imageSrc": "/assets/placeholders/image-landscape.svg",
+        "imageAlt": "Placeholder zdjęcia panoramicznego",
+        "href": "/blog/redukcja-kosztow-operacyjnych/",
+        "ctaLabel": "Czytaj dalej"
+      },
+      {
+        "title": "Jak wdrożyć kulturę ciągłego doskonalenia",
+        "description": "Od czego zacząć budowanie nawyku usprawnień w firmie i jak utrzymać zaangażowanie na dłuższą metę.",
+        "imageSrc": "/assets/placeholders/image-landscape.svg",
+        "imageAlt": "Placeholder zdjęcia panoramicznego",
+        "href": "/blog/kultura-ciaglego-doskonalenia/",
+        "ctaLabel": "Czytaj dalej"
+      }
+    ]
+  },
+  "en": {
+    "heading": "Knowledge that helps you make better decisions",
+    "items": [
+      {
+        "title": "How to improve the productivity of your production team",
+        "description": "Practical ways to organize work that help the team perform better without extra effort.",
+        "imageSrc": "/assets/placeholders/image-landscape.svg",
+        "imageAlt": "Landscape image placeholder",
+        "href": "/blog/team-productivity/",
+        "ctaLabel": "Read more"
+      },
+      {
+        "title": "5 ways to reduce operational costs",
+        "description": "Proven directions for cutting costs, from data analysis to changes in everyday work habits.",
+        "imageSrc": "/assets/placeholders/image-landscape.svg",
+        "imageAlt": "Landscape image placeholder",
+        "href": "/blog/operational-costs/",
+        "ctaLabel": "Read more"
+      },
+      {
+        "title": "How to build a culture of continuous improvement",
+        "description": "Where to start building the improvement habit in your company and how to keep people engaged long term.",
+        "imageSrc": "/assets/placeholders/image-landscape.svg",
+        "imageAlt": "Landscape image placeholder",
+        "href": "/blog/continuous-improvement/",
+        "ctaLabel": "Read more"
+      }
+    ]
+  }
+}

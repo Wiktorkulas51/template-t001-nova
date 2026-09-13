@@ -1,0 +1,18 @@
+{
+  "id": "52",
+  "label": "52",
+  "status": "sold",
+  "rooms": 2,
+  "area": 45.59,
+  "floor": -1,
+  "price": 379000,
+  "price_per_m2": 8313,
+  "comment": "oficyna lewa - widok podwórze - 2 pak | dwupak",
+  "pdf": "/client-assets/folde3/Rzuty/lokal_52.pdf",
+  "x": 47.64,
+  "y": 88.31,
+  "finish": "Do remontu",
+  "images": [],
+  "section": "przyziemia",
+  "hidden": true
+}

@@ -1,0 +1,13 @@
+{
+  "pl": {
+    "layout": "reviews",
+    "eyebrow": "DOWÓD SKUTECZNOŚCI",
+    "title": "Opinie o współpracy przy audycie.",
+    "description": "Trzy karty opinii zgodne z miejscem social proof w oryginalnej podstronie.",
+    "items": [
+      { "title": "Dyrektor operacyjny", "label": "Organizacja usługowa", "description": "Otrzymaliśmy jasną mapę priorytetów i mogliśmy od razu zaplanować wdrożenie." },
+      { "title": "Członek zarządu", "label": "Firma technologiczna", "description": "Największą wartością była konkretna rozmowa o ryzyku i odpowiedzialności." },
+      { "title": "Pełnomocnik jakości", "label": "Produkcja", "description": "Raport uporządkował dokumentację i pomógł przygotować zespół do kontroli." }
+    ]
+  }
+}

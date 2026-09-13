@@ -1,0 +1,55 @@
+---
+import ui from '@data/sections/piekary9-navigator-ui.json';
+import pricingSettings from '@data/sections/piekary9-navigator-settings.json';
+import apartmentsData from '@data/sections/piekary9-navigator-apartments.json';
+import Section from '@components/ui/layout/Section.astro';
+import BuildingNavigator from './BuildingNavigator.astro';
+import Heading from '@components/ui/atoms/Heading.astro';
+import Text from '@components/ui/atoms/Text.astro';
+import ApartmentsFilterBar from './components/ApartmentsFilterBar.astro';
+import ApartmentsTable from './components/ApartmentsTable.astro';
+import NavigatorGuide from './components/NavigatorGuide.astro';
+import type { Apartment } from './scripts/types';
+
+const apartments = [...(apartmentsData as Apartment[])];
+
+// Sort apartments by ID to maintain consistent order
+apartments.sort((a, b) => parseInt(a.id) - parseInt(b.id));
+
+const { title, description } = pricingSettings;
+---
+
+<!-- V3: Light background with filter tabs (static for now) -->
+<Section
+	id="oferta"
+	class="bg-brand-cream scroll-mt-28"
+	aria-labelledby="navigator-heading-v3"
+>
+	<div class="ui-container">
+		<div class="mb-8 flex items-center gap-4 lg:justify-center">
+			<span class="h-px w-8 bg-brand-accent" aria-hidden="true"></span>
+			<Text variant="accent-label" tag="span">{ui.navigatorLabel}</Text>
+			<span class="h-px w-8 bg-brand-accent" aria-hidden="true"></span>
+		</div>
+		<Heading
+			id="navigator-heading-v3"
+			variant="section-title"
+			class="mb-6 max-w-2xl lg:mx-auto lg:text-center"
+		>
+			{title}
+		</Heading>
+		<Text variant="lead" class="mb-8 max-w-2xl lg:mx-auto lg:text-center">
+			{description}
+		</Text>
+
+		<NavigatorGuide />
+
+		<BuildingNavigator />
+
+		<ApartmentsFilterBar />
+		<ApartmentsTable apartments={apartments} />
+	</div>
+</Section>
+
+
+

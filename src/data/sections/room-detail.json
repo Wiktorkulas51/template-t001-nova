@@ -1,0 +1,24 @@
+{
+  "eyebrow": "Pokoje",
+  "title": "Pokój z widokiem",
+  "description": "Jasny pokój z częścią do pracy i widokiem na las oraz okoliczne wzgórza.",
+  "ctaLabel": "Zapytaj o termin",
+  "ctaHref": "/kontakt/",
+  "backLabel": "Wszystkie pokoje",
+  "backHref": "/uslugi/",
+  "aboutTitle": "O pokoju",
+  "aboutDescription": "Przytulny pokój w kameralnym obiekcie, idealny na spokojny wypoczynek z dala od zgiełku. Zdjęcia pokazują wnętrze i jego najbliższe otoczenie.",
+  "infoTitle": "Warto wiedzieć",
+  "infoItems": ["Dostępność po zapytaniu", "Aktualne zdjęcia pokoju", "Szczegóły ustalane przy rezerwacji"],
+  "highlights": [
+    { "icon": "map-pin", "label": "Blisko natury", "text": "las i wzgórza w sąsiedztwie" },
+    { "icon": "briefcase", "label": "Miejsce do pracy", "text": "stół i krzesła w pokoju" },
+    { "icon": "bed", "label": "Na spokojny pobyt", "text": "kameralne wnętrze pokoju" }
+  ],
+  "images": [
+    { "src": "/assets/placeholders/image-landscape.svg", "thumb": "/assets/placeholders/image-landscape.svg", "alt": "Pokój z widokiem, ujęcie wnętrza 1" },
+    { "src": "/assets/placeholders/image-portrait.svg", "thumb": "/assets/placeholders/image-portrait.svg", "alt": "Pokój z widokiem, ujęcie wnętrza 2" },
+    { "src": "/assets/placeholders/image-square.svg", "thumb": "/assets/placeholders/image-square.svg", "alt": "Pokój z widokiem, ujęcie wnętrza 3" },
+    { "src": "/assets/placeholders/image-landscape.svg", "thumb": "/assets/placeholders/image-landscape.svg", "alt": "Pokój z widokiem, ujęcie wnętrza 4" }
+  ]
+}

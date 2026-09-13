@@ -1,0 +1,52 @@
+name: Deploy
+
+on:
+  # Tylko reczne wywolanie (workflow_dispatch) - szablon dla projektow klienckich.
+  # Klient zmienia na push: [master] po skopiowaniu do swojego repo.
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-deploy-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-deploy-
+      - name: Cache .astro
+        uses: actions/cache@v4
+        with:
+          path: .astro
+          key: ${{ runner.os }}-astro-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-astro-
+      - name: Cache CMS data
+        uses: actions/cache@v4
+        with:
+          path: src/data
+          key: ${{ runner.os }}-cmsdata-${{ hashFiles('src/data/**/*.json') }}
+          restore-keys: |
+            ${{ runner.os }}-cmsdata-
+      - name: Install & Build
+        run: |
+          npm ci
+          npm run build
+      - name: Deploy via FTP
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+          FTP_DIR: ${{ secrets.FTP_DIR }}
+        run: |
+          cd dist
+          zip -r ../build.zip .
+          cd ..
+          curl -X POST -F "build_zip=@build.zip" -F "key=${{ secrets.DEPLOY_KEY }}" "https://twojadomena.pl/deploy-turbo.php"

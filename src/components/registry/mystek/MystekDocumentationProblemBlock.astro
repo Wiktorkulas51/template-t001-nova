@@ -1,0 +1,74 @@
+---
+import Section from "@components/ui/layout/Section.astro";
+import Container from "@components/ui/layout/Container.astro";
+import Heading from "@components/ui/atoms/Heading.astro";
+import Text from "@components/ui/atoms/Text.astro";
+import Icon from "@components/ui/atoms/Icon.astro";
+import jsonData from "@data/sections/mystek-documentation-problem.json";
+
+type Card = { title: string; description: string; icon: string };
+type Copy = { eyebrow: string; title: string; titleAccent: string; description: string; warning: Card; solutions: Card[] };
+interface Props { data?: { pl: Copy; en?: Copy }; pl?: Copy; en?: Copy; locale?: "pl" | "en"; class?: string }
+
+const { data, pl, en, locale = "pl", class: className = "" } = Astro.props as Props;
+const source = data ?? (pl ? { pl, en } : (jsonData as { pl: Copy; en?: Copy }));
+const t = source[locale] ?? source.pl;
+---
+
+<Section tone="page" class:list={["relative overflow-hidden bg-brand-dark/[0.02]", className]}>
+	<div class="mystek-blueprint-grid pointer-events-none absolute inset-0 opacity-50"></div>
+	<div class="pointer-events-none absolute top-0 left-1/2 h-full w-px bg-brand-dark/10 opacity-40"></div>
+
+	<Container class="relative z-10">
+		<div class="mx-auto mb-16 max-w-4xl text-center lg:mb-20" data-motion="fade">
+			<Text variant="accent-label" class="mb-5 justify-center text-brand-primary">{t.eyebrow}</Text>
+			<Heading tag="h2" variant="section-heading-xl" class="mb-6">
+				{t.title}<br />
+				<span class="ui-text-gradient">{t.titleAccent}</span>
+			</Heading>
+			<Text variant="lead" class="mx-auto max-w-3xl text-brand-dark/65">{t.description}</Text>
+		</div>
+
+		<div class="flex flex-col gap-8">
+			<article class="group relative overflow-hidden rounded-3xl border border-brand-primary/20 bg-brand-primary p-8 text-white shadow-soft lg:p-12" data-motion="fade">
+				<div class="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+					<div class="flex items-start gap-5">
+						<div class="flex size-12 shrink-0 items-center justify-center rounded-2xl border border-white/25 bg-white/10 text-white">
+							<Icon name={t.warning.icon} weight="bold" size="1.3rem" />
+						</div>
+						<div>
+							<Heading tag="h3" variant="section-heading-lg" class="mb-4 !text-white">{t.warning.title}</Heading>
+							<Text variant="lead" class="max-w-3xl !text-white/75">{t.warning.description}</Text>
+						</div>
+					</div>
+					<span class="shrink-0 font-mono text-[10px] font-bold tracking-[0.2em] text-white/60 uppercase">01 / ryzyko</span>
+				</div>
+				<div class="pointer-events-none absolute -right-20 -bottom-24 size-72 rounded-full bg-white/10 blur-3xl transition-transform duration-700 group-hover:scale-110"></div>
+			</article>
+
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+				{t.solutions.map((card, index) => (
+					<article class="group flex h-full items-start gap-5 ui-card-interactive rounded-3xl border border-brand-dark/10 bg-white p-8 shadow-soft" data-motion="fade" style={`--motion-delay: ${(index + 1) * 120}ms`}>
+						<div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-brand-primary/10 text-brand-primary transition-[background-color,color] duration-300 group-hover:bg-brand-primary group-hover:text-white">
+							<Icon name={card.icon} size="1.3rem" />
+						</div>
+						<div>
+							<Text variant="accent-label" class="mb-3 text-brand-primary/60">0{index + 2} / rozwiązanie</Text>
+							<Heading tag="h3" variant="feature-heading-md" class="mb-3">{card.title}</Heading>
+							<Text variant="body" class="text-brand-dark/65">{card.description}</Text>
+						</div>
+					</article>
+				))}
+			</div>
+		</div>
+	</Container>
+</Section>
+
+<style>
+	.mystek-blueprint-grid {
+		background-image:
+			linear-gradient(to right, color-mix(in oklab, var(--color-brand-dark) 6%, transparent) 1px, transparent 1px),
+			linear-gradient(to bottom, color-mix(in oklab, var(--color-brand-dark) 6%, transparent) 1px, transparent 1px);
+		background-size: 4rem 4rem;
+	}
+</style>
