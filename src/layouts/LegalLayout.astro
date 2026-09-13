@@ -15,10 +15,16 @@ interface Props {
 const { title, description, lastUpdated, locale = "en" } = Astro.props;
 ---
 
-<!-- Why: navbar and footer are rendered globally by Layout. Legal pages
-     use plain (fixed bar with background immediately, like other subpages),
-     so content gets header height compensation from Layout. -->
-<Layout title={title} description={description} navbarVariant="plain" locale={locale} lang={locale}>
+<!-- Why: legal pages reuse the homepage shell; main content still receives
+     header spacing because the floating navbar overlays the page background. -->
+<Layout
+  title={title}
+  description={description}
+  navbarVariant="floating"
+  footerVariant="nova"
+  locale={locale}
+  lang={locale}
+>
   <div class="bg-brand-light pb-16 lg:pb-24">
     <div class="px-4 mx-auto max-w-4xl">
       <div class="mb-12 border-b border-brand-dark/10 pb-8">
