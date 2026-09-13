@@ -6,6 +6,7 @@ import Text from "@components/ui/atoms/Text.astro";
 import Button from "@components/ui/atoms/Button.astro";
 import SmartImage from "@components/ui/atoms/SmartImage.astro";
 import jsonData from "@data/sections/nova-hero-wireframe.json";
+import { ACTIVE_TEMPLATE } from "@config/template";
 
 type Stat = { value: string; label: string };
 
@@ -26,17 +27,18 @@ interface Props {
 }
 
 const props = Astro.props as Props;
-const eyebrow = props.eyebrow ?? jsonData.eyebrow;
-const heading = props.heading ?? jsonData.heading;
-const headingAccent = props.headingAccent ?? jsonData.headingAccent;
-const description = props.description ?? jsonData.description;
-const primaryCTA = props.primaryCTA ?? jsonData.primaryCTA;
-const secondaryCTA = props.secondaryCTA ?? jsonData.secondaryCTA;
-const trustedBy = props.trustedBy ?? jsonData.trustedBy;
-const trustItems = props.trustItems ?? jsonData.trustItems;
-const image = props.image ?? jsonData.image;
-const imageAlt = props.imageAlt ?? jsonData.imageAlt;
-const stats = props.stats ?? jsonData.stats;
+const fallback = ACTIVE_TEMPLATE === "nova" ? undefined : jsonData;
+const eyebrow = props.eyebrow ?? fallback?.eyebrow;
+const heading = props.heading ?? fallback?.heading;
+const headingAccent = props.headingAccent ?? fallback?.headingAccent;
+const description = props.description ?? fallback?.description;
+const primaryCTA = props.primaryCTA ?? fallback?.primaryCTA;
+const secondaryCTA = props.secondaryCTA ?? fallback?.secondaryCTA;
+const trustedBy = props.trustedBy ?? fallback?.trustedBy;
+const trustItems = props.trustItems ?? fallback?.trustItems ?? [];
+const image = props.image ?? fallback?.image;
+const imageAlt = props.imageAlt ?? fallback?.imageAlt ?? "";
+const stats = props.stats ?? fallback?.stats ?? [];
 ---
 
 <Section
@@ -115,5 +117,20 @@ const stats = props.stats ?? jsonData.stats;
     --motion-duration: 800ms;
     --motion-distance: 0.45rem;
     --motion-blur: 2px;
+  }
+
+  @keyframes nova-stats-entry {
+    from { opacity: 0; transform: translateY(0.45rem); filter: blur(2px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  .nova-stats-reveal > * {
+    animation: nova-stats-entry 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 28%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nova-stats-reveal > * { animation: none; opacity: 1; filter: none; transform: none; }
   }
 </style>

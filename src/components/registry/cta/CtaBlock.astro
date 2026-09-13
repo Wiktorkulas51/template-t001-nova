@@ -5,17 +5,19 @@ import Heading from "@components/ui/atoms/Heading.astro";
 import Text from "@components/ui/atoms/Text.astro";
 import Button from "@components/ui/atoms/Button.astro";
 import jsonData from "@data/sections/nova-cta.json";
+import { ACTIVE_TEMPLATE } from "@config/template";
 
 interface Props { title?: string; description?: string; primaryLabel?: string; primaryHref?: string; secondaryLabel?: string; secondaryHref?: string; image?: string; imageAlt?: string; class?: string; }
 const props = Astro.props as Props;
-const title = props.title ?? jsonData.title;
-const description = props.description ?? jsonData.description;
-const primaryLabel = props.primaryLabel ?? jsonData.primaryLabel;
-const primaryHref = props.primaryHref ?? jsonData.primaryHref;
-const secondaryLabel = props.secondaryLabel ?? jsonData.secondaryLabel;
-const secondaryHref = props.secondaryHref ?? jsonData.secondaryHref;
-const image = props.image ?? jsonData.image;
-const imageAlt = props.imageAlt ?? jsonData.imageAlt;
+const fallback = ACTIVE_TEMPLATE === "nova" ? undefined : jsonData;
+const title = props.title ?? fallback?.title;
+const description = props.description ?? fallback?.description;
+const primaryLabel = props.primaryLabel ?? fallback?.primaryLabel;
+const primaryHref = props.primaryHref ?? fallback?.primaryHref;
+const secondaryLabel = props.secondaryLabel ?? fallback?.secondaryLabel;
+const secondaryHref = props.secondaryHref ?? fallback?.secondaryHref;
+const image = props.image ?? fallback?.image;
+const imageAlt = props.imageAlt ?? fallback?.imageAlt ?? "";
 ---
 
 <Section id="kontakt" tone="page" class:list={["cta-section", props.class]}>

@@ -5,15 +5,17 @@ import Heading from "@components/ui/atoms/Heading.astro";
 import Text from "@components/ui/atoms/Text.astro";
 import SmartImage from "@components/ui/atoms/SmartImage.astro";
 import jsonData from "@data/sections/nova-projects.json";
+import { ACTIVE_TEMPLATE } from "@config/template";
 
 type Project = { category: string; title: string; image: string; alt: string };
 interface Props { title?: string; description?: string; linkLabel?: string; linkHref?: string; items?: Project[]; class?: string; }
 const props = Astro.props as Props;
-const title = props.title ?? jsonData.title;
-const description = props.description ?? jsonData.description;
-const linkLabel = props.linkLabel ?? jsonData.linkLabel;
-const linkHref = props.linkHref ?? jsonData.linkHref;
-const items = props.items ?? jsonData.items;
+const fallback = ACTIVE_TEMPLATE === "nova" ? undefined : jsonData;
+const title = props.title ?? fallback?.title;
+const description = props.description ?? fallback?.description;
+const linkLabel = props.linkLabel ?? fallback?.linkLabel;
+const linkHref = props.linkHref ?? fallback?.linkHref;
+const items = props.items ?? fallback?.items ?? [];
 ---
 
 <Section id="realizacje" tone="page" class:list={["relative z-[1] -mt-4 rounded-t-[var(--rounded-lg)] pb-16", props.class]}>

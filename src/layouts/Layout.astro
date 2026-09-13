@@ -340,6 +340,53 @@ const mainPaddingStyle = fullBleedTop
 				motionScript.defer = true;
 				document.head.appendChild(motionScript);
 			}
+
+			(function () {
+				if (window.__novaViewportMotionFallback) return;
+				window.__novaViewportMotionFallback = true;
+
+				var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+				var reveal = function (element) {
+					requestAnimationFrame(function () {
+						requestAnimationFrame(function () {
+							element.setAttribute('data-motion-visible', '');
+						});
+					});
+				};
+
+				document.querySelectorAll('[data-motion-sequence="fade"]').forEach(function (sequence) {
+					Array.from(sequence.children).forEach(function (element, index) {
+						element.style.setProperty('--motion-order', String(index));
+						if (reduceMotion) element.setAttribute('data-motion-visible', '');
+						else reveal(element);
+					});
+				});
+
+				var sequences = document.querySelectorAll('[data-motion-sequence="viewport"]');
+				if (reduceMotion || !('IntersectionObserver' in window)) {
+					sequences.forEach(function (sequence) {
+						Array.from(sequence.children).forEach(function (element) {
+							element.setAttribute('data-motion-visible', '');
+						});
+					});
+					return;
+				}
+
+				var observer = new IntersectionObserver(function (entries) {
+					entries.forEach(function (entry) {
+						if (!entry.isIntersecting) return;
+						reveal(entry.target);
+						observer.unobserve(entry.target);
+					});
+				}, { threshold: 0.15 });
+
+				sequences.forEach(function (sequence) {
+					Array.from(sequence.children).forEach(function (element, index) {
+						element.style.setProperty('--motion-order', String(index));
+						observer.observe(element);
+					});
+				});
+			})();
 		</script>}
 		<!-- Fix page "sliding": global scroll-behavior:smooth (core.css) causes
 		     View Transition to ANIMATE scroll to top instead of jumping after
