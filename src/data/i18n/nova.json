@@ -5,6 +5,13 @@
       "description": "Tworzymy nowoczesne strony internetowe, które wzmacniają wizerunek, przyciągają klientów i wspierają rozwój biznesu.",
       "heading": "Nowe możliwości dla ambitnych marek"
     },
+    "demoBanner": {
+      "label": "Ten template został zaprojektowany i wdrożony przez WebScale.",
+      "downloadLabel": "Pobierz template",
+      "downloadHref": "https://webscale.pl/?utm_source=nova-demo&utm_medium=banner&utm_campaign=t001-nova-download",
+      "customizeLabel": "Zamów customizację",
+      "customizeHref": "https://webscale.pl/?utm_source=nova-demo&utm_medium=banner&utm_campaign=t001-nova-custom"
+    },
     "navigation": {
       "menu": [
         { "label": "O nas", "href": "#zespol" },
@@ -130,6 +137,13 @@
       "title": "Nova, websites for ambitious brands",
       "description": "We create modern websites that strengthen your image, attract clients and support business growth.",
       "heading": "New possibilities for ambitious brands"
+    },
+    "demoBanner": {
+      "label": "This template was designed and built by WebScale.",
+      "downloadLabel": "Download template",
+      "downloadHref": "https://webscale.pl/?utm_source=nova-demo&utm_medium=banner&utm_campaign=t001-nova-download",
+      "customizeLabel": "Request customization",
+      "customizeHref": "https://webscale.pl/?utm_source=nova-demo&utm_medium=banner&utm_campaign=t001-nova-custom"
     },
     "navigation": {
       "menu": [

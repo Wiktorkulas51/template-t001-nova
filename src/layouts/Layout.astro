@@ -23,6 +23,7 @@ import FooterColumnsBlock from '@components/registry/shell/FooterColumnsBlock.as
 import FooterMinimalBlock from '@components/registry/shell/FooterMinimalBlock.astro';
 import FooterPromoBlock from '@components/registry/shell/FooterPromoBlock.astro';
 import NovaFooterBlock from '@components/registry/shell/NovaFooterBlock.astro';
+import NovaDemoBanner from '@components/registry/shell/NovaDemoBanner.astro';
 import VersionToolbar from '@components/dev/VersionToolbar.astro';
 import FontSwitcherToolbar from '@components/dev/FontSwitcherToolbar.astro';
 import DeveloperToolsDock from '@components/dev/DeveloperToolsDock.astro';
@@ -302,7 +303,12 @@ const mainPaddingStyle = fullBleedTop
 		data-review-project={reviewProject || undefined}
 	>
 		{clientRuntime && <MobileDrawer locale={locale} />}
-		{showShell && navbarResolved && <navbarResolved.component layout={navbarResolved.layout} theme={navbarTheme} locale={locale} />}
+		{showShell && theme === 'nova' && <NovaDemoBanner locale={locale} />}
+		{showShell && navbarResolved && (
+			<div class:list={theme === 'nova' ? ['relative'] : []}>
+				<navbarResolved.component layout={navbarResolved.layout} theme={navbarTheme} locale={locale} />
+			</div>
+		)}
 		{showDevLibraryLink && (
 			<a
 				href="/dev/components/"
