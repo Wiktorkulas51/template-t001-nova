@@ -31,7 +31,7 @@ const items = props.items ?? jsonData.items;
     </div>
     <div class="nova-services-grid">
       {items.map((item) => (
-        <article class="nova-service-card">
+        <article class="nova-service-card ui-card-interactive group hover:-translate-y-0.5 hover:border-brand-accent hover:shadow-strong">
           <div class="nova-service-icon" aria-hidden="true">
             <Icon name={item.icon ?? "sparkle"} />
           </div>
@@ -42,7 +42,7 @@ const items = props.items ?? jsonData.items;
             </div>
             <Text variant="body" class="nova-service-description">{item.description}</Text>
           </div>
-          <span class="nova-service-arrow" aria-hidden="true">
+          <span class="nova-service-arrow transition-[background-color,border-color,color,transform] duration-300 group-hover:border-brand-accent group-hover:bg-brand-accent group-hover:text-brand-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:rotate-[8deg] motion-reduce:transition-none" aria-hidden="true">
             <Icon name="arrow-up-right" />
           </span>
         </article>
@@ -103,13 +103,6 @@ const items = props.items ?? jsonData.items;
     border-radius: var(--ui-radius-lg);
     background: var(--color-surface);
     box-shadow: var(--ui-elevation-soft);
-    transition: border-color 300ms ease, box-shadow 300ms ease, transform 300ms ease;
-  }
-
-  .nova-service-card:hover {
-    border-color: var(--color-brand-accent);
-    box-shadow: var(--ui-elevation-strong);
-    transform: translateY(-0.25rem);
   }
 
   .nova-service-icon {
@@ -172,13 +165,6 @@ const items = props.items ?? jsonData.items;
     border-radius: var(--ui-radius-full);
     color: var(--color-brand-dark);
     font-size: 0.9375rem;
-    transition: border-color 300ms ease, background-color 300ms ease, color 300ms ease;
-  }
-
-  .nova-service-card:hover .nova-service-arrow {
-    border-color: var(--color-brand-accent);
-    background: var(--color-brand-accent);
-    color: var(--color-brand-light);
   }
 
   @media (min-width: 48rem) and (max-width: 63.99rem) {
