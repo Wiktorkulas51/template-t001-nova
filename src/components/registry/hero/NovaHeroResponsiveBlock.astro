@@ -51,11 +51,11 @@ const stats = props.stats ?? fallback?.stats ?? [];
 >
   <Container class="w-full max-w-none px-0">
     <div class="relative overflow-hidden rounded-t-xl bg-surface">
-      <div class="grid min-w-0 grid-cols-1 md:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:grid-cols-2">
-        <div class="flex min-w-0 flex-col justify-start px-[clamp(1.25rem,5vw,5rem)] pb-[clamp(3rem,9vw,6rem)] pt-[clamp(3rem,7vw,5rem)] md:min-h-[34rem] md:px-[clamp(2rem,4vw,3.5rem)] md:pb-8 md:pt-10 lg:grid lg:grid-rows-[1fr_auto] lg:px-[clamp(1.5rem,5vw,5rem)] lg:pb-[clamp(2rem,3vw,3rem)] lg:pt-[clamp(4rem,5vw,5rem)]">
+      <div class="grid min-w-0 grid-cols-1 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:grid-cols-2">
+        <div class="flex min-w-0 flex-col justify-start px-[clamp(1.25rem,5vw,5rem)] pb-[clamp(3rem,9vw,6rem)] pt-[clamp(3rem,7vw,5rem)] md:min-h-[34rem] md:px-[clamp(1.5rem,4vw,3.5rem)] md:pb-8 md:pt-10 lg:grid lg:grid-rows-[1fr_auto] lg:px-[clamp(1.5rem,5vw,5rem)] lg:pb-[clamp(2rem,3vw,3rem)] lg:pt-[clamp(4rem,5vw,5rem)]">
           <div class="flex min-w-0 flex-col justify-start gap-[clamp(1.25rem,4vw,2rem)] md:justify-center md:gap-5 lg:-translate-y-6 lg:gap-[clamp(1.25rem,2vw,2rem)]" data-motion-sequence="fade">
             <Text tag="p" variant="accent-label" class="font-sans font-semibold tracking-[0.18em] md:text-[0.72rem] lg:text-[clamp(0.75rem,0.85vw,0.95rem)]">{eyebrow}</Text>
-            <Heading tag="h1" variant="hero" class="max-w-[42rem] font-bold leading-[0.96] tracking-[-0.065em] text-[clamp(2.5rem,10vw,3.75rem)] md:max-w-[30rem] md:text-[clamp(2.85rem,5.8vw,4.2rem)] lg:text-[clamp(3rem,4.4vw,4.75rem)]">
+            <Heading tag="h1" variant="hero" class="max-w-[42rem] font-bold leading-[0.96] tracking-[-0.065em] text-[clamp(2.5rem,10vw,3.75rem)] md:max-w-[42rem] md:text-[clamp(3rem,4.4vw,4.75rem)] lg:text-[clamp(3rem,4.4vw,4.75rem)]">
               {heading}{' '}<span class="text-brand-accent">{headingAccent}</span>
             </Heading>
             <Text variant="lead" class="max-w-[38rem] md:max-w-[25rem] md:text-[clamp(1rem,1.45vw,1.2rem)] lg:max-w-[38rem] lg:text-[clamp(1.1rem,1.45vw,1.4rem)]">{description}</Text>
@@ -80,7 +80,7 @@ const stats = props.stats ?? fallback?.stats ?? [];
           </div>
         </div>
 
-        <div class="relative min-w-0 h-[clamp(22rem,92vw,31rem)] md:mb-0 md:h-[clamp(30rem,62vw,38rem)] md:pb-6 md:pr-6 lg:mb-[clamp(0.75rem,1vw,1rem)] lg:h-[clamp(36rem,45vw,48rem)] lg:pb-[clamp(1rem,2vw,2rem)] lg:pr-[clamp(1.25rem,3vw,3rem)]" data-motion="fade" style="--motion-delay: 120ms">
+        <div class="relative min-w-0 mb-4 h-[clamp(22rem,92vw,31rem)] md:mb-0 md:h-[clamp(30rem,62vw,38rem)] md:pb-6 md:pr-6 lg:mb-[clamp(0.75rem,1vw,1rem)] lg:h-[clamp(36rem,45vw,48rem)] lg:pb-[clamp(1rem,2vw,2rem)] lg:pr-[clamp(1.25rem,3vw,3rem)]" data-motion="fade" style="--motion-delay: 120ms">
           <svg class="pointer-events-none absolute inset-0 z-0 size-full overflow-hidden opacity-0 md:opacity-100" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true">
             <defs>
               <clipPath id="nova-responsive-photo-blob" clipPathUnits="objectBoundingBox">
