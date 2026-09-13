@@ -10,7 +10,7 @@
     "dev": "astro dev",
     "postinstall": "patch-package && node src/scripts/sync-phosphor-css.mjs",
     "prebuild": "node src/scripts/sync-phosphor-css.mjs",
-    "build": "npm run assets:gen && npm run assets:fonts && npm run assets:img && node src/scripts/scope-pages.mjs build && node src/scripts/clean-dist.mjs && node src/scripts/prune-images.mjs && node src/scripts/strip-html-comments.mjs && node src/scripts/prune-phosphor-css.mjs",
+    "build": "npm run assets:gen && npm run assets:fonts && npm run assets:img && node src/scripts/scope-pages.mjs build && node src/scripts/clean-dist.mjs && node src/scripts/prune-images.mjs && node src/scripts/strip-html-comments.mjs && node src/scripts/prune-phosphor-css.mjs && node scripts/prefix-base-assets.mjs",
     "scope:restore": "node src/scripts/scope-pages.mjs restore",
     "preview": "astro preview",
     "astro": "astro",

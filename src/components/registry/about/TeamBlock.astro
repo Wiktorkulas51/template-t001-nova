@@ -25,7 +25,7 @@ const teamAvatars = props.teamAvatars ?? jsonData.teamAvatars ?? [];
 
 <Section id="zespol" tone="page" class:list={["py-12", props.class]}>
   <Container class="w-full max-w-none px-[clamp(1.5rem,5vw,5rem)]">
-    <div class="grid grid-cols-1 items-center gap-6 md:grid-cols-2 md:gap-12" data-motion-sequence="viewport">
+    <div class="nova-team-reveal grid grid-cols-1 items-center gap-6 md:grid-cols-2 md:gap-12" data-motion-sequence="viewport">
       <figure class="nova-reveal-media m-0 grid min-h-80 place-items-center overflow-hidden rounded-[var(--ui-radius-xl)]">
         <SmartImage src={image} alt={imageAlt} width={1280} height={900} loading="lazy" class="h-full min-h-80 w-full object-cover" />
       </figure>
@@ -55,5 +55,11 @@ const teamAvatars = props.teamAvatars ?? jsonData.teamAvatars ?? [];
     --motion-duration: 1200ms;
     --motion-distance: 0.35rem;
     filter: none;
+  }
+
+  :global(html[data-motion-ready] .nova-team-reveal) {
+    --motion-duration: 850ms;
+    --motion-distance: 0.5rem;
+    --motion-blur: 2px;
   }
 </style>

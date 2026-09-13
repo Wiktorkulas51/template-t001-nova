@@ -331,7 +331,16 @@ const mainPaddingStyle = fullBleedTop
 		<!-- Scripts -->
 		<slot name="scripts" />
 
-		{clientRuntime && <script is:inline data-astro-rerun src="/js/motion.js" defer></script>}
+		{/* Astro może oznaczyć zewnętrzny skrypt jako wykonany podczas View Transitions,
+		    dlatego uruchamiamy motion.js przez jawny bootstrap z guardem w samym silniku. */}
+		{clientRuntime && <script is:inline>
+			if (!window.__webscaleFadeMotion) {
+				var motionScript = document.createElement('script');
+				motionScript.src = '/js/motion.js';
+				motionScript.defer = true;
+				document.head.appendChild(motionScript);
+			}
+		</script>}
 		<!-- Fix page "sliding": global scroll-behavior:smooth (core.css) causes
 		     View Transition to ANIMATE scroll to top instead of jumping after
 		     inserting new page. We disable smooth only during transition and

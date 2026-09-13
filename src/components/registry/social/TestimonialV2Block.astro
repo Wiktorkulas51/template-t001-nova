@@ -14,7 +14,7 @@ const columns = [list, [...list.slice(2), ...list.slice(0, 2)], [...list.slice(1
 
 <Section id={sectionId === "testimonial-v2" ? "opinie" : sectionId} tone="page" class:list={["overflow-hidden", className]}>
   <div class="ui-container">
-    <div data-motion-sequence="viewport">
+    <div class="nova-testimonials-reveal" data-motion-sequence="viewport">
       <SectionHeader title={title || data.title} description={description || data.description} titleTag="h2" align="center" class="mx-auto max-w-3xl" />
       <div class="relative mx-auto mt-12 flex max-h-[720px] max-w-6xl justify-center gap-4 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] md:gap-6">
       {columns.map((column, columnIndex) => (
@@ -55,4 +55,10 @@ const columns = [list, [...list.slice(2), ...list.slice(0, 2)], [...list.slice(1
   .testimonial-v2-scroll-fast { animation: testimonial-v2-up 12s linear infinite; }
   .testimonial-v2-scroll:hover, .testimonial-v2-scroll-slow:hover, .testimonial-v2-scroll-fast:hover { animation-play-state: paused; }
   @media (prefers-reduced-motion: reduce) { .testimonial-v2-scroll, .testimonial-v2-scroll-slow, .testimonial-v2-scroll-fast { animation: none; } }
+
+  :global(html[data-motion-ready] .nova-testimonials-reveal) {
+    --motion-duration: 700ms;
+    --motion-distance: 0.35rem;
+    --motion-blur: 2px;
+  }
 </style>
