@@ -14,10 +14,10 @@
     { "label": "Opinie", "href": "/opinie/" }
   ],
   "cta": {
-    "label": "Rozpocznij projekt ↗",
+    "label": "Rozpocznij projekt",
     "href": "/kontakt/",
     "prefix": "",
-    "hoverLabel": "Porozmawiajmy ↗"
+    "hoverLabel": "Porozmawiajmy"
   },
   "aria": {
     "menuOpen": "Navigation menu",

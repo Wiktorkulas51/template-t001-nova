@@ -32,7 +32,6 @@ const {
 
 const resolvedTitle = title || data.title;
 const resolvedDescription = description || data.description;
-const resolvedTagline = tagline || data.tagline;
 const list = items && items.length > 0 ? items : data.items;
 ---
 
@@ -41,7 +40,6 @@ const list = items && items.length > 0 ? items : data.items;
     <SectionHeader
       title={resolvedTitle}
       description={resolvedDescription}
-      tagline={resolvedTagline}
       titleVariant="section-heading-lg"
       titleTag={headingTag}
       align="center"

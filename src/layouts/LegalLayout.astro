@@ -13,6 +13,8 @@ interface Props {
 }
 
 const { title, description, lastUpdated, locale = "en" } = Astro.props;
+const legalCopy = legalData[locale] ?? legalData.en;
+const homeHref = locale === "pl" ? "/pl/" : "/";
 ---
 
 <!-- Why: legal pages reuse the homepage shell; main content still receives
@@ -28,12 +30,12 @@ const { title, description, lastUpdated, locale = "en" } = Astro.props;
   <div class="bg-brand-light pb-16 lg:pb-24">
     <div class="px-4 mx-auto max-w-4xl">
       <div class="mb-12 border-b border-brand-dark/10 pb-8">
-        <a href="/" class="inline-flex items-center gap-2 text-sm font-medium text-brand-dark/60 hover:text-brand-primary transition-colors mb-8">
+        <a href={homeHref} class="inline-flex items-center gap-2 text-sm font-medium text-brand-dark/60 hover:text-brand-primary transition-colors mb-8">
           <i class="ph ph-arrow-left"></i>
-          {legalData.legalBackLabel}
+          {legalCopy.legalBackLabel}
         </a>
         <Heading level={1} variant="section-heading-xl" class="mb-4">{title}</Heading>
-        <Text class="text-brand-dark/60 italic">{legalData.updatedLabel} {lastUpdated}</Text>
+        <Text class="text-brand-dark/60 italic">{legalCopy.updatedLabel} {lastUpdated}</Text>
       </div>
 
       <div class="legal-content prose prose-brand max-w-none">
@@ -41,11 +43,11 @@ const { title, description, lastUpdated, locale = "en" } = Astro.props;
       </div>
 
       <div class="mt-16 rounded-3xl bg-brand-primary/5 p-8 border border-brand-primary/10">
-        <Text class="font-bold mb-4">{legalData.legalFaqTitle}</Text>
-        <Text class="mb-6">{legalData.legalFaqText}</Text>
-        <a href={legalData.legalContactHref} class="inline-flex items-center gap-2 font-bold text-brand-dark hover:text-brand-primary transition-colors">
+        <Text class="font-bold mb-4">{legalCopy.legalFaqTitle}</Text>
+        <Text class="mb-6">{legalCopy.legalFaqText}</Text>
+        <a href={legalCopy.legalContactHref} class="inline-flex items-center gap-2 font-bold text-brand-dark hover:text-brand-primary transition-colors">
           <i class="ph ph-envelope"></i>
-          {legalData.legalContactCta}
+          {legalCopy.legalContactCta}
         </a>
       </div>
     </div>

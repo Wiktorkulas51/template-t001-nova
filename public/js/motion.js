@@ -11,6 +11,7 @@
   var mediaSelector = 'img, video, picture, canvas';
   var initialTargets = new WeakSet();
   var viewportObserver = null;
+  var fallbackFrame = null;
 
   function isMotionDisabled() {
     return document.documentElement.hasAttribute('data-motion-disabled') ||
@@ -255,6 +256,29 @@
     });
   }
 
+  // Dlaczego: Lenis i poziome marquee mogą zmienić położenie targetu bez
+  // przekroczenia progu IntersectionObserver. Fallback domyka tylko elementy
+  // widoczne w viewportcie, bez skanowania layoutu przy każdym scrollu.
+  function revealVisibleFallback() {
+    if (isMotionDisabled() || fallbackFrame !== null) return;
+
+    fallbackFrame = requestAnimationFrame(function () {
+      fallbackFrame = null;
+      var visibleSelectors = [
+        '[data-motion="fade"]',
+        '[data-motion-sequence="fade"] > *',
+        '[data-motion-sequence="viewport"] > *',
+        '[data-motion-auto-target]'
+      ].join(',');
+
+      document.querySelectorAll(visibleSelectors).forEach(function (element) {
+        if (!element.hasAttribute('data-motion-visible') && isInViewport(element)) {
+          revealViewportTarget(element);
+        }
+      });
+    });
+  }
+
   function revealAutoSection(section) {
     getAutoTargets(section).forEach(function (element) {
       revealViewportTarget(element);
@@ -410,6 +434,8 @@
   document.addEventListener('astro:page-load', showTargetsImmediately);
   document.addEventListener('astro:page-load', scheduleViewportMotion);
   document.addEventListener('astro:after-swap', scheduleViewportMotion);
+  window.addEventListener('scroll', revealVisibleFallback, { passive: true });
+  window.addEventListener('resize', revealVisibleFallback, { passive: true });
   document.addEventListener('astro:before-swap', function (event) {
     prepareNextDocument(event);
 

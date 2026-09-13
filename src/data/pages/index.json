@@ -12,7 +12,6 @@
     { "id": "novaTeam", "variant": "default" },
     { "id": "faq3", "variant": "default" },
     { "id": "testimonials", "variant": "v2" },
-    { "id": "novaCta", "variant": "default" },
     { "id": "footer", "variant": "nova" }
   ]
 }
