@@ -86,6 +86,7 @@ export const COMPONENT_MANIFEST: Record<string, ComponentManifestEntry> = {
   HeroEditorialBlock: { category: "core", status: "provisional" },
   HeroLawBlock: { category: "client", status: "confirmed" },
   HeroPhotoBlock: { category: "core", status: "provisional" },
+  NovaHeroResponsiveBlock: { category: "client", status: "confirmed", path: "/src/components/registry/hero/NovaHeroResponsiveBlock.astro" },
   HeroSplitBlock: { category: "core", status: "provisional" },
   HeroStatsBlock: { category: "core", status: "provisional" },
   HeroTomRosBlock: { category: "client", status: "confirmed" },
