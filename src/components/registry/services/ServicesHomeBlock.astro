@@ -26,7 +26,7 @@ const items = props.items ?? jsonData.items;
         <Text variant="lead">{description}</Text>
       </div>
       <div class="nova-services-link-wrap">
-        <a class="group inline-flex items-center gap-2" href={linkHref}>
+        <a class="group inline-flex items-center gap-2 transition-colors duration-300 hover:text-brand-accent motion-reduce:transition-none" href={linkHref}>
           <span class="transition-transform duration-300 ease-out group-hover:-translate-x-1 motion-reduce:transition-none">{linkLabel}</span>
           <span class="inline-flex size-5 items-center justify-center leading-none transition-transform duration-300 ease-out group-hover:translate-x-1 motion-reduce:transition-none" aria-hidden="true">→</span>
         </a>
@@ -34,16 +34,16 @@ const items = props.items ?? jsonData.items;
     </div>
     <div class="nova-services-grid">
       {items.map((item) => (
-        <article class="nova-service-card ui-card-interactive group hover:-translate-y-0.5 hover:border-brand-accent hover:shadow-strong">
-          <div class="nova-service-icon" aria-hidden="true">
+        <article class="nova-service-card ui-card-interactive group transition-[background-color,border-color,box-shadow,transform] duration-300 ease-out hover:-translate-y-0.5 hover:border-brand-accent hover:bg-brand-accent/10 hover:shadow-strong motion-reduce:transition-none">
+          <div class="nova-service-icon transition-[background-color,border-color,color] duration-300 group-hover:border-brand-accent group-hover:bg-brand-accent group-hover:text-brand-dark motion-reduce:transition-none" aria-hidden="true">
             <Icon name={item.icon ?? "sparkle"} />
           </div>
           <div class="nova-service-content">
             <div class="nova-service-title-line">
-              <Text tag="span" variant="accent-label" class="nova-service-number">{item.number}</Text>
+              <Text tag="span" variant="accent-label" class="nova-service-number transition-colors duration-300 group-hover:text-brand-dark/80 motion-reduce:transition-none">{item.number}</Text>
               <Heading tag="h3" variant="feature-title" class="nova-service-title">{item.title}</Heading>
             </div>
-            <Text variant="body" class="nova-service-description">{item.description}</Text>
+            <Text variant="body" class="nova-service-description transition-colors duration-300 group-hover:text-brand-dark/80 motion-reduce:transition-none">{item.description}</Text>
           </div>
           <span class="nova-service-arrow overflow-hidden transition-[background-color,border-color,color] duration-300 group-hover:border-brand-accent group-hover:bg-brand-accent group-hover:text-brand-light motion-reduce:transition-none" aria-hidden="true">
             <span class="relative flex size-4 items-center justify-center">
@@ -111,9 +111,9 @@ const items = props.items ?? jsonData.items;
     height: 2.25rem;
     flex: none;
     place-items: center;
-    border: 1px solid color-mix(in oklab, var(--color-brand-accent) 20%, transparent);
+    border: 1px solid color-mix(in oklab, var(--color-brand-accent) 28%, transparent);
     border-radius: var(--ui-radius-full);
-    background: var(--color-brand-cream);
+    background: transparent;
     color: var(--color-brand-accent);
     font-size: 1.125rem;
   }
@@ -223,15 +223,16 @@ const items = props.items ?? jsonData.items;
 
     .nova-service-card {
       grid-template-columns: minmax(0, 1fr) auto;
-      grid-template-rows: auto minmax(0, 1fr) auto;
+      grid-template-rows: auto auto;
       align-items: start;
       gap: 0.875rem;
-      min-height: clamp(12rem, 18vw, 16rem);
+      min-height: 0;
       padding: clamp(1rem, 1.6vw, 1.5rem);
     }
 
     .nova-service-icon {
-      grid-column: 1 / -1;
+      grid-column: 1;
+      grid-row: 1;
       width: 3rem;
       height: 3rem;
       font-size: 1.35rem;
@@ -239,6 +240,7 @@ const items = props.items ?? jsonData.items;
 
     .nova-service-content {
       grid-column: 1 / -1;
+      grid-row: 2;
       align-self: start;
     }
 
@@ -264,8 +266,9 @@ const items = props.items ?? jsonData.items;
 
     .nova-service-arrow {
       grid-column: 2;
+      grid-row: 1;
       justify-self: end;
-      align-self: end;
+      align-self: center;
     }
   }
 
