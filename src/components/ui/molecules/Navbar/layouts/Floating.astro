@@ -153,6 +153,10 @@ const fixedShellClass = isDark
 		border-radius: var(--ui-radius-xl) var(--ui-radius-xl) 0 0;
 	}
 
+	:global(html[data-theme="nova"] header[data-site-header-fixed]) {
+		top: 2.75rem;
+	}
+
 	:global(html[data-theme="nova"] header[data-site-header-static] .nova-site-logo img),
 	:global(html[data-theme="nova"] header[data-site-header-fixed] .nova-site-logo img) {
 		display: none;
