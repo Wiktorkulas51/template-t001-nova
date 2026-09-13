@@ -1,28 +1,26 @@
-# Nova Template License
+# Nova Free Release License
 
-License version: commercial release candidate, 2026-09-13.
+License version: free release candidate 0.1.0, 2026-09-13.
 
-This document is a working license draft and should be reviewed by a qualified lawyer before public sale.
+This document is a working license draft and should be reviewed by a qualified lawyer before public distribution.
 
 ## 1. Copyright owner
 
 The code, components, styles, scripts and original materials included in this project are owned by WebScale and the project author, except for elements covered by separate third-party licenses.
 
-## 2. Personal license
+## 2. Free release grant
 
-After purchasing one Personal license, one person may use and modify the template in one final website project. The finished website may be published for the license holder or for one client.
+The current Nova release is provided free of charge. WebScale grants a person or organization that lawfully obtains this exact release a non-exclusive license to use and modify the source code for one final website project.
 
-The license covers using the code, modifying the code and content, and publishing the finished website.
+The license includes permission to adapt the code and content, configure the project for a brand, and publish the finished website for the license holder or one client.
 
-## 3. Agency license
+The rights in this section apply to this exact free release. They do not grant access to future versions, updates, support or implementation services.
 
-An Agency license allows one agency to use and modify the template in multiple internal and client projects. The Agency license does not allow resale of the source code or publication of the source code as a separate product.
-
-## 4. Restrictions
+## 3. Restrictions
 
 Without written permission from WebScale, you may not:
 
-- resell, sublicense or redistribute the template source code,
+- resell, sublicense or redistribute the source template package,
 - provide the source code as a separate product or template library,
 - create a competing marketplace or template product based on this template,
 - remove copyright and author notices,
@@ -30,14 +28,14 @@ Without written permission from WebScale, you may not:
 
 You may publish finished websites built with the template. You may not distribute the source package as a separate product.
 
-## 5. Future versions and services
+## 4. Future versions and paid products
 
-WebScale may release future Nova versions, updates, implementation services, customization services and support as separate products or services. Purchasing one version does not automatically grant access to future versions.
+WebScale may release future Nova versions, Pro editions, updates, implementation services, customization services and support as paid products or services. Future releases may have different terms. Receiving this free release does not create a right to receive future releases or services for free.
 
-## 6. Third-party materials
+## 5. Third-party materials
 
 This license does not extend rights to npm packages, fonts, photographs, icons, videos, avatars, trademarks or other materials provided by third parties. Each third-party element remains subject to its own license. You are responsible for checking those licenses before using the template in a commercial project.
 
-## 7. No warranty
+## 6. No warranty
 
 The project is provided as is. The authors do not guarantee that it will work in every environment, hosting configuration or version of external dependencies. You are responsible for configuration, security and legal compliance of the published website.

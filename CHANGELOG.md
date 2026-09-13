@@ -6,4 +6,4 @@
 - Added Polish and English homepage content.
 - Added customization, content and deployment documentation.
 - Added asset license guidance.
-- Added a commercial license draft for template distribution.
+- Added a free release license that preserves the option to sell future versions and services.

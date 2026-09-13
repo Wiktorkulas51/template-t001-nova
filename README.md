@@ -70,7 +70,9 @@ The command creates `release/t001-nova.zip` from the current Git commit. Generat
 
 ## License
 
-Usage terms are described in `LICENSE.md`. The template source may be modified and used in finished website projects, but it may not be resold or redistributed as a source template package.
+The current Nova release is free to use under the terms described in `LICENSE.md`. The source may be modified and used in one finished website project, but it may not be resold or redistributed as a source template package.
+
+Future Nova versions, Pro editions and implementation services may be paid and may use different terms.
 
 The template license does not replace the licenses of third-party dependencies, fonts, photographs, icons or other materials. Check every asset license and replace the demonstration materials before commercial use.
 

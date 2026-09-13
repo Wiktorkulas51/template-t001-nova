@@ -9,6 +9,10 @@ date: 2026-09-13
 
 This document describes the preparation status of `T001, Nova` for source template distribution.
 
+## Current distribution model
+
+The current release is a free product entry point. It may be used in one finished website project under `LICENSE.md`. Future versions, Pro editions and implementation services may be paid and may use different terms.
+
 ## Completed stages
 
 ### Stage 1, repository audit
@@ -33,7 +37,7 @@ This document describes the preparation status of `T001, Nova` for source templa
 
 ### Stage 4, license and legal
 
-- `LICENSE.md` contains Personal and Agency terms, restrictions and third-party dependency guidance.
+- `LICENSE.md` contains the Free Release terms, restrictions and third-party dependency guidance.
 - Fixed the Polish contact link on legal pages so it does not generate `/pl/pl/#kontakt`.
 
 ### Stage 7, QA and source package
