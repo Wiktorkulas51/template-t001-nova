@@ -1,0 +1,3091 @@
+# ============================================================
+# Konfiguracja Decap CMS - wygenerowana automatycznie.
+# Po każdej zmianie danych w src/data uruchom: npm run cms:gen
+# Nie edytuj tego pliku ręcznie, zmiany znikną przy ponownej generacji.
+# ------------------------------------------------------------
+# Backend: GitHub OAuth (auth.php), repo: owner/repo, gałąź: main.
+# Media: obrazy trafiają do /public/assets/uploads (URL: /assets/uploads).
+# ============================================================
+backend:
+  name: github
+  repo: owner/repo
+  branch: main
+  base_url: https://twojastrona.pl
+  auth_endpoint: admin/auth.php
+  auth_scope: repo
+media_folder: public/assets/uploads
+public_folder: /assets/uploads
+locale: pl
+site_url: https://twojastrona.pl
+display_url: https://twojastrona.pl
+collections:
+  - name: sections_about
+    label: O firmie
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: about
+        label: O firmie
+        file: src/data/sections/about.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Highlights
+            name: highlights
+            widget: list
+            fields:
+              - label: Ikona dekoracyjna
+                name: icon
+                widget: select
+                options: &ref_0
+                  - label: Check Circle
+                    value: check-circle
+                  - label: Shield
+                    value: shield
+                  - label: Clock
+                    value: clock
+                  - label: Star
+                    value: star
+                  - label: Ph Browser
+                    value: ph-browser
+                  - label: Ph File Text
+                    value: ph-file-text
+                  - label: Ph Pencil
+                    value: ph-pencil
+                  - label: Ph Gear
+                    value: ph-gear
+                  - label: Ph Trend Up
+                    value: ph-trend-up
+                  - label: People
+                    value: people
+                  - label: Check
+                    value: check
+                  - label: Document
+                    value: document
+                  - label: Training
+                    value: training
+                  - label: Phone
+                    value: phone
+                  - label: Envelope
+                    value: envelope
+                  - label: Map Pin
+                    value: map-pin
+                  - label: Gear
+                    value: gear
+                  - label: Arrow Up Right
+                    value: arrow-up-right
+                  - label: Scroll
+                    value: scroll
+                  - label: Image
+                    value: image
+                  - label: Calculator
+                    value: calculator
+                  - label: Users
+                    value: users
+                  - label: Briefcase
+                    value: briefcase
+                  - label: Hammer
+                    value: hammer
+                  - label: House
+                    value: house
+                  - label: Paint Roller
+                    value: paint-roller
+                  - label: Wrench
+                    value: wrench
+                  - label: Screwdriver
+                    value: screwdriver
+                  - label: Truck
+                    value: truck
+                  - label: Shield Chevron
+                    value: shield-chevron
+                  - label: Pencil
+                    value: pencil
+                  - label: Waveform
+                    value: waveform
+                  - label: Play
+                    value: play
+                  - label: Chat
+                    value: chat
+                  - label: Medal
+                    value: medal
+                  - label: Chart Line Up
+                    value: chart-line-up
+                  - label: Target
+                    value: target
+                  - label: Heart
+                    value: heart
+                  - label: Instagram Logo
+                    value: instagram-logo
+                  - label: Facebook Logo
+                    value: facebook-logo
+                  - label: Shield Check
+                    value: shield-check
+                  - label: Lightbulb
+                    value: lightbulb
+                  - label: Sparkle
+                    value: sparkle
+                  - label: Layout
+                    value: layout
+                  - label: Chat Circle
+                    value: chat-circle
+                  - label: File Text
+                    value: file-text
+                  - label: Scales
+                    value: scales
+                  - label: Buildings
+                    value: buildings
+                  - label: Git Branch
+                    value: git-branch
+                  - label: Server
+                    value: server
+                  - label: Gauge
+                    value: gauge
+                  - label: Warning Octagon
+                    value: warning-octagon
+                  - label: Clipboard Text
+                    value: clipboard-text
+                  - label: Warning
+                    value: warning
+                  - label: Trend Down
+                    value: trend-down
+                  - label: Article
+                    value: article
+                  - label: Globe
+                    value: globe
+                  - label: Books
+                    value: books
+                  - label: Link
+                    value: link
+                  - label: Magnifying Glass
+                    value: magnifying-glass
+                  - label: Funnel
+                    value: funnel
+                  - label: Play Circle
+                    value: play-circle
+                  - label: Video Camera
+                    value: video-camera
+                  - label: Monitor Play
+                    value: monitor-play
+                  - label: Banknote
+                    value: banknote
+                  - label: Arrows Out
+                    value: arrows-out
+                  - label: Shield Warning
+                    value: shield-warning
+                  - label: File Warning
+                    value: file-warning
+                  - label: Compass
+                    value: compass
+                  - label: Cpu
+                    value: cpu
+                  - label: Activity
+                    value: activity
+                  - label: Trend Up
+                    value: trend-up
+                  - label: Calendar Check
+                    value: calendar-check
+                  - label: Infinity
+                    value: infinity
+                  - label: Stack
+                    value: stack
+                  - label: Chart Line
+                    value: chart-line
+                  - label: Robot
+                    value: robot
+                  - label: Palette
+                    value: palette
+                  - label: Browser
+                    value: browser
+                  - label: Paint Brush
+                    value: paint-brush
+                  - label: Lifebuoy
+                    value: lifebuoy
+                  - label: Email
+                    value: email
+                  - label: Facebook
+                    value: facebook
+                  - label: Ph Phone
+                    value: ph-phone
+                  - label: Ph Envelope
+                    value: ph-envelope
+                  - label: Ph Wrench
+                    value: ph-wrench
+                  - label: Ph Lightning
+                    value: ph-lightning
+                  - label: Ph Stairs
+                    value: ph-stairs
+                  - label: Ph Paint Brush Broad
+                    value: ph-paint-brush-broad
+                  - label: Ph Check Circle
+                    value: ph-check-circle
+                  - label: Bus
+                    value: bus
+                  - label: Route
+                    value: route
+                  - label: Leaf
+                    value: leaf
+                  - label: Shopping Cart
+                    value: shopping-cart
+                  - label: Train
+                    value: train
+                  - label: Tree
+                    value: tree
+                  - label: Storefront
+                    value: storefront
+                  - label: Bank
+                    value: bank
+                  - label: Music Notes
+                    value: music-notes
+                  - label: Waves
+                    value: waves
+                  - label: Film Strip
+                    value: film-strip
+                  - label: Wine
+                    value: wine
+                  - label: Fork Knife
+                    value: fork-knife
+                  - label: Diagnose
+                    value: diagnose
+                  - label: Plan
+                    value: plan
+                  - label: Implement
+                    value: implement
+                  - label: Monitor
+                    value: monitor
+                  - label: FileText
+                    value: fileText
+                  - label: FileCheck
+                    value: fileCheck
+                  - label: BellPlus
+                    value: bellPlus
+                  - label: Bed
+                    value: bed
+                  - label: Thermometer Hot
+                    value: thermometer-hot
+                  - label: Audit
+                    value: audit
+                  - label: Shapes
+                    value: shapes
+                  - label: Microphone
+                    value: microphone
+                  - label: Sliders
+                    value: sliders
+                  - label: Wifi High
+                    value: wifi-high
+                  - label: Speaker High
+                    value: speaker-high
+                  - label: Gavel
+                    value: gavel
+                  - label: Brain
+                    value: brain
+                  - label: Dna
+                    value: dna
+                  - label: Chart Bar
+                    value: chart-bar
+                  - label: Path
+                    value: path
+                  - label: Ph Star
+                    value: ph-star
+                  - label: Barbell
+                    value: barbell
+                  - label: Dumbbell
+                    value: dumbbell
+                  - label: Trophy
+                    value: trophy
+                  - label: Mail
+                    value: mail
+                  - label: Whatsapp Logo
+                    value: whatsapp-logo
+                  - label: Calendar
+                    value: calendar
+                  - label: Lightning
+                    value: lightning
+                  - label: Camera
+                    value: camera
+                  - label: Arrow Right
+                    value: arrow-right
+                  - label: Award
+                    value: award
+                  - label: Fire
+                    value: fire
+                  - label: Drop
+                    value: drop
+                  - label: Moon
+                    value: moon
+                  - label: Sun
+                    value: sun
+                hint: Ikona Phosphor. Wybierz z listy, nie wpisuj ręcznie.
+              - label: Text
+                name: text
+                widget: string
+      - name: process-timeline-scroll
+        label: Proces współpracy
+        file: src/data/sections/process-timeline-scroll.json
+        fields:
+          - label: Pl
+            name: pl
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: StepLabel
+                name: stepLabel
+                widget: string
+              - label: Elementy
+                name: items
+                widget: list
+                summary: '{{title}}'
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+          - label: En
+            name: en
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: StepLabel
+                name: stepLabel
+                widget: string
+              - label: Elementy
+                name: items
+                widget: list
+                summary: '{{title}}'
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+      - name: testimonials
+        label: Opinie klientów
+        file: src/data/sections/testimonials.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Opinie
+            name: testimonials
+            widget: list
+            fields:
+              - label: Cytat
+                name: quote
+                widget: text
+              - label: Autor
+                name: author
+                widget: string
+              - label: Rola
+                name: role
+                widget: string
+              - label: Awatar
+                name: avatar
+                widget: image
+                required: false
+          - label: Pasek przewijany
+            name: marquee
+            widget: hidden
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Opinie
+                name: testimonials
+                widget: list
+                fields:
+                  - label: Cytat
+                    name: quote
+                    widget: text
+                  - label: Autor
+                    name: author
+                    widget: string
+                  - label: Rola
+                    name: role
+                    widget: string
+                  - label: Awatar
+                    name: avatar
+                    widget: image
+                    required: false
+  - name: sections_cennik
+    label: Cennik
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: features
+        label: Oferta
+        file: src/data/sections/features.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Podtytuł
+            name: subtitle
+            widget: text
+          - label: Elementy
+            name: items
+            widget: list
+            summary: '{{title}}'
+            fields:
+              - label: Ikona dekoracyjna
+                name: icon
+                widget: select
+                options: *ref_0
+                hint: Ikona Phosphor. Wybierz z listy, nie wpisuj ręcznie.
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+      - name: faq
+        label: FAQ
+        file: src/data/sections/faq.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Nadtytuł (tagline)
+            name: tagline
+            widget: string
+          - label: Elementy
+            name: items
+            widget: list
+            fields:
+              - label: Pytanie
+                name: q
+                widget: string
+              - label: Odpowiedź
+                name: a
+                widget: text
+          - label: Kategorie
+            name: categories
+            widget: hidden
+            summary: '{{title}}'
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Elementy
+                name: items
+                widget: list
+                fields:
+                  - label: Pytanie
+                    name: q
+                    widget: string
+                  - label: Odpowiedź
+                    name: a
+                    widget: text
+          - label: Przycisk CTA
+            name: cta
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Etykieta przycisku
+                name: buttonLabel
+                widget: string
+              - label: Link przycisku
+                name: buttonHref
+                widget: string
+  - name: sections_contact
+    label: Formularz kontaktowy
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: contact-info-form
+        label: Formularz kontaktowy
+        file: src/data/sections/contact-info-form.json
+        fields:
+          - label: Pl
+            name: pl
+            widget: object
+            fields:
+              - label: Nadtytuł
+                name: eyebrow
+                widget: string
+              - label: Nagłówek strony
+                name: heading
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Boxes
+                name: boxes
+                widget: list
+                fields:
+                  - label: Etykieta
+                    name: label
+                    widget: string
+                  - label: Wartość
+                    name: value
+                    widget: string
+                  - label: Link
+                    name: href
+                    widget: string
+                    hint: >-
+                      Wpisz pełny adres strony albo adres podstrony, np.
+                      /uslugi/. Nie zmieniaj bez potrzeby.
+                  - label: Ikona dekoracyjna
+                    name: icon
+                    widget: select
+                    options: *ref_0
+                    hint: Ikona Phosphor. Wybierz z listy, nie wpisuj ręcznie.
+              - label: Form
+                name: form
+                widget: object
+                fields:
+                  - label: NameLabel
+                    name: nameLabel
+                    widget: string
+                  - label: EmailLabel
+                    name: emailLabel
+                    widget: string
+                  - label: PhoneLabel
+                    name: phoneLabel
+                    widget: string
+                  - label: MessageLabel
+                    name: messageLabel
+                    widget: string
+                  - label: NamePlaceholder
+                    name: namePlaceholder
+                    widget: string
+                  - label: EmailPlaceholder
+                    name: emailPlaceholder
+                    widget: string
+                  - label: PhonePlaceholder
+                    name: phonePlaceholder
+                    widget: string
+                  - label: MessagePlaceholder
+                    name: messagePlaceholder
+                    widget: string
+                  - label: Etykieta „Wyślij”
+                    name: submitLabel
+                    widget: string
+                  - label: SendingLabel
+                    name: sendingLabel
+                    widget: string
+                  - label: LoadingTitle
+                    name: loadingTitle
+                    widget: string
+                  - label: LoadingText
+                    name: loadingText
+                    widget: string
+                  - label: SuccessTitle
+                    name: successTitle
+                    widget: string
+                  - label: SuccessText
+                    name: successText
+                    widget: string
+                  - label: ErrorTitle
+                    name: errorTitle
+                    widget: string
+                  - label: ErrorText
+                    name: errorText
+                    widget: string
+                  - label: RodoLinkLabel
+                    name: rodoLinkLabel
+                    widget: string
+                  - label: RodoText
+                    name: rodoText
+                    widget: string
+                  - label: RodoHref
+                    name: rodoHref
+                    widget: string
+              - label: FirstCall
+                name: firstCall
+                widget: object
+                fields:
+                  - label: Nagłówek strony
+                    name: heading
+                    widget: string
+                  - label: Text
+                    name: text
+                    widget: string
+          - label: En
+            name: en
+            widget: object
+            fields:
+              - label: Nadtytuł
+                name: eyebrow
+                widget: string
+              - label: Nagłówek strony
+                name: heading
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Boxes
+                name: boxes
+                widget: list
+                fields:
+                  - label: Etykieta
+                    name: label
+                    widget: string
+                  - label: Wartość
+                    name: value
+                    widget: string
+                  - label: Link
+                    name: href
+                    widget: string
+                    hint: >-
+                      Wpisz pełny adres strony albo adres podstrony, np.
+                      /uslugi/. Nie zmieniaj bez potrzeby.
+                  - label: Ikona dekoracyjna
+                    name: icon
+                    widget: select
+                    options: *ref_0
+                    hint: Ikona Phosphor. Wybierz z listy, nie wpisuj ręcznie.
+              - label: Form
+                name: form
+                widget: object
+                fields:
+                  - label: NameLabel
+                    name: nameLabel
+                    widget: string
+                  - label: EmailLabel
+                    name: emailLabel
+                    widget: string
+                  - label: PhoneLabel
+                    name: phoneLabel
+                    widget: string
+                  - label: MessageLabel
+                    name: messageLabel
+                    widget: string
+                  - label: NamePlaceholder
+                    name: namePlaceholder
+                    widget: string
+                  - label: EmailPlaceholder
+                    name: emailPlaceholder
+                    widget: string
+                  - label: PhonePlaceholder
+                    name: phonePlaceholder
+                    widget: string
+                  - label: MessagePlaceholder
+                    name: messagePlaceholder
+                    widget: string
+                  - label: Etykieta „Wyślij”
+                    name: submitLabel
+                    widget: string
+                  - label: SendingLabel
+                    name: sendingLabel
+                    widget: string
+                  - label: LoadingTitle
+                    name: loadingTitle
+                    widget: string
+                  - label: LoadingText
+                    name: loadingText
+                    widget: string
+                  - label: SuccessTitle
+                    name: successTitle
+                    widget: string
+                  - label: SuccessText
+                    name: successText
+                    widget: string
+                  - label: ErrorTitle
+                    name: errorTitle
+                    widget: string
+                  - label: ErrorText
+                    name: errorText
+                    widget: string
+                  - label: RodoLinkLabel
+                    name: rodoLinkLabel
+                    widget: string
+                  - label: RodoText
+                    name: rodoText
+                    widget: string
+                  - label: RodoHref
+                    name: rodoHref
+                    widget: string
+              - label: FirstCall
+                name: firstCall
+                widget: object
+                fields:
+                  - label: Nagłówek strony
+                    name: heading
+                    widget: string
+                  - label: Text
+                    name: text
+                    widget: string
+  - name: sections_index
+    label: Strona główna
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: portfolio
+        label: Portfolio
+        file: src/data/sections/portfolio.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Nadtytuł (tagline)
+            name: tagline
+            widget: string
+          - label: Variants
+            name: variants
+            widget: hidden
+            fields:
+              - label: Bento
+                name: bento
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+              - label: Carousel
+                name: carousel
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+                  - label: AriaPrevProject
+                    name: ariaPrevProject
+                    widget: hidden
+                  - label: AriaNextProject
+                    name: ariaNextProject
+                    widget: hidden
+              - label: Categorized
+                name: categorized
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+              - label: Pasek przewijany
+                name: marquee
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+              - label: DoubleMarquee
+                name: doubleMarquee
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+              - label: Masonry
+                name: masonry
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+          - label: Kategorie
+            name: categories
+            widget: hidden
+            field:
+              label: Wartość
+              name: value
+              widget: string
+          - label: Elementy
+            name: items
+            widget: list
+            summary: '{{title}}'
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Category
+                name: category
+                widget: string
+              - label: Zdjęcie
+                name: img
+                widget: image
+                required: false
+              - label: Rozpiętość siatki
+                name: span
+                widget: hidden
+              - label: Wysokość kafelka
+                name: height
+                widget: hidden
+      - name: nova-services
+        label: Oferta usług
+        file: src/data/sections/nova-services.json
+        fields:
+          - label: Nadtytuł
+            name: eyebrow
+            widget: string
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: LinkLabel
+            name: linkLabel
+            widget: string
+          - label: LinkHref
+            name: linkHref
+            widget: string
+          - label: Elementy
+            name: items
+            widget: list
+            summary: '{{title}}'
+            fields:
+              - label: Numer
+                name: number
+                widget: string
+              - label: Ikona dekoracyjna
+                name: icon
+                widget: select
+                options: *ref_0
+                hint: Ikona Phosphor. Wybierz z listy, nie wpisuj ręcznie.
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+      - name: nova-team
+        label: Zespół i wartości
+        file: src/data/sections/nova-team.json
+        fields:
+          - label: Nadtytuł
+            name: eyebrow
+            widget: string
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Zdjęcie
+            name: image
+            widget: image
+            required: false
+          - label: Tekst alternatywny zdjęcia
+            name: imageAlt
+            widget: string
+          - label: Checks
+            name: checks
+            widget: list
+            field:
+              label: Wartość
+              name: value
+              widget: string
+          - label: TeamCount
+            name: teamCount
+            widget: string
+          - label: TeamLabel
+            name: teamLabel
+            widget: string
+      - name: nova-cta
+        label: Końcowe wezwanie do działania
+        file: src/data/sections/nova-cta.json
+        fields:
+          - label: Nadtytuł
+            name: eyebrow
+            widget: string
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: PrimaryLabel
+            name: primaryLabel
+            widget: string
+          - label: PrimaryHref
+            name: primaryHref
+            widget: string
+          - label: SecondaryLabel
+            name: secondaryLabel
+            widget: string
+          - label: SecondaryHref
+            name: secondaryHref
+            widget: string
+          - label: Zdjęcie
+            name: image
+            widget: image
+            required: false
+          - label: Tekst alternatywny zdjęcia
+            name: imageAlt
+            widget: string
+  - name: sections_kontakt
+    label: Kontakt
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: contact-info-form
+        label: Formularz kontaktowy
+        file: src/data/sections/contact-info-form.json
+        fields:
+          - label: Pl
+            name: pl
+            widget: object
+            fields:
+              - label: Nadtytuł
+                name: eyebrow
+                widget: string
+              - label: Nagłówek strony
+                name: heading
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Boxes
+                name: boxes
+                widget: list
+                fields:
+                  - label: Etykieta
+                    name: label
+                    widget: string
+                  - label: Wartość
+                    name: value
+                    widget: string
+                  - label: Link
+                    name: href
+                    widget: string
+                    hint: >-
+                      Wpisz pełny adres strony albo adres podstrony, np.
+                      /uslugi/. Nie zmieniaj bez potrzeby.
+                  - label: Ikona dekoracyjna
+                    name: icon
+                    widget: select
+                    options: *ref_0
+                    hint: Ikona Phosphor. Wybierz z listy, nie wpisuj ręcznie.
+              - label: Form
+                name: form
+                widget: object
+                fields:
+                  - label: NameLabel
+                    name: nameLabel
+                    widget: string
+                  - label: EmailLabel
+                    name: emailLabel
+                    widget: string
+                  - label: PhoneLabel
+                    name: phoneLabel
+                    widget: string
+                  - label: MessageLabel
+                    name: messageLabel
+                    widget: string
+                  - label: NamePlaceholder
+                    name: namePlaceholder
+                    widget: string
+                  - label: EmailPlaceholder
+                    name: emailPlaceholder
+                    widget: string
+                  - label: PhonePlaceholder
+                    name: phonePlaceholder
+                    widget: string
+                  - label: MessagePlaceholder
+                    name: messagePlaceholder
+                    widget: string
+                  - label: Etykieta „Wyślij”
+                    name: submitLabel
+                    widget: string
+                  - label: SendingLabel
+                    name: sendingLabel
+                    widget: string
+                  - label: LoadingTitle
+                    name: loadingTitle
+                    widget: string
+                  - label: LoadingText
+                    name: loadingText
+                    widget: string
+                  - label: SuccessTitle
+                    name: successTitle
+                    widget: string
+                  - label: SuccessText
+                    name: successText
+                    widget: string
+                  - label: ErrorTitle
+                    name: errorTitle
+                    widget: string
+                  - label: ErrorText
+                    name: errorText
+                    widget: string
+                  - label: RodoLinkLabel
+                    name: rodoLinkLabel
+                    widget: string
+                  - label: RodoText
+                    name: rodoText
+                    widget: string
+                  - label: RodoHref
+                    name: rodoHref
+                    widget: string
+              - label: FirstCall
+                name: firstCall
+                widget: object
+                fields:
+                  - label: Nagłówek strony
+                    name: heading
+                    widget: string
+                  - label: Text
+                    name: text
+                    widget: string
+          - label: En
+            name: en
+            widget: object
+            fields:
+              - label: Nadtytuł
+                name: eyebrow
+                widget: string
+              - label: Nagłówek strony
+                name: heading
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Boxes
+                name: boxes
+                widget: list
+                fields:
+                  - label: Etykieta
+                    name: label
+                    widget: string
+                  - label: Wartość
+                    name: value
+                    widget: string
+                  - label: Link
+                    name: href
+                    widget: string
+                    hint: >-
+                      Wpisz pełny adres strony albo adres podstrony, np.
+                      /uslugi/. Nie zmieniaj bez potrzeby.
+                  - label: Ikona dekoracyjna
+                    name: icon
+                    widget: select
+                    options: *ref_0
+                    hint: Ikona Phosphor. Wybierz z listy, nie wpisuj ręcznie.
+              - label: Form
+                name: form
+                widget: object
+                fields:
+                  - label: NameLabel
+                    name: nameLabel
+                    widget: string
+                  - label: EmailLabel
+                    name: emailLabel
+                    widget: string
+                  - label: PhoneLabel
+                    name: phoneLabel
+                    widget: string
+                  - label: MessageLabel
+                    name: messageLabel
+                    widget: string
+                  - label: NamePlaceholder
+                    name: namePlaceholder
+                    widget: string
+                  - label: EmailPlaceholder
+                    name: emailPlaceholder
+                    widget: string
+                  - label: PhonePlaceholder
+                    name: phonePlaceholder
+                    widget: string
+                  - label: MessagePlaceholder
+                    name: messagePlaceholder
+                    widget: string
+                  - label: Etykieta „Wyślij”
+                    name: submitLabel
+                    widget: string
+                  - label: SendingLabel
+                    name: sendingLabel
+                    widget: string
+                  - label: LoadingTitle
+                    name: loadingTitle
+                    widget: string
+                  - label: LoadingText
+                    name: loadingText
+                    widget: string
+                  - label: SuccessTitle
+                    name: successTitle
+                    widget: string
+                  - label: SuccessText
+                    name: successText
+                    widget: string
+                  - label: ErrorTitle
+                    name: errorTitle
+                    widget: string
+                  - label: ErrorText
+                    name: errorText
+                    widget: string
+                  - label: RodoLinkLabel
+                    name: rodoLinkLabel
+                    widget: string
+                  - label: RodoText
+                    name: rodoText
+                    widget: string
+                  - label: RodoHref
+                    name: rodoHref
+                    widget: string
+              - label: FirstCall
+                name: firstCall
+                widget: object
+                fields:
+                  - label: Nagłówek strony
+                    name: heading
+                    widget: string
+                  - label: Text
+                    name: text
+                    widget: string
+  - name: sections_o-nas
+    label: O nas
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: about
+        label: O firmie
+        file: src/data/sections/about.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Highlights
+            name: highlights
+            widget: list
+            fields:
+              - label: Ikona dekoracyjna
+                name: icon
+                widget: select
+                options: *ref_0
+                hint: Ikona Phosphor. Wybierz z listy, nie wpisuj ręcznie.
+              - label: Text
+                name: text
+                widget: string
+      - name: process-timeline-scroll
+        label: Proces współpracy
+        file: src/data/sections/process-timeline-scroll.json
+        fields:
+          - label: Pl
+            name: pl
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: StepLabel
+                name: stepLabel
+                widget: string
+              - label: Elementy
+                name: items
+                widget: list
+                summary: '{{title}}'
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+          - label: En
+            name: en
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: StepLabel
+                name: stepLabel
+                widget: string
+              - label: Elementy
+                name: items
+                widget: list
+                summary: '{{title}}'
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+      - name: testimonials
+        label: Opinie klientów
+        file: src/data/sections/testimonials.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Opinie
+            name: testimonials
+            widget: list
+            fields:
+              - label: Cytat
+                name: quote
+                widget: text
+              - label: Autor
+                name: author
+                widget: string
+              - label: Rola
+                name: role
+                widget: string
+              - label: Awatar
+                name: avatar
+                widget: image
+                required: false
+          - label: Pasek przewijany
+            name: marquee
+            widget: hidden
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Opinie
+                name: testimonials
+                widget: list
+                fields:
+                  - label: Cytat
+                    name: quote
+                    widget: text
+                  - label: Autor
+                    name: author
+                    widget: string
+                  - label: Rola
+                    name: role
+                    widget: string
+                  - label: Awatar
+                    name: avatar
+                    widget: image
+                    required: false
+  - name: sections_portfolio
+    label: Portfolio
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: portfolio
+        label: Portfolio
+        file: src/data/sections/portfolio.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Nadtytuł (tagline)
+            name: tagline
+            widget: string
+          - label: Variants
+            name: variants
+            widget: hidden
+            fields:
+              - label: Bento
+                name: bento
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+              - label: Carousel
+                name: carousel
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+                  - label: AriaPrevProject
+                    name: ariaPrevProject
+                    widget: hidden
+                  - label: AriaNextProject
+                    name: ariaNextProject
+                    widget: hidden
+              - label: Categorized
+                name: categorized
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+              - label: Pasek przewijany
+                name: marquee
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+              - label: DoubleMarquee
+                name: doubleMarquee
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+              - label: Masonry
+                name: masonry
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+          - label: Kategorie
+            name: categories
+            widget: hidden
+            field:
+              label: Wartość
+              name: value
+              widget: string
+          - label: Elementy
+            name: items
+            widget: list
+            summary: '{{title}}'
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Category
+                name: category
+                widget: string
+              - label: Zdjęcie
+                name: img
+                widget: image
+                required: false
+              - label: Rozpiętość siatki
+                name: span
+                widget: hidden
+              - label: Wysokość kafelka
+                name: height
+                widget: hidden
+      - name: testimonials
+        label: Opinie klientów
+        file: src/data/sections/testimonials.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Opinie
+            name: testimonials
+            widget: list
+            fields:
+              - label: Cytat
+                name: quote
+                widget: text
+              - label: Autor
+                name: author
+                widget: string
+              - label: Rola
+                name: role
+                widget: string
+              - label: Awatar
+                name: avatar
+                widget: image
+                required: false
+          - label: Pasek przewijany
+            name: marquee
+            widget: hidden
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Opinie
+                name: testimonials
+                widget: list
+                fields:
+                  - label: Cytat
+                    name: quote
+                    widget: text
+                  - label: Autor
+                    name: author
+                    widget: string
+                  - label: Rola
+                    name: role
+                    widget: string
+                  - label: Awatar
+                    name: avatar
+                    widget: image
+                    required: false
+  - name: sections_pricing
+    label: Pricing
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: features
+        label: Oferta
+        file: src/data/sections/features.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Podtytuł
+            name: subtitle
+            widget: text
+          - label: Elementy
+            name: items
+            widget: list
+            summary: '{{title}}'
+            fields:
+              - label: Ikona dekoracyjna
+                name: icon
+                widget: select
+                options: *ref_0
+                hint: Ikona Phosphor. Wybierz z listy, nie wpisuj ręcznie.
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+      - name: faq
+        label: FAQ
+        file: src/data/sections/faq.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Nadtytuł (tagline)
+            name: tagline
+            widget: string
+          - label: Elementy
+            name: items
+            widget: list
+            fields:
+              - label: Pytanie
+                name: q
+                widget: string
+              - label: Odpowiedź
+                name: a
+                widget: text
+          - label: Kategorie
+            name: categories
+            widget: hidden
+            summary: '{{title}}'
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Elementy
+                name: items
+                widget: list
+                fields:
+                  - label: Pytanie
+                    name: q
+                    widget: string
+                  - label: Odpowiedź
+                    name: a
+                    widget: text
+          - label: Przycisk CTA
+            name: cta
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Etykieta przycisku
+                name: buttonLabel
+                widget: string
+              - label: Link przycisku
+                name: buttonHref
+                widget: string
+  - name: sections_realizacje
+    label: Realizacje
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: portfolio
+        label: Portfolio
+        file: src/data/sections/portfolio.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Nadtytuł (tagline)
+            name: tagline
+            widget: string
+          - label: Variants
+            name: variants
+            widget: hidden
+            fields:
+              - label: Bento
+                name: bento
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+              - label: Carousel
+                name: carousel
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+                  - label: AriaPrevProject
+                    name: ariaPrevProject
+                    widget: hidden
+                  - label: AriaNextProject
+                    name: ariaNextProject
+                    widget: hidden
+              - label: Categorized
+                name: categorized
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+              - label: Pasek przewijany
+                name: marquee
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+              - label: DoubleMarquee
+                name: doubleMarquee
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+              - label: Masonry
+                name: masonry
+                widget: object
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+                  - label: Nadtytuł (tagline)
+                    name: tagline
+                    widget: string
+          - label: Kategorie
+            name: categories
+            widget: hidden
+            field:
+              label: Wartość
+              name: value
+              widget: string
+          - label: Elementy
+            name: items
+            widget: list
+            summary: '{{title}}'
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Category
+                name: category
+                widget: string
+              - label: Zdjęcie
+                name: img
+                widget: image
+                required: false
+              - label: Rozpiętość siatki
+                name: span
+                widget: hidden
+              - label: Wysokość kafelka
+                name: height
+                widget: hidden
+      - name: testimonials
+        label: Opinie klientów
+        file: src/data/sections/testimonials.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Opinie
+            name: testimonials
+            widget: list
+            fields:
+              - label: Cytat
+                name: quote
+                widget: text
+              - label: Autor
+                name: author
+                widget: string
+              - label: Rola
+                name: role
+                widget: string
+              - label: Awatar
+                name: avatar
+                widget: image
+                required: false
+          - label: Pasek przewijany
+            name: marquee
+            widget: hidden
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Opinie
+                name: testimonials
+                widget: list
+                fields:
+                  - label: Cytat
+                    name: quote
+                    widget: text
+                  - label: Autor
+                    name: author
+                    widget: string
+                  - label: Rola
+                    name: role
+                    widget: string
+                  - label: Awatar
+                    name: avatar
+                    widget: image
+                    required: false
+  - name: sections_services
+    label: Services
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: process-timeline-scroll
+        label: Proces współpracy
+        file: src/data/sections/process-timeline-scroll.json
+        fields:
+          - label: Pl
+            name: pl
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: StepLabel
+                name: stepLabel
+                widget: string
+              - label: Elementy
+                name: items
+                widget: list
+                summary: '{{title}}'
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+          - label: En
+            name: en
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: StepLabel
+                name: stepLabel
+                widget: string
+              - label: Elementy
+                name: items
+                widget: list
+                summary: '{{title}}'
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+      - name: features
+        label: Oferta
+        file: src/data/sections/features.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Podtytuł
+            name: subtitle
+            widget: text
+          - label: Elementy
+            name: items
+            widget: list
+            summary: '{{title}}'
+            fields:
+              - label: Ikona dekoracyjna
+                name: icon
+                widget: select
+                options: *ref_0
+                hint: Ikona Phosphor. Wybierz z listy, nie wpisuj ręcznie.
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+      - name: faq
+        label: FAQ
+        file: src/data/sections/faq.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Nadtytuł (tagline)
+            name: tagline
+            widget: string
+          - label: Elementy
+            name: items
+            widget: list
+            fields:
+              - label: Pytanie
+                name: q
+                widget: string
+              - label: Odpowiedź
+                name: a
+                widget: text
+          - label: Kategorie
+            name: categories
+            widget: hidden
+            summary: '{{title}}'
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Elementy
+                name: items
+                widget: list
+                fields:
+                  - label: Pytanie
+                    name: q
+                    widget: string
+                  - label: Odpowiedź
+                    name: a
+                    widget: text
+          - label: Przycisk CTA
+            name: cta
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Etykieta przycisku
+                name: buttonLabel
+                widget: string
+              - label: Link przycisku
+                name: buttonHref
+                widget: string
+  - name: sections_uslugi
+    label: Usługi
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: process-timeline-scroll
+        label: Proces współpracy
+        file: src/data/sections/process-timeline-scroll.json
+        fields:
+          - label: Pl
+            name: pl
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: StepLabel
+                name: stepLabel
+                widget: string
+              - label: Elementy
+                name: items
+                widget: list
+                summary: '{{title}}'
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+          - label: En
+            name: en
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: StepLabel
+                name: stepLabel
+                widget: string
+              - label: Elementy
+                name: items
+                widget: list
+                summary: '{{title}}'
+                fields:
+                  - label: Tytuł
+                    name: title
+                    widget: string
+                  - label: Opis
+                    name: description
+                    widget: text
+      - name: features
+        label: Oferta
+        file: src/data/sections/features.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Podtytuł
+            name: subtitle
+            widget: text
+          - label: Elementy
+            name: items
+            widget: list
+            summary: '{{title}}'
+            fields:
+              - label: Ikona dekoracyjna
+                name: icon
+                widget: select
+                options: *ref_0
+                hint: Ikona Phosphor. Wybierz z listy, nie wpisuj ręcznie.
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+      - name: faq
+        label: FAQ
+        file: src/data/sections/faq.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Nadtytuł (tagline)
+            name: tagline
+            widget: string
+          - label: Elementy
+            name: items
+            widget: list
+            fields:
+              - label: Pytanie
+                name: q
+                widget: string
+              - label: Odpowiedź
+                name: a
+                widget: text
+          - label: Kategorie
+            name: categories
+            widget: hidden
+            summary: '{{title}}'
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Elementy
+                name: items
+                widget: list
+                fields:
+                  - label: Pytanie
+                    name: q
+                    widget: string
+                  - label: Odpowiedź
+                    name: a
+                    widget: text
+          - label: Przycisk CTA
+            name: cta
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Etykieta przycisku
+                name: buttonLabel
+                widget: string
+              - label: Link przycisku
+                name: buttonHref
+                widget: string
+  - name: pages
+    label: SEO stron
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: about
+        label: O firmie
+        file: src/data/pages/about.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Indeksowanie tej strony
+                name: index
+                widget: boolean
+                default: true
+                required: false
+                hint: >-
+                  Włączone = index. Wyłączone = noindex. Pozostaw bez zmiany,
+                  aby korzystać z ustawienia globalnego.
+          - label: Nagłówek strony
+            name: heading
+            widget: hidden
+          - label: Sekcje strony
+            name: sections
+            widget: hidden
+            fields:
+              - label: Wariant
+                name: variant
+                widget: string
+      - name: blog
+        label: Blog
+        file: src/data/pages/blog.json
+        fields:
+          - label: Indeksowanie strony
+            name: index
+            widget: object
+            hint: >-
+              Włączone = index, strona może pojawić się w Google. Wyłączone =
+              noindex, strona nie powinna być indeksowana.
+            fields:
+              - label: Etykieta
+                name: label
+                widget: string
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Empty
+                name: empty
+                widget: string
+              - label: MetaTitle
+                name: metaTitle
+                widget: string
+              - label: MetaDescription
+                name: metaDescription
+                widget: string
+          - label: Archive
+            name: archive
+            widget: object
+            fields:
+              - label: Etykieta
+                name: label
+                widget: string
+              - label: Nagłówek strony
+                name: heading
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Empty
+                name: empty
+                widget: string
+              - label: MetaTitle
+                name: metaTitle
+                widget: string
+              - label: MetaDescription
+                name: metaDescription
+                widget: string
+          - label: ReadMore
+            name: readMore
+            widget: string
+          - label: Block
+            name: block
+            widget: object
+            fields:
+              - label: Etykieta
+                name: label
+                widget: string
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Etykieta CTA
+                name: ctaLabel
+                widget: string
+      - name: cennik
+        label: Cennik
+        file: src/data/pages/cennik.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Indeksowanie tej strony
+                name: index
+                widget: boolean
+                default: true
+                required: false
+                hint: >-
+                  Włączone = index. Wyłączone = noindex. Pozostaw bez zmiany,
+                  aby korzystać z ustawienia globalnego.
+          - label: Nagłówek strony
+            name: heading
+            widget: hidden
+          - label: Sekcje strony
+            name: sections
+            widget: hidden
+            fields:
+              - label: Wariant
+                name: variant
+                widget: string
+      - name: contact
+        label: Formularz kontaktowy
+        file: src/data/pages/contact.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Indeksowanie tej strony
+                name: index
+                widget: boolean
+                default: true
+                required: false
+                hint: >-
+                  Włączone = index. Wyłączone = noindex. Pozostaw bez zmiany,
+                  aby korzystać z ustawienia globalnego.
+          - label: Nagłówek strony
+            name: heading
+            widget: hidden
+          - label: Sekcje strony
+            name: sections
+            widget: hidden
+            fields:
+              - label: Wariant
+                name: variant
+                widget: string
+      - name: index
+        label: Strona główna
+        file: src/data/pages/index.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Indeksowanie tej strony
+                name: index
+                widget: boolean
+                default: true
+                required: false
+                hint: >-
+                  Włączone = index. Wyłączone = noindex. Pozostaw bez zmiany,
+                  aby korzystać z ustawienia globalnego.
+          - label: Nagłówek strony
+            name: heading
+            widget: hidden
+          - label: Sekcje strony
+            name: sections
+            widget: hidden
+            fields:
+              - label: Wariant
+                name: variant
+                widget: string
+      - name: kontakt
+        label: Kontakt
+        file: src/data/pages/kontakt.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Indeksowanie tej strony
+                name: index
+                widget: boolean
+                default: true
+                required: false
+                hint: >-
+                  Włączone = index. Wyłączone = noindex. Pozostaw bez zmiany,
+                  aby korzystać z ustawienia globalnego.
+          - label: Nagłówek strony
+            name: heading
+            widget: hidden
+          - label: Sekcje strony
+            name: sections
+            widget: hidden
+            fields:
+              - label: Wariant
+                name: variant
+                widget: string
+      - name: o-nas
+        label: O nas
+        file: src/data/pages/o-nas.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Indeksowanie tej strony
+                name: index
+                widget: boolean
+                default: true
+                required: false
+                hint: >-
+                  Włączone = index. Wyłączone = noindex. Pozostaw bez zmiany,
+                  aby korzystać z ustawienia globalnego.
+          - label: Nagłówek strony
+            name: heading
+            widget: hidden
+          - label: Sekcje strony
+            name: sections
+            widget: hidden
+            fields:
+              - label: Wariant
+                name: variant
+                widget: string
+      - name: portfolio
+        label: Portfolio
+        file: src/data/pages/portfolio.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Indeksowanie tej strony
+                name: index
+                widget: boolean
+                default: true
+                required: false
+                hint: >-
+                  Włączone = index. Wyłączone = noindex. Pozostaw bez zmiany,
+                  aby korzystać z ustawienia globalnego.
+          - label: Nagłówek strony
+            name: heading
+            widget: hidden
+          - label: Sekcje strony
+            name: sections
+            widget: hidden
+            fields:
+              - label: Wariant
+                name: variant
+                widget: string
+      - name: pricing
+        label: Pricing
+        file: src/data/pages/pricing.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Indeksowanie tej strony
+                name: index
+                widget: boolean
+                default: true
+                required: false
+                hint: >-
+                  Włączone = index. Wyłączone = noindex. Pozostaw bez zmiany,
+                  aby korzystać z ustawienia globalnego.
+          - label: Nagłówek strony
+            name: heading
+            widget: hidden
+          - label: Sekcje strony
+            name: sections
+            widget: hidden
+            fields:
+              - label: Wariant
+                name: variant
+                widget: string
+      - name: realizacje
+        label: Realizacje
+        file: src/data/pages/realizacje.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Indeksowanie tej strony
+                name: index
+                widget: boolean
+                default: true
+                required: false
+                hint: >-
+                  Włączone = index. Wyłączone = noindex. Pozostaw bez zmiany,
+                  aby korzystać z ustawienia globalnego.
+          - label: Nagłówek strony
+            name: heading
+            widget: hidden
+          - label: Sekcje strony
+            name: sections
+            widget: hidden
+            fields:
+              - label: Wariant
+                name: variant
+                widget: string
+      - name: services
+        label: Services
+        file: src/data/pages/services.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Indeksowanie tej strony
+                name: index
+                widget: boolean
+                default: true
+                required: false
+                hint: >-
+                  Włączone = index. Wyłączone = noindex. Pozostaw bez zmiany,
+                  aby korzystać z ustawienia globalnego.
+          - label: Nagłówek strony
+            name: heading
+            widget: hidden
+          - label: Sekcje strony
+            name: sections
+            widget: hidden
+            fields:
+              - label: Wariant
+                name: variant
+                widget: string
+      - name: uslugi
+        label: Usługi
+        file: src/data/pages/uslugi.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Indeksowanie tej strony
+                name: index
+                widget: boolean
+                default: true
+                required: false
+                hint: >-
+                  Włączone = index. Wyłączone = noindex. Pozostaw bez zmiany,
+                  aby korzystać z ustawienia globalnego.
+          - label: Nagłówek strony
+            name: heading
+            widget: hidden
+          - label: Sekcje strony
+            name: sections
+            widget: hidden
+            fields:
+              - label: Wariant
+                name: variant
+                widget: string
+  - name: navigation
+    label: Nawigacja
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: header
+        label: Menu górne
+        file: src/data/navigation/header.json
+        fields:
+          - label: Menu główne
+            name: menu
+            widget: list
+            fields:
+              - label: Etykieta
+                name: label
+                widget: string
+              - label: Link
+                name: href
+                widget: string
+                hint: >-
+                  Wpisz pełny adres strony albo adres podstrony, np. /uslugi/.
+                  Nie zmieniaj bez potrzeby.
+              - label: Children (opcjonalne)
+                name: children
+                widget: list
+                fields:
+                  - label: Etykieta
+                    name: label
+                    widget: string
+                  - label: Link
+                    name: href
+                    widget: string
+                    hint: >-
+                      Wpisz pełny adres strony albo adres podstrony, np.
+                      /uslugi/. Nie zmieniaj bez potrzeby.
+                required: false
+          - label: Przycisk CTA
+            name: cta
+            widget: object
+            fields:
+              - label: Etykieta
+                name: label
+                widget: string
+              - label: Link
+                name: href
+                widget: string
+                hint: >-
+                  Wpisz pełny adres strony albo adres podstrony, np. /uslugi/.
+                  Nie zmieniaj bez potrzeby.
+              - label: HoverLabel
+                name: hoverLabel
+                widget: string
+          - label: Aria
+            name: aria
+            widget: hidden
+            fields:
+              - label: MenuOpen
+                name: menuOpen
+                widget: string
+              - label: MenuClose
+                name: menuClose
+                widget: string
+              - label: MenuExpand
+                name: menuExpand
+                widget: string
+              - label: NavMain
+                name: navMain
+                widget: string
+              - label: Drawer
+                name: drawer
+                widget: string
+      - name: footer
+        label: Stopka
+        file: src/data/navigation/footer.json
+        fields:
+          - label: Opis / o firmie
+            name: about
+            widget: text
+          - label: ContactTitle
+            name: contactTitle
+            widget: string
+          - label: CopyrightText
+            name: copyrightText
+            widget: string
+          - label: Attribution
+            name: attribution
+            widget: object
+            fields:
+              - label: Etykieta
+                name: label
+                widget: string
+              - label: Link
+                name: href
+                widget: string
+                hint: >-
+                  Wpisz pełny adres strony albo adres podstrony, np. /uslugi/.
+                  Nie zmieniaj bez potrzeby.
+              - label: Prefiks
+                name: prefix
+                widget: string
+              - label: LinkLabel
+                name: linkLabel
+                widget: string
+          - label: Aria
+            name: aria
+            widget: hidden
+            fields:
+              - label: QuickNav
+                name: quickNav
+                widget: string
+              - label: LegalDocs
+                name: legalDocs
+                widget: string
+          - label: Promo
+            name: promo
+            widget: hidden
+            fields:
+              - label: Nadtytuł (tagline)
+                name: tagline
+                widget: string
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Etykieta CTA
+                name: ctaLabel
+                widget: string
+              - label: Link przycisku
+                name: ctaHref
+                widget: string
+                hint: >-
+                  Wpisz pełny adres strony albo adres podstrony, np. /uslugi/.
+                  Nie zmieniaj bez potrzeby.
+              - label: ImageSrc
+                name: imageSrc
+                widget: image
+                required: false
+              - label: Tekst alternatywny zdjęcia
+                name: imageAlt
+                widget: string
+          - label: Kolumny
+            name: columns
+            widget: list
+            summary: '{{title}}'
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Linki
+                name: links
+                widget: list
+                fields:
+                  - label: Etykieta
+                    name: label
+                    widget: string
+                  - label: Link
+                    name: href
+                    widget: string
+                    hint: >-
+                      Wpisz pełny adres strony albo adres podstrony, np.
+                      /uslugi/. Nie zmieniaj bez potrzeby.
+          - label: Newsletter
+            name: newsletter
+            widget: hidden
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Placeholder
+                name: placeholder
+                widget: string
+              - label: Consent
+                name: consent
+                widget: text
+          - label: Linki prawne
+            name: legal
+            widget: list
+            fields:
+              - label: Etykieta
+                name: label
+                widget: string
+              - label: Link
+                name: href
+                widget: string
+                hint: >-
+                  Wpisz pełny adres strony albo adres podstrony, np. /uslugi/.
+                  Nie zmieniaj bez potrzeby.
+  - name: global
+    label: Ustawienia Globalne
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: company
+        label: Dane firmy
+        file: src/data/global/company.json
+        fields:
+          - label: Pełna nazwa firmy
+            name: fullName
+            widget: string
+          - label: Nazwa firmy (krótka)
+            name: name
+            widget: hidden
+          - label: Branding / logo
+            name: branding
+            widget: object
+            fields:
+              - label: Ikona dekoracyjna
+                name: icon
+                widget: hidden
+                options: *ref_0
+                hint: Ikona Phosphor. Wybierz z listy, nie wpisuj ręcznie.
+              - label: Krój pisma
+                name: font
+                widget: hidden
+              - label: Nadtytuł (tagline)
+                name: tagline
+                widget: hidden
+              - label: Plik logo (górny pasek i stopka)
+                name: logoImage
+                widget: image
+                required: false
+                media_library:
+                  config:
+                    accept:
+                      - .png
+                      - .svg
+                      - .webp
+                      - .jpg
+                      - .jpeg
+                hint: Wgraj logo (PNG/SVG). Wyświetla się w menu górnym i stopce.
+              - label: Favicona (ikona przeglądarki)
+                name: favicon
+                widget: image
+                required: false
+                media_library:
+                  config:
+                    accept:
+                      - .png
+                      - .svg
+                      - .ico
+                      - .webp
+                hint: >-
+                  Wgraj faviconę (ikona w zakładce przeglądarki). Zalecany
+                  format PNG/SVG, kwadrat.
+              - label: LogoSuffix
+                name: logoSuffix
+                widget: hidden
+          - label: Ulica i numer
+            name: address
+            widget: text
+            hint: >-
+              Podaj pełny adres w jednej linii, np. ul. Przykładowa 123, 00-001
+              Warszawa
+          - label: Kod pocztowy
+            name: zipCode
+            widget: hidden
+          - label: Miasto
+            name: city
+            widget: hidden
+          - label: Telefon
+            name: phone
+            widget: string
+          - label: E-mail
+            name: email
+            widget: string
+          - label: Godziny pracy
+            name: hours
+            widget: string
+          - label: NIP
+            name: nip
+            widget: string
+          - label: KRS
+            name: krs
+            widget: string
+          - label: URL strony
+            name: siteUrl
+            widget: hidden
+          - label: Ustawienia SMTP (serwer poczty)
+            name: smtp
+            widget: hidden
+            fields:
+              - label: Host serwera SMTP
+                name: smtpHost
+                widget: string
+              - label: Port serwera SMTP
+                name: smtpPort
+                widget: number
+                value_type: int
+              - label: Login SMTP
+                name: smtpUser
+                widget: string
+          - label: Social media
+            name: socials
+            widget: object
+            fields:
+              - label: Facebook
+                name: facebook
+                widget: string
+                required: false
+                hint: >-
+                  Wklej pełny link do profilu, np.
+                  https://facebook.com/twoja-firma
+              - label: Instagram
+                name: instagram
+                widget: string
+                required: false
+                hint: >-
+                  Wklej pełny link do profilu, np.
+                  https://facebook.com/twoja-firma
+              - label: YouTube
+                name: youtube
+                widget: string
+                required: false
+                hint: >-
+                  Wklej pełny link do profilu, np.
+                  https://facebook.com/twoja-firma
+              - label: X (Twitter)
+                name: twitter
+                widget: string
+                required: false
+                hint: >-
+                  Wklej pełny link do profilu, np.
+                  https://facebook.com/twoja-firma
+            hint: >-
+              Wklej pełny link do profilu (np.
+              https://facebook.com/twoja-firma). Puste pole = profil nie jest
+              pokazywany na stronie.
+      - name: custom-code
+        label: Kod własny (zaawansowane)
+        file: src/data/global/custom-code.json
+        fields:
+          - label: Własny kod w <head> (piksele, meta, skrypty)
+            name: customHead
+            widget: text
+            required: false
+            hint: >-
+              Zaawansowane. Kod wklejony tutaj trafi do <head> każdej strony
+              (np. Facebook Pixel, meta tagi, dodatkowe skrypty).
+          - label: Własny kod na końcu strony (widgety, czat)
+            name: customBodyEnd
+            widget: text
+            required: false
+            hint: >-
+              Zaawansowane. Kod trafi na koniec każdej strony (np. widget czatu,
+              skrypt ładowany na końcu).
+      - name: form-messages
+        label: 'Formularz kontaktowy: komunikaty'
+        file: src/data/global/form-messages.json
+        fields:
+          - label: Etykieta „Wyślij”
+            name: submitLabel
+            widget: string
+          - label: Etykieta podczas wysyłania
+            name: submittingLabel
+            widget: hidden
+          - label: LoadingTitle
+            name: loadingTitle
+            widget: string
+          - label: LoadingMessage
+            name: loadingMessage
+            widget: string
+          - label: SuccessTitle
+            name: successTitle
+            widget: string
+          - label: ErrorTitle
+            name: errorTitle
+            widget: string
+          - label: Etykieta „Wyślij kolejną”
+            name: resetLabel
+            widget: hidden
+          - label: Etykieta ponowienia po błędzie
+            name: retryLabel
+            widget: hidden
+          - label: Komunikat sukcesu
+            name: successMessage
+            widget: string
+          - label: Komunikat błędu
+            name: errorMessage
+            widget: string
+          - label: Komunikat nieprawidłowej odpowiedzi
+            name: invalidResponse
+            widget: hidden
+          - label: Komunikat błędu sieci
+            name: networkError
+            widget: hidden
+          - label: ResetHover
+            name: resetHover
+            widget: hidden
+          - label: SubmitHover
+            name: submitHover
+            widget: hidden
+          - label: PrivacyNote
+            name: privacyNote
+            widget: hidden
+          - label: PrivacyLinkLabel
+            name: privacyLinkLabel
+            widget: hidden
+          - label: PrivacyHref
+            name: privacyHref
+            widget: hidden
+          - label: Nagłówek formularza
+            name: heading
+            widget: string
+          - label: RodoConsent
+            name: rodoConsent
+            widget: hidden
+          - label: DefaultFields
+            name: defaultFields
+            widget: hidden
+            fields:
+              - label: Nazwa firmy (krótka)
+                name: name
+                widget: string
+              - label: Etykieta
+                name: label
+                widget: string
+              - label: Typ pliku
+                name: type
+                widget: string
+              - label: Wymagane
+                name: required
+                widget: boolean
+              - label: Placeholder
+                name: placeholder
+                widget: string
+              - label: Autouzupełnianie (opcjonalne)
+                name: autoComplete
+                widget: string
+                required: false
+              - label: Liczba wierszy (opcjonalne)
+                name: rows
+                widget: number
+                value_type: int
+                required: false
+      - name: seo
+        label: SEO
+        file: src/data/global/seo.json
+        fields:
+          - label: Domyślny tytuł
+            name: defaultTitle
+            widget: string
+          - label: Domyślny opis
+            name: defaultDescription
+            widget: string
+          - label: Domyślny obraz (OG)
+            name: defaultOgImage
+            widget: image
+            required: false
+          - label: Indeksowanie strony
+            name: index
+            widget: boolean
+            hint: >-
+              Włączone = index, strona może pojawić się w Google. Wyłączone =
+              noindex, strona nie powinna być indeksowana.
+          - label: Podążaj za linkami
+            name: follow
+            widget: hidden
+          - label: Analityka
+            name: analytics
+            widget: object
+            fields:
+              - label: Google Analytics ID
+                name: googleAnalyticsId
+                widget: string
+                required: false
+                hint: Wklej własny identyfikator. Zostaw puste, jeśli nie używasz.
+              - label: Google Tag Manager ID
+                name: googleTagManagerId
+                widget: string
+                required: false
+                hint: Wklej własny identyfikator. Zostaw puste, jeśli nie używasz.
+              - label: Facebook Pixel ID
+                name: facebookPixelId
+                widget: string
+                required: false
+                hint: Wklej własny identyfikator. Zostaw puste, jeśli nie używasz.
+              - label: Clarity ID
+                name: clarityId
+                widget: string
+                required: false
+                hint: Wklej własny identyfikator. Zostaw puste, jeśli nie używasz.
+  - name: legal
+    label: Strony Prawne
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: cookies
+        label: Polityka cookies
+        file: src/content/legal/cookies.json
+        fields:
+          - label: Data aktualizacji
+            name: lastUpdated
+            widget: string
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Treść (markdown)
+            name: body
+            widget: markdown
+            hint: >-
+              Treść w markdownie. Zmienne: {{COMPANY_NAME}},
+              {{COMPANY_FULL_NAME}}, {{SITE_URL}}, {{COMPANY_EMAIL}} itd.
+      - name: privacy-policy
+        label: Polityka prywatności
+        file: src/content/legal/privacy-policy.json
+        fields:
+          - label: Data aktualizacji
+            name: lastUpdated
+            widget: string
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Treść (markdown)
+            name: body
+            widget: markdown
+            hint: >-
+              Treść w markdownie. Zmienne: {{COMPANY_NAME}},
+              {{COMPANY_FULL_NAME}}, {{SITE_URL}}, {{COMPANY_EMAIL}} itd.
+      - name: terms
+        label: Regulamin
+        file: src/content/legal/terms.json
+        fields:
+          - label: Data aktualizacji
+            name: lastUpdated
+            widget: string
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Treść (markdown)
+            name: body
+            widget: markdown
+            hint: >-
+              Treść w markdownie. Zmienne: {{COMPANY_NAME}},
+              {{COMPANY_FULL_NAME}}, {{SITE_URL}}, {{COMPANY_EMAIL}} itd.
+  - name: blog
+    label: Blog
+    folder: src/content/blog
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - label: Tytuł
+        name: title
+        widget: string
+      - label: Opis
+        name: description
+        widget: text
+      - label: Data publikacji
+        name: pubDate
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+      - label: Tagi
+        name: tags
+        widget: list
+        field:
+          label: Tag
+          name: tag
+          widget: string
+      - label: Zdjęcie główne
+        name: heroImage
+        widget: image
+        required: false
+      - label: Treść artykułu
+        name: body
+        widget: markdown
