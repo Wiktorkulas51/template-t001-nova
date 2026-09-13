@@ -13,6 +13,7 @@ export const heroSections: Record<string, SectionEntry> = {
     variants: {
       default: { component: 'HeroSplitBlock', dataKey: 'hero-split' },
       nova: { label: 'Hero fotograficzny', component: 'NovaHeroResponsiveBlock', dataKey: 'nova-hero-wireframe' },
+      legacyNova: { label: 'Hero Nova legacy', component: 'HeroBlock', dataKey: 'nova-hero-wireframe' },
       modernHouse: { component: 'ModernHouseHeroBlock', dataKey: 'modern-house-hero', source: 'modern-house' },
     },
   },

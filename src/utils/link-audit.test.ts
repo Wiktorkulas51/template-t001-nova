@@ -162,20 +162,20 @@ describe('link audit', () => {
   });
 
   describe('valid routes', () => {
-    it('accepts /contact/', () => {
-      const source = '<a href="/contact/">Contact</a>';
+    it('accepts a current legal route', () => {
+      const source = '<a href="/cookies/">Cookies</a>';
       const issues = auditLinks(source, 'src/test.astro', defaultRoutes);
       expect(issues.filter((i) => i.rule === 'broken-route')).toHaveLength(0);
     });
 
-    it('accepts /privacy-policy/', () => {
-      const source = '<a href="/privacy-policy/">Privacy</a>';
+    it('accepts the Polish legal route', () => {
+      const source = '<a href="/pl/polityka-prywatnosci/">Privacy</a>';
       const issues = auditLinks(source, 'src/test.astro', defaultRoutes);
       expect(issues.filter((i) => i.rule === 'broken-route')).toHaveLength(0);
     });
 
-    it('accepts /qa/mobile-fixture/', () => {
-      const source = '<a href="/qa/mobile-fixture/">QA</a>';
+    it('accepts the Polish homepage route', () => {
+      const source = '<a href="/pl/">Polish homepage</a>';
       const issues = auditLinks(source, 'src/test.astro', defaultRoutes);
       expect(issues.filter((i) => i.rule === 'broken-route')).toHaveLength(0);
     });
@@ -295,9 +295,9 @@ describe('link audit', () => {
     it('accepts footer with trailing slashes', () => {
       const source = `
         <a href="/">Home</a>
-        <a href="/about/">About</a>
-        <a href="/contact/">Contact</a>
-        <a href="/privacy-policy/">Privacy</a>
+        <a href="/pl/">Polish homepage</a>
+        <a href="/cookies/">Cookies</a>
+        <a href="/polityka-prywatnosci/">Privacy</a>
         <a href="https://webscale.pl" target="_blank">WebScale</a>
         <a href="mailto:biuro@example.com">Email</a>
         <a href="tel:+48123456789">Phone</a>
@@ -309,11 +309,9 @@ describe('link audit', () => {
     it('accepts valid navbar links', () => {
       const source = `
         <a href="/">Home</a>
-        <a href="/about/">About</a>
-        <a href="/services/">Services</a>
-        <a href="/pricing/">Pricing</a>
-        <a href="/blog/">Blog</a>
-        <a href="/contact/">Contact</a>
+        <a href="/pl/">Polish homepage</a>
+        <a href="/cookies/">Cookies</a>
+        <a href="/polityka-prywatnosci/">Privacy</a>
       `;
       const issues = auditLinks(source, 'src/components/Navbar.astro', defaultRoutes);
       expect(issues.filter((i) => i.rule !== 'empty-href')).toHaveLength(0);
