@@ -1,7 +1,8 @@
 ---
-import Logo from "@components/ui/atoms/Logo.astro";
 import Text from "@components/ui/atoms/Text.astro";
+import Button from "@components/ui/atoms/Button.astro";
 import jsonData from "@data/navigation/footer.json";
+import ctaData from "@data/sections/cta-bridge.json";
 
 const footerLinks = jsonData.columns.flatMap((column) => column.links).slice(0, 4);
 
@@ -9,9 +10,14 @@ const footerLinks = jsonData.columns.flatMap((column) => column.links).slice(0, 
 
 <footer class="nova-footer">
   <div class="nova-footer__inner">
-    <div class="nova-footer__brand">
-      <Logo variant="light" />
-      <Text variant="body">{jsonData.about}</Text>
+    <div class="nova-footer__copy">
+      <p class="nova-footer__eyebrow"><span>{ctaData.pl.eyebrow}</span></p>
+      <h2>{ctaData.pl.heading}</h2>
+      <p class="nova-footer__description">{ctaData.pl.description}</p>
+      <div class="nova-footer__actions">
+        <Button href={ctaData.pl.ctaHref} variant="accent">{ctaData.pl.ctaLabel}</Button>
+        <Button href="/uslugi/" variant="outline" class="nova-footer__secondary">Poznaj ofertę</Button>
+      </div>
     </div>
     <nav aria-label="Nawigacja stopki" class="nova-footer__links">
       {footerLinks.map((link) => <a href={link.href}>{link.label}</a>)}
@@ -24,12 +30,25 @@ const footerLinks = jsonData.columns.flatMap((column) => column.links).slice(0, 
 </footer>
 
 <style>
-  .nova-footer { background: var(--color-brand-dark); color: var(--color-brand-light); }
-  .nova-footer__inner { display: grid; gap: 2rem; width: min(100% - 2rem, 80rem); margin: 0 auto; padding: 3rem 0 1.5rem; }
-  .nova-footer__brand { display: grid; gap: 1rem; max-width: 24rem; }
-  .nova-footer__brand :global(.ui-text) { color: color-mix(in oklab, var(--color-brand-light) 70%, transparent); }
+  .nova-footer {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-brand-dark) url('/assets/images/t001-nova/t001-nova-cta-mountains@1920.webp') center / cover no-repeat;
+    color: var(--color-brand-light);
+  }
+  .nova-footer::before { content: ''; position: absolute; inset: 0; background: color-mix(in oklab, var(--color-brand-dark) 58%, transparent); }
+  .nova-footer__inner { position: relative; z-index: 1; display: grid; gap: 2rem; width: min(100% - 2rem, 80rem); margin: 0 auto; padding: 5rem 0 1.5rem; }
+  .nova-footer__copy { max-width: 60rem; margin: 0 auto; text-align: center; }
+  .nova-footer__eyebrow { display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 0 0 1rem; color: var(--color-brand-accent); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .nova-footer__eyebrow::before, .nova-footer__eyebrow::after { content: ''; width: 2.5rem; height: 1px; background: color-mix(in oklab, var(--color-brand-accent) 70%, transparent); }
+  .nova-footer__copy h2 { max-width: none; margin: 0; color: var(--color-brand-light); font-size: clamp(2.5rem, 7vw, 5.5rem); line-height: 0.95; letter-spacing: -0.06em; }
+  .nova-footer__description { max-width: 34rem; margin: 1.5rem auto 0; color: color-mix(in oklab, var(--color-brand-light) 78%, transparent); font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.55; }
+  .nova-footer__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 2rem; }
+  .nova-footer__secondary { color: var(--color-brand-light) !important; border-color: color-mix(in oklab, var(--color-brand-light) 65%, transparent) !important; background: color-mix(in oklab, var(--color-brand-dark) 35%, transparent) !important; }
   .nova-footer__links { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; }
-  .nova-footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; padding-top: 1rem; }
-  .nova-footer__bottom :global(.ui-text) { color: color-mix(in oklab, var(--color-brand-light) 60%, transparent); }
-  @media (min-width: 48rem) { .nova-footer__inner { grid-template-columns: 1fr 1fr; } .nova-footer__links { justify-content: flex-end; align-content: start; } .nova-footer__bottom { grid-column: 1 / -1; } }
+  .nova-footer__links a { color: var(--color-brand-light); text-decoration: none; transition: color 180ms ease; }
+  .nova-footer__links a:hover { color: var(--color-brand-accent); }
+  .nova-footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; padding-top: 1rem; border-top: 1px solid color-mix(in oklab, var(--color-brand-light) 25%, transparent); }
+  .nova-footer__bottom :global(.ui-text) { color: color-mix(in oklab, var(--color-brand-light) 72%, transparent); }
+  @media (min-width: 48rem) { .nova-footer__copy h2 { white-space: nowrap; } .nova-footer__links { justify-content: flex-end; } }
 </style>
