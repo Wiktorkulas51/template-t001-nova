@@ -4,13 +4,22 @@ import Button from "@components/ui/atoms/Button.astro";
 import jsonData from "@data/navigation/footer.json";
 import ctaData from "@data/sections/cta-bridge.json";
 
-const footerLinks = jsonData.columns.flatMap((column) => column.links).slice(0, 4);
+const footerLinks = [
+  { label: "O nas", href: "/o-nas/" },
+  { label: "Usługi", href: "/uslugi/" },
+  { label: "Cennik", href: "/cennik/" },
+  { label: "Blog", href: "/blog/" },
+];
+const legalLinks = [
+  { label: "Polityka prywatności", href: "/polityka-prywatnosci/" },
+  { label: "Cookies", href: "/cookies/" },
+];
 
 ---
 
 <footer class="relative overflow-hidden bg-brand-dark bg-[url('/assets/images/t001-nova/t001-nova-cta-mountains@1920.webp')] bg-cover bg-center bg-no-repeat text-brand-light">
   <div class="absolute inset-0 bg-brand-dark/60" aria-hidden="true"></div>
-  <div class="relative z-10 mx-auto grid w-[min(100%-2rem,80rem)] gap-8 py-20 pb-6">
+  <div class="relative z-10 mx-auto grid w-[min(100%-2rem,80rem)] gap-16 py-20 pb-8">
     <div class="mx-auto max-w-5xl text-center">
       <p class="mb-4 flex items-center justify-center gap-4 text-xs font-bold uppercase tracking-[0.14em] text-brand-accent">
         <span class="h-px w-10 bg-brand-accent/70" aria-hidden="true"></span>
@@ -27,9 +36,12 @@ const footerLinks = jsonData.columns.flatMap((column) => column.links).slice(0, 
     <nav aria-label="Nawigacja stopki" class="flex flex-wrap gap-x-6 gap-y-4 lg:justify-end">
       {footerLinks.map((link) => <a href={link.href}>{link.label}</a>)}
     </nav>
-    <div class="flex flex-wrap justify-between gap-3 border-t border-brand-light/25 pt-4 text-brand-light/75">
-      <Text tag="span" variant="feature-body-sm">{jsonData.copyrightText}</Text>
-      <Text tag="span" variant="feature-body-sm">{jsonData.attribution.label}</Text>
+    <div class="flex flex-wrap items-center justify-between gap-6 border-t border-brand-light/25 pt-8 text-brand-light/75">
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+        {legalLinks.map((link) => <a href={link.href} class="text-sm text-brand-light/80 transition-colors hover:text-brand-accent">{link.label}</a>)}
+        <Text tag="span" variant="feature-body-sm">Wszelkie prawa zastrzeżone.</Text>
+      </div>
+      <Text tag="span" variant="feature-body-sm">Projekt i wdrożenie: WebScale</Text>
     </div>
   </div>
 </footer>
