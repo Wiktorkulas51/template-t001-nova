@@ -1,49 +1,46 @@
 ---
 import Text from "@components/ui/atoms/Text.astro";
 import Button from "@components/ui/atoms/Button.astro";
-import jsonData from "@data/navigation/footer.json";
-import ctaData from "@data/sections/cta-bridge.json";
+import { getNovaCopy, getNovaNavigationPath, type NovaLocale } from "@utils/nova-i18n";
 
-const footerLinks = [
-  { label: "O nas", href: "/o-nas/" },
-  { label: "Usługi", href: "/uslugi/" },
-  { label: "Cennik", href: "/cennik/" },
-  { label: "Blog", href: "/blog/" },
-];
-const legalLinks = [
-  { label: "Polityka prywatności", href: "/polityka-prywatnosci/" },
-  { label: "Cookies", href: "/cookies/" },
-];
+interface Props {
+  locale?: NovaLocale;
+}
+
+const { locale = "pl" } = Astro.props as Props;
+const copy = getNovaCopy(locale).footer;
+const footerLinks = copy.footerLinks.map((link) => ({ ...link, href: getNovaNavigationPath(link.href, locale) }));
+const legalLinks = copy.legalLinks.map((link) => ({ ...link, href: getNovaNavigationPath(link.href, locale) }));
 
 ---
 
-<footer class="relative overflow-hidden rounded-t-[var(--rounded-lg)] bg-brand-dark bg-[url('/assets/images/t001-nova/t001-nova-cta-mountains@1920.webp')] bg-cover bg-center bg-no-repeat text-brand-light">
+<footer id="kontakt" class="relative overflow-hidden rounded-t-[var(--rounded-lg)] bg-brand-dark bg-[url('/assets/images/t001-nova/t001-nova-cta-mountains@1920.webp')] bg-cover bg-center bg-no-repeat text-brand-light">
   <div class="absolute inset-0 bg-brand-dark/60" aria-hidden="true"></div>
   <div class="relative z-10 mx-auto grid w-[min(100%-2rem,80rem)] gap-10 py-20 pb-8">
     <div class="mx-auto max-w-5xl text-center">
       <p class="mb-4 flex items-center justify-center gap-4 text-xs font-bold uppercase tracking-[0.14em] text-brand-accent">
         <span class="h-px w-10 bg-brand-accent/70" aria-hidden="true"></span>
-        <span>{ctaData.pl.eyebrow}</span>
+        <span>{copy.eyebrow}</span>
         <span class="h-px w-10 bg-brand-accent/70" aria-hidden="true"></span>
       </p>
-      <h2 class="m-0 max-w-none text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] tracking-[-0.06em] text-brand-light lg:whitespace-nowrap">{ctaData.pl.heading}</h2>
-      <p class="mx-auto mt-6 max-w-xl text-[clamp(1rem,1.5vw,1.2rem)] leading-[1.55] text-brand-light/80">{ctaData.pl.description}</p>
+      <h2 class="m-0 max-w-none text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] tracking-[-0.06em] text-brand-light lg:whitespace-nowrap">{copy.heading}</h2>
+      <p class="mx-auto mt-6 max-w-xl text-[clamp(1rem,1.5vw,1.2rem)] leading-[1.55] text-brand-light/80">{copy.description}</p>
       <div class="mt-12 flex flex-wrap justify-center gap-3">
-        <Button href={ctaData.pl.ctaHref} variant="accent">{ctaData.pl.ctaLabel}</Button>
-        <Button href="/uslugi/" variant="outline" class="!border-brand-light/65 !bg-brand-dark/35 !text-brand-light">Poznaj ofertę</Button>
+        <Button href={getNovaNavigationPath(copy.primaryHref, locale)} variant="accent">{copy.primaryLabel}</Button>
+        <Button href={getNovaNavigationPath(copy.secondaryHref, locale)} variant="outline" class="!border-brand-light/65 !bg-brand-dark/35 !text-brand-light">{copy.secondaryLabel}</Button>
       </div>
     </div>
     <div class="flex flex-wrap items-center justify-between gap-6">
-      <nav aria-label="Dokumenty prawne" class="flex flex-wrap gap-x-6 gap-y-3">
+      <nav aria-label={copy.ariaLegal} class="flex flex-wrap gap-x-6 gap-y-3">
         {legalLinks.map((link) => <a href={link.href} class="text-sm text-brand-light/80 transition-colors hover:text-brand-accent">{link.label}</a>)}
       </nav>
-      <nav aria-label="Nawigacja stopki" class="flex flex-wrap gap-x-6 gap-y-4 lg:justify-end">
+      <nav aria-label={copy.ariaNavigation} class="flex flex-wrap gap-x-6 gap-y-4 lg:justify-end">
         {footerLinks.map((link) => <a href={link.href} class="text-sm text-brand-light transition-colors hover:text-brand-accent">{link.label}</a>)}
       </nav>
     </div>
     <div class="flex flex-wrap items-center justify-between gap-6 border-t border-brand-light/25 pt-8 text-brand-light/75">
-      <Text tag="span" variant="feature-body-sm">Wszelkie prawa zastrzeżone.</Text>
-      <Text tag="span" variant="feature-body-sm" class="lg:text-right">Projekt i wdrożenie: WebScale</Text>
+      <Text tag="span" variant="feature-body-sm">{copy.copyright}</Text>
+      <Text tag="span" variant="feature-body-sm" class="lg:text-right">{copy.attribution}</Text>
     </div>
   </div>
 </footer>

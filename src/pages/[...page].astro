@@ -3,7 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import PageBuilder from "@components/PageBuilder.astro";
 import type { PageConfig } from "@/types/config";
 import { pageModules } from "@data/pages/_registry";
-import { BUILD_SCOPE } from "../../site.config.mjs";
+import { BUILD_SCOPE, SITE_LOCALE } from "../../site.config.mjs";
 import { isPageAllowed, getFullBleedTop } from "@utils/page-scope";
 
 export async function getStaticPaths() {
@@ -75,6 +75,8 @@ const footerVariant = footerSection?.variant;
   navbarVariant={navbarVariant}
   footerVariant={footerVariant}
   fullBleedTop={fullBleedTop}
+  locale={SITE_LOCALE === "en" ? "en" : "pl"}
+  lang={SITE_LOCALE}
 >
-  <PageBuilder heading={config.heading} sections={config.sections} />
+  <PageBuilder heading={config.heading} sections={config.sections} locale={SITE_LOCALE === "en" ? "en" : "pl"} />
 </Layout>

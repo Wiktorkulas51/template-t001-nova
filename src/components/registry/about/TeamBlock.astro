@@ -7,7 +7,7 @@ import SmartImage from "@components/ui/atoms/SmartImage.astro";
 import Button from "@components/ui/atoms/Button.astro";
 import jsonData from "@data/sections/nova-team.json";
 
-interface Props { title?: string; description?: string; image?: string; imageAlt?: string; checks?: string[]; teamLabel?: string; teamCount?: string; class?: string; }
+interface Props { title?: string; description?: string; image?: string; imageAlt?: string; checks?: string[]; teamLabel?: string; teamCount?: string; teamAriaLabel?: string; buttonLabel?: string; buttonHref?: string; class?: string; }
 const props = Astro.props as Props;
 const title = props.title ?? jsonData.title;
 const description = props.description ?? jsonData.description;
@@ -16,6 +16,9 @@ const imageAlt = props.imageAlt ?? jsonData.imageAlt;
 const checks = props.checks ?? jsonData.checks;
 const teamLabel = props.teamLabel ?? jsonData.teamLabel;
 const teamCount = props.teamCount ?? jsonData.teamCount;
+const teamAriaLabel = props.teamAriaLabel ?? "Nasz zespół";
+const buttonLabel = props.buttonLabel ?? "Poznaj zespół";
+const buttonHref = props.buttonHref ?? "#zespol";
 const teamAvatars = [
   "/assets/images/t001-nova/t001-nova-avatar-01@220.webp",
   "/assets/images/t001-nova/t001-nova-avatar-02@220.webp",
@@ -33,7 +36,7 @@ const teamAvatars = [
         <Heading tag="h2" variant="section-title">{title}</Heading>
         <Text variant="lead">{description}</Text>
         <div class="flex items-center gap-4">
-          <div class="flex items-center -space-x-3 pr-1" aria-label="Nasz zespół">
+          <div class="flex items-center -space-x-3 pr-1" aria-label={teamAriaLabel}>
               {teamAvatars.map((avatar, index) => (
                 <img src={avatar} alt="" width="48" height="48" loading="lazy" class="size-12 rounded-full border-2 border-surface object-cover" style={`z-index: ${teamAvatars.length - index};`} />
               ))}
@@ -44,7 +47,7 @@ const teamAvatars = [
           </div>
         </div>
         <ul class="m-0 grid list-none gap-3 py-4">{checks.map((check) => <li class="flex items-center gap-3"><span class="grid size-8 shrink-0 place-items-center rounded-full border border-white/45 bg-brand-accent text-xl leading-none text-brand-dark" aria-hidden="true">→</span><Text tag="span" variant="body">{check}</Text></li>)}</ul>
-        <Button href="/o-nas/" variant="primary" size="md" class="w-fit">Poznaj zespół</Button>
+        <Button href={buttonHref} variant="primary" size="md" class="w-fit">{buttonLabel}</Button>
       </div>
     </div>
   </Container>

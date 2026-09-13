@@ -28,6 +28,7 @@ import FontSwitcherToolbar from '@components/dev/FontSwitcherToolbar.astro';
 import DeveloperToolsDock from '@components/dev/DeveloperToolsDock.astro';
 import Icon from '@components/ui/atoms/Icon.astro';
 import galleryCopy from '@data/dev/component-library/component-gallery.json';
+import type { NovaLocale } from '@utils/nova-i18n';
 
 
 interface Props {
@@ -37,6 +38,7 @@ interface Props {
 	noIndex?: boolean;
 	/** Page language code (why: hardcoded "pl" confused Google for EN clients, e.g. tom-ros). */
 	lang?: string;
+	locale?: NovaLocale;
 	theme?: string;
 	/** Optional `.ui-section` background pattern (Developer Studio). */
 	sectionPattern?: 'off' | 'repeat' | 'mesh' | 'noise';
@@ -75,6 +77,7 @@ const {
 	ogImage = seo.defaultOgImage,
 	noIndex = isStaging || !seo.index,
 	lang = SITE_LOCALE,
+	locale = SITE_LOCALE === 'en' ? 'en' : 'pl',
 	theme: themeProp,
 	sectionPattern = 'off',
 	schemaTemplate = 'default',
@@ -170,7 +173,6 @@ const mainPaddingStyle = fullBleedTop
 	data-theme={theme}
 	data-lenis={enableLenis ? 'true' : undefined}
 	data-motion-disabled={isComponentThumbnail ? '' : undefined}
-	data-motion-static={theme === 'nova' ? '' : undefined}
 	{...(sectionPattern !== 'off' ? { 'data-section-pattern': sectionPattern } : {})}
 >
 	<head>
@@ -299,8 +301,8 @@ const mainPaddingStyle = fullBleedTop
 		data-review-api={reviewApiUrl || undefined}
 		data-review-project={reviewProject || undefined}
 	>
-		{clientRuntime && <MobileDrawer />}
-		{showShell && navbarResolved && <navbarResolved.component layout={navbarResolved.layout} theme={navbarTheme} />}
+		{clientRuntime && <MobileDrawer locale={locale} />}
+		{showShell && navbarResolved && <navbarResolved.component layout={navbarResolved.layout} theme={navbarTheme} locale={locale} />}
 		{showDevLibraryLink && (
 			<a
 				href="/dev/components/"
@@ -318,12 +320,12 @@ const mainPaddingStyle = fullBleedTop
 		<main class="flex-1 flex flex-col" style={mainPaddingStyle}>
 			<slot />
 		</main>
-		{showShell && footerResolved && <footerResolved.component />}
+		{showShell && footerResolved && <footerResolved.component locale={locale} />}
 
 		<!-- Scripts -->
 		<slot name="scripts" />
 
-		{clientRuntime && <script is:inline src="/js/motion.js" defer></script>}
+		{clientRuntime && <script is:inline data-astro-rerun src="/js/motion.js" defer></script>}
 		<!-- Fix page "sliding": global scroll-behavior:smooth (core.css) causes
 		     View Transition to ANIMATE scroll to top instead of jumping after
 		     inserting new page. We disable smooth only during transition and

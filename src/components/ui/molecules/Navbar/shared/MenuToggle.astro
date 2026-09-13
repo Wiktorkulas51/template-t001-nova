@@ -1,11 +1,13 @@
 ---
-import headerData from "@data/navigation/header.json";
+import { getNovaCopy, type NovaLocale } from "@utils/nova-i18n";
 
 interface Props {
 	mobileOnly?: boolean;
+	locale?: NovaLocale;
 }
 
-const { mobileOnly = true } = Astro.props;
+const { mobileOnly = true, locale = "pl" } = Astro.props;
+const headerData = getNovaCopy(locale).navigation;
 ---
 
 <button

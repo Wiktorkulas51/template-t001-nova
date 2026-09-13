@@ -1,13 +1,15 @@
 ---
-import headerData from "@data/navigation/header.json";
 import { getNavDrawerSocialLinks } from "./nav-drawer-social";
-import { formatInternalLink } from "@utils/url";
+import LanguageSwitch from "./LanguageSwitch.astro";
+import { getNovaCopy, getNovaNavigationPath, type NovaLocale } from "@utils/nova-i18n";
 
 interface Props {
 	drawerMode?: "mobile" | "all";
+	locale?: NovaLocale;
 }
 
-const { drawerMode = "mobile" } = Astro.props;
+const { drawerMode = "mobile", locale = "pl" } = Astro.props;
+const headerData = getNovaCopy(locale).navigation;
 const rootVisibility = drawerMode === "mobile" ? "lg:hidden" : "";
 const socialLinks = getNavDrawerSocialLinks();
 
@@ -74,6 +76,7 @@ function subId(index: number): string {
 					<span class="ui-nav-drawer__close-bar" aria-hidden="true"></span>
 					<span class="ui-nav-drawer__close-bar" aria-hidden="true"></span>
 				</button>
+				<LanguageSwitch locale={locale} />
 			</div>
 
 			<div class="ui-nav-drawer__scroller">
@@ -83,7 +86,7 @@ function subId(index: number): string {
 							<div class="ui-nav-drawer__item" style={`--stagger: ${i}`}>
 								<div class="ui-nav-drawer__link-row">
 									<a
-										href={formatInternalLink(item.href)}
+										href={getNovaNavigationPath(item.href, locale)}
 										class="ui-nav-drawer__link"
 										data-navbar-close
 									>
@@ -124,7 +127,7 @@ function subId(index: number): string {
 										>
 											{item.children!.map((child) => (
 												<a
-													href={formatInternalLink(child.href)}
+													href={getNovaNavigationPath(child.href, locale)}
 													class="ui-nav-drawer__sub-link"
 													data-navbar-close
 												>
@@ -138,7 +141,7 @@ function subId(index: number): string {
 						) : (
 							<div class="ui-nav-drawer__item" style={`--stagger: ${i}`}>
 								<a
-									href={formatInternalLink(item.href)}
+									href={getNovaNavigationPath(item.href, locale)}
 									class="ui-nav-drawer__link"
 									data-navbar-close
 								>
@@ -152,7 +155,7 @@ function subId(index: number): string {
           and appearance, no separate block at the bottom-->
 					<div class="ui-nav-drawer__item" style={`--stagger: ${menu.length}`}>
 						<a
-							href={formatInternalLink(headerData.cta.href)}
+							href={getNovaNavigationPath(headerData.cta.href, locale)}
 							class="ui-nav-drawer__cta"
 							data-navbar-close
 						>

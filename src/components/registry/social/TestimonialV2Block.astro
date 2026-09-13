@@ -11,9 +11,9 @@ const list = items && items.length > 0 ? items : data.items;
 const columns = [list, [...list.slice(2), ...list.slice(0, 2)], [...list.slice(1), ...list.slice(0, 1)]];
 ---
 
-<Section id={sectionId} tone="page" class:list={["overflow-hidden", className]}>
+<Section id={sectionId === "testimonial-v2" ? "opinie" : sectionId} tone="page" class:list={["overflow-hidden", className]}>
   <div class="ui-container">
-    <SectionHeader title={title || data.title} description={description || data.description} tagline={tagline || data.tagline} titleTag="h2" align="center" class="mx-auto max-w-3xl" />
+    <SectionHeader title={title || data.title} description={description || data.description} titleTag="h2" align="center" class="mx-auto max-w-3xl" />
     <div class="relative mx-auto mt-12 flex max-h-[720px] max-w-6xl justify-center gap-4 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] md:gap-6">
       {columns.map((column, columnIndex) => (
         <div class:list={["w-full max-w-sm", columnIndex > 0 ? "hidden md:block" : ""]}>

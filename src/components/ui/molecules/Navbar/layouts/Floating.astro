@@ -1,15 +1,18 @@
 ---
-import headerData from "@data/navigation/header.json";
 import Logo from "@components/ui/atoms/Logo.astro";
 import MenuToggle from "@components/ui/molecules/Navbar/shared/MenuToggle.astro";
+import LanguageSwitch from "@components/ui/molecules/Navbar/shared/LanguageSwitch.astro";
 import type { NavTheme } from "@components/ui/molecules/Navbar/shared/nav-theme-classes";
 import { formatInternalLink } from "@utils/url";
+import { getNovaCopy, getNovaNavigationPath, type NovaLocale } from "@utils/nova-i18n";
 
 export interface Props {
 	theme?: NavTheme;
+	locale?: NovaLocale;
 }
 
-const { theme = "light" } = Astro.props;
+const { theme = "light", locale = "pl" } = Astro.props;
+const headerData = getNovaCopy(locale).navigation;
 
 // Why: floating navbar has two visual states. It's at the top of the page
 // with a transparent overlay embedded in the hero (absolute), and it goes on the scroll
@@ -56,13 +59,14 @@ const fixedShellClass = isDark
 
 			<nav class="hidden min-w-0 flex-1 items-center justify-center gap-5 lg:flex xl:gap-8">
 				{headerData.menu.map((item) => (
-					<a href={formatInternalLink(item.href)} class="ui-nav-bar-link shrink-0 opacity-75 transition-opacity hover:opacity-100">
+					<a href={getNovaNavigationPath(item.href, locale)} class="ui-nav-bar-link shrink-0 opacity-75 transition-opacity hover:opacity-100">
 						{item.label}
 					</a>
 				))}
 			</nav>
 
 			<div class="relative z-[1010] flex shrink-0 items-center gap-2 sm:gap-3">
+				<LanguageSwitch locale={locale} />
 				<!-- Dlaczego: globalny wzorzec przycisku (ui-button ui-button-primary ui-nav-cta)
          instead of raw classes. Gives consistent hover (text swap + color slide) and dimensions
 				     z core.css. Wzorzec z NavbarMainCentered (layout Centered). -->
@@ -72,7 +76,7 @@ const fixedShellClass = isDark
 						<span class="ui-button-text-hover">{headerData.cta.hoverLabel}</span>
 					</span>
 				</a>
-				<MenuToggle />
+				<MenuToggle locale={locale} />
 			</div>
 		</div>
 	</div>
@@ -96,20 +100,21 @@ const fixedShellClass = isDark
 
 			<nav class="hidden min-w-0 flex-1 items-center justify-center gap-5 lg:flex xl:gap-8">
 				{headerData.menu.map((item) => (
-					<a href={formatInternalLink(item.href)} class="ui-nav-bar-link shrink-0 opacity-75 transition-opacity hover:opacity-100">
+					<a href={getNovaNavigationPath(item.href, locale)} class="ui-nav-bar-link shrink-0 opacity-75 transition-opacity hover:opacity-100">
 						{item.label}
 					</a>
 				))}
 			</nav>
 
 			<div class="relative z-[1010] flex shrink-0 items-center gap-2 sm:gap-3">
+				<LanguageSwitch locale={locale} />
 				<a href={formatInternalLink(headerData.cta.href)} class="ui-button ui-button-primary ui-nav-cta hidden sm:flex">
 					<span class="ui-button-text-wrap">
 						<span class="ui-button-text-default">{headerData.cta.label}</span>
 						<span class="ui-button-text-hover">{headerData.cta.hoverLabel}</span>
 					</span>
 				</a>
-				<MenuToggle />
+				<MenuToggle locale={locale} />
 			</div>
 		</div>
 	</div>

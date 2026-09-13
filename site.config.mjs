@@ -8,11 +8,11 @@ export const ACTIVE_TEMPLATE = 'nova';
 // English-first product: code/docs/demo content are English. Client site language is configurable.
 // Single-language mode: locale = 'pl' | 'en' | 'de', i18n.enabled = false → no /pl/ prefix, no switcher, no t().
 // Multi-language mode: i18n.enabled = true, locales = ['pl','en'] → routing and switcher active.
-export const SITE_LOCALE = 'en';
+export const SITE_LOCALE = 'pl';
 export const I18N_CONFIG = {
-  enabled: false,
-  locales: ['en'],
-  defaultLocale: 'en',
+  enabled: true,
+  locales: ['pl', 'en'],
+  defaultLocale: 'pl',
 };
 
 // BUILD_SCOPE — what goes into build (dist/) and what stays dev-only.
@@ -23,7 +23,7 @@ export const BUILD_SCOPE = {
   // Allowlist of paths to keep in build. Empty [] = all.
   // Prefix works: '/pl' keeps '/pl/', '/pl/cookies/' etc.
   // 404 is always kept regardless of this list.
-  pages: [],
+  pages: ['/', '/pl', '/en'],
   // Denylist — always removed from dist/ (dev-only, prototypes, demo).
   // Entry matches by first path segment. Dev and QA stay out of production build.
   forceRemove: ['starwind-demo', 'layout-test', 'roofing', 'admin', 'dev', 'qa'],
