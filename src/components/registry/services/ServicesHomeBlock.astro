@@ -34,7 +34,7 @@ const items = props.items ?? jsonData.items;
     </div>
     <div class="nova-services-grid">
       {items.map((item) => (
-        <article class="nova-service-card ui-card-interactive group transition-[background-color,border-color,box-shadow,transform] duration-300 ease-out hover:-translate-y-0.5 hover:border-brand-accent hover:bg-brand-accent/10 hover:shadow-strong motion-reduce:transition-none">
+        <article class="nova-service-card ui-card-interactive group cursor-pointer transition-[background-color,border-color,box-shadow,transform] duration-300 ease-out hover:-translate-y-0.5 hover:border-brand-accent hover:bg-brand-accent/10 hover:shadow-strong motion-reduce:transition-none">
           <div class="nova-service-icon transition-[background-color,border-color,color] duration-300 group-hover:border-brand-accent group-hover:bg-brand-accent group-hover:text-brand-dark motion-reduce:transition-none" aria-hidden="true">
             <Icon name={item.icon ?? "sparkle"} />
           </div>
