@@ -1,59 +1,48 @@
-# Licencja użytkowania (WebScale)
+# Nova Template License
 
-Ten plik określa zasady korzystania z kodu źródłowego dostarczonego w ramach projektu. Szczegółowe postanowienia umowne mogą dodatkowo wynikać z umowy o realizację strony.
+Wersja licencji: darmowe wydanie Nova, 2026-09-13.
 
-## 1. Własność kodu
+## 1. Właściciel praw
 
-Kod źródłowy, komponenty, bloki, style, skrypty i narzędzia deweloperskie zawarte w tym repozytorium są własnością WebScale i autora projektu. Przeniesienie praw autorskich do tego kodu na Zleceniodawcę nie następuje.
+Kod, komponenty, style, skrypty i materiały autorskie zawarte w tym projekcie są własnością WebScale i autora projektu, z wyjątkiem elementów objętych osobnymi licencjami.
 
-## 2. Licencja dla Zleceniodawcy
+## 2. Darmowa licencja
 
-Zleceniodawca otrzymuje niewyłączną, nieprzenaszalną, odpłatną licencję na używanie kodu źródłowego wyłącznie w ramach strony internetowej wskazanej w umowie. Licencja obejmuje prawo do modyfikowania kodu w celu utrzymania i rozwoju tej strony.
+Każda osoba lub organizacja, która legalnie otrzymała tę wersję Nova bez opłat, otrzymuje bezterminową, niewyłączną i nieodpłatną licencję na:
+
+- używanie kodu w swoich projektach,
+- modyfikowanie kodu i treści,
+- tworzenie oraz publikowanie stron internetowych na podstawie template'u,
+- używanie template'u w projektach własnych i projektach realizowanych dla klientów.
+
+Powyższe prawa dotyczą dokładnie tej wersji projektu, którą odbiorca otrzymał bezpłatnie. Zmiana ceny przyszłych wersji nie odbiera praw do tej wersji.
 
 ## 3. Ograniczenia
 
-Zleceniodawca nie ma prawa do:
+Bez pisemnej zgody WebScale nie wolno:
 
-- kopiowania, rozpowszechniania, sprzedaży ani sublicencjonowania komponentów, bloków i narzędzi w innych projektach,
-- udostępniania kodu osobom trzecim poza zakresem niezbędnym do utrzymania strony,
-- wykorzystywania kodu w projektach nieobjętych umową,
-- usuwania lub modyfikowania informacji o prawach autorskich.
+- odsprzedawać, sublicencjonować ani rozpowszechniać samego template'u,
+- udostępniać kodu jako osobnego produktu lub biblioteki template'ów,
+- tworzyć na jego podstawie konkurencyjnego marketplace'u lub template'u,
+- usuwać informacji o autorze i prawach autorskich,
+- przedstawiać materiałów WebScale jako własnych, oryginalnych materiałów.
 
-## 4. Prawa do treści
+Dozwolone jest publikowanie gotowych stron internetowych zbudowanych na podstawie template'u. Niedozwolone jest dalsze przekazywanie samego pakietu źródłowego jako produktu.
 
-Teksty, zdjęcia, logo i materiały graficzne dostarczone przez Zleceniodawcę pozostają własnością Zleceniodawcy. WebScale wykorzystuje je wyłącznie w celu realizacji i utrzymania strony.
+## 4. Przyszłe wersje i usługi
 
-## 5. Prawa do strony
+WebScale może w przyszłości udostępniać nowe wersje Nova odpłatnie. Może również oferować odpłatne wdrożenie, personalizację, wsparcie i dodatkowe materiały. Nie zmienia to bezpłatnych praw do wersji, którą odbiorca otrzymał wcześniej bez opłat.
 
-Zleceniodawca nabywa pełne prawa do wdrożonej strony internetowej w zakresie jej treści, struktury i prezentacji, zgodnie z postanowieniami umowy.
+## 5. Elementy zewnętrzne
 
----
+Ta licencja nie rozszerza praw do bibliotek npm, fontów, zdjęć, ikon, filmów, avatarów, znaków towarowych ani innych materiałów pochodzących od osób trzecich. Każdy zewnętrzny element podlega własnej licencji, którą należy sprawdzić przed użyciem.
 
-# Usage License (WebScale)
+## 6. Brak gwarancji
 
-This file defines the terms of use of the source code delivered within the project. Detailed contractual terms may additionally result from the website implementation agreement.
+Projekt jest udostępniany w stanie, w jakim się znajduje. Autorzy nie gwarantują, że będzie działał w każdym środowisku, z każdą konfiguracją serwera ani po każdej zmianie zewnętrznych zależności. Odbiorca odpowiada za konfigurację, bezpieczeństwo i zgodność swojej wdrożonej strony z obowiązującymi przepisami.
 
-## 1. Code Ownership
+## 7. English summary
 
-The source code, components, blocks, styles, scripts and developer tools contained in this repository are the property of WebScale and the project author. Copyright in this code is not transferred to the Client.
+The current Nova release is free. Anyone who legally received this exact release for free keeps a perpetual, royalty-free right to use, modify and publish websites built with it. Future releases, support and customization may be paid, but they do not remove the rights granted for an earlier free release.
 
-## 2. Client License
-
-The Client receives a non-exclusive, non-transferable, paid license to use the source code solely within the website indicated in the agreement. The license includes the right to modify the code to maintain and develop this website.
-
-## 3. Restrictions
-
-The Client has no right to:
-
-- copy, distribute, sell or sublicense components, blocks and tools in other projects,
-- share the code with third parties beyond what is necessary to maintain the website,
-- use the code in projects not covered by the agreement,
-- remove or modify copyright notices.
-
-## 4. Content Ownership
-
-Texts, photos, logos and graphic materials provided by the Client remain the property of the Client. WebScale uses them solely to implement and maintain the website.
-
-## 5. Website Rights
-
-The Client acquires full rights to the deployed website in terms of its content, structure and presentation, in accordance with the agreement.
+The source template itself may not be resold, sublicensed, redistributed as a template product or used to create a competing template marketplace. Third-party libraries, fonts, images, icons and other assets remain subject to their own licenses.

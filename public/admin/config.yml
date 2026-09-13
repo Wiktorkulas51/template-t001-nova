@@ -25,6 +25,60 @@ collections:
     editor:
       preview: false
     files:
+      - name: testimonials
+        label: Opinie klientów
+        file: src/data/sections/testimonials.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Opinie
+            name: testimonials
+            widget: list
+            fields:
+              - label: Cytat
+                name: quote
+                widget: text
+              - label: Autor
+                name: author
+                widget: string
+              - label: Rola
+                name: role
+                widget: string
+              - label: Awatar
+                name: avatar
+                widget: image
+                required: false
+          - label: Pasek przewijany
+            name: marquee
+            widget: hidden
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Opinie
+                name: testimonials
+                widget: list
+                fields:
+                  - label: Cytat
+                    name: quote
+                    widget: text
+                  - label: Autor
+                    name: author
+                    widget: string
+                  - label: Rola
+                    name: role
+                    widget: string
+                  - label: Awatar
+                    name: avatar
+                    widget: image
+                    required: false
       - name: about
         label: O firmie
         file: src/data/sections/about.json
@@ -375,60 +429,6 @@ collections:
                   - label: Opis
                     name: description
                     widget: text
-      - name: testimonials
-        label: Opinie klientów
-        file: src/data/sections/testimonials.json
-        fields:
-          - label: Tytuł
-            name: title
-            widget: string
-          - label: Opis
-            name: description
-            widget: text
-          - label: Opinie
-            name: testimonials
-            widget: list
-            fields:
-              - label: Cytat
-                name: quote
-                widget: text
-              - label: Autor
-                name: author
-                widget: string
-              - label: Rola
-                name: role
-                widget: string
-              - label: Awatar
-                name: avatar
-                widget: image
-                required: false
-          - label: Pasek przewijany
-            name: marquee
-            widget: hidden
-            fields:
-              - label: Tytuł
-                name: title
-                widget: string
-              - label: Opis
-                name: description
-                widget: text
-              - label: Opinie
-                name: testimonials
-                widget: list
-                fields:
-                  - label: Cytat
-                    name: quote
-                    widget: text
-                  - label: Autor
-                    name: author
-                    widget: string
-                  - label: Rola
-                    name: role
-                    widget: string
-                  - label: Awatar
-                    name: avatar
-                    widget: image
-                    required: false
   - name: sections_cennik
     label: Cennik
     delete: false
@@ -877,9 +877,6 @@ collections:
         label: Oferta usług
         file: src/data/sections/nova-services.json
         fields:
-          - label: Nadtytuł
-            name: eyebrow
-            widget: string
           - label: Tytuł
             name: title
             widget: string
@@ -915,9 +912,6 @@ collections:
         label: Zespół i wartości
         file: src/data/sections/nova-team.json
         fields:
-          - label: Nadtytuł
-            name: eyebrow
-            widget: string
           - label: Tytuł
             name: title
             widget: string
@@ -944,38 +938,101 @@ collections:
           - label: TeamLabel
             name: teamLabel
             widget: string
-      - name: nova-cta
-        label: Końcowe wezwanie do działania
-        file: src/data/sections/nova-cta.json
-        fields:
-          - label: Nadtytuł
-            name: eyebrow
+          - label: TeamAriaLabel
+            name: teamAriaLabel
             widget: string
+          - label: TeamAvatars
+            name: teamAvatars
+            widget: list
+            summary: '{{alt}}'
+            fields:
+              - label: Zdjęcie
+                name: src
+                widget: image
+                required: false
+              - label: Opis alternatywny
+                name: alt
+                widget: string
+          - label: Etykieta przycisku
+            name: buttonLabel
+            widget: string
+          - label: Link przycisku
+            name: buttonHref
+            widget: string
+      - name: faq3
+        label: Faq3
+        file: src/data/sections/faq3.json
+        fields:
           - label: Tytuł
             name: title
             widget: string
           - label: Opis
             name: description
             widget: text
-          - label: PrimaryLabel
-            name: primaryLabel
+          - label: Elementy
+            name: items
+            widget: list
+            fields:
+              - label: Pytanie
+                name: q
+                widget: string
+              - label: Odpowiedź
+                name: a
+                widget: text
+      - name: testimonials
+        label: Opinie klientów
+        file: src/data/sections/testimonials.json
+        fields:
+          - label: Tytuł
+            name: title
             widget: string
-          - label: PrimaryHref
-            name: primaryHref
-            widget: string
-          - label: SecondaryLabel
-            name: secondaryLabel
-            widget: string
-          - label: SecondaryHref
-            name: secondaryHref
-            widget: string
-          - label: Zdjęcie
-            name: image
-            widget: image
-            required: false
-          - label: Tekst alternatywny zdjęcia
-            name: imageAlt
-            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Opinie
+            name: testimonials
+            widget: list
+            fields:
+              - label: Cytat
+                name: quote
+                widget: text
+              - label: Autor
+                name: author
+                widget: string
+              - label: Rola
+                name: role
+                widget: string
+              - label: Awatar
+                name: avatar
+                widget: image
+                required: false
+          - label: Pasek przewijany
+            name: marquee
+            widget: hidden
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Opinie
+                name: testimonials
+                widget: list
+                fields:
+                  - label: Cytat
+                    name: quote
+                    widget: text
+                  - label: Autor
+                    name: author
+                    widget: string
+                  - label: Rola
+                    name: role
+                    widget: string
+                  - label: Awatar
+                    name: avatar
+                    widget: image
+                    required: false
   - name: sections_kontakt
     label: Kontakt
     delete: false
@@ -1202,6 +1259,60 @@ collections:
     editor:
       preview: false
     files:
+      - name: testimonials
+        label: Opinie klientów
+        file: src/data/sections/testimonials.json
+        fields:
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Opinie
+            name: testimonials
+            widget: list
+            fields:
+              - label: Cytat
+                name: quote
+                widget: text
+              - label: Autor
+                name: author
+                widget: string
+              - label: Rola
+                name: role
+                widget: string
+              - label: Awatar
+                name: avatar
+                widget: image
+                required: false
+          - label: Pasek przewijany
+            name: marquee
+            widget: hidden
+            fields:
+              - label: Tytuł
+                name: title
+                widget: string
+              - label: Opis
+                name: description
+                widget: text
+              - label: Opinie
+                name: testimonials
+                widget: list
+                fields:
+                  - label: Cytat
+                    name: quote
+                    widget: text
+                  - label: Autor
+                    name: author
+                    widget: string
+                  - label: Rola
+                    name: role
+                    widget: string
+                  - label: Awatar
+                    name: avatar
+                    widget: image
+                    required: false
       - name: about
         label: O firmie
         file: src/data/sections/about.json
@@ -1276,60 +1387,6 @@ collections:
                   - label: Opis
                     name: description
                     widget: text
-      - name: testimonials
-        label: Opinie klientów
-        file: src/data/sections/testimonials.json
-        fields:
-          - label: Tytuł
-            name: title
-            widget: string
-          - label: Opis
-            name: description
-            widget: text
-          - label: Opinie
-            name: testimonials
-            widget: list
-            fields:
-              - label: Cytat
-                name: quote
-                widget: text
-              - label: Autor
-                name: author
-                widget: string
-              - label: Rola
-                name: role
-                widget: string
-              - label: Awatar
-                name: avatar
-                widget: image
-                required: false
-          - label: Pasek przewijany
-            name: marquee
-            widget: hidden
-            fields:
-              - label: Tytuł
-                name: title
-                widget: string
-              - label: Opis
-                name: description
-                widget: text
-              - label: Opinie
-                name: testimonials
-                widget: list
-                fields:
-                  - label: Cytat
-                    name: quote
-                    widget: text
-                  - label: Autor
-                    name: author
-                    widget: string
-                  - label: Rola
-                    name: role
-                    widget: string
-                  - label: Awatar
-                    name: avatar
-                    widget: image
-                    required: false
   - name: sections_portfolio
     label: Portfolio
     delete: false
@@ -3001,9 +3058,47 @@ collections:
     editor:
       preview: false
     files:
+      - name: cookies-pl
+        label: 'PL: Polityka cookies'
+        file: src/content/legal/cookies-pl.json
+        fields:
+          - label: Data aktualizacji
+            name: lastUpdated
+            widget: string
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Treść (markdown)
+            name: body
+            widget: markdown
+            hint: >-
+              Treść w markdownie. Zmienne: {{COMPANY_NAME}},
+              {{COMPANY_FULL_NAME}}, {{SITE_URL}}, {{COMPANY_EMAIL}} itd.
       - name: cookies
         label: Polityka cookies
         file: src/content/legal/cookies.json
+        fields:
+          - label: Data aktualizacji
+            name: lastUpdated
+            widget: string
+          - label: Tytuł
+            name: title
+            widget: string
+          - label: Opis
+            name: description
+            widget: text
+          - label: Treść (markdown)
+            name: body
+            widget: markdown
+            hint: >-
+              Treść w markdownie. Zmienne: {{COMPANY_NAME}},
+              {{COMPANY_FULL_NAME}}, {{SITE_URL}}, {{COMPANY_EMAIL}} itd.
+      - name: privacy-policy-pl
+        label: 'PL: Polityka prywatności'
+        file: src/content/legal/privacy-policy-pl.json
         fields:
           - label: Data aktualizacji
             name: lastUpdated

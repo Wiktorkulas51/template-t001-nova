@@ -23,7 +23,7 @@ import FooterColumnsBlock from '@components/registry/shell/FooterColumnsBlock.as
 import FooterMinimalBlock from '@components/registry/shell/FooterMinimalBlock.astro';
 import FooterPromoBlock from '@components/registry/shell/FooterPromoBlock.astro';
 import NovaFooterBlock from '@components/registry/shell/NovaFooterBlock.astro';
-import NovaDemoBanner from '@components/registry/shell/NovaDemoBanner.astro';
+import NovaDemoBanner from '@components/ui/molecules/NovaDemoBanner.astro';
 import VersionToolbar from '@components/dev/VersionToolbar.astro';
 import FontSwitcherToolbar from '@components/dev/FontSwitcherToolbar.astro';
 import DeveloperToolsDock from '@components/dev/DeveloperToolsDock.astro';
@@ -54,7 +54,7 @@ interface Props {
 	footerVariant?: string;
 	/** When true (floating navbar + hero), first section starts at top without compensation. */
 	fullBleedTop?: boolean;
-	/** Disables shell (navbar/footer) — used in isolated iframe previews. */
+	/** Disables shell (navbar/footer), used in isolated iframe previews. */
 	showShell?: boolean;
 	/** Disables scripts and interactive elements for static iframe previews. */
 	clientRuntime?: boolean;
@@ -137,7 +137,7 @@ const analyticsConfig = {
 };
 const hasOptionalTracking = Object.values(analyticsConfig).some(Boolean);
 
-// Why: navbar and footer are GLOBAL — Layout renders them on every
+// Why: navbar and footer are GLOBAL. Layout renders them on every
 // page (fallback to defaultVariant from registry), so no subpage appears
 // without navigation or footer. Pages can override variant via props
 // (e.g. index: floating as overlay on hero). Unknown variant from config

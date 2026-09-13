@@ -83,6 +83,11 @@
         "teamCount": "10+",
         "teamLabel": "specjalistów w zespole",
         "teamAriaLabel": "Nasz zespół",
+        "teamAvatars": [
+          { "src": "/assets/images/t001-nova/t001-nova-avatar-01@220.webp", "alt": "Członkini zespołu Nova" },
+          { "src": "/assets/images/t001-nova/t001-nova-avatar-02@220.webp", "alt": "Członek zespołu Nova" },
+          { "src": "/assets/images/t001-nova/t001-nova-avatar-03@220.webp", "alt": "Członkini zespołu Nova" }
+        ],
         "buttonLabel": "Poznaj zespół",
         "buttonHref": "#zespol"
       },
@@ -101,6 +106,7 @@
         "title": "Opinie, które mówią więcej",
         "description": "Zobacz, jak współpraca z nami przełożyła się na lepszy wizerunek i wyniki naszych klientów.",
         "tagline": "Opinie klientów",
+        "avatarAltPrefix": "Zdjęcie",
         "items": [
           { "quote": "Nowa strona uporządkowała naszą komunikację i od pierwszego tygodnia zaczęła przyciągać lepsze zapytania.", "author": "Anna Kowalska", "initials": "AK", "role": "Założycielka marki premium", "avatar": "https://i.pravatar.cc/150?u=anna-kowalska" },
           { "quote": "Proces był konkretny, sprawny i bardzo dobrze prowadzony. Dostaliśmy stronę, która naprawdę pasuje do naszej marki.", "author": "Michał Nowak", "initials": "MN", "role": "Dyrektor operacyjny", "avatar": "https://i.pravatar.cc/150?u=michal-nowak" },
@@ -129,7 +135,9 @@
       "ariaLegal": "Dokumenty prawne",
       "ariaNavigation": "Nawigacja stopki",
       "copyright": "Wszelkie prawa zastrzeżone.",
-      "attribution": "Projekt i wdrożenie: WebScale"
+      "attributionPrefix": "Projekt i wdrożenie: ",
+      "attributionLinkLabel": "WebScale",
+      "attributionLinkHref": "https://webscale.pl"
     }
   },
   "en": {
@@ -216,6 +224,11 @@
         "teamCount": "10+",
         "teamLabel": "specialists on the team",
         "teamAriaLabel": "Our team",
+        "teamAvatars": [
+          { "src": "/assets/images/t001-nova/t001-nova-avatar-01@220.webp", "alt": "Nova team member" },
+          { "src": "/assets/images/t001-nova/t001-nova-avatar-02@220.webp", "alt": "Nova team member" },
+          { "src": "/assets/images/t001-nova/t001-nova-avatar-03@220.webp", "alt": "Nova team member" }
+        ],
         "buttonLabel": "Meet the team",
         "buttonHref": "#zespol"
       },
@@ -234,6 +247,7 @@
         "title": "Reviews that say more",
         "description": "See how working with us translated into a stronger image and better results for our clients.",
         "tagline": "Client reviews",
+        "avatarAltPrefix": "Photo of",
         "items": [
           { "quote": "The new website finally gave our communication a clear structure and started bringing better enquiries from the first week.", "author": "Anna Kowalska", "initials": "AK", "role": "Founder of a premium brand", "avatar": "https://i.pravatar.cc/150?u=anna-kowalska" },
           { "quote": "The process was focused, efficient and very well guided. We received a website that genuinely fits our brand.", "author": "Michal Nowak", "initials": "MN", "role": "Operations director", "avatar": "https://i.pravatar.cc/150?u=michal-nowak" },
@@ -262,7 +276,9 @@
       "ariaLegal": "Legal documents",
       "ariaNavigation": "Footer navigation",
       "copyright": "All rights reserved.",
-      "attribution": "Design and development by WebScale"
+      "attributionPrefix": "Design and development by ",
+      "attributionLinkLabel": "WebScale",
+      "attributionLinkHref": "https://webscale.pl"
     }
   }
 }

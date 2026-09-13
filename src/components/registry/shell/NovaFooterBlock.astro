@@ -40,7 +40,7 @@ const legalLinks = copy.legalLinks.map((link) => ({ ...link, href: getNovaNaviga
     </div>
     <div class="flex flex-wrap items-center justify-between gap-6 border-t border-brand-light/25 pt-8 text-brand-light/75">
       <Text tag="span" variant="feature-body-sm">{copy.copyright}</Text>
-      <Text tag="span" variant="feature-body-sm" class="lg:text-right">{copy.attribution.replace("WebScale", "")}<a href="https://webscale.pl" target="_blank" rel="noreferrer" class="text-brand-light transition-colors hover:text-brand-accent">WebScale</a></Text>
+      <Text tag="span" variant="feature-body-sm" class="lg:text-right">{copy.attributionPrefix}<a href={copy.attributionLinkHref} target="_blank" rel="noreferrer" class="text-brand-light transition-colors hover:text-brand-accent">{copy.attributionLinkLabel}</a></Text>
     </div>
   </div>
 </footer>

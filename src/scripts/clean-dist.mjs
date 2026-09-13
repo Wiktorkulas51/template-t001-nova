@@ -1,11 +1,10 @@
-// clean-dist.mjs — ostatnia linia obrony: usuwa z dist/ dev-only śmieci,
+// clean-dist.mjs, ostatnia linia obrony: usuwa z dist/ dev-only śmieci,
 // które mogły powstać mimo scope-pages (deny list z BUILD_SCOPE) oraz pliki
 // serwerowe (deploy-turbo.php, send-form.php) niepotrzebne klientowi.
 //
-// WAŻNE: strony spoza zakresu NIE są tu usuwane — nie są w ogóle budowane
+// WAŻNE: strony spoza zakresu NIE są tu usuwane, nie są w ogóle budowane
 // (scope-pages.mjs przenosi je do _disabled/ przed astro build).
-// Ten skrypt NIGDY nie dotyka assets/ (CSS/JS) — zero ryzyka usunięcia
-// potrzebnych plików stylów czy skryptów.
+// Ten skrypt usuwa także jawnie oznaczone assety odziedziczone ze Starter Kita.
 import fs from 'fs';
 import path from 'path';
 import { BUILD_SCOPE } from '../../site.config.mjs';
@@ -39,6 +38,14 @@ const toRemove = [];
 const publicFiles = ['deploy-turbo.php'];
 for (const f of publicFiles) {
   if (fs.existsSync(path.join(dist, f))) toRemove.push(f);
+}
+
+// Nova nie korzysta z tych bibliotek obrazów, ale część kodu dev odwołuje się
+// do nich dynamicznie, więc automatyczne prune-images nie potrafi ich wykryć.
+const unusedAssetDirectories = ['assets/piekary9', 'assets/kasia'];
+for (const directory of unusedAssetDirectories) {
+  const fullPath = path.join(dist, directory);
+  if (fs.existsSync(fullPath)) toRemove.push(fullPath);
 }
 
 // Katalogi i strony z deny listy (gdyby mimo scope-pages powstały)

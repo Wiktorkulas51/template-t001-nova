@@ -5,5 +5,13 @@
   "imageAlt": "Zespół Nova podczas pracy nad projektem",
   "checks": ["Strategiczne podejście", "Indywidualne podejście", "Realne wsparcie"],
   "teamCount": "10+",
-  "teamLabel": "specjalistów w zespole"
+  "teamLabel": "specjalistów w zespole",
+  "teamAriaLabel": "Nasz zespół",
+  "teamAvatars": [
+    { "src": "/assets/images/t001-nova/t001-nova-avatar-01@220.webp", "alt": "Członkini zespołu Nova" },
+    { "src": "/assets/images/t001-nova/t001-nova-avatar-02@220.webp", "alt": "Członek zespołu Nova" },
+    { "src": "/assets/images/t001-nova/t001-nova-avatar-03@220.webp", "alt": "Członkini zespołu Nova" }
+  ],
+  "buttonLabel": "Poznaj zespół",
+  "buttonHref": "#zespol"
 }

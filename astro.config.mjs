@@ -11,6 +11,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
 	output: 'static',
   site: SITE_URL,
+  base: undefined,
   compressHTML: true,
   image: {
     responsiveStyles: true,

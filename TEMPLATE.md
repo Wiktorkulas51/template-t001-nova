@@ -9,16 +9,13 @@ status: building
 
 # Nova
 
-Technical ID: $Id
+Technical ID: `T001`
 
 This project was scaffolded from the WebScale Starter Kit. Build the visual direction in the homepage first, then add the remaining product pages and publication assets.
 
 ## Next steps
 
-1. Run 
-pm install.
+1. Run `npm ci`.
 2. Configure content and design tokens.
-3. Run 
-pm run dev and verify the homepage in the browser.
-4. Run 
-pm run qa before packaging the template.
+3. Run `npm run dev` and verify the homepage in the browser.
+4. Run `npm run qa` before packaging the template.

@@ -1,6 +1,7 @@
 {
   "title": "Opinie, które mówią więcej",
   "description": "Zobacz, jak współpraca z nami przełożyła się na lepszy wizerunek i wyniki naszych klientów.",
+  "avatarAltPrefix": "Zdjęcie",
   "items": [
     { "quote": "Nowa strona uporządkowała naszą komunikację i od pierwszego tygodnia zaczęła przyciągać lepsze zapytania.", "author": "Anna Kowalska", "initials": "AK", "role": "Założycielka marki premium", "avatar": "https://i.pravatar.cc/150?u=anna-kowalska" },
     { "quote": "Proces był konkretny, sprawny i bardzo dobrze prowadzony. Dostaliśmy stronę, która naprawdę pasuje do naszej marki.", "author": "Michał Nowak", "initials": "MN", "role": "Dyrektor operacyjny", "avatar": "https://i.pravatar.cc/150?u=michal-nowak" },

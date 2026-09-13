@@ -4,10 +4,11 @@ import SectionHeader from "@components/ui/molecules/SectionHeader.astro";
 import data from "@data/sections/testimonial-v2.json";
 
 interface Item { quote: string; author: string; initials: string; role: string; avatar?: string }
-export interface Props { sectionId?: string; title?: string; description?: string; tagline?: string; items?: Item[]; class?: string }
+export interface Props { sectionId?: string; title?: string; description?: string; tagline?: string; avatarAltPrefix?: string; items?: Item[]; class?: string }
 
-const { sectionId = "testimonial-v2", title, description, tagline, items, class: className = "" } = Astro.props as Props;
+const { sectionId = "testimonial-v2", title, description, tagline, avatarAltPrefix, items, class: className = "" } = Astro.props as Props;
 const list = items && items.length > 0 ? items : data.items;
+const resolvedAvatarAltPrefix = avatarAltPrefix ?? data.avatarAltPrefix;
 const columns = [list, [...list.slice(2), ...list.slice(0, 2)], [...list.slice(1), ...list.slice(0, 1)]];
 ---
 
@@ -27,7 +28,7 @@ const columns = [list, [...list.slice(2), ...list.slice(0, 2)], [...list.slice(1
                     <footer class="mt-6 flex items-center gap-3">
                       <span class="relative flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand-primary/15 text-xs font-semibold text-brand-primary">
                         {item.initials}
-                        {item.avatar && <img src={item.avatar} alt={`Zdjęcie ${item.author}`} width="40" height="40" class="absolute inset-0 size-full rounded-full object-cover" loading="eager" onerror="this.remove()" />}
+                        {item.avatar && <img src={item.avatar} alt={`${resolvedAvatarAltPrefix} ${item.author}`} width="40" height="40" class="absolute inset-0 size-full rounded-full object-cover" loading="eager" onerror="this.remove()" />}
                       </span>
                       <div>
                         <cite class="block not-italic font-semibold text-brand-dark">{item.author}</cite>

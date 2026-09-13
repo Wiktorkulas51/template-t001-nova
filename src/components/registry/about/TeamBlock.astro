@@ -7,7 +7,8 @@ import SmartImage from "@components/ui/atoms/SmartImage.astro";
 import Button from "@components/ui/atoms/Button.astro";
 import jsonData from "@data/sections/nova-team.json";
 
-interface Props { title?: string; description?: string; image?: string; imageAlt?: string; checks?: string[]; teamLabel?: string; teamCount?: string; teamAriaLabel?: string; buttonLabel?: string; buttonHref?: string; class?: string; }
+interface TeamAvatar { src: string; alt: string; }
+interface Props { title?: string; description?: string; image?: string; imageAlt?: string; checks?: string[]; teamLabel?: string; teamCount?: string; teamAriaLabel?: string; teamAvatars?: TeamAvatar[]; buttonLabel?: string; buttonHref?: string; class?: string; }
 const props = Astro.props as Props;
 const title = props.title ?? jsonData.title;
 const description = props.description ?? jsonData.description;
@@ -16,14 +17,10 @@ const imageAlt = props.imageAlt ?? jsonData.imageAlt;
 const checks = props.checks ?? jsonData.checks;
 const teamLabel = props.teamLabel ?? jsonData.teamLabel;
 const teamCount = props.teamCount ?? jsonData.teamCount;
-const teamAriaLabel = props.teamAriaLabel ?? "Nasz zespół";
-const buttonLabel = props.buttonLabel ?? "Poznaj zespół";
-const buttonHref = props.buttonHref ?? "#zespol";
-const teamAvatars = [
-  "/assets/images/t001-nova/t001-nova-avatar-01@220.webp",
-  "/assets/images/t001-nova/t001-nova-avatar-02@220.webp",
-  "/assets/images/t001-nova/t001-nova-avatar-03@220.webp",
-];
+const teamAriaLabel = props.teamAriaLabel ?? jsonData.teamAriaLabel;
+const buttonLabel = props.buttonLabel ?? jsonData.buttonLabel;
+const buttonHref = props.buttonHref ?? jsonData.buttonHref;
+const teamAvatars = props.teamAvatars ?? jsonData.teamAvatars ?? [];
 ---
 
 <Section id="zespol" tone="page" class:list={["py-12", props.class]}>
@@ -38,7 +35,7 @@ const teamAvatars = [
         <div class="flex items-center gap-4">
           <div class="flex items-center -space-x-3 pr-1" aria-label={teamAriaLabel}>
               {teamAvatars.map((avatar, index) => (
-                <img src={avatar} alt="" width="48" height="48" loading="lazy" class="size-12 rounded-full border-2 border-surface object-cover" style={`z-index: ${teamAvatars.length - index};`} />
+                <img src={avatar.src} alt={avatar.alt} width="48" height="48" loading="lazy" class="size-12 rounded-full border-2 border-surface object-cover" style={`z-index: ${teamAvatars.length - index};`} />
               ))}
           </div>
           <div class="flex items-baseline gap-3 whitespace-nowrap">

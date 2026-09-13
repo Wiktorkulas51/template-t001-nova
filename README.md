@@ -1,79 +1,66 @@
-# WebScale Starter Kit
+# Nova Template
 
-Wewnętrzny, data-driven starter kit WebScale do szybkiego tworzenia stron klientów. Atomic Design, system JSON i Decap CMS.
+Nova to responsywny template strony internetowej dla agencji kreatywnych, studiów projektowych i ambitnych marek. Projekt korzysta z Astro, Tailwind CSS, TypeScript oraz danych przechowywanych w plikach JSON.
 
-Każdy klient otrzymuje osobną kopię projektu. Starter Kit nie jest przeznaczony do sprzedaży.
+## Najważniejsze elementy
 
-## Struktura
+- Dwujęzyczna strona główna w języku polskim i angielskim.
+- Sekcje hero, realizacje, usługi, zespół, FAQ, opinie oraz CTA.
+- Responsywny układ dla telefonu, tabletu i desktopu.
+- Dane treści oddzielone od komponentów.
+- Obsługa Decap CMS.
+- Favicony, obrazy responsywne, sitemap i podstawowe meta dane SEO.
+- Gotowy system motywu oraz lokalne fonty.
 
+## Uruchomienie
+
+Wymagany jest Node.js zgodny z wersją określoną w `package.json`.
+
+```bash
+npm ci
+npm run dev
 ```
-src/
-├── components/
-│   ├── ui/atoms/       # Podstawowe bloki (Button, Heading, Text...)
-│   ├── ui/molecules/   # Grupy atomów (Navbar, Footer, SectionHeader...)
-│   ├── ui/layout/      # Section, Container, RevealGroup
-│   └── registry/       # Bloki wielokrotnego użytku (Hero, CTA, FAQ...)
-├── data/               # JSON Source of Truth (global, navigation, sections)
-├── pages/              # Strony (index, 404, cookies, polityka-prywatnosci)
-├── scripts/            # Narzędzia (CMS gen, favicony, optymalizacja, design sync)
-├── styles/             # Design tokens i globalne style
-└── utils/              # Helpery (URL, scroll, normalizacja danych, animacje)
+
+Strona będzie dostępna pod adresem wyświetlonym przez Astro.
+
+## Edycja treści
+
+Najważniejsze pliki do personalizacji znajdują się tutaj:
+
+- `src/data/i18n/nova.json`, treści strony Nova w języku polskim i angielskim.
+- `src/data/sections/*.json`, dane sekcji i wariantów.
+- `src/data/global/company.json`, dane firmy, kontakt i branding.
+- `src/data/global/seo.json`, tytuł, opis, obraz Open Graph i indeksowanie.
+- `src/data/pages/index.json`, kolejność sekcji strony głównej.
+- `site.config.mjs`, domena, język i zakres stron generowanych w buildzie.
+
+Treści należy zmieniać w JSON, a nie bezpośrednio w komponentach Astro. Po zmianie danych warto uruchomić `npm run cms:check` oraz `npm run check:types`.
+
+## Build i kontrola jakości
+
+```bash
+npm run build
+npm run check:types
+npm run check:seo
+npm run check:links
+npm run check:images
+npm run qa
 ```
 
-## Komendy
+Przed publikacją należy sprawdzić stronę ręcznie na telefonie i desktopie, przetestować nawigację, formularz, linki, podgląd Open Graph oraz działanie wersji językowych.
 
-| Komenda | Opis |
-|---------|------|
-| `npm run dev` | Dev server |
-| `npm run build` | Build + generowanie assetów |
-| `npm run check:atomic` | Sprawdzenie zgodności z Atomic Design |
-| `npm run design:sync` | Sync tokenów MD → CSS |
-| `npm run cms:gen` | Generowanie Decap CMS config.yml |
-| `npm run cms:check` | Walidacja spójności JSON <-> CMS config <-> rejestr sekcji |
-| `npm run check:hardcoded` | Sprawdzenie, czy copy klienta nie znajduje się w komponentach |
-| `npm run check:form` | Sprawdzenie konfiguracji formularza i zabezpieczeń |
-| `npm run test:form` | Test endpointu PHP, jeśli PHP jest dostępne |
-| `npm run cms:local` | Lokalna edycja treści w CMS |
-| `npm run cms:proxy` | Lokalny serwer Decap CMS |
-| `npm run assets:gen` | Generowanie faviconów |
-| `npm run assets:img` | Optymalizacja zdjęć |
-| `npm run test` | Uruchomienie testów (Vitest) |
-| `npm run qa` | Standardowa bramka jakości |
-| `npm run qa:client` | Bramka gotowości projektu klienta |
-| `npm run build:prod` | Build produkcyjny bez narzędzi deweloperskich |
-| `npm run audit:lighthouse` | Audyt Lighthouse mobile i desktop |
-| `npm run push` | Build + FTP deploy |
+## Licencja
 
-Nad CMS czuwa `npm run cms:check`, które pilnuje, by dane w `src/data/`, config Decap (`public/admin/config.yml`) i rejestr sekcji (`src/config/section-registry.ts`) nigdy się nie rozjechały. Uruchamiaj je przed buildem, szczególnie po dodaniu nowych sekcji lub plików JSON.
+Aktualna wersja Nova jest udostępniana bezpłatnie na zasadach opisanych w pliku `LICENSE.md`. Późniejsze wersje, dodatkowe usługi i wsparcie mogą być płatne. Osoby, które otrzymały tę wersję bezpłatnie, zachowują bezpłatne prawo do korzystania z dokładnie tej wersji na warunkach licencji obowiązujących w dniu jej otrzymania.
 
-## Workflow nowego klienta
+## Ważne informacje
 
-1. Utwórz kopię projektu dla klienta.
-2. Uzupełnij dane firmy, SEO, nawigację i zakres stron.
-3. Wybierz sekcje w page configach.
-4. Uruchom `npm run cms:gen` oraz `npm run cms:check`.
-5. Wdróż pierwszą wersję na adres testowy.
-6. Wykonaj `npm run qa` i ręczną kontrolę responsywności.
-7. Zastąp wszystkie placeholdery prawdziwymi materiałami klienta.
-8. Przed oddaniem uruchom `npm run qa:client`, `npm run build:prod` i test live.
+Licencja projektu nie zastępuje licencji zewnętrznych zależności, fontów, zdjęć, ikon ani innych materiałów. Przed użyciem w projekcie komercyjnym należy sprawdzić prawa do każdego assetu i zastąpić dane demonstracyjne własnymi materiałami.
 
-Szczegółowy kontrakt znajduje się w `.docs/INTERNAL_CONTRACT.md`.
-
-## Dokumentacja
-
-- `.docs/CONTEXT.md` - architektura projektu
-- `.docs/COMPONENTS.md` - mapa komponentów (Atomic Design)
-- `.docs/CONTENT_ARCHITECTURE.md` - architektura danych stron i sekcji
-- `.docs/AI_STANDARDS.md` - standardy kodu dla AI
-- `.docs/CMS_STRUCTURE.md` - struktura Decap CMS
-- `.docs/ASSETS_GUIDE.md` - branding i assety
-- `.docs/INTERACTION_STANDARDS.md` - wzorce galerii, lightboxa i testów mobilnych
-- `AGENTS.md` - instrukcje dla AI agentów
-
-## Tech Stack
+## Stack
 
 - Astro 7
-- Tailwind CSS v4
+- Tailwind CSS 4
 - TypeScript
 - Decap CMS
 - Vitest

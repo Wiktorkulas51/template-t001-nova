@@ -178,7 +178,10 @@ export function auditLinks(
   const isPage = normalizedFilePath.startsWith('src/pages/')
     && !normalizedFilePath.startsWith('src/pages/dev/')
     && filePath.endsWith('.astro');
-  if (isPage || (filePath.startsWith('dist/') && filePath.endsWith('.html'))) {
+  // Dlaczego: rzeczywisty nagłówek stron z PageBuilderem powstaje dopiero po
+  // renderowaniu sekcji, dlatego jego obecność sprawdzamy w wygenerowanym HTML.
+  const usesPageBuilder = /<PageBuilder\b/.test(auditedSource);
+  if ((isPage && !usesPageBuilder) || (filePath.startsWith('dist/') && filePath.endsWith('.html'))) {
     if (filePath.includes('qa/') || filePath.includes('404') || filePath.includes('[...page]')) return issues;
 
     const explicitH1 = (auditedSource.match(/<h1\b[^>]*>/gi) || []).length;
