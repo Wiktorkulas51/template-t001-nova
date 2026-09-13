@@ -42,8 +42,11 @@ const items = props.items ?? jsonData.items;
             </div>
             <Text variant="body" class="nova-service-description">{item.description}</Text>
           </div>
-          <span class="nova-service-arrow transition-[background-color,border-color,color,transform] duration-300 group-hover:border-brand-accent group-hover:bg-brand-accent group-hover:text-brand-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:rotate-[8deg] motion-reduce:transition-none" aria-hidden="true">
-            <Icon name="arrow-up-right" />
+          <span class="nova-service-arrow overflow-hidden transition-[background-color,border-color,color] duration-300 group-hover:border-brand-accent group-hover:bg-brand-accent group-hover:text-brand-light motion-reduce:transition-none" aria-hidden="true">
+            <span class="relative flex size-4 items-center justify-center">
+              <Icon name="arrow-up-right" class="absolute inset-0 size-4 transition-transform duration-300 ease-out group-hover:translate-x-[140%] group-hover:-translate-y-[140%] motion-reduce:transition-none" />
+              <Icon name="arrow-up-right" class="absolute inset-0 size-4 -translate-x-[140%] translate-y-[140%] transition-transform duration-300 ease-out group-hover:translate-x-0 group-hover:translate-y-0 motion-reduce:transition-none" />
+            </span>
           </span>
         </article>
       ))}
@@ -77,12 +80,6 @@ const items = props.items ?? jsonData.items;
     font-family: var(--font-sans);
     font-size: 0.9375rem;
     font-weight: 500;
-    transition: color 300ms ease, transform 300ms ease;
-  }
-
-  .nova-services-intro a:hover {
-    color: var(--color-brand-accent);
-    transform: translateX(0.25rem);
   }
 
   .nova-services-grid {
@@ -269,11 +266,4 @@ const items = props.items ?? jsonData.items;
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .nova-service-card,
-    .nova-services-intro a,
-    .nova-service-arrow {
-      transition: none;
-    }
-  }
 </style>
