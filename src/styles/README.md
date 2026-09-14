@@ -1,30 +1,25 @@
-# Warstwy CSS
+# CSS Layers
 
-`global.css` jest jedynym wejściem globalnego arkusza stylów. Importy są
-łączone podczas builda, dlatego samo rozdzielenie plików źródłowych nie tworzy
-dodatkowych requestów w przeglądarce.
+`global.css` is the only global stylesheet entry point. Imports are combined
+during the build, so splitting source files does not create additional browser
+requests.
 
-## Odpowiedzialność plików
+## File Responsibilities
 
-- `fonts.css` ładuje lokalne fonty.
-- `themes.css` zawiera wygenerowane tokeny profili designu.
-- `tailwind-bridge.css` łączy Tailwind z tokenami.
-- `foundations.css` zawiera fundamenty dokumentu, dostępności i bazowych
-  zmiennych UI.
-- `components.css` zawiera wspólne komponenty, typografię, przyciski,
-  formularze oraz treści prose.
-- `navigation.css` zawiera drawer mobilny i stany wspólnej nawigacji.
-- `section-patterns.css` zawiera wzorce tła sekcji i nakładki obrazów.
-- `ui-theme.css` zawiera zmienne kompatybilności UI i shadcn.
-- `patterns.css` zawiera wspólne wzorce bibliotekowe wyodrębnione z
-  fundamentów, między innymi marquee, galerie oraz wzorce pochodzące z
-  wcześniejszych wdrożeń klientów.
-- `motion.css` zawiera wspólny system animacji.
+- `fonts.css` loads local fonts.
+- `themes.css` contains generated design profile tokens.
+- `tailwind-bridge.css` connects Tailwind to the tokens.
+- `foundations.css` contains document foundations, accessibility rules and base UI variables.
+- `components.css` contains shared components, typography, buttons, forms and prose styles.
+- `navigation.css` contains the mobile drawer and shared navigation states.
+- `section-patterns.css` contains section background patterns and image overlays.
+- `ui-theme.css` contains UI compatibility variables and shadcn variables.
+- `patterns.css` contains shared library patterns extracted from the foundations, including marquees, galleries and patterns from earlier client deliveries.
+- `motion.css` contains the shared animation system.
 
-## Wydajność
+## Performance
 
-Domyślny build używa jednego globalnego arkusza CSS. Nie włączaj automatycznie
-podziału CSS na wiele plików tylko dlatego, że pliki źródłowe są rozdzielone.
-Style specyficzne dla klienta można wydzielić do osobnego importu dopiero
-wtedy, gdy pomiar konkretnego builda pokaże korzyść dla rozmiaru CSS,
-renderowania krytycznej strony albo LCP.
+The default build uses one global CSS file. Do not split CSS into multiple files
+only because the source files are separated. Project-specific styles may be
+moved into a separate import only when a concrete build measurement shows a
+benefit for CSS size, critical rendering or LCP.

@@ -2,9 +2,9 @@
 
 Nova is a responsive website template for creative agencies, design studios and ambitious brands. The project uses Astro, Tailwind CSS, TypeScript and JSON based content files.
 
-## Need a custom website?
+## Need a white-label delivery partner?
 
-Want to adapt Nova to your brand or build a completely custom website? [Hire WebScale](https://webscale.pl/?utm_source=nova-readme&utm_medium=backlink&utm_campaign=t001-nova) for design, development and implementation support.
+Have website projects that need extra delivery capacity? [Work with WebScale](https://webscale.pl/?utm_source=nova-readme&utm_medium=backlink&utm_campaign=t001-nova) for outsourced and white-label design, development and implementation support.
 
 ## Features
 

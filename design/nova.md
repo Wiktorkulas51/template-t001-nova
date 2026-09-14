@@ -120,37 +120,37 @@ animations:
   scroll: "scroll 36s linear infinite"
 ---
 
-# Nova, kierunek wizualny
+# Nova, Visual Direction
 
-Nova jest eleganckim template'em dla studia kreatywnego, agencji cyfrowej lub marki premium. Strona ma sprawiać wrażenie spokojnej, dopracowanej i kompetentnej. Najważniejsza jest czytelna hierarchia, dobre zdjęcia i kontrolowany kontrast.
+Nova is an elegant template for a creative studio, digital agency or premium brand. The site should feel calm, refined and capable. Clear hierarchy, strong photography and controlled contrast are the priorities.
 
-## Zasady kompozycji
+## Composition Principles
 
-- Główne tło pozostaje jasne i ciepłe, z delikatną zmianą tonu pomiędzy sekcjami.
-- Czerń służy do nawigacji, statystyk, mocnych nagłówków i końcowego wezwania do działania.
-- Miedziany akcent pojawia się oszczędnie w słowach wyróżnionych, ikonach, linkach i przyciskach.
-- Karty mają miękkie narożniki, cienką obwódkę i dużo pustej przestrzeni wewnątrz.
-- Układy przełamują regularną siatkę przez duży obraz, proporcje 2+1 oraz szerokie pasy treści.
-- Animacja pozostaje spokojna: wejście sekcji, delikatny zoom zdjęć i przewijane logo bez efektów pulsowania.
+- Keep the main background light and warm, with subtle tonal changes between sections.
+- Use black for navigation, statistics, strong headings and the closing call to action.
+- Use the copper accent sparingly in highlighted words, icons, links and buttons.
+- Cards should have soft corners, thin borders and generous internal space.
+- Break the regular grid with a large image, 2+1 proportions and wide content bands.
+- Keep motion calm: section reveals, subtle image zoom and scrolling logos without pulsing effects.
 
-## Kolejność homepage
+## Homepage Order
 
-1. Pływająca nawigacja na jasnym hero.
-2. Hero z dużym hasłem, zdjęciem osoby, dwoma CTA i czterema liczbami.
-3. Pas zaufania z logotypami.
-4. Portfolio w układzie bento, dwa główne projekty i jeden szerszy kadr.
-5. Cztery usługi w kartach z prostymi ikonami.
-6. Sekcja o zespole ze zdjęciem i listą korzyści.
-7. Ciemne CTA z fotografią gór jako mocne domknięcie strony.
-8. Minimalna stopka na ciemnym tle.
+1. Floating navigation over a light hero.
+2. Hero with a large headline, portrait, two CTAs and four metrics.
+3. Trust bar with logos.
+4. Bento portfolio with two main projects and one wider frame.
+5. Four services in cards with simple icons.
+6. Team section with an image and a list of benefits.
+7. Dark CTA with a mountain photograph as the strong closing section.
+8. Minimal footer on a dark background.
 
-## Zdjęcia
+## Photography
 
-Assety produkcyjne Nova znajdują się w `public/assets/images/t001-nova/`. Referencja wejściowa jest przechowywana w dokumentacji Templara i nie jest używana jako obraz produkcyjny. Każdy asset powinien mieć opis alternatywny, a zdjęcia muszą pozostać w proporcjach przewidzianych przez komponent.
+Nova production assets live in `public/assets/images/t001-nova/`. The source reference is kept in Templar documentation and is not used as a production image. Every asset should have alt text, and images must keep the proportions expected by the component.
 
-## Główne ograniczenia
+## Main Constraints
 
-- Nie używać fioletowych gradientów, przypadkowych badge'y ani dekoracyjnych kropek.
-- Nie zagęszczać sekcji przez nadmiar kart i równych kolumn.
-- Nie wprowadzać nowych fontów z CDN. Używać `Outfit` dla nagłówków i `Satoshi` dla tekstu.
-- Nie stosować kolorów bezpośrednio w komponentach. Kolory muszą pochodzić z tokenów profilu `nova`.
+- Do not use purple gradients, arbitrary badges or decorative dots.
+- Do not make sections dense with too many cards or evenly repeated columns.
+- Do not add new fonts from a CDN. Use `Outfit` for headings and `Satoshi` for body text.
+- Do not apply colors directly in components. Colors must come from the `nova` profile tokens.
