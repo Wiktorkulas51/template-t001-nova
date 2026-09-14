@@ -1,21 +1,17 @@
-/* Motion system: one set of parameters for all modes
-   (fade na load, viewport/auto na scroll). Premium reveal = opacity
-   + delicate blur + subtle upward movement, with common easing.
-   Blur is one-time (800ms on input) and disabled for purposes
-   containing media ([data-motion-media]) so as not to load the GPU.*/
+/* Shared reveal contract for the whole page. JavaScript only toggles visibility. */
 
 @layer components {
   :root {
     --motion-duration: 1000ms;
     --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
     --motion-stagger: 120ms;
-    --motion-blur: 5px;
-    --motion-distance: 0.75rem;
+    --motion-blur: 3px;
+    --motion-distance: 0.6rem;
   }
 
-  /* Atrybut na <html> jest ustawiany tylko przy aktywnym JavaScripcie.
-     Without JS, the content remains visible and does not get a hidden state.*/
+  /* The ready flag is added before paint. Without it, content stays visible if JavaScript fails. */
   html[data-motion-ready] [data-motion="fade"],
+  html[data-motion-ready] [data-motion="viewport"],
   html[data-motion-ready] [data-motion-sequence="fade"] > *,
   html[data-motion-ready] [data-motion-sequence="viewport"] > *,
   html[data-motion-ready] [data-motion-auto-target] {
@@ -26,14 +22,15 @@
       opacity var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
       filter var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
       translate var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
-      transform 600ms var(--motion-ease) 0ms,
-      box-shadow 600ms var(--motion-ease) 0ms,
-      border-color 600ms var(--motion-ease) 0ms,
-      background-color 600ms var(--motion-ease) 0ms,
-      color 600ms var(--motion-ease) 0ms !important;
+      transform 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
+      box-shadow 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
+      border-color 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
+      background-color 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
+      color 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms !important;
   }
 
   html[data-motion-ready] [data-motion="fade"][data-motion-visible],
+  html[data-motion-ready] [data-motion="viewport"][data-motion-visible],
   html[data-motion-ready] [data-motion-sequence="fade"] > *[data-motion-visible],
   html[data-motion-ready] [data-motion-sequence="viewport"] > *[data-motion-visible],
   html[data-motion-ready] [data-motion-auto-target][data-motion-visible] {
@@ -42,8 +39,6 @@
     translate: 0 0;
   }
 
-  /* Stagger only applies to the reveal. Hover can't wait for a turn
-     input, because the card must respond immediately after hovering.*/
   html[data-motion-ready] [data-motion-sequence="fade"] > *,
   html[data-motion-ready] [data-motion-sequence="viewport"] > * {
     --motion-delay: calc(var(--motion-order, 0) * var(--motion-stagger));
@@ -53,22 +48,42 @@
     --motion-delay: calc(var(--motion-auto-order, 0) * var(--motion-stagger));
   }
 
-  /* Targets containing images/video do not get blur (filter on large
-     media surface is expensive and looks worse). What's left is fade.*/
+  /* Soft sections use the same engine with a shorter, quieter reveal. */
+  html[data-motion-ready] [data-motion-profile="soft"] > * {
+    --motion-duration: 950ms;
+    --motion-stagger: 120ms;
+    --motion-blur: 2px;
+    --motion-distance: 0.4rem;
+  }
+
+  /* Large media surfaces fade without blur to avoid unnecessary GPU work. */
   html[data-motion-ready] [data-motion-media] {
     filter: none;
   }
 
-  html[data-motion-ready] [data-motion="fade"][data-motion-skip],
-  html[data-motion-ready] [data-motion-sequence="fade"] > *[data-motion-skip] {
+  html[data-motion-ready] [data-motion-skip] {
     opacity: 1;
     filter: none;
     translate: none;
     transition: none;
   }
 
-  /* Thumbnails disable reveal but preserve component hover transitions.
-     Ich globalne anulowanie powoduje skokowe zmiany transformacji i cienia. */
+  /* Interactive cards keep the reveal transition and restore their hover contract after entering. */
+  html[data-motion-ready] .ui-card-interactive[data-motion-visible] {
+    opacity: 1;
+    filter: blur(0);
+    translate: 0 0;
+    transition:
+      opacity var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
+      filter var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
+      translate var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
+      transform 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
+      box-shadow 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
+      border-color 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
+      background-color 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
+      color 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms;
+  }
+
   html[data-motion-disabled] *,
   html[data-motion-disabled] *::before,
   html[data-motion-disabled] *::after {
@@ -86,6 +101,7 @@
     }
 
     [data-motion="fade"],
+    [data-motion="viewport"],
     [data-motion-sequence="fade"] > *,
     [data-motion-sequence="viewport"] > *,
     [data-motion-auto-target] {
@@ -94,30 +110,10 @@
       translate: none !important;
       transition: none !important;
     }
-  }
 
-  /* Interplay: cards (ui-card-interactive) and motion. The rule MUST be in this one
-     the same @layer components layer as the motion database and be AFTER it: for declarations
-     !important the order of layers is reversed (unlayered loses to the layer), so
-     higher specificity + later position wins here. After entering
-     (data-motion-visible) hover cards are animated with a 200ms contract and the input state
-     (opacity/filter/translate) remains from motion tokens to reveal cards
-     it looked identical to the rest.*/
-  html[data-motion-ready] .ui-card-interactive[data-motion-visible] {
-    transition:
-      opacity var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
-      filter var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
-      translate var(--motion-duration) var(--motion-ease) var(--motion-delay, 0ms),
-      transform 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
-      box-shadow 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms,
-      border-color 250ms cubic-bezier(0.33, 1, 0.68, 1) 0ms !important;
-  }
-
-  /* Reduced-motion: same selector and layer as interplay above, but LATER
-     in the file, so when !important and specificity are equal, it wins by position.*/
-  @media (prefers-reduced-motion: reduce) {
-    html[data-motion-ready] .ui-card-interactive[data-motion-visible] {
+    .ui-card-interactive[data-motion-visible] {
       transition: none !important;
+      transform: none !important;
     }
   }
 }

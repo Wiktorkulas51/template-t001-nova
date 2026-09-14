@@ -259,6 +259,19 @@
     background: transparent;
   }
 
+  .ui-nav-drawer__bottom {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    padding-top: 1.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .ui-nav-drawer__bottom .nova-language-switch {
+    gap: 0.4rem;
+    font-size: 0.875rem;
+  }
+
   /* ─── Nav links ──────────────────────────────────────────────────── */
 
   .ui-nav-drawer__nav {

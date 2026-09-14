@@ -102,16 +102,20 @@ const theme = themeProp || urlTheme || (ACTIVE_TEMPLATE as string);
 
 // Why: siteUrl comes from company.json (SSOT of company data), Astro.site
 // (site.config.mjs) overrides it if set in build config.
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || company.siteUrl).href;
+const basePath = process.env.PUBLIC_BASE_PATH || import.meta.env.BASE_URL;
+const normalizedBasePath = basePath === '/' ? '' : basePath.replace(/\/+$/, '');
+const publicAsset = (assetPath: string) => `${normalizedBasePath}/${assetPath.replace(/^\/+/, '')}`;
+const publicSiteUrl = process.env.PUBLIC_SITE_URL || Astro.site || company.siteUrl;
+const canonicalURL = new URL(Astro.url.pathname, publicSiteUrl).href;
 
 // Why: og:image must be absolute URL (protocol + host) because Facebook,
 // LinkedIn and Twitter don't render relative paths like /og-image.png.
 // Normalize relative path to full address before rendering meta tags.
 const ogImageAbsolute = ogImage
-	? new URL(ogImage, Astro.site ?? company.siteUrl).href
+	? new URL(publicAsset(ogImage), publicSiteUrl).href
 	: undefined;
 
-// Why: client can paste custom code (pixels, chat widgets) via CMS.
+// Why: the project data can provide optional custom code (pixels, chat widgets).
 // customHead goes to <head> (analytics, meta tags), customBodyEnd at page end
 // (chat widgets, scripts loaded at end). Both rendered with set:html
 // because it's raw HTML/Script, not content to escape.
@@ -182,12 +186,12 @@ const mainPaddingStyle = fullBleedTop
 		{theme === 'nova' && (
 			<>
 				<!-- Nova uses these local fonts above the fold; preload prevents fallback text from changing the layout. -->
-				<link rel="preload" as="font" type="font/woff2" href="/fonts/QGYvz_MVcBeNP4NJuktqQ4E.woff2" crossorigin />
-				<link rel="preload" as="font" type="font/woff2" href="/fonts/QGYvz_MVcBeNP4NJtEtq.woff2" crossorigin />
-				<link rel="preload" as="font" type="font/woff2" href="/fonts/satoshi-400.woff2" crossorigin />
-				<link rel="preload" as="font" type="font/woff2" href="/fonts/satoshi-500.woff2" crossorigin />
-				<link rel="preload" as="font" type="font/woff2" href="/fonts/satoshi-700.woff2" crossorigin />
-				<link rel="preload" as="font" type="font/woff2" href="/fonts/satoshi-900.woff2" crossorigin />
+				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/QGYvz_MVcBeNP4NJuktqQ4E.woff2')} crossorigin />
+				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/QGYvz_MVcBeNP4NJtEtq.woff2')} crossorigin />
+				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/satoshi-400.woff2')} crossorigin />
+				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/satoshi-500.woff2')} crossorigin />
+				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/satoshi-700.woff2')} crossorigin />
+				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/satoshi-900.woff2')} crossorigin />
 			</>
 		)}
 		{import.meta.env.DEV && (
@@ -197,7 +201,7 @@ const mainPaddingStyle = fullBleedTop
 					var fontStorageKey = 'fst-active';
 					var allowedFontValues = ['default', 'classic', 'editorial', 'minimal'];
 					var themeStorageKey = 'starter-theme-preview';
-					var allowedThemeValues = ['default', 'blush', 'fix-bud', 'gold', 'nova'];
+					var allowedThemeValues = ['nova'];
 
 					try {
 						var savedFontValue = window.localStorage.getItem(fontStorageKey);
@@ -220,15 +224,15 @@ const mainPaddingStyle = fullBleedTop
 			</>
 		)}
 		{
-			// Why: client can upload custom favicon via CMS
+			// Why: project data can provide a custom favicon
 			// (company.branding.favicon). Fallback to default favicon set.
 			company.branding.favicon ? (
 				<link rel="icon" type="image/png" href={company.branding.favicon} />
 			) : (
 				<>
-					<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-					<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-					<link rel="shortcut icon" href="/favicon.svg" />
+					<link rel="icon" type="image/svg+xml" href={publicAsset('/favicon.svg')} />
+					<link rel="apple-touch-icon" href={publicAsset('/apple-touch-icon.png')} />
+					<link rel="shortcut icon" href={publicAsset('/favicon.svg')} />
 				</>
 			)
 		}
@@ -331,63 +335,8 @@ const mainPaddingStyle = fullBleedTop
 		<!-- Scripts -->
 		<slot name="scripts" />
 
-		{/* Astro może oznaczyć zewnętrzny skrypt jako wykonany podczas View Transitions,
-		    dlatego uruchamiamy motion.js przez jawny bootstrap z guardem w samym silniku. */}
-		{clientRuntime && <script is:inline>
-			if (!window.__webscaleFadeMotion) {
-				var motionScript = document.createElement('script');
-				motionScript.src = '/js/motion.js';
-				motionScript.defer = true;
-				document.head.appendChild(motionScript);
-			}
-
-			(function () {
-				if (window.__novaViewportMotionFallback) return;
-				window.__novaViewportMotionFallback = true;
-
-				var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-				var reveal = function (element) {
-					requestAnimationFrame(function () {
-						requestAnimationFrame(function () {
-							element.setAttribute('data-motion-visible', '');
-						});
-					});
-				};
-
-				document.querySelectorAll('[data-motion-sequence="fade"]').forEach(function (sequence) {
-					Array.from(sequence.children).forEach(function (element, index) {
-						element.style.setProperty('--motion-order', String(index));
-						if (reduceMotion) element.setAttribute('data-motion-visible', '');
-						else reveal(element);
-					});
-				});
-
-				var sequences = document.querySelectorAll('[data-motion-sequence="viewport"]');
-				if (reduceMotion || !('IntersectionObserver' in window)) {
-					sequences.forEach(function (sequence) {
-						Array.from(sequence.children).forEach(function (element) {
-							element.setAttribute('data-motion-visible', '');
-						});
-					});
-					return;
-				}
-
-				var observer = new IntersectionObserver(function (entries) {
-					entries.forEach(function (entry) {
-						if (!entry.isIntersecting) return;
-						reveal(entry.target);
-						observer.unobserve(entry.target);
-					});
-				}, { threshold: 0.15 });
-
-				sequences.forEach(function (sequence) {
-					Array.from(sequence.children).forEach(function (element, index) {
-						element.style.setProperty('--motion-order', String(index));
-						observer.observe(element);
-					});
-				});
-			})();
-		</script>}
+		{/* The motion engine owns all reveal timing and reinitializes after View Transitions. */}
+		{clientRuntime && <script is:inline data-astro-rerun src="/js/motion.js" defer></script>}
 		<!-- Fix page "sliding": global scroll-behavior:smooth (core.css) causes
 		     View Transition to ANIMATE scroll to top instead of jumping after
 		     inserting new page. We disable smooth only during transition and

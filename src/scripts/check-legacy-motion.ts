@@ -19,9 +19,9 @@ const LEGACY_TOKENS = [
 ];
 
 // Why: the engine (motion.js + motion.css) only matches exact ones
-// "fade" and sequence "fade"/"viewport" values. Unknown value (e.g. historical
+// "fade"/"viewport" and sequence "fade"/"viewport" values. Unknown value (e.g. historical
 // "fade-up") does not animate the element and disables auto-reveal of the section anyway.
-const ALLOWED_MOTION_VALUES = new Set(['fade']);
+const ALLOWED_MOTION_VALUES = new Set(['fade', 'viewport']);
 const ALLOWED_SEQUENCE_VALUES = new Set(['fade', 'viewport']);
 const MOTION_ATTR_PATTERN = /data-motion(?:-sequence)?="([^"]*)"/g;
 

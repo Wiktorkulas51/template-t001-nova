@@ -27,11 +27,11 @@ const teamAvatars = props.teamAvatars ?? fallback?.teamAvatars ?? [];
 
 <Section id="zespol" tone="page" class:list={["py-12", props.class]}>
   <Container class="w-full max-w-none px-[clamp(1.5rem,5vw,5rem)]">
-    <div class="nova-team-reveal grid grid-cols-1 items-center gap-6 md:grid-cols-2 md:gap-12" data-motion-sequence="viewport">
-      <figure class="nova-reveal-media m-0 grid min-h-80 place-items-center overflow-hidden rounded-[var(--ui-radius-xl)]">
-        <SmartImage src={image} alt={imageAlt} width={1280} height={900} loading="lazy" class="h-full min-h-80 w-full object-cover" />
+    <div class="grid grid-cols-1 items-center gap-6 md:grid-cols-2 md:gap-12">
+      <figure class="m-0 grid min-h-80 place-items-center overflow-hidden rounded-[var(--ui-radius-xl)]" data-motion="viewport">
+        <SmartImage src={image} alt={imageAlt} width={1280} height={900} loading="eager" class="h-full min-h-80 w-full object-cover" />
       </figure>
-      <div class="flex flex-col gap-4 px-0 py-6 md:p-8">
+      <div class="flex flex-col gap-4 px-0 py-6 md:p-8" data-motion-sequence="viewport" data-motion-profile="soft">
         <Heading tag="h2" variant="section-title">{title}</Heading>
         <Text variant="lead">{description}</Text>
         <div class="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-3 sm:gap-4">
@@ -51,32 +51,3 @@ const teamAvatars = props.teamAvatars ?? fallback?.teamAvatars ?? [];
     </div>
   </Container>
 </Section>
-
-<style>
-  :global(html[data-motion-ready] .nova-reveal-media) {
-    --motion-duration: 1200ms;
-    --motion-distance: 0.35rem;
-    filter: none;
-  }
-
-  :global(html[data-motion-ready] .nova-team-reveal) {
-    --motion-duration: 850ms;
-    --motion-distance: 0.5rem;
-    --motion-blur: 2px;
-  }
-
-  @keyframes nova-team-entry {
-    from { opacity: 0; transform: translateY(0.5rem); filter: blur(2px); }
-    to { opacity: 1; transform: translateY(0); filter: blur(0); }
-  }
-
-  .nova-team-reveal > * {
-    animation: nova-team-entry 850ms cubic-bezier(0.16, 1, 0.3, 1) both;
-    animation-timeline: view();
-    animation-range: entry 0% cover 32%;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .nova-team-reveal > * { animation: none; opacity: 1; filter: none; transform: none; }
-  }
-</style>

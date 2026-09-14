@@ -1,12 +1,12 @@
 {
-  "fullName": "Your Company: our passion",
-  "name": "Your Company",
+  "fullName": "Nova Creative Agency",
+  "name": "Nova",
   "branding": {
     "icon": "ph-star",
     "font": "Satoshi",
-    "tagline": "Professionalism and Quality",
-    "logoImage": "/assets/placeholders/logo-placeholder.svg",
-    "favicon": "",
+    "tagline": "Websites for ambitious brands",
+    "logoImage": "/logo.svg",
+    "favicon": "/favicon.svg",
     "logoSuffix": "Logo"
   },
   "address": "123 Example Street, 00-001 Warsaw",

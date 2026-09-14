@@ -76,7 +76,6 @@ function subId(index: number): string {
 					<span class="ui-nav-drawer__close-bar" aria-hidden="true"></span>
 					<span class="ui-nav-drawer__close-bar" aria-hidden="true"></span>
 				</button>
-				<LanguageSwitch locale={locale} />
 			</div>
 
 			<div class="ui-nav-drawer__scroller">
@@ -163,6 +162,10 @@ function subId(index: number): string {
 						</a>
 					</div>
 				</nav>
+
+				<div class="ui-nav-drawer__bottom">
+					<LanguageSwitch locale={locale} />
+				</div>
 
 				<div class="ui-nav-drawer__social-row">
 					{socialLinks.map(({ href, icon, label }) => (

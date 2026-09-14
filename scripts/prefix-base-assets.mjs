@@ -22,11 +22,19 @@ for (const filePath of walk(distRoot)) {
   if (!/\.(html|css|js)$/i.test(filePath)) continue;
 
   const original = fs.readFileSync(filePath, 'utf8');
-  const updated = original.replace(assetPathPattern, (match, boundary) => {
+  let updated = original.replace(assetPathPattern, (match, boundary) => {
     const assetPath = match.slice(boundary.length);
     if (!/^\/(?:_assets|assets|fonts|js|favicon|apple-touch)/.test(assetPath)) return match;
     return `${boundary}${prefix}${assetPath}`;
   });
+
+  updated = updated.replaceAll('href="/favicon.svg"', `href="${prefix}/favicon.svg"`);
+  updated = updated.replaceAll('href="/apple-touch-icon.png"', `href="${prefix}/apple-touch-icon.png"`);
+  updated = updated.replaceAll('src="/logo.svg"', `src="${prefix}/logo.svg"`);
+  if (process.env.PUBLIC_SITE_URL) {
+    const socialImage = `${process.env.PUBLIC_SITE_URL.replace(/\/$/, '')}/og-image.png`;
+    updated = updated.replaceAll('https://t001-nova.netlify.app/og-image.png', socialImage);
+  }
 
   if (updated !== original) fs.writeFileSync(filePath, updated, 'utf8');
 }
