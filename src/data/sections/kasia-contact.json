@@ -1,8 +1,0 @@
-{
-  "eyebrow": "Kontakt",
-  "title": "Zacznijmy od",
-  "titleAccent": "rozmowy",
-  "description": "Napisz kilka słów o swoim celu. Wrócimy z propozycją pierwszego kroku.",
-  "fields": { "name": "Imię", "email": "Adres e-mail", "message": "Wiadomość", "submit": "Wyślij zapytanie", "loadingTitle": "Wysyłanie wiadomości", "loading": "Proszę chwilę poczekać.", "successTitle": "Wiadomość wysłana", "success": "Dziękujemy. Odezwiemy się tak szybko, jak to możliwe.", "errorTitle": "Nie udało się wysłać wiadomości", "error": "Spróbuj ponownie." },
-  "image": { "src": "/assets/kasia/contact.webp", "alt": "Trenerka gotowa do rozpoczęcia współpracy" }
-}

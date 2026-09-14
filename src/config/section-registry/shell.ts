@@ -59,14 +59,4 @@ export const shellSections: Record<string, SectionEntry> = {
     defaultVariant: 'default',
     variants: { default: { component: 'LcSubnavBlock', dataKey: 'lc-subnav' } },
   },
-  navbarTrainer: {
-    id: 'navbarTrainer', label: 'Navbar fitness', groupId: 'navbar', hint: 'Floating glass navbar z mobilnym drawerem', source: 'kasia',
-    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/></svg>',
-    defaultVariant: 'default', variants: { default: { component: 'KasiaNavbarBlock', dataKey: 'kasia-navbar' } },
-  },
-  footerTrainer: {
-    id: 'footerTrainer', label: 'Footer fitness', groupId: 'footer', hint: 'Stopka z brandingiem, lokalizacjami i socialami', source: 'kasia',
-    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/></svg>',
-    defaultVariant: 'default', variants: { default: { component: 'KasiaFooterBlock', dataKey: 'kasia-footer' } },
-  },
 };

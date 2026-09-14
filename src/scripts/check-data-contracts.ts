@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { PageConfigSchema, SectionDataSchema } from '@config/data-contracts';
-import { isDesignOnlyPath } from '@utils/design-only';
 
 const projectRoot = path.resolve(import.meta.dirname, '../..');
 const pagesDir = path.join(projectRoot, 'src', 'data', 'pages');
@@ -27,8 +26,6 @@ function checkSections(): number {
   let checked = 0;
 
   for (const file of fs.readdirSync(sectionsDir).filter((name) => name.endsWith('.json')).sort()) {
-    if (isDesignOnlyPath(path.posix.join('src/data/sections', file))) continue;
-
     const filePath = path.join(sectionsDir, file);
     const data = readJson(filePath);
     if (data === null) continue;

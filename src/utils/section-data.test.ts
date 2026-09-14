@@ -3,7 +3,7 @@ import { createSectionDataCache, getSectionDataKey, type SectionJsonModule } fro
 
 describe('createSectionDataCache', () => {
   it('obsługuje dane z podkatalogu bez zmiany dataKey', () => {
-    expect(getSectionDataKey('/src/data/sections/clients/mystek/hero.json')).toBe('hero');
+    expect(getSectionDataKey('/src/data/sections/clients/legacy/hero.json')).toBe('hero');
   });
 
   it('mapuje dane JSON po nazwie pliku', () => {
@@ -40,7 +40,7 @@ describe('createSectionDataCache', () => {
   it('zgłasza konflikt, gdy dwa pliki mają ten sam dataKey', () => {
     const modules: Record<string, SectionJsonModule> = {
       '/src/data/sections/core/hero.json': { default: { title: 'Core' } },
-      '/src/data/sections/clients/mystek/hero.json': { default: { title: 'Mystek' } },
+      '/src/data/sections/clients/legacy/hero.json': { default: { title: 'Legacy' } },
     };
 
     expect(() => createSectionDataCache(modules)).toThrow('Duplicate section data key "hero"');

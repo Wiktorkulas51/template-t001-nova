@@ -1,11 +1,6 @@
 import type { SectionEntry } from './types';
 
 export const processSections: Record<string, SectionEntry> = {
-  processTrainer: {
-    id: 'processTrainer', label: 'Proces, timeline', groupId: 'process', hint: 'Naprzemienna oś czasu z czterema krokami', source: 'kasia',
-    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6v6l4 2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke-width="2"/></svg>',
-    defaultVariant: 'default', variants: { default: { component: 'KasiaTimelineBlock', dataKey: 'kasia-timeline' } },
-  },
   processTimeline: {
     id: 'processTimeline', label: 'Proces z osią czasu', groupId: 'process', hint: 'Timeline kroków z paskiem postępu (scroll)',
     icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6l2.1 2.1m0-12.8l-2.1 2.1M7.7 16.3l-2.1 2.1M12 8a4 4 0 100 8 4 4 0 000-8z" stroke-width="2" stroke-linecap="round"/></svg>',

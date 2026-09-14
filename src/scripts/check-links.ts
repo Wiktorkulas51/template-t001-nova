@@ -2,7 +2,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import fg from 'fast-glob';
 import { auditLinks, buildRouteMap } from '@utils/link-audit';
-import { isDesignOnlyPath } from '@utils/design-only';
 
 const scanPatterns = [
   'src/components/**/*.astro',
@@ -22,7 +21,6 @@ const excludePatterns = [
 let targets: string[] = scanPatterns.flatMap((pattern) =>
   fg.sync(pattern, { ignore: excludePatterns }),
 );
-targets = targets.filter((target) => !isDesignOnlyPath(target));
 
 const routes = buildRouteMap();
 const distDir = path.resolve('dist');

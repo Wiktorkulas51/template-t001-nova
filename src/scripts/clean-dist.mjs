@@ -40,14 +40,6 @@ for (const f of publicFiles) {
   if (fs.existsSync(path.join(dist, f))) toRemove.push(f);
 }
 
-// Nova nie korzysta z tych bibliotek obrazów, ale część kodu dev odwołuje się
-// do nich dynamicznie, więc automatyczne prune-images nie potrafi ich wykryć.
-const unusedAssetDirectories = ['assets/piekary9', 'assets/kasia'];
-for (const directory of unusedAssetDirectories) {
-  const fullPath = path.join(dist, directory);
-  if (fs.existsSync(fullPath)) toRemove.push(fullPath);
-}
-
 // Katalogi i strony z deny listy (gdyby mimo scope-pages powstały)
 const walkDist = (dir) => {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {

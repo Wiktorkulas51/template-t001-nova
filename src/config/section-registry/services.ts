@@ -1,16 +1,6 @@
 import type { SectionEntry } from './types';
 
 export const servicesSections: Record<string, SectionEntry> = {
-  featuresTrainer: {
-    id: 'featuresTrainer', label: 'Korzyści, grid', groupId: 'services', hint: 'Siatka czterech kart korzyści', source: 'kasia',
-    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z" stroke-width="2" stroke-linejoin="round"/></svg>',
-    defaultVariant: 'default', variants: { default: { component: 'KasiaBenefitsBlock', dataKey: 'kasia-benefits' } },
-  },
-  offerTrainer: {
-    id: 'offerTrainer', label: 'Oferta, trzy karty', groupId: 'services', hint: 'Trzy karty etapów współpracy', source: 'kasia',
-    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" stroke-width="2"/><path d="M8 9h8M8 13h8M8 17h4" stroke-width="2" stroke-linecap="round"/></svg>',
-    defaultVariant: 'default', variants: { default: { component: 'KasiaOfferBlock', dataKey: 'kasia-offer' } },
-  },
   features: {
     id: 'features', label: 'Usługi', groupId: 'services', hint: 'Sekcja usług/ofert z kartami ikon',
     icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
@@ -104,7 +94,7 @@ export const servicesSections: Record<string, SectionEntry> = {
     variants: { default: { component: 'AccommodationCardsBlock', dataKey: 'accommodation-cards' } },
   },
   priceTable: {
-    id: 'priceTable', label: 'Tabela cen', groupId: 'services', hint: 'Rozsuwana tabela cen z sortowaniem i miniaturkami (wzorzec piekary9)',
+    id: 'priceTable', label: 'Tabela cen', groupId: 'services', hint: 'Rozsuwana tabela cen z sortowaniem i miniaturkami',
     source: 'annawie',
     icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 5h18M3 9h18M3 13h18M3 17h18" stroke-width="2" stroke-linecap="round"/></svg>',
     defaultVariant: 'default',

@@ -1,16 +1,6 @@
 import type { SectionEntry } from './types';
 
 export const ctaSections: Record<string, SectionEntry> = {
-  bmiCalculator: {
-    id: 'bmiCalculator', label: 'Kalkulator BMI', groupId: 'cta', hint: 'Kalkulator BMI i orientacyjnego zapotrzebowania kalorycznego', source: 'kasia',
-    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 3h12v18H6zM9 7h6M9 11h2M13 11h2M9 15h2M13 15h2" stroke-width="2" stroke-linecap="round"/></svg>',
-    defaultVariant: 'default', variants: { default: { component: 'BMICalculatorBlock', dataKey: 'bmi-calculator' } },
-  },
-  qualificationQuiz: {
-    id: 'qualificationQuiz', label: 'Kwalifikacja', groupId: 'cta', hint: 'Trzy pytania z wynikiem dopasowania', source: 'kasia',
-    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 9a3 3 0 115.8 1c-.5 1-1.8 1.3-2.4 2.1-.3.4-.4.8-.4 1.4M12 17h.01" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke-width="2"/></svg>',
-    defaultVariant: 'default', variants: { default: { component: 'QualificationQuizBlock', dataKey: 'qualification-quiz' } },
-  },
   cta: {
     id: 'cta', label: 'CTA z obrazem', groupId: 'cta', hint: 'CTA z pełnym obrazem w tle, maską i akcentem tytułu',
     source: 'modern-house',

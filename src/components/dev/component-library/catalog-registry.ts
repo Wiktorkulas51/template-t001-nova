@@ -19,9 +19,6 @@ export const DEVELOPER_SOURCE_LABELS: Record<DeveloperCatalogSource, string> = {
   annawie: 'Anna Więckowska',
   stalanowski: 'Przemysław Stałanowski',
   klisik: 'Aleksandra Klisik',
-  kasia: 'Kasia',
-  piekary9: 'Piekary',
-  mystek: 'dr Krzysztof Mystek',
 };
 
 export type DeveloperCatalogType = 'section' | 'ui' | 'pattern' | 'decoration';

@@ -1,16 +1,6 @@
 import type { SectionEntry } from './types';
 
 export const portfolioSections: Record<string, SectionEntry> = {
-  galleryTrainer: {
-    id: 'galleryTrainer', label: 'Społeczność, gallery', groupId: 'portfolio', hint: 'Galeria dwóch kafli z overlayem', source: 'kasia',
-    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="16" rx="1" stroke-width="2"/><rect x="14" y="4" width="7" height="16" rx="1" stroke-width="2"/></svg>',
-    defaultVariant: 'default', variants: { default: { component: 'KasiaCommunityBlock', dataKey: 'kasia-community' } },
-  },
-  resultsSliderTrainer: {
-    id: 'resultsSliderTrainer', label: 'Rezultaty, slider', groupId: 'portfolio', hint: 'Interaktywny suwak porównujący dwa etapy', source: 'kasia',
-    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 4v16M18 4v16M3 8h6M15 16h6" stroke-width="2" stroke-linecap="round"/></svg>',
-    defaultVariant: 'default', variants: { default: { component: 'KasiaResultsSliderBlock', dataKey: 'kasia-results-slider' } },
-  },
   portfolio: {
     id: 'portfolio', label: 'Portfolio', groupId: 'portfolio', hint: 'Prezentacja prac',
     icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-width="2" stroke-linecap="round"/></svg>',

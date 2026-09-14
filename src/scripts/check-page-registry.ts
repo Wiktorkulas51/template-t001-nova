@@ -10,14 +10,12 @@ const pagesDir = path.join(projectRoot, 'src', 'data', 'pages');
 // src/components/registry/**/*.astro), so we do not parse the component names
 // from file - we take them from real files in the registry directory (recursively).
 // Navbar is the only component outside the registry (ui/molecules), we add it manually.
-// Helpers in piekary9-navigator/components are omitted as unlisted.
 function collectComponentNames(dir: string): string[] {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   const names: string[] = [];
   for (const e of entries) {
     const full = path.join(dir, e.name);
     if (e.isDirectory()) {
-      if (e.name === 'piekary9-navigator') continue;
       names.push(...collectComponentNames(full));
     } else if (e.name.endsWith('.astro')) {
       names.push(e.name.replace(/\.astro$/, ''));

@@ -98,7 +98,7 @@
   }
 
   function setLegacyStatus(form, state, message) {
-    var status = form.querySelector('[data-contact-status], [data-kasia-contact-status]');
+    var status = form.querySelector('[data-contact-status]');
     if (!(status instanceof HTMLElement)) return;
 
     status.hidden = true;

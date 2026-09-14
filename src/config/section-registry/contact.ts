@@ -1,16 +1,6 @@
 import type { SectionEntry } from './types';
 
 export const contactSections: Record<string, SectionEntry> = {
-  contactTrainer: {
-    id: 'contactTrainer', label: 'Kontakt, formularz', groupId: 'contact', hint: 'Formularz kontaktowy z neutralnym stanem demonstracyjnym', source: 'kasia',
-    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5v10a2 2 0 002 2z" stroke-width="2" stroke-linecap="round"/></svg>',
-    defaultVariant: 'default', variants: { default: { component: 'KasiaContactBlock', dataKey: 'kasia-contact' } },
-  },
-  locationsTrainer: {
-    id: 'locationsTrainer', label: 'Lokalizacje, karty', groupId: 'contact', hint: 'Dwie neutralne karty lokalizacji z linkiem do mapy', source: 'kasia',
-    icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 21s7-5.1 7-11a7 7 0 10-14 0c0 5.9 7 11 7 11z" stroke-width="2"/><circle cx="12" cy="10" r="2" stroke-width="2"/></svg>',
-    defaultVariant: 'default', variants: { default: { component: 'KasiaLocationsBlock', dataKey: 'kasia-locations' } },
-  },
   contact: {
     id: 'contact', label: 'Kontakt', groupId: 'contact', hint: 'Formularz kontaktowy z danymi i mapa',
     icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-width="2" stroke-linecap="round"/></svg>',

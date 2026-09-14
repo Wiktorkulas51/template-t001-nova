@@ -3,7 +3,6 @@ import path from 'node:path';
 import fg from 'fast-glob';
 import { auditMobileSource } from '@utils/mobile-layout-audit';
 import { isKnownBaselineIssue } from '@utils/mobile-audit-baseline';
-import { isDesignOnlyPath } from '@utils/design-only';
 import type { BaselineEntry } from '@utils/mobile-audit-baseline';
 
 const args = process.argv.slice(2);
@@ -34,7 +33,7 @@ const defaultPatterns = [
 const discoveredTargets: string[] = explicitFiles.length > 0
   ? explicitFiles
   : defaultPatterns.flatMap((pattern) => fg.sync(pattern, { ignore: ['**/node_modules/**'] }));
-const targets = discoveredTargets.filter((target) => !isDesignOnlyPath(target));
+const targets = discoveredTargets;
 
 if (targets.length === 0) {
   console.error('No target files found for mobile audit.');

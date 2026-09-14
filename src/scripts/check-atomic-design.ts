@@ -10,7 +10,6 @@
 
 import { readFileSync, readdirSync, existsSync } from 'fs';
 import { join, relative, resolve } from 'path';
-import { isDesignOnlyPath } from '@utils/design-only';
 
 const ROOT = join(import.meta.dirname, '..');
 const UI_DIR = join(ROOT, 'components', 'ui');
@@ -307,7 +306,6 @@ function scanDir(dir: string): void {
     if (entry.isDirectory()) {
       scanDir(fullPath);
     } else if (entry.name.endsWith('.astro') || entry.name.endsWith('.tsx')) {
-      if (isDesignOnlyPath(relative(join(ROOT, '..'), fullPath))) continue;
       scanFile(fullPath);
     }
   }

@@ -25,9 +25,7 @@ function collectRegistryFiles(dir: string, prefix = "/src/components/registry"):
   }
   return files;
 }
-const publicRegistryFiles = collectRegistryFiles(REGISTRY_DIR).filter(
-  (p) => !p.includes("/piekary9-navigator/"),
-);
+const publicRegistryFiles = collectRegistryFiles(REGISTRY_DIR);
 
 // Why: we read the public export registry instead of parsing a specific file.
 // Thanks to this, the checker works in the same way after dividing entries into domain modules.
