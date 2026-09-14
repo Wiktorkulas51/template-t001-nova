@@ -107,12 +107,12 @@ const stats = props.stats ?? fallback?.stats ?? [];
 </Section>
 
 <style>
-  .nova-responsive-hero .nova-stat {
+  :global(.nova-responsive-hero) .nova-stat {
     position: relative;
   }
 
   @media (max-width: 767px) {
-    .nova-responsive-hero .nova-stat:nth-child(even)::before {
+    :global(.nova-responsive-hero) .nova-stat:nth-child(even)::before {
       position: absolute;
       inset-block: 0.75rem;
       left: 0;
@@ -122,7 +122,7 @@ const stats = props.stats ?? fallback?.stats ?? [];
       opacity: 0.35;
     }
 
-    .nova-responsive-hero .nova-stat:nth-child(-n + 2)::after {
+    :global(.nova-responsive-hero) .nova-stat:nth-child(-n + 2)::after {
       position: absolute;
       right: 0.75rem;
       bottom: 0;
@@ -135,7 +135,7 @@ const stats = props.stats ?? fallback?.stats ?? [];
   }
 
   @media (min-width: 768px) {
-    .nova-responsive-hero .nova-stat + .nova-stat::before {
+    :global(.nova-responsive-hero) .nova-stat + .nova-stat::before {
       position: absolute;
       inset-block: 25%;
       left: 0;

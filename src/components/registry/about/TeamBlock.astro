@@ -28,7 +28,7 @@ const teamAvatars = props.teamAvatars ?? fallback?.teamAvatars ?? [];
 <Section id="zespol" tone="page" class:list={["py-12", props.class]}>
   <Container class="w-full max-w-none px-[clamp(1.5rem,5vw,5rem)]">
     <div class="grid grid-cols-1 items-center gap-6 md:grid-cols-2 md:gap-12">
-      <figure class="m-0 grid min-h-80 place-items-center overflow-hidden rounded-[var(--ui-radius-xl)]" data-motion="viewport">
+      <figure class="m-0 grid min-h-80 place-items-center overflow-hidden rounded-[var(--ui-radius-xl)]" data-motion="viewport" data-motion-skip>
         <SmartImage src={image} alt={imageAlt} width={1280} height={900} loading="eager" class="h-full min-h-80 w-full object-cover" />
       </figure>
       <div class="flex flex-col gap-4 px-0 py-6 md:p-8" data-motion-sequence="viewport" data-motion-profile="soft">
