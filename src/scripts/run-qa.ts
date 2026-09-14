@@ -9,7 +9,6 @@ interface QaStep {
 const STANDARD_STEPS: QaStep[] = [
   { name: 'npm run test', command: 'npm run test -- --run', description: 'Wszystkie testy jednostkowe i kontraktowe' },
   { name: 'npm run check:types', command: 'npm run check:types', description: 'Diagnostyka TypeScript i komponentów Astro' },
-  { name: 'npm run cms:check', command: 'npm run cms:check', description: 'Spójność JSON, CMS i rejestru sekcji' },
   { name: 'npm run check:hardcoded', command: 'npm run check:hardcoded', description: 'Brak treści klienta zaszytej w komponentach' },
   { name: 'npm run check:imports', command: 'npm run check:imports', description: 'Importy między katalogami używają aliasów' },
   { name: 'npm run check:registrations', command: 'npm run check:registrations', description: 'Spójność manifestu, rejestru i plików komponentów' },

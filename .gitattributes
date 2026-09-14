@@ -15,3 +15,12 @@
 *.otf binary
 *.zip binary
 *.pdf binary
+
+# Pliki wewnętrzne repozytorium, które nie należą do paczki marketplace.
+AGENTS.md export-ignore
+TEMPLATE.md export-ignore
+.marketplaceignore export-ignore
+.github/ export-ignore
+release/ export-ignore
+audit-reports/ export-ignore
+archive/ export-ignore

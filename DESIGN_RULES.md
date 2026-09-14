@@ -1,4 +1,4 @@
-# Design Rules — Starter Kit
+# Design Rules: Nova
 
 **Czytaj jako pierwsze przed jakąkolwiek pracą wizualną.**
 
@@ -12,7 +12,7 @@ ZLE:
 <span class="size-1.5 rounded-full bg-brand-primary"></span>
 <span class="h-2 w-2 rounded-full bg-green-500"></span>
 ```
-DOBRZE: Nie używaj kropek. W ogóle. Żadnych. Jeśli potrzebujesz separatora — użyj tekstu, linii, kształtu geometrycznego.
+DOBRZE: Nie używaj kropek. W ogóle. Żadnych. Jeśli potrzebujesz separatora, użyj tekstu, linii lub kształtu geometrycznego.
 
 ### 🚫 Pulsujące elementy
 ZLE:
@@ -46,7 +46,7 @@ ZLE: `<section class="py-16"><h2 class="text-3xl">Tytuł</h2><p class="text-lg">
 DOBRZE: `<Section tone="page"><Container><Heading tag="h2" variant="section-title">Tytuł</Heading><Text variant="lead">Opis</Text></Container></Section>`
 
 ### 🚫 Ghost button z opacity
-ZLE: `<button class="bg-white/5 text-brand-dark/70">` — niewidoczny na jasnym tle
+DOBRZE: `<button class="bg-white/5 text-brand-dark/70">` jest niewidoczny na jasnym tle.
 DOBRZE: Ghost button = border + solid text. Always visible.
 
 ### 🚫 Przycisk bez text swap (roll tekstu)
@@ -58,24 +58,24 @@ ZLE: `<Section tone="base">` na ciemnym tle bez białego tekstu.
 DOBRZE: Tylko `page` (biały), `base` (off-white), `accent` (brand). Żadnych granatów, czerni.
 
 ### 🚫 Generic 3-kolumnowy layout wszędzie
-ZLE: "3 kolumny, 6 kart, równo rozłożone" — to wygląda jak każdy template.
+DOBRZE: "3 kolumny, 6 kart, równo rozłożone" wygląda jak każdy template.
 DOBRZE: Zmieniaj układy. 2+1, staggered, grid z różnymi proporcjami. Nie bądź przewidywalny.
 
 ### 🚫 Własny hover lift na kartach (translate/shadow/border na hover)
-ZLE: `class="rounded-2xl border hover:-translate-y-1 hover:shadow-xl transition-all"` na karcie — każdy blok miałby inną animację, a reveal w motion.css i tak ją zabija (używa własności `translate` z wyższą specyficznością).
-DOBRZE: klasa `ui-card-interactive` na kontenerze karty. Jedna animacja dla wszystkich kart w kitcie: lift `translateY(-0.25rem)` przez `transform` + border brand-primary 34% + shadow, 250ms easeOutCubic. Interplay z data-motion jest załatwiony globalnie w motion.css. Dodajesz klasę TYLKO kartom, które mają reagować na hover; statyczne karty zostają statyczne.
+DOBRZE: `class="rounded-2xl border hover:-translate-y-1 hover:shadow-xl transition-all"` na karcie, każdy blok miałby inną animację, a reveal w motion.css i tak ją nadpisuje (używa własności `translate` z wyższą specyficznością).
+DOBRZE: klasa `ui-card-interactive` na kontenerze karty. Jedna animacja dla wszystkich kart w template, lift `translateY(-0.25rem)` przez `transform`, border brand-primary 34% oraz shadow, 250ms easeOutCubic. Interakcja z data-motion jest obsłużona globalnie w motion.css. Dodajesz klasę tylko kartom, które mają reagować na hover; statyczne karty zostają statyczne.
 
 ---
 
 ## 2. Design preferences
 
 - **Mobile-first:** klasy domyślne = mobile, `md:` = desktop
-- **Typografia:** bez Inter, Roboto, Space Grotesk. Starter self-hostuje Outfit (sans, domyślny), Satoshi (sans) i Gambarino (heading serif) w `src/styles/fonts.css`; nowe fonty doładowujesz przez `npm run fonts` (download-fonts.ts), nigdy przez Google Fonts CDN. Używaj `--font-sans`/`--font-heading` z themes.css.
+- **Typografia:** bez Inter, Roboto, Space Grotesk. Nova self-hostuje Outfit, Satoshi i Gambarino w `src/styles/fonts.css`; nowe fonty doładowujesz przez `npm run assets:fonts`, nigdy przez Google Fonts CDN. Używaj `--font-sans` i `--font-heading` z themes.css.
 - **Kolory:** stonowana paleta + 1 akcent. Żadnych gradientów purple-blue
 - **Layout:** dużo przestrzeni, nie zagęszczaj. Sekcje mają oddychać
 - **Zdjęcia:** WebP, max 200KB, bez stockowych uśmiechniętych ludzi
 - **Motion:** subtelny scroll reveal; dekoracje są statyczne domyślnie, a ich jawne wyjątki muszą respektować reduced motion
-- **Separatory:** używaj cienkich linii, beamów, geometrycznych kształtów — nie kropek
+- **Separatory:** używaj cienkich linii, beamów i geometrycznych kształtów, nie kropek
 
 ---
 
@@ -89,4 +89,3 @@ DOBRZE: klasa `ui-card-interactive` na kontenerze karty. Jedna animacja dla wszy
 6. Lighthouse: Performance 95+, Accessibility 95+, SEO 100
 7. Każdy przycisk/CTA → atom `Button.astro` (text swap i wypełnienie `::after` są domyślne, nic nie włączasz). `hoverText` tylko do podmiany labelki na hover
 8. Każda interaktywna karta → klasa `ui-card-interactive` na kontenerze (kontrakt w `components.css`, interplay z motion w `motion.css`). Zero własnych `hover:-translate-y-*`, `hover:shadow-*`, `hover:border-*` na kartach. Test kontraktowy: `card-contract.test.ts`
-

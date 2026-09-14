@@ -4,7 +4,7 @@ import path from 'node:path';
 
 /**
  * Test wykrywajacy "sztywno" wpisane tresci w plikach .astro.
- * Pomaga w identyfikacji tekstow, ktore powinny trafic do JSON/CMS.
+ * Pomaga w identyfikacji tekstów, które powinny trafić do plików JSON.
  */
 describe('Hardcoded Text Scanner', () => {
   const COMPONENTS_DIR = path.resolve(process.cwd(), 'src/components');

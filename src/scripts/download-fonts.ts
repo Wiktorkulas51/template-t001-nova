@@ -4,18 +4,18 @@ import path from 'path';
 const FONTS_DIR = path.join(process.cwd(), 'public/fonts');
 const CSS_FILE = path.join(process.cwd(), 'src/styles/fonts.css');
 
-// Fonty uzywane w template — self-hosted.
-// - Satoshi, Gambarino: Fontshare (ITF Free Font License — darmowa komercyjnie)
-// - Outfit: Google Fonts (OFL — darmowa komercyjnie), domyslny font sans startera
-// Uwaga: Playfair Display usuniety (uzywany tylko przez motyw gold/font-switcher,
-// nieosiagalny w produkcji — nie ciagniemy zbednych ~90KB w buildzie).
+// Fonty używane w template, self-hosted.
+// Satoshi i Gambarino: Fontshare, ITF Free Font License, darmowa komercyjnie.
+// Outfit: Google Fonts, OFL, darmowa komercyjnie, domyślny font sans Nova.
+// Playfair Display nie jest częścią profilu Nova, więc nie pobieramy zbędnych
+// plików fontu do template’u.
 const FONT_SOURCES: Record<string, 'fontshare' | 'google'> = {
   Satoshi: 'fontshare',
   Gambarino: 'fontshare',
   Outfit: 'google',
 };
 
-// Wagi pobierane z Fontshare — osobne pliki per waga (bez unicode-range, mniejszy koszt)
+// Wagi pobierane z Fontshare jako osobne pliki, bez unicode-range.
 const FONTSHARE_WEIGHTS: Record<string, string> = {
   Satoshi: '400,500,700,900',
   Gambarino: '400,500',
@@ -48,7 +48,7 @@ async function downloadGoogleFont(fontName: string) {
   return localCss;
 }
 
-// Fontshare zwraca CSS z URL-ami do cdn.fontshare.com — pobieramy tylko woff2
+// Fontshare zwraca CSS z URL-ami do cdn.fontshare.com, pobieramy tylko woff2.
 // (najmniejszy format, wspierany we wszystkich nowoczesnych przegladarkach).
 async function downloadFontshareFont(fontName: string) {
   const weights = FONTSHARE_WEIGHTS[fontName] || '400;500;700';
@@ -59,7 +59,7 @@ async function downloadFontshareFont(fontName: string) {
   const fontUrls = [...css.matchAll(/url\((?:https:)?\/\/cdn\.fontshare\.com\/wf\/[^)]+\.woff2\)/g)].map(m => m[0].replace('url(', '').replace(/^\/\//, 'https://').replace(/\)$/, ''));
   let localCss = css;
 
-  // Fontshare CSS has separate entries per weight — we parse and generate clean CSS
+  // Fontshare CSS ma osobne wpisy dla każdej wagi, więc generujemy czysty CSS.
   const blocks = css.split('@font-face').filter(b => b.includes('font-family'));
   let out = '';
   for (const block of blocks) {
@@ -141,4 +141,3 @@ async function run() {
 }
 
 run();
-

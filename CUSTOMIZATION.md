@@ -55,7 +55,7 @@ Review the design tokens in `design/`, `src/styles/themes.css` and `src/styles/g
 ## Validation
 
 ```bash
-npm run cms:check
+npm run check:data
 npm run check:types
 npm run check:seo
 npm run check:links

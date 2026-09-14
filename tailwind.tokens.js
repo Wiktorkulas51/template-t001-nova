@@ -77,6 +77,8 @@ export const tokens = {
   "ui": {
     "text-on-light": "var(--ui-text-on-light)",
     "text-on-light-subtle": "var(--ui-text-on-light-subtle)",
+    "text-on-dark": "var(--ui-text-on-dark)",
+    "text-on-dark-subtle": "var(--ui-text-on-dark-subtle)",
     "type-lead-tracking": "var(--ui-type-lead-tracking)",
     "type-lead-leading": "var(--ui-type-lead-leading)",
     "type-body-leading": "var(--ui-type-body-leading)",

@@ -1,4 +1,5 @@
-// Why: section-registry remains the public entry point for PageBuilder, CMS and Studio.
+// Why: section-registry remains the public entry point for PageBuilder, Studio
+// and the component gallery.
 // Block entries are divided by domain, while the following export retains
 // the existing SECTION_REGISTRY contract and the order of the block directory.
 import type { SectionEntry } from './section-registry/types';

@@ -4,7 +4,6 @@ import path from 'node:path';
 const isClientMode = process.argv.includes('--client');
 const root = process.cwd();
 const formPath = path.join(root, 'public/send-form.php');
-const deployPath = path.join(root, 'public/deploy-turbo.php');
 
 if (!fs.existsSync(formPath)) {
   console.error('check:form: Brak public/send-form.php.');
@@ -12,18 +11,16 @@ if (!fs.existsSync(formPath)) {
 }
 
 const form = fs.readFileSync(formPath, 'utf8');
-const deploy = fs.existsSync(deployPath) ? fs.readFileSync(deployPath, 'utf8') : '';
 const forbiddenClientValues = [
   'twojastrona.pl',
   'twojafirma.pl',
   'smtp.example.com',
   'kontakt@twojafirma.pl',
   'niepowiem51@gmail.com',
-  '__DEPLOY_SECRET_KEY__',
 ];
 
 if (isClientMode) {
-  const found = forbiddenClientValues.filter((value) => form.includes(value) || deploy.includes(value));
+  const found = forbiddenClientValues.filter((value) => form.includes(value));
   if (found.length > 0) {
     console.error(`check:form: znaleziono wartości startera w konfiguracji klienta: ${found.join(', ')}`);
     process.exit(1);
@@ -34,7 +31,7 @@ if (isClientMode) {
     process.exit(1);
   }
 
-  console.log('check:form: OK, formularz i deploy mają konfigurację klienta.');
+  console.log('check:form: OK, formularz ma konfigurację klienta.');
 } else {
   const requiredMarkers = ['CONTACT_EMAIL', 'ALLOWED_ORIGINS', 'checkRateLimit', 'website'];
   const missing = requiredMarkers.filter((marker) => !form.includes(marker));

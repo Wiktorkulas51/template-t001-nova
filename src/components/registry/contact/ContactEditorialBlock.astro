@@ -74,8 +74,8 @@ const {
   headingTag = "h2",
 } = Astro.props as Props;
 
-// Why: "props || json" pattern - props from PageBuilder/CMS override section
-// data, while JSON is the default content source (source of truth for Decap CMS).
+// Why: "props || json" pattern lets PageBuilder override section data while
+// JSON remains the default content source.
 const resolvedTitle = title || contactData.title || "";
 const resolvedDescription = description || contactData.description || "";
 const resolvedEmail = email || contactData.email || "";

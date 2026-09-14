@@ -2,9 +2,9 @@ import sharp from 'sharp';
 import fs from 'fs';
 import path from 'path';
 
-// The pipeline includes both project source images and media from the CMS.
-// The CMS originals stay in public/assets/uploads because the panel and existing ones
-// URLs must still work after the derivatives are generated.
+// The pipeline includes project source images and optional uploaded media.
+// Originals stay in public/assets/uploads so existing URLs keep working after
+// derivatives are generated.
 const PROJECT_ROOT = process.cwd();
 const SOURCES = [
   {
@@ -13,7 +13,7 @@ const SOURCES = [
     outputDir: path.join(PROJECT_ROOT, 'public/assets/images'),
   },
   {
-    id: 'cms',
+    id: 'uploads',
     inputDir: path.join(PROJECT_ROOT, 'public/assets/uploads'),
     outputDir: path.join(PROJECT_ROOT, 'public/assets/upload-derivatives'),
   },
@@ -45,7 +45,7 @@ const FORMATS = [
 
 // The manifest is outside public/ so as not to copy it to dist. File size
 // is enough to detect a source change, and fixed source keys avoid collisions
-// between the raw file and the file with the same name from CMS.
+// between raw files and uploads with the same name.
 const MANIFEST_FILE = path.join(PROJECT_ROOT, 'node_modules/.cache/images-manifest.json');
 
 function loadManifest(): Record<string, number> {
@@ -131,7 +131,7 @@ async function processDirectory(
       filePath: getOutputPath(source, size, format.extension, relativePath, baseName),
     })));
 
-    // We only remove old derivatives of the same source. Original CMS files
+    // We only remove old derivatives of the same source. Original upload files
     // they are in a different directory and never go to this cleanup branch.
     const expectedPaths = new Set(allTargets.map((target) => target.filePath));
     for (const staleTarget of SIZES.flatMap((size) => FORMATS.map((format) => ({

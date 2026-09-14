@@ -309,7 +309,7 @@
     background-color: var(--ui-bg-accent);
   }
 
-  /* Override'y per-theme (blush itd.) -> src/styles/theme-overrides.css */
+  /* Dodatkowe reguły profilu Nova są w src/styles/theme-overrides.css. */
 
   /* Button System */
   .ui-button {
@@ -392,55 +392,8 @@
     color: white;
   }
 
-  /* GOLD: SLIDE EFFECT ONLY */
-  [data-theme="gold"] .ui-button:hover {
-    transform: translateY(0);
-    box-shadow: none;
-  }
-
-  [data-theme="gold"] .ui-button:hover::after {
-    @apply translate-y-0;
-  }
-
-  /* FIX-BUD: ENHANCED LIFT ONLY */
-  [data-theme="fix-bud"] .ui-button:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 15px 30px -10px rgba(var(--color-brand-primary-rgb, 0, 0, 0), 0.4);
-  }
-
   .ui-button-primary {
     @apply bg-brand-primary text-white shadow-xl shadow-brand-primary/20;
-  }
-
-  [data-theme="fix-bud"] .ui-button-primary {
-    @apply bg-gradient-to-r from-brand-primary to-brand-primary/80;
-  }
-
-  /* MAREK-JODLOWSKI: TEXT SWAP + COLOR SLIDE */
-  [data-theme="marek-jodlowski"] .ui-button::after {
-    transition: translate 600ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  [data-theme="marek-jodlowski"] .ui-button-primary::after {
-    background: var(--color-brand-dark);
-  }
-
-  [data-theme="marek-jodlowski"] .ui-button-outline::after {
-    background: var(--color-brand-primary);
-  }
-
-  [data-theme="marek-jodlowski"] .ui-button:hover {
-    transform: translateY(0);
-    box-shadow: none;
-  }
-
-  [data-theme="marek-jodlowski"] .ui-button:hover::after {
-    --tw-translate-y: 0;
-  }
-
-  [data-theme="marek-jodlowski"] .ui-button-outline:hover {
-    color: white;
-    border-color: var(--color-brand-primary);
   }
 
   .ui-button-accent {

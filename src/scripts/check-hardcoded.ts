@@ -5,7 +5,7 @@ import fg from 'fast-glob';
 /**
  * Check hardcoded content in Astro components.
  * Scans for inline Polish/English text in component templates that should
- * live in JSON/CMS data files instead.
+ * live in JSON data files instead.
  *
  * Usage: npx tsx src/scripts/check-hardcoded.ts
  *

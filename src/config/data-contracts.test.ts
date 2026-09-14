@@ -10,7 +10,7 @@ describe('data contracts', () => {
         description: 'Opis strony',
       },
       sections: [{ id: 'hero', variant: 'default' }],
-      customField: { source: 'cms' },
+      customField: { source: 'json' },
     });
 
     expect(result.success).toBe(true);

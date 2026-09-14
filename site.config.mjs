@@ -26,7 +26,7 @@ export const BUILD_SCOPE = {
   pages: ['/', '/pl', '/cookies', '/polityka-prywatnosci'],
   // Denylist — always removed from dist/ (dev-only, prototypes, demo).
   // Entry matches by first path segment. Dev and QA stay out of production build.
-  forceRemove: ['starwind-demo', 'layout-test', 'roofing', 'admin', 'dev', 'qa'],
+  forceRemove: ['starwind-demo', 'layout-test', 'roofing', 'dev', 'qa'],
   // Whether to clean unused media (images, videos, fonts) from dist/.
   images: true,
 };

@@ -24,4 +24,4 @@ Neutralny zestaw assetów do szybkiego prototypowania bloków w Starter Kicie.
 /assets/placeholders/logo-placeholder.svg
 ```
 
-Assety są celowo neutralne. Przy wdrożeniu klienta należy podmienić je na materiały klienta albo wartości z CMS.
+Assety są celowo neutralne. Przy wdrożeniu klienta należy podmienić je na materiały klienta albo wartości z plików JSON.

@@ -23,7 +23,7 @@ describe('Semantic design tokens', () => {
   const styles = fs.readFileSync(stylesPath, 'utf8');
   const tailwindTheme = fs.readFileSync(tailwindPath, 'utf8');
 
-  it('defines every semantic color in every generated theme', () => {
+  it('defines every semantic color in the Nova profile', () => {
     const themeBlocks = styles
       .split(/(?=\[data-theme=|:root\s*\{)/)
       .filter((block) => {
@@ -31,7 +31,7 @@ describe('Semantic design tokens', () => {
         return trimmed.startsWith(':root') || trimmed.startsWith('[data-theme');
       });
 
-    expect(themeBlocks.length).toBeGreaterThanOrEqual(4);
+    expect(themeBlocks.length).toBe(1);
 
     for (const block of themeBlocks) {
       for (const color of requiredColors) {

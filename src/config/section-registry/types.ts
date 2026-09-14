@@ -28,7 +28,7 @@ export type SectionGroup = {
 };
 
 /**
- * The only group list used by registry, CMS, Studio and block gallery.
+ * The only group list used by the registry, Studio and block gallery.
  * Order determines the order in which categories are displayed.
  */
 export const SECTION_GROUPS: SectionGroup[] = [

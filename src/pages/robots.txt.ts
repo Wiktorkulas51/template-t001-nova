@@ -6,8 +6,6 @@ export const GET: APIRoute = ({ site }) => {
   const robotsTxt = [
     'User-agent: *',
     'Allow: /',
-    // The CMS panel (Decap) is under /admin/ and should not be indexed
-    'Disallow: /admin/',
     // Tool pages: component gallery (dev) and fixture QA.
     // Sitemap also filters them, but Disallow closes the topic when crawling.
     'Disallow: /dev/',

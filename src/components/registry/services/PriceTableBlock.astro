@@ -62,8 +62,8 @@ const {
   headingTag = "h2",
 } = Astro.props as Props;
 
-// Why: "props || json" pattern as in other blocks - props overwrite content from JSON, and
-// JSON is the default source (source of truth for Decap CMS).
+// Why: "props || json" keeps section overrides explicit while JSON remains
+// the default content source.
 const resolvedEyebrow = eyebrow || priceTableData.eyebrow || "";
 const resolvedTitle = title || priceTableData.title || "";
 const resolvedSubtitle = subtitle || priceTableData.subtitle || "";

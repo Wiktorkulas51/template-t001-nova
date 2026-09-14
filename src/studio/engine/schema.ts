@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const STUDIO_TEMPLATE_IDS = ["default", "blush"] as const;
+export const STUDIO_TEMPLATE_IDS = ["nova"] as const;
 export type StudioTemplateId = (typeof STUDIO_TEMPLATE_IDS)[number];
 
 export const STUDIO_SECTION_IDS = [
@@ -102,7 +102,7 @@ export function buildDefaultState(
       sidebar: "off",
       "section-pattern": "off",
       footer: "columns",
-      theme: "default",
+      theme: "nova",
     },
   );
 }

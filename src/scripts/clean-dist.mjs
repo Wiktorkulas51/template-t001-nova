@@ -1,6 +1,6 @@
 // clean-dist.mjs, ostatnia linia obrony: usuwa z dist/ dev-only śmieci,
 // które mogły powstać mimo scope-pages (deny list z BUILD_SCOPE) oraz pliki
-// serwerowe (deploy-turbo.php, send-form.php) niepotrzebne klientowi.
+// serwerowe (send-form.php) niepotrzebne w statycznym deploymencie.
 //
 // WAŻNE: strony spoza zakresu NIE są tu usuwane, nie są w ogóle budowane
 // (scope-pages.mjs przenosi je do _disabled/ przed astro build).
@@ -34,8 +34,8 @@ if (!fs.existsSync(dist)) {
 
 const toRemove = [];
 
-// Pliki serwerowe/deploy z public, których klient nie potrzebuje w dist
-const publicFiles = ['deploy-turbo.php'];
+// Pliki serwerowe z public, których klient nie potrzebuje w statycznym dist
+const publicFiles = ['send-form.php'];
 for (const f of publicFiles) {
   if (fs.existsSync(path.join(dist, f))) toRemove.push(f);
 }

@@ -23,7 +23,6 @@ oauth-config.php
 
 # CMS - lokalny config wygenerowany (zawiera tylko local_backend, ale jest
 # pochodna cms:gen i nie ma sensu trzymac go w repo)
-public/admin/config.local.yml
 
 # Client Assets
 src/assets/raw/

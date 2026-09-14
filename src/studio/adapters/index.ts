@@ -1,11 +1,9 @@
 import type { StudioTemplateId } from "@/studio/engine/schema";
-import { defaultStudioAdapter } from "./default.adapter";
-import { blushStudioAdapter } from "./blush.adapter";
+import { novaStudioAdapter } from "./nova.adapter";
 import type { StudioAdapter } from "./types";
 
 const ADAPTERS: Record<StudioTemplateId, StudioAdapter> = {
-  default: defaultStudioAdapter,
-  blush: blushStudioAdapter,
+  nova: novaStudioAdapter,
 };
 
 export function getStudioAdapter(template: StudioTemplateId): StudioAdapter {

@@ -2,13 +2,16 @@
 
 Nova is a responsive website template for creative agencies, design studios and ambitious brands. The project uses Astro, Tailwind CSS, TypeScript and JSON based content files.
 
+## Need a custom website?
+
+Want to adapt Nova to your brand or build a completely custom website? [Hire WebScale](https://webscale.pl/?utm_source=nova-readme&utm_medium=backlink&utm_campaign=t001-nova) for design, development and implementation support.
+
 ## Features
 
 - Bilingual homepage with English and Polish versions.
 - Hero, selected work, services, team, FAQ, testimonials and CTA sections.
 - Responsive layout for mobile, tablet and desktop.
 - Content separated from Astro components.
-- Decap CMS support.
 - Favicon generation, responsive images, sitemap and basic SEO metadata.
 - Local fonts and a documented theme system.
 
@@ -43,7 +46,7 @@ The main customization files are:
 - `src/data/pages/index.json`, homepage section order.
 - `site.config.mjs`, domain, locale and build scope.
 
-Change content in JSON files instead of editing Astro components directly. After content changes, run `npm run cms:check` and `npm run check:types`.
+Change content in JSON files instead of editing Astro components directly. After content changes, run `npm run check:data` and `npm run check:types`.
 
 ## Build and quality checks
 
@@ -81,5 +84,4 @@ The template license does not replace the licenses of third-party dependencies, 
 - Astro 7
 - Tailwind CSS 4
 - TypeScript
-- Decap CMS
 - Vitest

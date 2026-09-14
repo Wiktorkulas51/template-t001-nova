@@ -1,6 +1,6 @@
 # Starter Kit
 
-Szablon strony firmowej (Astro + Tailwind v4) dla firm usługowych: nowoczesny design, tryb ciemny, galeria komponentów, blog i panel CMS (Decap).
+Szablon strony firmowej (Astro + Tailwind v4) dla firm usługowych: nowoczesny design, tryb ciemny, galeria komponentów i blog.
 
 ## Struktura
 

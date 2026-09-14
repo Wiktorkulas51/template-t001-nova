@@ -1,6 +1,5 @@
 import type { StudioAdapter } from "@/studio/adapters/types";
-import defaultProfileRaw from "@/studio/profiles/default.json";
-import blushProfileRaw from "@/studio/profiles/blush.json";
+import novaProfileRaw from "@/studio/profiles/nova.json";
 import {
   buildDefaultState,
   type ResolvedStudioState,
@@ -12,8 +11,7 @@ import {
 } from "./schema";
 
 const PROFILE_MAP: Record<StudioTemplateId, unknown> = {
-  default: defaultProfileRaw,
-  blush: blushProfileRaw,
+  nova: novaProfileRaw,
 };
 
 function isTemplateId(value: string | null): value is StudioTemplateId {
@@ -69,7 +67,7 @@ function applyUrlOverrides(
 
 export function resolveTemplateFromUrl(url: URL): StudioTemplateId {
   const requested = url.searchParams.get("template");
-  return isTemplateId(requested) ? requested : "blush";
+  return isTemplateId(requested) ? requested : "nova";
 }
 
 export function resolveStudioState(

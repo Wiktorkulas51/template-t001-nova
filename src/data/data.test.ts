@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
-import yaml from 'js-yaml';
 import header from './navigation/header.json';
 import footer from './navigation/footer.json';
 import company from './global/company.json';
@@ -68,43 +67,11 @@ describe('Data Integrity & Polish Naming Tests', () => {
   });
 });
 
-// Why: CMS consistency tests make sure that the data in src/data is generated
-// config Decap and the section register never went away. When config.yml doesn't
-// exists (fresh repo before the first npm run cms:gen), YAML tests are there
-// skipped and the rest still check the JSON files directly.
-describe('CMS Config Integrity', () => {
-  const configPath = path.join(process.cwd(), 'public/admin/config.yml');
-  const configExists = fs.existsSync(configPath);
-
-  // Reading JSON directly from disk (not via import) for the test to work
-  // also for files added after compilation)
+describe('JSON Data Integrity', () => {
+  // Reading JSON directly from disk keeps this test useful for files added
+  // after the test module was compiled.
   const readJson = (relative: string) =>
     JSON.parse(fs.readFileSync(path.join(process.cwd(), relative), 'utf8'));
-
-  it.skipIf(!configExists)('wygenerowany config.yml parsuje się jako YAML', () => {
-    const config = yaml.load(fs.readFileSync(configPath, 'utf8')) as { collections?: unknown[] };
-    expect(config).toBeTruthy();
-    expect(config).toHaveProperty('collections');
-    expect(Array.isArray(config.collections)).toBe(true);
-  });
-
-  it.skipIf(!configExists)('pliki JSON z global i navigation mają wpis w config.yml', () => {
-    const configText = fs.readFileSync(configPath, 'utf8');
-    // Generator celowo pomija pliki techniczne (floating-bar, breadcrumbs,
-    // pagination), because it is an AI configuration, not content edited by the client
-    const excludedFromCms = new Set(['floating-bar.json', 'breadcrumbs.json', 'pagination.json', 'legal.json', 'lightbox.json', 'cookie-consent.json']);
-    for (const dir of ['global', 'navigation']) {
-      const dirPath = path.join(process.cwd(), 'src/data', dir);
-      if (!fs.existsSync(dirPath)) continue;
-      const files = fs.readdirSync(dirPath).filter((f) => f.endsWith('.json'));
-      expect(files.length).toBeGreaterThan(0);
-      for (const file of files) {
-        if (excludedFromCms.has(file)) continue;
-        const relative = `src/data/${dir}/${file}`;
-        expect(configText, `Brak wpisu "file: ${relative}" w config.yml`).toContain(`file: ${relative}`);
-      }
-    }
-  });
 
   it('nowe JSON-y mają wymagane klucze', () => {
     const requiredKeys: Record<string, string[]> = {

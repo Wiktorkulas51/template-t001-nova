@@ -17,7 +17,7 @@ const { variant = "dark", showText = true, className = "", density = "default" }
 /** Temporarily disabled — for tagline / company.branding.tagline */
 const showTagline = false;
 
-// Why: logo is always an image (client uploads own file via CMS).
+// Why: logo is always an image, configured in the project data.
 // Fallback is default /logo.svg generated from icon at build time.
 const logoPath = company.branding.logoImage || '/logo.svg';
 ---

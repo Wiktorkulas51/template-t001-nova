@@ -1,5 +1,5 @@
 /**
- * Narzedzia do normalizacji i czyszczenia danych przychodzacych z CMS (Keystatic).
+ * Narzędzia do normalizacji i czyszczenia danych przychodzących z plików JSON.
  * Zapewniaja bezpieczne wartosci domyslne dla komponentow Astro.
  *
  * Why: obronnosc danych - JSON od klienta moze miec brakujace pola, null,

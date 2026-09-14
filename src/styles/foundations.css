@@ -6,8 +6,7 @@ html {
 
 /* Global scrollbar: thin, consistent with the brand palette, disappears against the background without
    gray "tracks" from the native Windows bar. Values ​​come from tokens
-   --color-brand-* so every theme (default, blush, etc.) gets it
-   own color automatically.*/
+   --color-brand-* so the Nova palette controls it automatically.*/
 * {
   scrollbar-width: thin;
   scrollbar-color: color-mix(in oklab, var(--color-brand-primary) 35%, transparent) transparent;
