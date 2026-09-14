@@ -1,91 +1,91 @@
 # Design Rules: Nova
 
-**Czytaj jako pierwsze przed jakąkolwiek pracą wizualną.**
+**Read this first before any visual work.**
 
 ---
 
-## 1. Czego NIGDY nie robić
+## 1. What to never do
 
-### 🚫 Kropki i indykatory
-ZLE:
+### 🚫 Dots and indicators
+BAD:
 ```html
 <span class="size-1.5 rounded-full bg-brand-primary"></span>
 <span class="h-2 w-2 rounded-full bg-green-500"></span>
 ```
-DOBRZE: Nie używaj kropek. W ogóle. Żadnych. Jeśli potrzebujesz separatora, użyj tekstu, linii lub kształtu geometrycznego.
+GOOD: Do not use dots. At all. If you need a separator, use text, a line or a geometric shape.
 
-### 🚫 Pulsujące elementy
-ZLE:
+### 🚫 Pulsing elements
+BAD:
 ```html
 <div class="animate-pulse h-2 w-2 rounded-full bg-red-500"></div>
 ```
-DOBRZE: Zero `animate-pulse`. Statyczne akcenty albo nic.
+GOOD: Zero `animate-pulse`. Use static accents or nothing.
 
-### 🚫 Fake quotes (udawane cytaty)
-ZLE:
+### 🚫 Fake quotes
+BAD:
 ```html
-<p class="border-l-2 pl-8 italic text-brand-dark/60">Cytat</p>
+<p class="border-l-2 pl-8 italic text-brand-dark/60">Quote</p>
 ```
-DOBRZE: Użyj dedykowanego bloku cytatu z left-borderem i SVG quote mark.
+GOOD: Use a dedicated quote block with a left border and an SVG quote mark.
 
-### 🚫 Hardcoded kolory
-ZLE:
+### 🚫 Hardcoded colors
+BAD:
 ```css
 background: #2563eb;
 color: #333;
 border: 1px solid #e5e7eb;
 ```
-DOBRZE: Zawsze tokeny. `var(--color-brand-primary)`, `text-brand-dark/70`, `border-brand-dark/10`.
+GOOD: Always use tokens. `var(--color-brand-primary)`, `text-brand-dark/70`, `border-brand-dark/10`.
 
-### 🚫 Bezpośrednie klasy layoutu na atomach
-ZLE: `<Heading tag="h2" class="mt-10 mb-20" />`
-DOBRZE: Spacing kontroluje rodzic (SectionHeader, ButtonGroup, container div).
+### 🚫 Direct layout classes on atoms
+BAD: `<Heading tag="h2" class="mt-10 mb-20" />`
+GOOD: Let the parent control spacing through `SectionHeader`, `ButtonGroup` or a container div.
 
-### 🚫 Raw HTML zamiast atomów
-ZLE: `<section class="py-16"><h2 class="text-3xl">Tytuł</h2><p class="text-lg">Opis</p></section>`
-DOBRZE: `<Section tone="page"><Container><Heading tag="h2" variant="section-title">Tytuł</Heading><Text variant="lead">Opis</Text></Container></Section>`
+### 🚫 Raw HTML instead of atoms
+BAD: `<section class="py-16"><h2 class="text-3xl">Title</h2><p class="text-lg">Description</p></section>`
+GOOD: `<Section tone="page"><Container><Heading tag="h2" variant="section-title">Title</Heading><Text variant="lead">Description</Text></Container></Section>`
 
-### 🚫 Ghost button z opacity
-DOBRZE: `<button class="bg-white/5 text-brand-dark/70">` jest niewidoczny na jasnym tle.
-DOBRZE: Ghost button = border + solid text. Always visible.
+### 🚫 Ghost buttons with opacity
+GOOD: `<button class="bg-white/5 text-brand-dark/70">` is invisible on a light background.
+GOOD: A ghost button uses a border and solid text. Always keep it visible.
 
-### 🚫 Przycisk bez text swap (roll tekstu)
-ZLE: własny `<a class="ui-button">` z samym tekstem albo liczenie, że efekt hover "sam się zrobi".
-DOBRZE: `Button.astro` ma text swap wbudowany domyślnie (wrap `.ui-button-text-wrap` z dwoma spany, roll 600ms na hover + wypełnienie `::after`). `hoverText` podajesz TYLKO gdy labelka na hover ma być inna; bez niego roll pokazuje ten sam tekst. Raw wrap strukturę pisz ręcznie wyłącznie tam, gdzie Button.astro nie wchodzi (navbar, cookie consent), i zawsze z pełnym `.ui-button-text-wrap` oraz `ui-type-cta-label` (bez tego tekst dostaje font body zamiast fontu CTA).
+### 🚫 Buttons without text swap
+BAD: A custom `<a class="ui-button">` with only text, or relying on the hover effect to appear automatically.
+GOOD: `Button.astro` includes text swap by default. It wraps two spans in `.ui-button-text-wrap`, rolls the text over 600ms on hover and adds the fill through `::after`. Set `hoverText` only when the hover label should differ. Without it, the roll displays the same text. Write the raw wrapper manually only where `Button.astro` cannot be used, such as the navbar or cookie consent, and always include the full `.ui-button-text-wrap` and `ui-type-cta-label`. Without that class, the text uses the body font instead of the CTA font.
 
-### 🚫 Ciemne sekcje
-ZLE: `<Section tone="base">` na ciemnym tle bez białego tekstu.
-DOBRZE: Tylko `page` (biały), `base` (off-white), `accent` (brand). Żadnych granatów, czerni.
+### 🚫 Dark sections
+BAD: `<Section tone="base">` on a dark background without white text.
+GOOD: Use only `page` for white, `base` for off-white and `accent` for the brand accent. Do not introduce navy or black section tones.
 
-### 🚫 Generic 3-kolumnowy layout wszędzie
-DOBRZE: "3 kolumny, 6 kart, równo rozłożone" wygląda jak każdy template.
-DOBRZE: Zmieniaj układy. 2+1, staggered, grid z różnymi proporcjami. Nie bądź przewidywalny.
+### 🚫 Generic three-column layouts everywhere
+BAD: "Three columns, six cards, evenly distributed" looks like every other template.
+GOOD: Vary the layouts. Use 2+1, staggered arrangements and grids with different proportions. Avoid predictable repetition.
 
-### 🚫 Własny hover lift na kartach (translate/shadow/border na hover)
-DOBRZE: `class="rounded-2xl border hover:-translate-y-1 hover:shadow-xl transition-all"` na karcie, każdy blok miałby inną animację, a reveal w motion.css i tak ją nadpisuje (używa własności `translate` z wyższą specyficznością).
-DOBRZE: klasa `ui-card-interactive` na kontenerze karty. Jedna animacja dla wszystkich kart w template, lift `translateY(-0.25rem)` przez `transform`, border brand-primary 34% oraz shadow, 250ms easeOutCubic. Interakcja z data-motion jest obsłużona globalnie w motion.css. Dodajesz klasę tylko kartom, które mają reagować na hover; statyczne karty zostają statyczne.
+### 🚫 Custom hover lift on cards
+BAD: `class="rounded-2xl border hover:-translate-y-1 hover:shadow-xl transition-all"` on a card. Every block would have a different animation, and `motion.css` already overrides it through the higher-specificity `translate` property used by reveal motion.
+GOOD: Use the `ui-card-interactive` class on the card container. One animation applies to all interactive cards in the template: `translateY(-0.25rem)` through `transform`, a brand-primary border at 34% opacity and a shadow with a 250ms easeOutCubic transition. The `data-motion` interaction is handled globally in `motion.css`. Add the class only to cards that should react to hover. Static cards remain static.
 
 ---
 
 ## 2. Design preferences
 
-- **Mobile-first:** klasy domyślne = mobile, `md:` = desktop
-- **Typografia:** bez Inter, Roboto, Space Grotesk. Nova self-hostuje Outfit, Satoshi i Gambarino w `src/styles/fonts.css`; nowe fonty doładowujesz przez `npm run assets:fonts`, nigdy przez Google Fonts CDN. Używaj `--font-sans` i `--font-heading` z themes.css.
-- **Kolory:** stonowana paleta + 1 akcent. Żadnych gradientów purple-blue
-- **Layout:** dużo przestrzeni, nie zagęszczaj. Sekcje mają oddychać
-- **Zdjęcia:** WebP, max 200KB, bez stockowych uśmiechniętych ludzi
-- **Motion:** subtelny scroll reveal; dekoracje są statyczne domyślnie, a ich jawne wyjątki muszą respektować reduced motion
-- **Separatory:** używaj cienkich linii, beamów i geometrycznych kształtów, nie kropek
+- **Mobile-first:** default classes are mobile, `md:` is desktop
+- **Typography:** do not use Inter, Roboto or Space Grotesk. Nova self-hosts Outfit, Satoshi and Gambarino in `src/styles/fonts.css`. Load new fonts through `npm run assets:fonts`, never through Google Fonts CDN. Use `--font-sans` and `--font-heading` from `themes.css`.
+- **Colors:** muted palette plus one accent. No purple-blue gradients
+- **Layout:** use generous space and do not make sections dense
+- **Photography:** WebP, maximum 200KB, without stock photos of smiling people
+- **Motion:** subtle scroll reveal. Decorations are static by default, and explicit exceptions must respect reduced motion
+- **Separators:** use thin lines, beams and geometric shapes, not dots
 
 ---
 
-## 3. Obowiązkowe zasady techniczne
+## 3. Mandatory technical rules
 
-1. Każdy text → `Text.astro` lub `Heading.astro` (nigdy `<p>`, `<h1>`)
-2. Każda sekcja → `Section.astro` z `Container.astro` wewnątrz
-3. Importy przez aliasy (`@components/`, `@utils/`, `@data/`)
-4. Trailing slash `/` na wszystkich wewnętrznych linkach
-5. Po zmianach: `npm run check:atomic -- --scan-dirs src/components/[nazwa]`
-6. Lighthouse: Performance 95+, Accessibility 95+, SEO 100
-7. Każdy przycisk/CTA → atom `Button.astro` (text swap i wypełnienie `::after` są domyślne, nic nie włączasz). `hoverText` tylko do podmiany labelki na hover
-8. Każda interaktywna karta → klasa `ui-card-interactive` na kontenerze (kontrakt w `components.css`, interplay z motion w `motion.css`). Zero własnych `hover:-translate-y-*`, `hover:shadow-*`, `hover:border-*` na kartach. Test kontraktowy: `card-contract.test.ts`
+1. Every text element goes through `Text.astro` or `Heading.astro`, never raw `<p>` or `<h1>` elements
+2. Every section uses `Section.astro` with `Container.astro` inside
+3. Use aliases for imports: `@components/`, `@utils/`, `@data/`
+4. Add a trailing slash `/` to all internal links
+5. After changes, run `npm run check:atomic -- --scan-dirs src/components/[name]`
+6. Lighthouse targets: Performance 95+, Accessibility 95+, SEO 100
+7. Every button or CTA uses the `Button.astro` atom. Text swap and the `::after` fill are enabled by default. Use `hoverText` only to change the hover label
+8. Every interactive card uses the `ui-card-interactive` class on its container. The contract lives in `components.css` and interacts with motion through `motion.css`. Do not use custom `hover:-translate-y-*`, `hover:shadow-*` or `hover:border-*` classes on cards. The contract test is `card-contract.test.ts`

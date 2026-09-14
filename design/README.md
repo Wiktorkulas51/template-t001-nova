@@ -1,22 +1,22 @@
-# Profil wizualny Nova
+# Nova Visual Profile
 
-To repozytorium publikuje jeden spójny profil wizualny: `nova.md`. Plik
-opisuje tokeny kolorów, odstępów, promieni, typografii i animacji używane przez
-komponenty template’u Nova.
+This repository publishes one coherent visual profile: `nova.md`. The file
+describes the color, spacing, radius, typography and animation tokens used by
+the Nova template components.
 
-## Synchronizacja
+## Synchronization
 
-Po zmianie tokenów uruchom:
+After changing tokens, run:
 
 ```bash
 npm run design:sync
 npm run design:lint
 ```
 
-Skrypt synchronizuje profil do `src/styles/themes.css`,
-`src/styles/tailwind-theme.css` oraz `tailwind.tokens.js`. Pliki wygenerowane
-przez skrypt są częścią repozytorium, aby build po klonowaniu był powtarzalny.
+The script synchronizes the profile to `src/styles/themes.css`,
+`src/styles/tailwind-theme.css` and `tailwind.tokens.js`. Generated files remain
+in the repository so builds are reproducible after cloning.
 
-Nova jest jedynym profilem obsługiwanym przez stronę i wewnętrzne Studio.
-Nowe kierunki wizualne powinny powstawać w osobnym repozytorium lub jako nowy
-template, a nie jako ukryty przełącznik w tym produkcie.
+Nova is the only profile supported by the site and the internal Studio. New
+visual directions should be developed in a separate repository or as a new
+template, rather than as a hidden switch in this product.

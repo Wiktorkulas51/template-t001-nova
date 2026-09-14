@@ -1,18 +1,18 @@
-# Placeholder assets
+# Placeholder Assets
 
-Neutralny zestaw assetów do szybkiego prototypowania bloków w Starter Kicie.
+A neutral asset set for quickly prototyping blocks in the Starter Kit.
 
-| Asset | Przeznaczenie |
+| Asset | Use |
 | --- | --- |
-| `image-landscape.svg` | Szerokie zdjęcia, hero split, content split |
-| `image-square.svg` | Karty, portfolio, siatki usług |
-| `image-portrait.svg` | Zdjęcia pionowe, profile, bento |
-| `image-gray.svg` | Prosty szary fallback bez charakteru branżowego |
-| `video-poster.svg` | Poster dla hero video i bloków video |
-| `video-placeholder.mp4` | Krótka pętla video do testów autoplay i posterów |
-| `logo-placeholder.svg` | Neutralny fallback logo do makiet i Studio |
+| `image-landscape.svg` | Wide images, split heroes and content splits |
+| `image-square.svg` | Cards, portfolio grids and service grids |
+| `image-portrait.svg` | Portrait images, profiles and bento layouts |
+| `image-gray.svg` | Simple gray fallback without industry-specific styling |
+| `video-poster.svg` | Poster for video heroes and video blocks |
+| `video-placeholder.mp4` | Short loop for testing autoplay and posters |
+| `logo-placeholder.svg` | Neutral logo fallback for mockups and Studio |
 
-Ścieżki w komponentach publicznych:
+Public component paths:
 
 ```text
 /assets/placeholders/image-landscape.svg
@@ -24,4 +24,5 @@ Neutralny zestaw assetów do szybkiego prototypowania bloków w Starter Kicie.
 /assets/placeholders/logo-placeholder.svg
 ```
 
-Assety są celowo neutralne. Przy wdrożeniu klienta należy podmienić je na materiały klienta albo wartości z plików JSON.
+These assets are intentionally neutral. When deploying for a client, replace them
+with client-owned materials or values from the JSON files.
