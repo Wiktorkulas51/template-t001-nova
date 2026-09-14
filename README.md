@@ -26,6 +26,18 @@ npm run dev
 
 Astro will display the local development URL in the terminal.
 
+## AI-assisted development
+
+Nova is structured for fast customization with Cursor, Claude, Codex and GitHub Copilot. The homepage is data-driven, sections are registered and reusable, design tokens are documented, and validation commands catch common mistakes before deployment.
+
+Start with [`AI-QUICKSTART.md`](AI-QUICKSTART.md). After an AI-assisted change, run:
+
+```bash
+npm run ai:check
+```
+
+Use `npm run build` before packaging or publishing the template.
+
 ## Documentation
 
 - `CUSTOMIZATION.md`, brand, content, image and token customization.

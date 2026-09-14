@@ -45,6 +45,7 @@
     "check:links": "tsx src/scripts/check-links.ts",
     "check:page-registry": "tsx src/scripts/check-page-registry.ts",
     "check:data": "tsx src/scripts/check-data-contracts.ts",
+    "ai:check": "npm run check:types && npm run check:data && npm run check:imports && npm run check:registrations && npm run check:motion && npm run test -- --run",
     "check:images": "tsx src/scripts/check-images.ts",
     "build:prod": "npm run build",
     "package:marketplace": "node scripts/package-marketplace.mjs",
