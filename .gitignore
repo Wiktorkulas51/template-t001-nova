@@ -45,4 +45,12 @@ audit-reports/
 # Marketplace archives are generated locally and are not source files.
 release/
 
+# Internal WebScale workflow files are kept locally and are not part of the public theme.
+AGENTS.md
+TEMPLATE.md
+.docs/
+.impeccable/
+.vscode/
+archive/
+
 dev-server.log
