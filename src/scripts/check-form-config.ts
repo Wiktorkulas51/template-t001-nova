@@ -16,7 +16,7 @@ const forbiddenClientValues = [
   'twojafirma.pl',
   'smtp.example.com',
   'kontakt@twojafirma.pl',
-  'niepowiem51@gmail.com',
+  'contact@yourcompany.com',
 ];
 
 if (isClientMode) {

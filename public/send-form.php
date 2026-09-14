@@ -7,7 +7,7 @@ declare(strict_types=1);
  */
 
 // Adres testowy. Przed wdrożeniem klienta zmień go na docelową skrzynkę.
-$CONTACT_EMAIL = 'niepowiem51@gmail.com';
+$CONTACT_EMAIL = 'contact@yourcompany.com';
 $SITE_NAME = 'Twoja Firma';
 $MAIL_SUBJECT = 'Nowa wiadomosc ze strony Twoja Firma';
 $ALLOWED_ORIGINS = [
