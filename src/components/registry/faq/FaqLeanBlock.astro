@@ -1,5 +1,5 @@
 ---
-// Dlaczego: FaqLeanBlock to wierna kopia sekcji FAQ z projektu lean-creative
+// Dlaczego: FaqLeanBlock zachowuje ustalony układ sekcji FAQ
 // (accordion details/summary z plusem obracanym o 45 stopni po otwarciu).
 // Klienckie tokeny zamieniono na globalne tokeny brand starter-kita,
 // and the client content was replaced with generic PL/EN data.
@@ -67,7 +67,7 @@ const items = t.items ?? [];
 </Section>
 
 <style>
-  /* Why: smooth content development FAQ moved 1:1 from lean-creative.css
+  /* Why: smooth content development FAQ uses the shared template treatment
      klienta (grid-template-rows 0fr -> 1fr), bo Tailwind nie ma gotowych klas
      for height animation.*/
   .lc-faq-content {

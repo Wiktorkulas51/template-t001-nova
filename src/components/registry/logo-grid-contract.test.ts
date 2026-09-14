@@ -8,7 +8,7 @@ import LogoGridBlock from '@components/registry/about/LogoGridBlock.astro';
 // and checks the HTML structure through cheerio. Thanks to this, it detects regressions in
 // rendering without running a full build, and expectations reflect
 // the actual output of the component, not a hand-built string. LogoGridBlock is
-// a copy of the "LOGOTYPES" section from the lean-creative project: STATIC grid of logos
+// a copy of the "LOGOTYPES" section: STATIC grid of logos
 // (2 / 3 / 5 kolumn), a nie karuzela jak MarqueeBlock czy TrustBarBlock.
 
 const PLACEHOLDER_SRC = '/assets/placeholders/logo-placeholder.svg';
@@ -134,7 +134,7 @@ describe('LogoGridBlock, kontrakt renderowania', () => {
       expect(html).not.toContain('budvar');
       expect(html).not.toContain('toyota');
       expect(html).not.toContain('mokate');
-      expect(html).not.toContain('/lean-creative/logos/');
+      expect(html).not.toContain('/client-specific/logos/');
     });
   });
 

@@ -37,7 +37,7 @@ interface Props {
 	description?: string;
 	ogImage?: string;
 	noIndex?: boolean;
-	/** Page language code (why: hardcoded "pl" confused Google for EN clients, e.g. tom-ros). */
+	/** Page language code used to keep document metadata aligned with the rendered locale. */
 	lang?: string;
 	locale?: NovaLocale;
 	theme?: string;
@@ -319,7 +319,7 @@ const mainPaddingStyle = fullBleedTop
 				<Icon name="shapes" size="1.25rem" />
 			</a>
 		)}
-		<!-- Why: without transition:animate on main, like for Tom Ros client
+		<!-- Why: without transition:animate on main, view transitions can leave stale layout state
 		     (ClientRouter + zero directives). Astro swaps DOM without fading
 		     main, and scroll is reset by lenis.js after after-swap (behavior:instant),
 		     so there is no "scroll up" effect when navigating from mid-page. -->

@@ -1,4 +1,4 @@
-// Kopia skryptu z projektu przemyslaw-stalanowski (1:1).
+// Generate deterministic gallery thumbnails for local previews.
 // Generuje miniatury do public/assets/image-derivatives/thumbs/
 // based on photos from public/assets/images. Run: npm run assets:thumbs
 import fs from 'node:fs';

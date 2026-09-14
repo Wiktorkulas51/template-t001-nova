@@ -8,7 +8,7 @@ import AboutExpertBlock from '@components/registry/about/AboutExpertBlock.astro'
 // services-media-cards-contract.test.ts) and checks the HTML structure via
 // Cheerio. This detects regressions in bare-metal rendering
 // full build, and expectations reflect the actual output of the component.
-// The component is a copy of the "ABOUT US" and "TEAM" sections from the lean-creative project,
+// The component combines the "ABOUT US" and "TEAM" sections from the reference layout,
 // so the test also ensures that the customer's personal data has not been leaked.
 
 const PLACEHOLDER_SRC = '/assets/placeholders/image-portrait.svg';
@@ -163,7 +163,7 @@ describe('AboutExpertBlock, kontrakt renderowania', () => {
     expect(html).not.toContain('data-reveal');
     expect(html).not.toContain('Piotr');
     expect(html).not.toContain('Kowalczyk');
-    expect(html).not.toContain('Lean Creative');
+    expect(html).not.toContain('client-specific');
     expect(html).not.toContain('piotrkowalczyk');
   });
 

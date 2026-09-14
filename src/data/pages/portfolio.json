@@ -8,7 +8,7 @@
     { "id": "navbar", "variant": "plain" },
     { "id": "portfolio", "variant": "bento" },
     { "id": "testimonials", "variant": "marquee" },
-    { "id": "ctaTomRos", "variant": "default" },
+    { "id": "novaCta", "variant": "default" },
     { "id": "footer", "variant": "columns" }
   ]
 }

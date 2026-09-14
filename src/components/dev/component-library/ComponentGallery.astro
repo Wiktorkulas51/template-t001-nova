@@ -75,23 +75,6 @@ const typeLabels: Record<DeveloperCatalogType, string> = {
   decoration: galleryCopy.typeDecorationsLabel,
 };
 
-// Why: we build the client filter from actually existing sources (source)
-// in the catalogue, omitting the basic "starter" set. The per client button shows
-// only blocks from a given client project.
-const clientFilters = [...new Set(
-  catalog
-    .map((item) => item.source)
-    .filter((source): source is NonNullable<DeveloperCatalogMetadata['source']> => !!source && source !== 'starter'),
-)]
-  .map((source, index) => ({
-    source,
-    label: catalog.find((item) => item.source === source)?.sourceLabel || source,
-    index,
-    count: catalog.filter((item) => item.source === source).length,
-  }))
-  .sort((a, b) => b.count - a.count || a.index - b.index)
-  .map(({ source }) => source);
-
 const categoryTabs = sections.map((section) => {
   const count = section.sectionId === 'all'
     ? catalog.length
@@ -109,31 +92,6 @@ const categoryTabs = sections.map((section) => {
     },
   };
 });
-
-const clientTabs = [
-  {
-    id: 'all',
-    label: galleryCopy.allClientsLabel,
-    data: {
-      'data-client-button': 'true',
-      'data-client-id': 'all',
-      'data-client-search': String(galleryCopy.allClientsLabel).toLowerCase(),
-    },
-  },
-  ...clientFilters.map((source) => {
-    const clientLabel = catalog.find((item) => item.source === source)?.sourceLabel || source;
-
-    return {
-      id: source,
-      label: `${clientLabel} ${catalog.filter((item) => item.source === source).length}`,
-      data: {
-        'data-client-button': 'true',
-        'data-client-id': source,
-        'data-client-search': `${clientLabel} ${source}`.toLowerCase(),
-      },
-    };
-  }),
-];
 
 function previewHref(item: DeveloperCatalogMetadata) {
   return `/dev/components/${encodeURIComponent(item.sectionId)}/${encodeURIComponent(item.variantId)}/`;
@@ -198,7 +156,6 @@ function pluralVariants(n: number, scope: 'kategoria' | 'katalog' = 'kategoria')
         data-component-gallery
         data-active-section={activeSectionId}
         data-active-type={activeCatalogType}
-        data-active-client="all"
         data-load-initial-count={INITIAL_VISIBLE_COUNT}
         data-load-batch-size={LOAD_BATCH_SIZE}
       >
@@ -267,21 +224,6 @@ function pluralVariants(n: number, scope: 'kategoria' | 'katalog' = 'kategoria')
             />
           </div>
 
-          {clientFilters.length > 0 && (
-            <div class="component-filter-line">
-              <div class="component-filter-label">
-                <Text variant="accent-label" class="text-brand-dark/45">{galleryCopy.clientSearchLabel}</Text>
-              </div>
-            <DeveloperTabs
-                client:load
-                tabs={clientTabs}
-                activeTab="all"
-                tabGroup="client"
-                className="component-client-nav component-filter-rail"
-                aria-label={galleryCopy.clientSearchLabel}
-              />
-            </div>
-          )}
         </nav>
 
         <div class="min-w-0 space-y-1">
@@ -299,8 +241,7 @@ function pluralVariants(n: number, scope: 'kategoria' | 'katalog' = 'kategoria')
                 radius="lg"
                 elevation="soft"
                 class="component-card group min-w-0"
-                data-search={String(`${item.sectionLabel} ${item.variantId} ${item.componentName} ${item.source ?? ''} ${item.sourceLabel ?? ''} ${item.groupLabel} ${typeLabels[item.catalogType]} ${item.sectionId}`).toLowerCase()}
-                data-client={item.source || 'starter'}
+                data-search={String(`${item.sectionLabel} ${item.variantId} ${item.componentName} ${item.groupLabel} ${typeLabels[item.catalogType]} ${item.sectionId}`).toLowerCase()}
                 data-group={item.groupId}
                 data-catalog-type={item.catalogType}
                 data-component-card
@@ -328,12 +269,6 @@ function pluralVariants(n: number, scope: 'kategoria' | 'katalog' = 'kategoria')
                       <code class="shrink-0 rounded bg-brand-dark/5 px-1.5 py-0.5 font-mono text-[11px] font-semibold text-brand-primary">{item.sectionId}</code>
                       <Text variant="accent-label" class="truncate text-brand-dark/45">{item.componentName}</Text>
                       <span class="shrink-0 rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-brand-dark/50 ring-1 ring-inset ring-brand-dark/10">{typeLabels[item.catalogType]}</span>
-                      {item.source && item.source !== 'starter' && (
-                        <span class:list={[
-                          "shrink-0 rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider",
-                          item.source === 'heinrich' ? 'bg-brand-primary/10 text-brand-primary' : item.source === 'tymoteusz' ? 'bg-brand-dark/10 text-brand-dark' : item.source === 'marek-jodlowski' ? 'bg-brand-accent/15 text-brand-accent' : item.source === 'promix' ? 'bg-emerald-500/10 text-emerald-600' : item.source === 'lean-creative' ? 'bg-sky-500/10 text-sky-600' : 'bg-brand-accent/15 text-brand-accent',
-                        ]}>{item.sourceLabel ?? item.source}</span>
-                      )}
                     </div>
                     <Heading tag="h3" variant="feature-title" class="truncate">{itemLabel(item)}</Heading>
                   </div>
@@ -580,7 +515,6 @@ function pluralVariants(n: number, scope: 'kategoria' | 'katalog' = 'kategoria')
       const empty = root.querySelector('#component-search-empty');
       const categoryButtons = Array.from(root.querySelectorAll('[data-category-button]'));
       const typeButtons = Array.from(root.querySelectorAll('[data-type-button]'));
-      const clientButtons = Array.from(root.querySelectorAll('[data-client-button]'));
       const categoryEmpty = root.querySelector('#category-search-empty');
       const categoryHint = root.querySelector('#category-match-hint');
       const categoryHintLinks = root.querySelector('#category-match-links');
@@ -608,7 +542,7 @@ function pluralVariants(n: number, scope: 'kategoria' | 'katalog' = 'kategoria')
       const readGalleryState = () => {
         try {
           const stored = sessionStorage.getItem(galleryStateKey);
-          if (!stored) return { query: '', sectionId: root.dataset.activeSection || 'all', type: root.dataset.activeType || 'all', client: 'all' };
+          if (!stored) return { query: '', sectionId: root.dataset.activeSection || 'all', type: root.dataset.activeType || 'all' };
 
           const parsed = JSON.parse(stored);
           return {
@@ -617,10 +551,9 @@ function pluralVariants(n: number, scope: 'kategoria' | 'katalog' = 'kategoria')
               ? parsed.sectionId
               : root.dataset.activeSection || 'all',
             type: typeof parsed?.type === 'string' ? parsed.type : root.dataset.activeType || 'all',
-            client: typeof parsed?.client === 'string' ? parsed.client : 'all',
           };
         } catch {
-          return { query: '', sectionId: root.dataset.activeSection || 'all', type: root.dataset.activeType || 'all', client: 'all' };
+          return { query: '', sectionId: root.dataset.activeSection || 'all', type: root.dataset.activeType || 'all' };
         }
       };
 
@@ -630,24 +563,10 @@ function pluralVariants(n: number, scope: 'kategoria' | 'katalog' = 'kategoria')
             query: search?.value || '',
             sectionId,
             type: root.dataset.activeType || 'all',
-            client: root.dataset.activeClient || 'all',
           }));
         } catch {
           // Missing sessionStorage cannot block gallery search.
         }
-      };
-
-      // Why: the client filter works within the page (without navigation), so
-      // stan aktywny synchronizujemy z wybranym tabem i aria-current.
-      const applyClientFilter = (clientId) => {
-        root.dataset.activeClient = clientId;
-        revealedCount = Math.min(cards.length, initialVisibleCount);
-        clientButtons.forEach((button) => {
-          const isActive = button.dataset.clientId === clientId;
-          if (isActive) button.setAttribute('aria-current', 'page');
-          else button.removeAttribute('aria-current');
-        });
-        selectVercelTab('client', clientId);
       };
 
       const applyTypeFilter = (catalogType) => {
@@ -737,7 +656,6 @@ function pluralVariants(n: number, scope: 'kategoria' | 'katalog' = 'kategoria')
       const updateLoadMore = () => {
         // Why: the counter takes into account all active filters, including the phrase,
         // so that the button does not reveal games without hits.
-        const activeClient = root.dataset.activeClient || 'all';
         const activeSection = root.dataset.activeSection || 'all';
         const activeType = root.dataset.activeType || 'all';
         const query = normalizeSearch(search?.value || '');
@@ -745,7 +663,6 @@ function pluralVariants(n: number, scope: 'kategoria' | 'katalog' = 'kategoria')
           card.getAttribute('data-load-hidden') === 'true'
           && (!query || value.includes(query))
           && !card.classList.contains('hidden')
-          && (activeClient === 'all' || (card.getAttribute('data-client') || 'starter') === activeClient)
           && (activeType === 'all' || card.getAttribute('data-catalog-type') === activeType)
           && (activeSection === 'all' || (card.getAttribute('data-group') || '') === activeSection)
         ).length;
@@ -754,8 +671,7 @@ function pluralVariants(n: number, scope: 'kategoria' | 'katalog' = 'kategoria')
       };
 
       const revealNextBatch = () => {
-        // Why: We only reveal tabs not hidden by search/filter
-        // client so that "show next" does not add items that are already visible.
+        // Why: We only reveal cards not hidden by the active filters.
         const hiddenCards = cards.filter((card) =>
           card.getAttribute('data-load-hidden') === 'true'
           && !card.classList.contains('hidden')
@@ -784,7 +700,6 @@ function pluralVariants(n: number, scope: 'kategoria' | 'katalog' = 'kategoria')
 
       const updateSearch = () => {
         const query = normalizeSearch(search.value);
-        const activeClient = root.dataset.activeClient || 'all';
         const activeSection = root.dataset.activeSection || 'all';
         const activeType = root.dataset.activeType || 'all';
         if (query !== lastQuery) {
@@ -797,13 +712,9 @@ function pluralVariants(n: number, scope: 'kategoria' | 'katalog' = 'kategoria')
         let renderedCards = 0;
 
         searchableCards.forEach(({ card, value }) => {
-          // Why: customer and category filter combines with AND search -
-          // the card must match the phrase AND the selected source (data-client)
-          // ORAZ do aktywnej kategorii (data-group).
-          const clientMatches = activeClient === 'all' || (card.getAttribute('data-client') || 'starter') === activeClient;
           const typeMatches = activeType === 'all' || card.getAttribute('data-catalog-type') === activeType;
           const sectionMatches = activeSection === 'all' || (card.getAttribute('data-group') || '') === activeSection;
-          const matches = (!query || value.includes(query)) && clientMatches && typeMatches && sectionMatches;
+          const matches = (!query || value.includes(query)) && typeMatches && sectionMatches;
           card.classList.toggle('hidden', !matches);
           if (matches) {
             const shouldRender = renderedCards < revealedCount;
@@ -840,9 +751,7 @@ function pluralVariants(n: number, scope: 'kategoria' | 'katalog' = 'kategoria')
         const showHint = query !== '' && visibleCards === 0 && matchedCategories.length > 0;
         categoryHint?.classList.toggle('hidden', !showHint);
         categoryEmpty?.classList.toggle('hidden', visibleCategories !== 0 || query === '');
-        // Why: with an active client filter with no hits, we show empty
-        // even without a search phrase, so that the empty grid doesn't confuse you.
-        empty?.classList.toggle('hidden', visibleCards !== 0 || (query === '' && activeClient === 'all') || showHint);
+        empty?.classList.toggle('hidden', visibleCards !== 0 || query === '' || showHint);
         if (categoryHintLinks) {
           categoryHintLinks.replaceChildren();
           if (showHint) {
@@ -877,7 +786,6 @@ function pluralVariants(n: number, scope: 'kategoria' | 'katalog' = 'kategoria')
         search.dispatchEvent(new Event('component-search-restore'));
         search.dispatchEvent(new Event('input', { bubbles: true }));
       }
-      applyClientFilter(restoreState.client);
       const routeHasCategory = (root.dataset.activeSection || 'all') !== 'all';
       applyTypeFilter(routeHasCategory ? (root.dataset.activeType || 'all') : (restoreState.type || 'all'));
       // Dlaczego: aktywna kategoria wynika z URL (server-rendered data-active-section),
@@ -901,15 +809,6 @@ function pluralVariants(n: number, scope: 'kategoria' | 'katalog' = 'kategoria')
         };
         button.addEventListener('click', handleCategoryClick);
         cleanups.push(() => button.removeEventListener('click', handleCategoryClick));
-      });
-      clientButtons.forEach((button) => {
-        const handleClientClick = () => {
-          applyClientFilter(button.dataset.clientId || 'all');
-          persistGalleryState();
-          updateSearch();
-        };
-        button.addEventListener('click', handleClientClick);
-        cleanups.push(() => button.removeEventListener('click', handleClientClick));
       });
 
       loadMoreButton?.addEventListener('click', revealNextBatch);

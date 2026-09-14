@@ -163,12 +163,11 @@ describe('ServicesMediaCardsBlock, kontrakt renderowania', () => {
     });
   });
 
-  it('nie zawiera danych klienta (Lean Creative)', async () => {
+  it('nie zawiera danych projektu źródłowego', async () => {
     const html = await renderBlock();
-    expect(html).not.toContain('Lean Creative');
     expect(html).not.toContain('Optymalizacja produkcji');
     expect(html).not.toContain('Szkolenia Lean');
-    expect(html).not.toContain('lean-creative-service');
+    expect(html).not.toContain('client-specific');
   });
 
   it('nie zawiera systemu data-reveal ani klienckich tokenów CSS', async () => {

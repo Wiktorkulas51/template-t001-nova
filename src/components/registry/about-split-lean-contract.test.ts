@@ -6,7 +6,7 @@ import AboutSplitLeanBlock from '@components/registry/about/AboutSplitLeanBlock.
 // Dlaczego: test kontraktowy renderuje PRAWDZIWY komponent Astro przez
 // experimental_AstroContainer(renderToString from astro) and checks the structure
 // HTML by cheerio. Expectations reflect the "WHO WE ARE" section
-// ze strony o-nas.astro projektu lean-creative: split 2 kolumny z tekstem,
+// ze strony referencyjnej: split 2 kolumny z tekstem,
 // obrazem i gradientowym overlay. Wzorzec: services-media-cards-contract.test.ts.
 
 let container: AstroContainer;
@@ -110,12 +110,11 @@ describe('AboutSplitLeanBlock, kontrakt renderowania', () => {
       expect($('h2').text()).toContain('Linia 1');
     });
 
-    it('nie zawiera danych klienta lean-creative', async () => {
+    it('nie zawiera danych projektu źródłowego', async () => {
       const $ = cheerio.load(await renderBlock());
       const html = $('body').html() ?? '';
-      expect(html).not.toContain('Lean Creative');
       expect(html).not.toContain('Piotr');
-      expect(html).not.toContain('leancreative');
+      expect(html).not.toContain('client-specific');
     });
 
     it('nie zawiera klas data-reveal ani klienckich tokenów', async () => {

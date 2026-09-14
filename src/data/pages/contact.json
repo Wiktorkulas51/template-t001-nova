@@ -6,7 +6,7 @@
   "heading": "Contact",
   "sections": [
     { "id": "navbar", "variant": "plain" },
-    { "id": "contactInfoForm", "variant": "default" },
+    { "id": "contact", "variant": "default" },
     { "id": "footer", "variant": "columns" }
   ]
 }

@@ -145,9 +145,9 @@ describe('FaqLeanBlock, kontrakt renderowania', () => {
     });
   });
 
-  it('nie zawiera danych klienta (Lean Creative)', async () => {
+  it('nie zawiera danych projektu źródłowego', async () => {
     const html = await renderBlock();
-    expect(html).not.toContain('Lean Creative');
+    expect(html).not.toContain('client-specific');
     expect(html).not.toContain('audyt');
     expect(html).not.toContain('szkolenia');
     expect(html).not.toContain('zakładu');

@@ -1,6 +1,6 @@
 ---
 // Why: HeroPhotoBlock is a visual copy of the full-screen hero from the project
-// lean-creative (cover photo + gradient + trust logo marquee).
+// reference layout (cover photo + gradient + trust logo marquee).
 // Client color tokens have been converted to GLOBAL brand starter-kit tokens,
 // logotype file names to the general "company-N.png". The content input took over
 // globalny system motion, a Section daje data-motion-section.
@@ -29,7 +29,7 @@ const {
   class: className = "",
 } = Astro.props as Props;
 
-// Why: "props || json" pattern (like in HeroTomRosBlock) to make the block work
+// Why: "props || json" pattern makes the block work
 // alone with the section data, and PageBuilder or CMS may have overwritten the content.
 const data = overrideData ?? jsonData;
 const t = data[locale] ?? data.pl;

@@ -6,7 +6,7 @@ import StepsNumberedBlock from '@components/registry/process/StepsNumberedBlock.
 // Dlaczego: test kontraktowy renderuje PRAWDZIWY komponent Astro przez
 // experimental_AstroContainer(renderToString from astro) and checks the structure
 // HTML by cheerio. Mirrors the "HOW WE DO" section of the project
-// lean-creative (o-nas.astro): centered header, grid of 3 steps with numbers
+// reference about page: centered header, grid of 3 steps with numbers
 // in squares, dashed arrows between steps and a gradient line under the grid.
 // Wzorzec: services-media-cards-contract.test.ts.
 
@@ -196,12 +196,12 @@ describe('StepsNumberedBlock, kontrakt renderowania', () => {
     });
   });
 
-  it('nie zawiera danych klienta Lean Creative ani systemu data-reveal', async () => {
+  it('nie zawiera danych projektu ani systemu data-reveal', async () => {
     const html = await renderBlock();
     expect(html).not.toContain('Wstępna analiza');
     expect(html).not.toContain('Wspólne projektowanie');
     expect(html).not.toContain('Budowanie kompetencji');
-    expect(html).not.toContain('lean-creative');
+    expect(html).not.toContain('client-specific');
     expect(html).not.toContain('data-reveal');
   });
 

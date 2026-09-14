@@ -1,6 +1,6 @@
 ---
 // Dlaczego: HeroStatsBlock to kopia wizualna sekcji HERO + STATS ze strony
-// o-nas.astro projektu lean-creative (accent-label, h1 z clamp, lead oraz
+// referencyjnej strony o-nas.astro (accent-label, h1 z clamp, lead oraz
 // statistics bar with dividing lines). One section: hero on top, stats
 // underneath. Client color tokens replaced with global tokens, and content
 // are general (zero customer data, no numbers 20+/50+ and no Lean Management phrases).
@@ -26,7 +26,7 @@ export interface Props {
 
 const { data, locale = "pl" } = Astro.props as Props;
 
-// Why: "props || json" pattern (as in HeroTomRosBlock) to block
+// Why: "props || json" pattern keeps the block configurable from both sources.
 // ran on its own from section data, and PageBuilder or CMS could
 // overwrite content with props. Fallback to pl protects against bad places.
 const t = data || jsonData[locale] || jsonData.pl;

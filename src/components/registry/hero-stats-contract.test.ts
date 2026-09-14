@@ -6,7 +6,7 @@ import HeroStatsBlock from '@components/registry/hero/HeroStatsBlock.astro';
 // Dlaczego: test kontraktowy renderuje PRAWDZIWY komponent Astro przez
 // experimental_AstroContainer(renderToString from astro) and checks the structure
 // HTML by cheerio. Expectations reflect the HERO + STATS section from
-// strony o-nas.astro projektu lean-creative: accent-label, h1 z clamp, lead
+// referencyjnej strony o-nas.astro: accent-label, h1 z clamp, lead
 // and a statistics grid with dividing lines. Pattern: services-media-cards-contract.test.ts.
 
 let container: AstroContainer;

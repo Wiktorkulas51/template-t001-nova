@@ -42,7 +42,7 @@ const {
 } = Astro.props as Props;
 
 // Why: videoSources normalizes props so as not to check further in the template
-// repeatedly whether the source array exists (pattern from tom-ros HeroBlock).
+// repeatedly whether the source array exists, following the shared hero pattern.
 const videoSources = Array.isArray(video?.sources) ? video.sources : [];
 const hasVideo = !!video && videoSources.length > 0;
 const poster = video?.poster;
@@ -107,7 +107,7 @@ const mimeForSource = (src: string): string => {
     )}
 
     <!-- Why: A dark gradient under the content ensures the readability of white text
-         regardless of the brightness of the video frames (pattern from tom-ros HeroBlock).-->
+         regardless of the brightness of the video frames. -->
     <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80"></div>
   </div>
 
@@ -171,7 +171,7 @@ const mimeForSource = (src: string): string => {
   // when the browser is idle (requestIdleCallback), and not immediately at
   // clash. Until then, the poster (static image) is visible - thanks to this
   // LCP nie czeka na wideo, a transfer na mobile jest minimalny. Wzorzec pochodzi
-  // z HeinrichHeroBlock (filip-halucha), z dodanym pomijaniem wideo na mobile.
+  // Shared video behavior with mobile playback disabled.
   const initHeroVideo = () => {
     if (document.documentElement.classList.contains('component-frame-thumbnail')) return;
 
@@ -232,7 +232,7 @@ const mimeForSource = (src: string): string => {
      hidden/showed immediately before the full Tailwind CSS is loaded
      (hidden md:block are classes from the sheet that work only after loading).
      Without this, on mobile you can see the video next to the poster for a moment and the media "skips"
-     on refresh. Pattern from tom-ros HeroMobileBlock.-->
+     on refresh. Shared mobile hero pattern. -->
 <style is:inline>
   #hero-video-media { display: none; }
   #hero-video-poster-mobile { display: none; }

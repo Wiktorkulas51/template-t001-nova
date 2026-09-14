@@ -46,29 +46,6 @@ const frameBodyClass = [
     min-height: 100%;
   }
 
-  /* Hero does not have a navbar in the isolated iframe, so it should not be reserved
-     space for the global header or create an additional scroll.*/
-  html:has(body.component-frame-heroTomRos),
-  body.component-frame-heroTomRos,
-  body.component-frame-heroTomRos main,
-  body.component-frame-heroTomRos .component-frame__canvas {
-    min-height: 100dvh;
-  }
-
-  body.component-frame-heroTomRos {
-    --site-header-height: 0rem;
-  }
-
-  body.component-frame-heroTomRos main {
-    padding-top: 0 !important;
-    overflow: hidden;
-  }
-
-  html:has(body.component-frame-heroTomRos),
-  body.component-frame-heroTomRos {
-    overflow: hidden !important;
-  }
-
   body.component-frame {
     min-width: 0;
     overflow-x: hidden;

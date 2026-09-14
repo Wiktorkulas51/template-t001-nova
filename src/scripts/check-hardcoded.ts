@@ -42,7 +42,7 @@ const ALLOWED_LABELS = new Set([
   'Następna',
   // Empty state RoomDetailBlock: UI message, not client content
   'Galeria zostanie uzupełniona.',
-  // Etykiety UI formularza kontaktowego (ContactWireframeBlock, biblioteka stalanowski)
+  // Contact form UI labels are allowed in data-driven components.
   'Strona internetowa',
   'Imię',
   'Nazwisko',
@@ -50,13 +50,13 @@ const ALLOWED_LABELS = new Set([
   'Wiadomość',
   'politykę prywatności',
   'Adres firmy',
-  // Etykiety UI kalkulatora (CalculatorWireframeBlock, biblioteka stalanowski)
+  // Calculator UI labels are allowed in data-driven components.
   'Wybierz usługę',
   'Wybrana usługa',
   'Dodatkowe opcje',
   'brak',
   'Szacunkowa wartość:',
-  // Wood certificate names (MaterialsWireframeBlock, Stalanowski library)
+  // Product certification names are allowed in data-driven components.
   'PEFC',
 ]);
 

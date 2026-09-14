@@ -1,5 +1,5 @@
 ---
-// Why: FeaturesOfferCardsBlock is a visual copy of the offers section from the tom-ros
+// Why: FeaturesOfferCardsBlock is a reusable visual treatment for offer cards
 // project (v1 "Offer Cards"): pricing cards with ghost number in Anton, red price, MOST
 // POPULAR badge in the middle offer and CTA as a button. Glow (ui-glow-sec + ui-glow-offers)
 // and font Anton are already in the core.css/fonts.css of the starter-kit, so the block looks
@@ -123,7 +123,7 @@ const numbered = list.map((item, index) => ({
             </span>
 
             <!-- Why: badge only in the middle card (popular) - diagonal
-                 in the corner of the card, as in the original tom-ros. -->
+                 in the corner of the card. -->
             {item.popular && (
               <span class="absolute right-0 top-0 rounded-bl-lg bg-brand-primary px-3 py-1 font-bold text-[10px] uppercase italic tracking-[0.18em] text-white">
                 {resolvedPopularBadge}

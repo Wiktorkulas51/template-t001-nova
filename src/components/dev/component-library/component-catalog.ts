@@ -3,13 +3,11 @@ import { SECTION_REGISTRY } from '@config/section-registry';
 import { createSectionDataCache, type SectionJsonModule } from '@utils/section-data';
 import DecorationCatalogPreview from './DecorationCatalogPreview.astro';
 import UiCatalogPreview from './UiCatalogPreview.astro';
-import { getDeveloperCatalogMetadata, type DeveloperCatalogMetadata, type DeveloperCatalogSource } from './catalog-registry';
+import { getDeveloperCatalogMetadata, type DeveloperCatalogMetadata } from './catalog-registry';
 
 export type DeveloperCatalogVariant = DeveloperCatalogMetadata & {
   component: any;
   props: Record<string, unknown>;
-  /** The source of the block, displayed as a badge in the gallery.*/
-  source?: DeveloperCatalogSource;
 };
 
 const dataModules = import.meta.glob<SectionJsonModule>('../../../data/sections/**/*.json', { eager: true });

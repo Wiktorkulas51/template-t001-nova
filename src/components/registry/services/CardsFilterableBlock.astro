@@ -1,5 +1,5 @@
 ---
-// Why: CardsFilterableBlock is a copy of the "Support Areas" section from the promix project
+// Why: CardsFilterableBlock is a reusable "Support Areas" section
 // (category filter, grid/list view switcher, lazy load of cards via IntersectionObserver).
 // Client color tokens were replaced with global brand starter kit tokens, the client reveal
 // system was removed, and client data was replaced with generic PL/EN content in JSON.
@@ -180,7 +180,7 @@ const INITIAL_MOBILE = 2;
 
 <script>
   // Why: all logic (filters, grid/list views, lazy load) remained
-  // ported 1:1 from the promix project and runs on #filterable-root
+  // Runs on #filterable-root and keeps filtering isolated to this block.
   // and data-* attributes, regardless of color classes.
   // Type annotations are necessary because Astro processes <script> as a TS module.
 

@@ -1,25 +1,6 @@
-import { SECTION_GROUPS, SECTION_REGISTRY, type StudioSource } from '@config/section-registry';
+import { SECTION_GROUPS, SECTION_REGISTRY } from '@config/section-registry';
 import decorationCatalog from '@data/dev/component-library/decoration-catalog.json';
 import uiCatalog from '@data/dev/component-library/ui-catalog.json';
-
-// Why: direct alias to StudioSource from section-registry/types.ts,
-// so that the list of customer sources has one source of truth (we avoid crossovers,
-// gdy dodamy nowego klienta).
-export type DeveloperCatalogSource = StudioSource;
-
-export const DEVELOPER_SOURCE_LABELS: Record<DeveloperCatalogSource, string> = {
-  starter: 'Starter Kit',
-  heinrich: 'Heinrich House Studio',
-  'tom-ros': 'Tom Ros',
-  'modern-house': 'Modern House',
-  tymoteusz: 'Tymoteusz Juszczak',
-  'marek-jodlowski': 'Marek Jodłowski',
-  promix: 'Promix',
-  'lean-creative': 'Lean Creative',
-  annawie: 'Anna Więckowska',
-  stalanowski: 'Przemysław Stałanowski',
-  klisik: 'Aleksandra Klisik',
-};
 
 export type DeveloperCatalogType = 'section' | 'ui' | 'pattern' | 'decoration';
 
@@ -39,8 +20,6 @@ export type DeveloperCatalogMetadata = {
   variantLabel?: string;
   componentName: string;
   hint?: string;
-  source?: DeveloperCatalogSource;
-  sourceLabel?: string;
   previewId?: string;
 };
 
@@ -59,8 +38,6 @@ export function getDeveloperCatalogMetadata(): DeveloperCatalogMetadata[] {
     Object.entries(entry.variants).forEach(([variantId, variant]) => {
       if (!variant.component) return;
 
-      const source = variant.source ?? entry.source;
-
       items.push({
         uid: items.length + 1,
         catalogType: 'section',
@@ -72,11 +49,6 @@ export function getDeveloperCatalogMetadata(): DeveloperCatalogMetadata[] {
         variantLabel: variant.label,
         componentName: variant.component,
         hint: entry.hint,
-        // Dlaczego: najpierw source wariantu, potem sekcji. Wariant kliencki
-        // in the starter section (e.g. hero.modernHouse) it must go under the filter
-        // client, even though the section is starter.
-        source,
-        sourceLabel: source ? DEVELOPER_SOURCE_LABELS[source] : undefined,
       });
     });
   });
@@ -92,7 +64,6 @@ export function getDeveloperCatalogMetadata(): DeveloperCatalogMetadata[] {
       variantId: item.variantId,
       componentName: item.componentName,
       hint: item.hint,
-      source: 'starter',
       previewId: item.previewId,
     });
   });
@@ -108,7 +79,6 @@ export function getDeveloperCatalogMetadata(): DeveloperCatalogMetadata[] {
       variantId: item.variantId,
       componentName: item.componentName,
       hint: item.hint,
-      source: 'starter',
       previewId: item.previewId,
     });
   });

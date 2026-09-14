@@ -1,5 +1,5 @@
 /* UI and shadcn compatibility variables.*/
-/* Override'y nawigacji per-theme (marek-jodlowski itd.) -> src/styles/theme-overrides.css */
+/* Theme-specific navigation overrides live in theme-overrides.css. */
 
 @layer base {
   .nav-transparent:not(.is-scrolled) {

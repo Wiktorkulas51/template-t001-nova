@@ -1,1 +1,1 @@
-export type BlockCategory = "core" | "client" | "catalog" | "legacy";
+export type BlockCategory = "core" | "catalog" | "legacy";

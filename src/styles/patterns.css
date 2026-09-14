@@ -5,8 +5,7 @@
 @layer components {
 
 /* ============================================================
-   Sekcje biblioteki heinrich - globalne klasy dekoracyjne
-   (przeniesione z filip-halucha, nazwy zneutralizowane na ui-*)
+   Shared decorative utility classes for the template
    ============================================================ */
 
 /* Konsole grid: subtelna siatka kropek jak patchbay (tlo dekoracyjne).
@@ -149,8 +148,7 @@
 }
 
 /* ============================================================
-   Tom-ros library: glow system + transformation wall + accent
-   Skopiowane z projektu tom-ros (klasy globalne, neutralne nazwy ui-*).
+   Shared glow system and display accent
    ============================================================ */
 
 /* Accent display (Barlow Condensed 900 italic, red) - used in hero
@@ -184,7 +182,7 @@
   }
 }
 
-/* Glow system: red section background glows (tom-ros library).*/
+/* Glow system for sections with a branded accent. */
 .ui-glow {
   position: absolute;
   pointer-events: none;
@@ -318,11 +316,11 @@
 }
 
 /* ============================================================
-   Biblioteka tom-ros: hero w globalnym stylu Starter Kita
+   Full-height hero helpers
    ============================================================ */
 
 /* The layout retains the full height and docking of the original hero.*/
-.tom-ros-hero.hero-dock-bottom {
+.hero-dock-bottom {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -332,7 +330,7 @@
 }
 
 /* The photo remains on the right side, without the client color, head and mask.*/
-.tom-ros-hero > img.ui-hero-media {
+.hero-dock-bottom > img.ui-hero-media {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -341,7 +339,7 @@
 }
 
 /* A neutral shadow restores the separation of the photo from the content without the client's color.*/
-.tom-ros-hero-shadow {
+.hero-dock-bottom-shadow {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -363,7 +361,7 @@
     );
 }
 
-.tom-ros-hero-shadow-mobile {
+.hero-dock-bottom-shadow-mobile {
   background: linear-gradient(
     to top,
     var(--ui-bg-page) 0%,
@@ -374,14 +372,14 @@
 }
 
 /* The headline retains the original lines but uses global typography.*/
-.tom-ros-hero .tom-ros-hero-heading {
+.hero-dock-bottom .hero-dock-bottom-heading {
   font-size: clamp(2rem, 4vw, 4rem);
   line-height: 0.95;
   text-transform: uppercase;
 }
 
 /* The accent does not have a separate color or typeface so that the entire hero uses tokens.*/
-.tom-ros-hero .tom-ros-inline-accent {
+.hero-dock-bottom .hero-inline-accent {
   display: inline;
   color: inherit;
   font-family: inherit;
@@ -393,27 +391,27 @@
   text-transform: inherit;
 }
 
-.tom-ros-hero .tom-ros-inline-accent.block {
+.hero-dock-bottom .hero-inline-accent.block {
   padding-top: 0.156em;
 }
 
 /* The buttons retain their characteristic slant, and the global slide and replace functions
    text from Button.astro remain unchanged.*/
-.tom-ros-hero .ui-button {
+.hero-dock-bottom .ui-button {
   border-radius: 0;
   transform: skewX(-12deg);
   text-transform: uppercase;
 }
 
-.tom-ros-hero .ui-button > * {
+.hero-dock-bottom .ui-button > * {
   transform: skewX(12deg);
 }
 
-.tom-ros-hero .ui-button:hover {
+.hero-dock-bottom .ui-button:hover {
   transform: skewX(-12deg) translateY(0);
 }
 
-.tom-ros-hero .ui-button:active {
+.hero-dock-bottom .ui-button:active {
   transform: skewX(-12deg) scale(0.98);
 }
 

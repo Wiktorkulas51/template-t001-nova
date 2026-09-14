@@ -1,6 +1,6 @@
 <!--
   FontSwitcherToolbar - A dev-tool for previewing alternative font sets.
-  Port 1:1 ze wzorca marek-jodlowski (src/components/_dev/FontSwitcherToolbar.astro).
+  Shared development tool for previewing the bundled font sets.
   Action: radio buttons save the selection to localStorage and set the data-font-set
   to <html>; font sets are defined in src/styles/font-switcher.css.
   font-switcher.css is linked from Layout in the document head, because the
@@ -54,7 +54,7 @@
 </div>
 
 <style>
-  /* Style UI toolbara (klasy fst-*) — port 1:1 ze wzorca marek-jodlowski */
+  /* Keep the development toolbar isolated from template layout styles. */
   .fst {
     position: fixed;
     bottom: 1rem;

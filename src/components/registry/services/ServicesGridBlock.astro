@@ -7,8 +7,8 @@ import ServiceCard from "@components/ui/molecules/ServiceCard.astro";
 import data from "@data/sections/services-grid.json";
 
 // Why: a block of services in an asymmetric grid (3 + 2 cards), transferred from the
-// Marek-Jodlowski project. Content lives in JSON (src/data/sections/services-grid.json) in
-// pl/en versions, and PageBuilder/CMS props overwrite JSON (SSOT, HeroTomRosBlock pattern).
+// reference project. Content lives in JSON (src/data/sections/services-grid.json) in
+// pl/en versions, and PageBuilder/CMS props overwrite JSON (SSOT, configurable block pattern).
 // Default texts in the block do NOT exist so as not to duplicate JSON content in the
 // component.
 type ServiceItem = {
@@ -45,7 +45,7 @@ class: className = "",
 } = Astro.props as Props;
 
 // Why: t is the content of the chosen language; en is a fallback when lang does not exist in
-// JSON (the model with HeroTomRosBlock).
+// JSON (the configurable block model).
 const t = data[lang] ?? data.pl;
 
 const resolvedTitle = title || t.title;

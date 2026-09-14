@@ -8,7 +8,7 @@
     { "id": "navbar", "variant": "plain" },
     { "id": "features", "variant": "default" },
     { "id": "faq", "variant": "simple" },
-    { "id": "ctaTomRos", "variant": "default" },
+    { "id": "novaCta", "variant": "default" },
     { "id": "footer", "variant": "columns" }
   ]
 }

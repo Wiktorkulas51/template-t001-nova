@@ -1,7 +1,7 @@
 // Theme switcher (live palette preview)
 // Why: client can quickly preview ready palettes (data-theme from themes.css)
 // without code change. We persist the choice in localStorage to survive refresh.
-// Pattern: filip-halucha theme-switcher.client.ts, ported to plain JS
+// Pattern: keep theme switching dependency-free in the public template.
 // like the other scripts in public/js.
 (function () {
   'use strict';

@@ -7,9 +7,9 @@
   "sections": [
     { "id": "navbar", "variant": "plain" },
     { "id": "about", "variant": "default" },
-    { "id": "processTimelineScroll", "variant": "default" },
+    { "id": "processTimeline", "variant": "default" },
     { "id": "testimonials", "variant": "marquee" },
-    { "id": "ctaTomRos", "variant": "default" },
+    { "id": "novaCta", "variant": "default" },
     { "id": "footer", "variant": "columns" }
   ]
 }

@@ -6,7 +6,7 @@ import Text from "@components/ui/atoms/Text.astro";
 import aboutData from "@data/sections/about-marquee.json";
 
 // Why: AboutMarqueeSplitBlock is a visual copy of the "About me" section from the
-// heinrich (filip-halucha) project: split image + text, and below 3 marquee tracks
+// reference project: split image + text, and below 3 marquee tracks
 // with clients. Data has JSON fallback, so the block works without props too.
 export interface Props {
   sectionId?: string;
@@ -51,7 +51,7 @@ const resolvedMoreClients = moreClients.length > 0 ? moreClients : aboutData.mor
   <Container>
     <div class="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
       <!-- Why: aspect-[4/5] + grayscale is the visual signature of the section.
-           Plain <img> (as in original heinrich), because SmartImage adds its own
+           Plain <img>, because SmartImage adds its own
            aspect-ratio (800/600) on <picture>, which conflicts with container aspect-[4/5]
            and stretches the image. object-cover + h-full w-full fill the frame. -->
       <div class="overflow-hidden rounded shadow-xl aspect-[4/5] max-w-md mx-auto lg:mr-0 lg:ml-auto">

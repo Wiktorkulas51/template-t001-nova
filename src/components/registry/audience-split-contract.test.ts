@@ -138,10 +138,9 @@ describe('AudienceSplitBlock, kontrakt renderowania', () => {
     });
   });
 
-  it('nie zawiera danych klienta (Lean Creative)', async () => {
+  it('nie zawiera danych projektu źródłowego', async () => {
     const html = await renderBlock();
-    expect(html).not.toContain('Lean Creative');
-    expect(html).not.toContain('lean-creative');
+    expect(html).not.toContain('client-specific');
     expect(html).not.toContain('Magazyn i logistyka');
     expect(html).not.toContain('Kadra zarządzająca');
   });

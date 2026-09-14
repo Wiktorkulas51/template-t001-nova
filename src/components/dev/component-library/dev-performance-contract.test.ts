@@ -18,7 +18,6 @@ describe('wydajność biblioteki komponentów developerskich', () => {
 
 	it('ładuje miniaturki dopiero blisko viewportu i nie uruchamia wideo w thumbnailach', () => {
 		const gallery = read('src/components/dev/component-library/ComponentGallery.astro');
-		const cinematicHero = read('src/components/registry/hero/HeroCinematicBlock.astro');
 		const videoHero = read('src/components/registry/hero/HeroVideoBlock.astro');
 		const previewFrame = read('src/components/dev/component-library/ComponentPreviewFrame.astro');
 		const thumbnailRoute = read('src/pages/dev/components/thumbnail/[section]/[variant].astro');
@@ -45,7 +44,6 @@ describe('wydajność biblioteki komponentów developerskich', () => {
 		expect(componentPreview).toContain('data-section={selected.sectionId}');
 		expect(thumbnailRoute).toContain('<ComponentPreviewFrame selected={selected} thumbnail />');
 		expect(metadataCatalog).not.toContain("from '@config/component-map'");
-		expect(cinematicHero).toContain("component-frame-thumbnail");
 		expect(videoHero).toContain("component-frame-thumbnail");
 	});
 });

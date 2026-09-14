@@ -1,5 +1,0 @@
-{
-  "image": { "src": "/assets/placeholders/image-portrait.svg", "alt": "Dr Krzysztof Mystek" },
-  "pl": { "eyebrow": "Ekspert i wykładowca", "credential": "Cert. Audytor i IOD", "title": "O mnie", "subtitle": "Doświadczenie, kompetencje i pasja w ochronie danych osobowych.", "detail": "W świecie dynamicznych zmian technologicznych i prawnych bezpieczeństwo danych staje się fundamentem nowoczesnego biznesu oraz zaufania społecznego.", "ctaLabel": "Zobacz też mój profil na LinkedIn", "ctaHref": "https://www.linkedin.com/" },
-  "en": { "eyebrow": "Expert and lecturer", "credential": "Certified auditor and DPO", "title": "About me", "subtitle": "Experience, expertise and passion for data protection.", "detail": "In a world of rapid technological and legal change, data security is the foundation of modern business and public trust.", "ctaLabel": "View my LinkedIn profile", "ctaHref": "https://www.linkedin.com/" }
-}

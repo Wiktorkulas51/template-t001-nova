@@ -41,7 +41,7 @@
     overflow: hidden;
   }
 
-  /* Gradient on the text (highlighted fragments of headings in Mystek blocks).
+  /* Gradient text utility for highlighted heading fragments.
      Pure CSS instead of @apply: functional gradient utilities do not resolve
      in @apply when transforming a single module into dev.*/
   .ui-text-gradient {
@@ -332,7 +332,7 @@
      To prevent hover effects from "leaking" between themes, we use strict selectors.
      - :root:not([data-theme]) ensures default styles only apply when NO theme is set.
      - Each theme explicitly defines its own hover interaction.
-     - DEFAULT: Text Swap + Color Slide (premium feel, like marek-jodlowski).
+     - DEFAULT: Text Swap + Color Slide.
   */
 
   /* DEFAULT THEME: TEXT SWAP + COLOR SLIDE */

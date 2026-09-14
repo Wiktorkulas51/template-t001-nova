@@ -75,7 +75,7 @@ describe('minimalny kontrakt Fade In Text', () => {
 		expect(motion).toContain('marqueeTargets');
 		expect(motion).toContain('hasSameTag(blocks)');
 		expect(layout).toContain('data-motion-disabled');
-		// Dlaczego: main nie ma transition:animate (jak u klienta Tom Ros).
+		// Dlaczego: main nie ma transition:animate, aby nawigacja nie animowała całego widoku.
 		// ClientRouter podmienia DOM bez fade na main, a scroll resetuje
 		// lenis.js po after-swap (behavior:instant), wiec nie ma "scroll up".
 		expect(layout).not.toContain('<main transition:animate');

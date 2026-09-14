@@ -44,7 +44,7 @@ describe('developer catalog metadata', () => {
       'decoration-spotlight',
     ]);
     expect(catalog.filter((item) => item.groupId === 'svg-decorations')).toHaveLength(72);
-    expect(catalog.find((item) => item.source === 'marek-jodlowski')?.sourceLabel).toBe('Marek Jodłowski');
+    expect(catalog.every((item) => !('source' in item))).toBe(true);
     expect(catalog.filter((item) => item.groupId === 'trust').map((item) => item.sectionId)).toEqual([
       'marquee',
       'trustBar',
