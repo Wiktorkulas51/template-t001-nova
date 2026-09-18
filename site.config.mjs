@@ -1,7 +1,7 @@
 // Single source of truth for site / client project configuration.
 // Edit THIS file when changing domain.
 // Environment domain used during build.
-export const SITE_URL = 'https://t001-nova.netlify.app';
+export const SITE_URL = 'https://webscale.pl/preview/nova/';
 export const ACTIVE_TEMPLATE = 'nova';
 
 // Locale & i18n — detachable

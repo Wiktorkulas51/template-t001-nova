@@ -45,7 +45,7 @@ if (schemaCount === 0) fail('Brak JSON-LD schema.');
 const robotsContent = robots.match(/content=["']([^"']+)["']/i)?.[1] ?? '';
 const shouldIndex = isClientMode || seo.index === true;
 const expectedIndex = shouldIndex ? 'index' : 'noindex';
-const expectedFollow = shouldIndex && seo.follow !== false ? 'follow' : 'nofollow';
+const expectedFollow = seo.follow !== false ? 'follow' : 'nofollow';
 
 if (!robotsContent.includes(expectedIndex) || !robotsContent.includes(expectedFollow)) {
   fail(`Niepoprawna polityka robots. Oczekiwano "${expectedIndex}, ${expectedFollow}", otrzymano "${robotsContent}".`);

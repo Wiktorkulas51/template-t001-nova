@@ -13,7 +13,9 @@ export function getNovaSectionCopy(locale: NovaLocale, dataKey?: string) {
 
 function withNovaBase(path: string): string {
   const configuredBase = process.env.PUBLIC_BASE_PATH || import.meta.env.BASE_URL;
-  const base = configuredBase.replace(/\/$/, '');
+  const base = configuredBase === '/'
+    ? ''
+    : `/${configuredBase.replace(/^\/+|\/+$/g, '')}`;
   return `${base}${path}` || '/';
 }
 

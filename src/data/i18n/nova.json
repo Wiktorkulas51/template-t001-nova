@@ -8,7 +8,7 @@
     "demoBanner": {
       "label": "Ten template został zaprojektowany i wdrożony przez WebScale.",
       "downloadLabel": "Pobierz template",
-      "downloadHref": "https://webscale.pl/?utm_source=nova-demo&utm_medium=banner&utm_campaign=t001-nova-download",
+      "downloadHref": "https://github.com/Wiktorkulas51/template-t001-nova",
       "customizeLabel": "Zamów customizację",
       "customizeHref": "https://webscale.pl/?utm_source=nova-demo&utm_medium=banner&utm_campaign=t001-nova-custom"
     },
@@ -149,7 +149,7 @@
     "demoBanner": {
       "label": "This template was designed and built by WebScale.",
       "downloadLabel": "Download template",
-      "downloadHref": "https://webscale.pl/?utm_source=nova-demo&utm_medium=banner&utm_campaign=t001-nova-download",
+      "downloadHref": "https://github.com/Wiktorkulas51/template-t001-nova",
       "customizeLabel": "Request customization",
       "customizeHref": "https://webscale.pl/?utm_source=nova-demo&utm_medium=banner&utm_campaign=t001-nova-custom"
     },
