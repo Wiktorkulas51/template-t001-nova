@@ -117,6 +117,30 @@
     if (window.fbq) window.fbq('track', 'PageView');
   }
 
+  function sendEvent(name, params) {
+    if (!trackersLoaded || analyticsRevoked || localStorage.getItem('cookie-consent-status') !== 'accepted') return;
+    if (config.googleTagManagerId && window.dataLayer) {
+      window.dataLayer.push({ event: name, ...params });
+    } else if (config.googleAnalyticsId && window.gtag) {
+      window.gtag('event', name, params);
+    }
+    if (window.clarity) window.clarity('event', name);
+  }
+
+  // Delegacja utrzymuje tracking także po przejściu Astro View Transitions.
+  document.addEventListener('click', function(event) {
+    var target = event.target instanceof Element ? event.target.closest('[data-analytics-event]') : null;
+    if (!target) return;
+    var href = target.getAttribute('href');
+    var name = target.getAttribute('data-analytics-event');
+    if (!href || !name) return;
+    sendEvent(name, {
+      link_url: href,
+      link_location: target.getAttribute('data-analytics-location') || 'unknown',
+      page_path: window.location.pathname + window.location.search
+    });
+  });
+
   window.addEventListener('astro:page-load', function() {
     if (!initialPageLoadObserved) {
       initialPageLoadObserved = true;

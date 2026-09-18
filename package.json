@@ -48,6 +48,7 @@
     "ai:check": "npm run check:types && npm run check:data && npm run check:imports && npm run check:registrations && npm run check:motion && npm run test -- --run",
     "check:images": "tsx src/scripts/check-images.ts",
     "build:prod": "npm run build",
+    "build:preview": "node scripts/build-preview.mjs",
     "package:marketplace": "node scripts/package-marketplace.mjs",
     "qa": "tsx src/scripts/run-qa.ts qa",
     "qa:strict": "tsx src/scripts/run-qa.ts strict",

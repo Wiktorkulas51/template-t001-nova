@@ -102,19 +102,23 @@ const theme = themeProp || urlTheme || (ACTIVE_TEMPLATE as string);
 
 // Why: siteUrl comes from company.json (SSOT of company data), Astro.site
 // (site.config.mjs) overrides it if set in build config.
-const basePath = process.env.PUBLIC_BASE_PATH || import.meta.env.BASE_URL;
+const publicSiteUrl = process.env.PUBLIC_SITE_URL || Astro.site || company.siteUrl;
+const configuredSitePath = new URL(publicSiteUrl).pathname;
+const basePath = process.env.PUBLIC_BASE_PATH
+	|| (configuredSitePath !== '/' ? configuredSitePath : import.meta.env.BASE_URL);
 const normalizedBasePath = basePath === '/'
 	? ''
 	: `/${basePath.replace(/^\/+|\/+$/g, '')}`;
 const publicAsset = (assetPath: string) => `${normalizedBasePath}/${assetPath.replace(/^\/+/, '')}`;
-const publicSiteUrl = process.env.PUBLIC_SITE_URL || Astro.site || company.siteUrl;
-const canonicalURL = new URL(Astro.url.pathname, publicSiteUrl).href;
+const siteOrigin = new URL(publicSiteUrl).origin;
+const canonicalPath = `${normalizedBasePath}${Astro.url.pathname === '/' ? '/' : Astro.url.pathname}`;
+const canonicalURL = new URL(canonicalPath, siteOrigin).href;
 
 // Why: og:image must be absolute URL (protocol + host) because Facebook,
 // LinkedIn and Twitter don't render relative paths like /og-image.png.
 // Normalize relative path to full address before rendering meta tags.
 const ogImageAbsolute = ogImage
-	? new URL(publicAsset(ogImage), publicSiteUrl).href
+	? new URL(publicAsset(ogImage), siteOrigin).href
 	: undefined;
 
 // Why: the project data can provide optional custom code (pixels, chat widgets).
@@ -289,7 +293,7 @@ const mainPaddingStyle = fullBleedTop
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content={Astro.url} />
+		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={ogImageAbsolute} />
