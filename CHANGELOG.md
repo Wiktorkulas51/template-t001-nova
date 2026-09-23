@@ -11,6 +11,7 @@
 - Keep service descriptions visible on mobile, use configurable section anchors and logos, and improve form feedback.
 - Align Nova's Netlify cache policy with stable public image filenames and remove the unused i18n toggle.
 - Use synthetic fixture copy in component contract tests so content edits do not resemble rendering regressions.
+- Restore the Nova wordmark on the homepage and 404 page while keeping custom logo images configurable.
 
 ## 0.1.0, 2026-09-13
 
