@@ -29,40 +29,38 @@ interface UspPremiumData {
   benefits?: Benefit[];
 }
 
-// Why: The default test data is general PL content (such as w
-// usp-premium.json), bez danych klienta. Statystyki to placeholderowe
-// library values, not client values ​​20+/50+/30%.
+// Synthetic fixtures keep content assertions independent from template copy.
 const PL_DATA: UspPremiumData = {
   id: 'usp',
-  eyebrow: 'Jak działamy',
-  heading: 'Od diagnozy do trwałej zmiany',
-  description: 'Wspieramy firmy w doskonaleniu procesów i organizacji pracy.',
-  description2: 'Porządkujemy planowanie, standaryzujemy pracę i usprawniamy przepływ informacji.',
-  cta: { label: 'Porozmawiajmy o Twojej firmie', href: '/kontakt/' },
+  eyebrow: 'Sample section label',
+  heading: 'Sample section heading',
+  description: 'Example supporting copy for the section.',
+  description2: 'Additional example copy for layout checks.',
+  cta: { label: 'Sample call to action', href: '/sample-page/' },
   stats: [
-    { value: '100%', label: 'Zaangażowania w każdy projekt' },
-    { value: '24/7', label: 'Wsparcie dla klienta' },
-    { value: '30 dni', label: 'Do pierwszej diagnozy' },
+    { value: 'A', label: 'Sample metric label one' },
+    { value: 'B', label: 'Sample metric label two' },
+    { value: 'C', label: 'Sample metric label three' },
   ],
   benefits: [
-    { icon: 'magnifying-glass', title: 'Diagnoza procesów', description: 'Zaczynamy od zrozumienia rzeczywistego stanu i procesów.' },
-    { icon: 'path', title: 'Mapowanie przepływów', description: 'Wizualizujemy przebieg pracy i wskazujemy miejsca strat.' },
-    { icon: 'users', title: 'Wspólne wdrożenie', description: 'Angażujemy Twój zespół w zmianę, żeby efekty zostały na stałe.' },
-    { icon: 'chart-bar', title: 'Mierzalne rezultaty', description: 'Ustalamy wskaźniki na starcie i raportujemy postępy.' },
+    { icon: 'magnifying-glass', title: 'Sample benefit one', description: 'Example description for the first benefit.' },
+    { icon: 'path', title: 'Sample benefit two', description: 'Example description for the second benefit.' },
+    { icon: 'users', title: 'Sample benefit three', description: 'Example description for the third benefit.' },
+    { icon: 'chart-bar', title: 'Sample benefit four', description: 'Example description for the fourth benefit.' },
   ],
 };
 
 const EN_DATA: UspPremiumData = {
-  eyebrow: 'How we work',
-  heading: 'From diagnosis to lasting change',
-  description: 'We help businesses improve processes and ways of working.',
-  cta: { label: "Let's talk about your company", href: '/contact/' },
+  eyebrow: 'Example English label',
+  heading: 'Example English heading',
+  description: 'Example English supporting copy.',
+  cta: { label: 'Example English action', href: '/sample-page/' },
   stats: [
-    { value: '100%', label: 'Commitment to every project' },
-    { value: '24/7', label: 'Client support' },
+    { value: 'A', label: 'Example English metric' },
+    { value: 'B', label: 'Another English metric' },
   ],
   benefits: [
-    { icon: 'magnifying-glass', title: 'Process diagnosis', description: 'We start by understanding the real state of your processes.' },
+    { icon: 'magnifying-glass', title: 'Example English benefit', description: 'Example English benefit description.' },
   ],
 };
 
@@ -168,14 +166,14 @@ describe('UspPremiumBlock, kontrakt renderowania', () => {
       expect(grid.hasClass('mb-16')).toBe(true);
       expect(grid.hasClass('md:mb-20')).toBe(true);
       expect(grid.hasClass('md:gap-8')).toBe(true);
-      expect($('.grid-cols-3 > div.relative').length).toBe(3);
+      expect($('.grid-cols-3 > div.relative').length).toBe(PL_DATA.stats?.length);
     });
 
     it('wartości statystyk używają tokena text-brand-primary', () => {
       const $ = cheerio.load(renderUspPremiumHtml(PL_DATA));
       const values = $('.ui-type-heading-section-xl');
-      expect(values.length).toBe(3);
-      expect(values.first().text()).toBe('100%');
+      expect(values.length).toBe(PL_DATA.stats?.length);
+      expect(values.first().text()).toBe(PL_DATA.stats?.[0].value);
       values.each((_, el) => {
         expect($(el).hasClass('text-brand-primary')).toBe(true);
       });
@@ -188,7 +186,7 @@ describe('UspPremiumBlock, kontrakt renderowania', () => {
         expect($(el).hasClass('uppercase')).toBe(true);
         expect($(el).hasClass('tracking-wide')).toBe(true);
       });
-      expect($('.grid-cols-3 > div.relative p:last-child').first().text()).toBe('Zaangażowania w każdy projekt');
+      expect($('.grid-cols-3 > div.relative p:last-child').first().text()).toBe(PL_DATA.stats?.[0].label);
     });
 
     it('renderuje separator pionowy między statystykami, ale nie przed pierwszą', () => {
@@ -213,7 +211,7 @@ describe('UspPremiumBlock, kontrakt renderowania', () => {
       expect($('h2').length).toBe(1);
       expect($('h2').hasClass('ui-type-heading-section-lg')).toBe(true);
       expect($('h2').hasClass('text-balance')).toBe(true);
-      expect($('h2').text()).toBe('Od diagnozy do trwałej zmiany');
+      expect($('h2').text()).toBe(PL_DATA.heading);
     });
 
     it('renderuje etykietę akcentową (eyebrow) nad nagłówkiem', () => {
@@ -221,7 +219,7 @@ describe('UspPremiumBlock, kontrakt renderowania', () => {
       const label = $('.ui-type-accent-label');
       expect(label.length).toBe(1);
       expect(label.hasClass('mb-4')).toBe(true);
-      expect(label.text()).toBe('Jak działamy');
+      expect(label.text()).toBe(PL_DATA.eyebrow);
     });
 
     it('renderuje dwa opisy jako ui-type-lead z text-pretty', () => {
@@ -241,18 +239,18 @@ describe('UspPremiumBlock, kontrakt renderowania', () => {
       const button = $('a.ui-button');
       expect(button.length).toBe(1);
       expect(button.hasClass('ui-button-primary')).toBe(true);
-      expect(button.text()).toBe('Porozmawiajmy o Twojej firmie');
+      expect(button.text()).toBe(PL_DATA.cta?.label);
     });
 
     it('link wewnętrzny ma trailing slash (formatInternalLink)', () => {
       const $ = cheerio.load(renderUspPremiumHtml(PL_DATA));
-      expect($('a.ui-button').attr('href')).toBe('/kontakt/');
+      expect($('a.ui-button').attr('href')).toBe('/sample-page/');
     });
 
     it('href bez slasha zostaje uzupełniony o trailing slash', () => {
-      const noSlash = { ...PL_DATA, cta: { label: 'Zobacz', href: '/kontakt' } };
+      const noSlash = { ...PL_DATA, cta: { label: 'Example', href: '/sample-page' } };
       const $ = cheerio.load(renderUspPremiumHtml(noSlash));
-      expect($('a.ui-button').attr('href')).toBe('/kontakt/');
+      expect($('a.ui-button').attr('href')).toBe('/sample-page/');
     });
 
     it('bez cta nie renderuje przycisku', () => {
@@ -266,7 +264,7 @@ describe('UspPremiumBlock, kontrakt renderowania', () => {
     it('renderuje co najmniej 4 karty w gridzie mobile-first', () => {
       const $ = cheerio.load(renderUspPremiumHtml(PL_DATA));
       const cards = $('article');
-      expect(cards.length).toBe(4);
+      expect(cards.length).toBe(PL_DATA.benefits?.length);
       const grid = $('.sm\\:grid-cols-2');
       expect(grid.length).toBe(1);
       expect(grid.hasClass('grid-cols-1')).toBe(true);
@@ -294,7 +292,7 @@ describe('UspPremiumBlock, kontrakt renderowania', () => {
     it('ikonki renderują się jako ph ph-<nazwa> w boxie brandowym', () => {
       const $ = cheerio.load(renderUspPremiumHtml(PL_DATA));
       const icons = $('article i.ph');
-      expect(icons.length).toBe(4);
+      expect(icons.length).toBe(PL_DATA.benefits?.length);
       expect(icons.eq(0).hasClass('ph-magnifying-glass')).toBe(true);
       expect(icons.eq(1).hasClass('ph-path')).toBe(true);
       expect(icons.eq(2).hasClass('ph-users')).toBe(true);
@@ -309,12 +307,12 @@ describe('UspPremiumBlock, kontrakt renderowania', () => {
     it('tytuł karty to h3 z ui-type-feature-title i text-brand-dark', () => {
       const $ = cheerio.load(renderUspPremiumHtml(PL_DATA));
       const titles = $('article h3');
-      expect(titles.length).toBe(4);
+      expect(titles.length).toBe(PL_DATA.benefits?.length);
       titles.each((_, el) => {
         expect($(el).hasClass('ui-type-feature-title')).toBe(true);
         expect($(el).hasClass('text-brand-dark')).toBe(true);
       });
-      expect(titles.first().text()).toBe('Diagnoza procesów');
+      expect(titles.first().text()).toBe(PL_DATA.benefits?.[0].title);
     });
 
     it('opis karty używa text-brand-dark/70 zamiast klienckiego text-on-surface-variant', () => {
@@ -329,12 +327,12 @@ describe('UspPremiumBlock, kontrakt renderowania', () => {
   describe('i18n (pl/en)', () => {
     it('EN renderuje angielskie nagłówki, statystyki i benefity', () => {
       const $ = cheerio.load(renderUspPremiumHtml(EN_DATA));
-      expect($('h2').text()).toBe('From diagnosis to lasting change');
-      expect($('.ui-type-accent-label').text()).toBe('How we work');
+      expect($('h2').text()).toBe(EN_DATA.heading);
+      expect($('.ui-type-accent-label').text()).toBe(EN_DATA.eyebrow);
       expect($('.ui-type-heading-section-xl').length).toBe(2);
       expect($('article').length).toBe(1);
-      expect($('a.ui-button').text()).toBe("Let's talk about your company");
-      expect($('a.ui-button').attr('href')).toBe('/contact/');
+      expect($('a.ui-button').text()).toBe(EN_DATA.cta?.label);
+      expect($('a.ui-button').attr('href')).toBe('/sample-page/');
     });
   });
 

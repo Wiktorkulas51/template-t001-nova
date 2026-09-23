@@ -157,22 +157,6 @@ const fixedShellClass = isDark
 		top: 2.75rem;
 	}
 
-	:global(html[data-theme="nova"] header[data-site-header-static] .nova-site-logo img),
-	:global(html[data-theme="nova"] header[data-site-header-fixed] .nova-site-logo img) {
-		display: none;
-	}
-
-	:global(html[data-theme="nova"] header[data-site-header-static] .nova-site-logo::after),
-	:global(html[data-theme="nova"] header[data-site-header-fixed] .nova-site-logo::after) {
-		content: "NOVA";
-		color: var(--color-on-surface);
-		font-family: var(--font-heading);
-		font-size: clamp(0.9rem, 1.2vw, 1.1rem);
-		font-weight: 700;
-		letter-spacing: 0.38em;
-		line-height: 1;
-	}
-
 	:global(html[data-theme="nova"] header[data-site-header-static] [data-nav-inner]),
 	:global(html[data-theme="nova"] header[data-site-header-fixed] [data-nav-inner]) {
 		padding-top: 0.8rem;

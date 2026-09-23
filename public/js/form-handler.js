@@ -31,14 +31,14 @@
 
   function showToast(form, state, message) {
     var titleFallback = {
-      loading: 'Wysyłanie wiadomości',
-      success: 'Wiadomość wysłana',
-      error: 'Nie udało się wysłać wiadomości'
+      loading: 'Sending message',
+      success: 'Message sent',
+      error: 'Message could not be sent'
     }[state];
     var descriptionFallback = {
-      loading: 'Proszę chwilę poczekać.',
-      success: 'Dziękujemy za kontakt.',
-      error: 'Spróbuj ponownie.'
+      loading: 'Please wait a moment.',
+      success: 'Thank you for your message.',
+      error: 'Please try again.'
     }[state];
     var title = getMessage(form, state.charAt(0).toUpperCase() + state.slice(1) + 'Title', titleFallback);
     var description = message || getMessage(form, state.charAt(0).toUpperCase() + state.slice(1), descriptionFallback);
@@ -70,12 +70,12 @@
 
     var panel = document.createElement('div');
     panel.id = 'form-debug-controls';
-    panel.setAttribute('aria-label', 'Debugowanie stanów formularza');
+    panel.setAttribute('aria-label', 'Form status debugging');
     panel.innerHTML = '<strong style="width:100%;font-size:.6875rem">Form debug</strong>'
       + '<button type="button" data-debug-state="loading">Loading</button>'
-      + '<button type="button" data-debug-state="success">Sukces</button>'
-      + '<button type="button" data-debug-state="error">Błąd</button>'
-      + '<button type="button" data-debug-state="clear">Wyczyść</button>';
+      + '<button type="button" data-debug-state="success">Success</button>'
+      + '<button type="button" data-debug-state="error">Error</button>'
+      + '<button type="button" data-debug-state="clear">Clear</button>';
     document.body.appendChild(panel);
 
     panel.querySelectorAll('[data-debug-state]').forEach(function(button) {
@@ -88,9 +88,9 @@
         }
         if (!form) return;
         var messages = {
-          loading: 'Proszę chwilę poczekać. To jest test stanu loading.',
-          success: 'To jest test komunikatu sukcesu w prawdziwym layoucie.',
-          error: 'To jest test komunikatu błędu w prawdziwym layoucie.'
+          loading: 'This is a loading state preview.',
+          success: 'This is a success message preview.',
+          error: 'This is an error message preview.'
         };
         showToast(form, state, messages[state]);
       });
@@ -129,10 +129,23 @@
       }
     });
 
-    setLegacyStatus(form, state, message || getMessage(form, state === 'loading' ? 'Loading' : state === 'success' ? 'Success' : 'Error', ''));
-    form.classList.remove('is-submitted');
-    if (state) showToast(form, state, message);
-    else document.dispatchEvent(new CustomEvent('toast-clear'));
+    if (state) {
+      var feedback = form.querySelector('[data-form-feedback="' + state + '"]');
+      if (feedback) {
+        feedback.hidden = false;
+        feedback.classList.remove('hidden');
+        var stateName = state === 'loading' ? 'LoadingStatus' : state.charAt(0).toUpperCase() + state.slice(1);
+        setFeedbackMessage(form, state, message || getMessage(form, stateName, ''));
+      }
+    }
+
+    setLegacyStatus(form, state, message || '');
+    form.classList.toggle('is-submitted', state === 'success');
+    var resetFeedback = form.querySelector('[data-form-feedback="reset"]');
+    if (resetFeedback) {
+      resetFeedback.hidden = state !== 'success';
+      resetFeedback.classList.toggle('hidden', state !== 'success');
+    }
   }
 
   function focusFeedback(form, state) {
@@ -161,10 +174,10 @@
     var customLoading = setCustomLoadingState(form, isLoading);
     var label = button.querySelector('[data-form-submit-text], .ui-button-text-default');
     var target = label || button;
-    var originalLabel = form.dataset.formMsgOriginal || 'Wyślij wiadomość';
-    var loadingLabel = form.dataset.formMsgLoading || 'Wysyłanie...';
-    var successRetry = form.dataset.formMsgSuccessRetry || 'Wyślij ponownie';
-    var errorRetry = form.dataset.formMsgErrorRetry || 'Spróbuj ponownie';
+    var originalLabel = form.dataset.formMsgOriginal || 'Send';
+    var loadingLabel = form.dataset.formMsgLoading || 'Sending...';
+    var successRetry = form.dataset.formMsgSuccessRetry || 'Send another';
+    var errorRetry = form.dataset.formMsgErrorRetry || 'Try again';
 
     if (!button.dataset.originalLabel) {
       button.dataset.originalLabel = target.textContent || originalLabel;
@@ -248,7 +261,7 @@
       })
         .then(function(response) {
           return response.json().catch(function() {
-            return { status: 'error', message: getMessage(form, 'InvalidResponse', 'Serwer zwrócił nieprawidłową odpowiedź.') };
+            return { status: 'error', invalidResponse: true };
           }).then(function(data) {
             return { data: data, responseOk: response.ok };
           });
@@ -257,16 +270,26 @@
           var data = result.data;
           var successful = result.responseOk && data && (data.status === 'ok' || data.status === 'success' || data.success === true);
           if (!successful) {
-            throw new Error((data && data.message) || getMessage(form, 'Error', 'Wystąpił błąd. Spróbuj ponownie później.'));
+            var failureMessage = data && data.invalidResponse
+              ? getMessage(form, 'InvalidResponse', 'The server returned an invalid response.')
+              : getMessage(form, 'Error', 'An error occurred. Please try again later.');
+            setFeedbackState(form, 'error', failureMessage);
+            setLoadingState(submitButton, false, 'error', form);
+            focusFeedback(form, 'error');
+            return;
           }
 
           form.reset();
-          setFeedbackState(form, 'success', data.message);
+          setFeedbackState(form, 'success');
           setLoadingState(submitButton, false, 'success', form);
           focusFeedback(form, 'success');
         })
         .catch(function(error) {
-          setFeedbackState(form, 'error', error instanceof Error ? error.message : null);
+          var fallbackMessage = getMessage(form, 'Error', 'An error occurred. Please try again later.');
+          var failureMessage = error instanceof TypeError
+            ? getMessage(form, 'NetworkError', fallbackMessage)
+            : fallbackMessage;
+          setFeedbackState(form, 'error', failureMessage);
           setLoadingState(submitButton, false, 'error', form);
           focusFeedback(form, 'error');
         });

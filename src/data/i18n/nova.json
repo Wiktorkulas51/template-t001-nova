@@ -156,14 +156,14 @@
     "navigation": {
       "menu": [
         { "label": "About us", "href": "#zespol" },
-        { "label": "Services", "href": "#uslugi" },
+        { "label": "Services", "href": "#services" },
         { "label": "Selected work", "href": "#realizacje" },
         { "label": "Reviews", "href": "#opinie" }
       ],
       "cta": {
         "label": "Start a project",
         "hoverLabel": "Let's talk",
-        "href": "#kontakt"
+        "href": "#contact"
       },
       "aria": {
         "menuOpen": "Open navigation menu",
@@ -180,7 +180,7 @@
         "heading": "New possibilities for",
         "headingAccent": "ambitious brands",
         "description": "We create modern websites that strengthen your image, attract clients and turn your business goals into real growth.",
-        "primaryCTA": { "label": "Start a project", "href": "#kontakt" },
+        "primaryCTA": { "label": "Start a project", "href": "#contact" },
         "secondaryCTA": { "label": "Meet the team", "href": "#zespol" },
         "trustedBy": "Trusted by",
         "trustItems": ["MODO", "LUMI", "KOVO", "NOMA", "ASPEKT"],
@@ -207,7 +207,7 @@
         "title": "Our services",
         "description": "End-to-end support, from the first concept to launch and continued growth.",
         "linkLabel": "Explore our services",
-        "linkHref": "#uslugi",
+        "linkHref": "#services",
         "items": [
           { "number": "01.", "icon": "palette", "title": "UX/UI design", "description": "Modern and functional design tailored to your brand. We create experiences that feel intuitive and support business goals." },
           { "number": "02.", "icon": "browser", "title": "Websites", "description": "Fast, responsive and conversion-focused websites for modern businesses. Every screen has a clear purpose." },
@@ -260,16 +260,16 @@
       "heading": "Let's create together",
       "description": "Tell us about your project and let's see how we can help your brand grow.",
       "primaryLabel": "Get in touch",
-      "primaryHref": "#kontakt",
+      "primaryHref": "#contact",
       "secondaryLabel": "Explore services",
-      "secondaryHref": "#uslugi",
+      "secondaryHref": "#services",
       "legalLinks": [
         { "label": "Privacy policy", "href": "/polityka-prywatnosci/" },
         { "label": "Cookies", "href": "/cookies/" }
       ],
       "footerLinks": [
         { "label": "About us", "href": "#zespol" },
-        { "label": "Services", "href": "#uslugi" },
+        { "label": "Services", "href": "#services" },
         { "label": "Selected work", "href": "#realizacje" },
         { "label": "Reviews", "href": "#opinie" }
       ],

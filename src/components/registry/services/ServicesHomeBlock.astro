@@ -7,7 +7,7 @@ import Icon from "@components/ui/atoms/Icon.astro";
 import jsonData from "@data/sections/nova-services.json";
 
 type Service = { number: string; icon?: string; title: string; description: string };
-interface Props { title?: string; description?: string; linkLabel?: string; linkHref?: string; items?: Service[]; class?: string; }
+interface Props { id?: string; locale?: "en" | "pl"; title?: string; description?: string; linkLabel?: string; linkHref?: string; items?: Service[]; class?: string; }
 const props = Astro.props as Props;
 const title = props.title ?? jsonData.title;
 const description = props.description ?? jsonData.description;
@@ -16,7 +16,7 @@ const linkHref = props.linkHref ?? jsonData.linkHref;
 const items = props.items ?? jsonData.items;
 ---
 
-<Section id="uslugi" tone="page" class:list={["services-section", props.class]}>
+<Section id={props.id ?? (props.locale === "pl" ? "uslugi" : "services")} tone="page" class:list={["services-section", props.class]}>
   <Container class="w-full max-w-none px-[clamp(1.5rem,5vw,5rem)]">
     <div class="nova-services-intro">
       <div>
@@ -148,7 +148,7 @@ const items = props.items ?? jsonData.items;
   }
 
   .nova-service-description {
-    display: none;
+    display: block;
     margin-top: 0.625rem;
     color: var(--ui-text-on-light-subtle);
     font-size: clamp(0.8125rem, 0.35rem + 0.45vw, 0.9375rem);

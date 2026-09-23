@@ -17,7 +17,7 @@ describe("global contact architecture", () => {
     expect(contactBlock).not.toContain("<script is:inline");
   });
 
-  it("keeps shared form feedback and reset behavior in one client handler", () => {
+  it("shows accessible inline form states and keeps failures generic", () => {
     expect(contactForm).toContain("showHeader?: boolean");
     expect(contactForm).toContain("includeRodoConsent?: boolean");
     expect(contactMap).toContain('data-map-iframe');
@@ -25,8 +25,13 @@ describe("global contact architecture", () => {
     expect(formHandler).toContain("data-form-reset");
     expect(formHandler).toContain("form.checkValidity()");
     expect(formHandler).toContain("formTransport");
-    expect(formHandler).toContain("new CustomEvent('toast'");
-    expect(formHandler).toContain("toast-clear");
+    expect(formHandler).toContain("feedback.hidden = false");
+    expect(formHandler).toContain("form.classList.toggle('is-submitted', state === 'success')");
+    expect(formHandler).toContain("getMessage(form, 'Error'");
+    expect(formHandler).toContain("getMessage(form, 'NetworkError'");
+    expect(formHandler).toContain("getMessage(form, 'InvalidResponse'");
+    expect(formHandler).not.toContain("error.message");
+    expect(formHandler).not.toContain("Dziękujemy");
     expect(formHandler).toContain("formDebug");
     expect(formHandler).toContain("Form debug");
     expect(formHandler).not.toContain("alert(");

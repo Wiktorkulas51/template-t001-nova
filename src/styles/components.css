@@ -533,7 +533,7 @@
     color: var(--color-on-error-container, #7f1d1d);
   }
 
-  form.is-submitted > :not([data-form-feedback]) {
+  form.is-submitted > :not([data-form-feedback]):not([data-form-feedback-stack]) {
     display: none;
   }
 

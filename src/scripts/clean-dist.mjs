@@ -37,7 +37,8 @@ const toRemove = [];
 // Pliki serwerowe z public, których klient nie potrzebuje w statycznym dist
 const publicFiles = ['send-form.php'];
 for (const f of publicFiles) {
-  if (fs.existsSync(path.join(dist, f))) toRemove.push(f);
+  const fullPath = path.join(dist, f);
+  if (fs.existsSync(fullPath)) toRemove.push(fullPath);
 }
 
 // Katalogi i strony z deny listy (gdyby mimo scope-pages powstały)

@@ -53,6 +53,7 @@ function resolveSection(section: PageSection): Resolved | null {
 
   let props: Record<string, unknown> = { ...(variant.props || {}) };
   props.company = companyData;
+  props.locale = locale;
   // Why: heading from page config (e.g. "Our services") is the h1 source of the page.
   // We pass it as pageHeading to all sections and the hero component uses it as the h1 title.
   props.pageHeading = heading;
@@ -66,6 +67,7 @@ function resolveSection(section: PageSection): Resolved | null {
   if (ACTIVE_TEMPLATE === "nova") {
     const localized = getNovaSectionCopy(locale, variant.dataKey);
     if (localized) props = { ...props, ...localized };
+    if (section.id === "novaServices" && !props.id) props.id = locale === "pl" ? "uslugi" : "services";
   }
 
   return { component: Component, props };

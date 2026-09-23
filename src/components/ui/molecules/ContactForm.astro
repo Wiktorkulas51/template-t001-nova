@@ -3,7 +3,7 @@
 // contact section variants. Separated into a molecule to avoid duplication
 // field logic, AJAX submit and feedback messages in each block.
 // The fields are defined by the client (props fields from contact.json), and the messages are read
-// z global/form-messages.json (źródło prawdy dla komunikatów formularza, PL-only).
+// z global/form-messages.json so form status text follows the product locale.
 import Heading from "@components/ui/atoms/Heading.astro";
 import Text from "@components/ui/atoms/Text.astro";
 import Input from "@components/ui/atoms/Input.astro";
@@ -62,7 +62,7 @@ const {
 // Dlaczego: komunikaty dla JS-owego handlera formularza (form-handler.js) podajemy
 // as data-attributes on the form. The handler reads them from the dataset instead of hardcoding them.
 // Priority: JSON from form-messages.json, then props; no value = empty string
-// (JSON is the source of truth, so there are no PL fallbacks here).
+// (JSON is the source of truth, so there are no language-specific JS fallbacks here).
 const submitLabel = formMessages.submitLabel || submitLabelProp || buttonLabelProp || "";
 const submittingLabel = formMessages.submittingLabel || submittingLabelProp || "";
 const resetLabel = formMessages.resetLabel || resetLabelProp || "";
@@ -132,6 +132,10 @@ const toInputType = (field: ContactField): "text" | "email" | "tel" | "number" |
     data-form-msg-loading={formMessages.submittingLabel}
     data-form-msg-success-retry={formMessages.resetLabel}
     data-form-msg-error-retry={formMessages.retryLabel}
+    data-form-msg-success={successMessage}
+    data-form-msg-error={errorMessage}
+    data-form-msg-loading-status={formMessages.loadingMessage}
+    data-form-msg-network-error={formMessages.networkError}
     data-form-msg-invalid-response={formMessages.invalidResponse}
   >
     <div data-form-feedback-stack class="ui-form-feedback-stack space-y-3" aria-live="polite">

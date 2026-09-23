@@ -186,14 +186,11 @@ function build() {
     stage();
     staged = true;
 
-    const astroBinary = path.resolve(
-      'node_modules',
-      '.bin',
-      process.platform === 'win32' ? 'astro.cmd' : 'astro',
-    );
-    const result = spawnSync(astroBinary, ['build'], {
+    // Invoke Astro's JS entry point through Node so Windows shell quoting is not
+    // dependent on whether the project path contains spaces.
+    const astroCli = path.resolve('node_modules', 'astro', 'bin', 'astro.mjs');
+    const result = spawnSync(process.execPath, [astroCli, 'build'], {
       stdio: 'inherit',
-      shell: process.platform === 'win32',
     });
 
     if (result.error) {

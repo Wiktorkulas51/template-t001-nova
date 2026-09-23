@@ -7,7 +7,7 @@ import Button from "@components/ui/atoms/Button.astro";
 import jsonData from "@data/sections/nova-cta.json";
 import { ACTIVE_TEMPLATE } from "@config/template";
 
-interface Props { title?: string; description?: string; primaryLabel?: string; primaryHref?: string; secondaryLabel?: string; secondaryHref?: string; image?: string; imageAlt?: string; class?: string; }
+interface Props { id?: string; locale?: "en" | "pl"; title?: string; description?: string; primaryLabel?: string; primaryHref?: string; secondaryLabel?: string; secondaryHref?: string; image?: string; imageAlt?: string; class?: string; }
 const props = Astro.props as Props;
 const fallback = ACTIVE_TEMPLATE === "nova" ? undefined : jsonData;
 const title = props.title ?? fallback?.title;
@@ -20,7 +20,7 @@ const image = props.image ?? fallback?.image;
 const imageAlt = props.imageAlt ?? fallback?.imageAlt ?? "";
 ---
 
-<Section id="kontakt" tone="page" class:list={["cta-section", props.class]}>
+<Section id={props.id ?? (props.locale === "pl" ? "kontakt" : "contact")} tone="page" class:list={["cta-section", props.class]}>
   <Container class="w-full max-w-none px-[clamp(1.5rem,5vw,5rem)]">
     <div class="nova-cta-frame" style={`background-image: url('${image}')`}>
       <div class="nova-cta-copy">
