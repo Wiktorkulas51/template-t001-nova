@@ -3,8 +3,6 @@
   var consent = document.getElementById('cookie-consent');
   var acceptBtn = document.getElementById('accept-cookies');
   var declineBtn = document.getElementById('decline-cookies');
-  var settingsBtn = document.getElementById('cookie-settings');
-  var launcher = document.getElementById('cookie-settings-launcher');
   var storageKey = 'cookie-consent-status';
   var hideTimer;
 
@@ -29,7 +27,6 @@
     clearTimeout(hideTimer);
     consent.classList.remove('hidden', 'opacity-0', 'translate-y-4');
     consent.setAttribute('aria-hidden', 'false');
-    launcher?.classList.add('hidden');
   }
 
   function hideConsent() {
@@ -38,7 +35,6 @@
     consent.setAttribute('aria-hidden', 'true');
     hideTimer = setTimeout(function() {
       consent.classList.add('hidden');
-      launcher?.classList.remove('hidden');
     }, 500);
   }
 
@@ -47,8 +43,6 @@
 
   if (consent && !getStatus()) {
     setTimeout(showConsent, 1000);
-  } else if (getStatus()) {
-    launcher?.classList.remove('hidden');
   }
 
   if (acceptBtn) acceptBtn.addEventListener('click', function() {
@@ -66,10 +60,4 @@
     hideConsent();
   });
 
-  if (settingsBtn) settingsBtn.addEventListener('click', function() {
-    window.WebScaleCookies.openSettings();
-  });
-  if (launcher) launcher.addEventListener('click', function() {
-    window.WebScaleCookies.openSettings();
-  });
 })();

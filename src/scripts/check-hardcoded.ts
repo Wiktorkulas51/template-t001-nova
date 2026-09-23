@@ -23,7 +23,7 @@ const EXCLUDE_PATTERNS = [
   'src/pages/dev/**',
   // QA files moved to _disabled are not rendered, they are not client content
   'src/pages/_disabled/**',
-  // Dev-tools (FontSwitcherToolbar etc.) have their own UI labels - they are not client content
+  // Development components are internal tooling, not client content.
   'src/components/dev/**',
   'src/components/ui/atoms/MockupMedia.astro',
   // Unused molecules from copy UI (no use in sections, not client content)

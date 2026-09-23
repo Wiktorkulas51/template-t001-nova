@@ -1,7 +1,5 @@
 ---
 import '@styles/global.css';
-// Dev font selection rules must be present before the body is painted.
-import '@styles/font-switcher.css';
 // Full regular Phosphor set is generated from package version for development.
 // After build src/scripts/prune-phosphor-css.mjs removes unused rules from dist.
 import '@styles/.generated/phosphor.css';
@@ -24,11 +22,6 @@ import FooterMinimalBlock from '@components/registry/shell/FooterMinimalBlock.as
 import FooterPromoBlock from '@components/registry/shell/FooterPromoBlock.astro';
 import NovaFooterBlock from '@components/registry/shell/NovaFooterBlock.astro';
 import NovaDemoBanner from '@components/ui/molecules/NovaDemoBanner.astro';
-import VersionToolbar from '@components/dev/VersionToolbar.astro';
-import FontSwitcherToolbar from '@components/dev/FontSwitcherToolbar.astro';
-import DeveloperToolsDock from '@components/dev/DeveloperToolsDock.astro';
-import Icon from '@components/ui/atoms/Icon.astro';
-import galleryCopy from '@data/dev/component-library/component-gallery.json';
 import type { NovaLocale } from '@utils/nova-i18n';
 
 
@@ -109,7 +102,12 @@ const basePath = process.env.PUBLIC_BASE_PATH
 const normalizedBasePath = basePath === '/'
 	? ''
 	: `/${basePath.replace(/^\/+|\/+$/g, '')}`;
-const publicAsset = (assetPath: string) => `${normalizedBasePath}/${assetPath.replace(/^\/+/, '')}`;
+const assetBasePath = process.env.PUBLIC_BASE_PATH
+	|| (import.meta.env.DEV ? import.meta.env.BASE_URL : basePath);
+const normalizedAssetBasePath = assetBasePath === '/'
+	? ''
+	: `/${assetBasePath.replace(/^\/+|\/+$/g, '')}`;
+const publicAsset = (assetPath: string) => `${normalizedAssetBasePath}/${assetPath.replace(/^\/+/, '')}`;
 const siteOrigin = new URL(publicSiteUrl).origin;
 const canonicalPath = `${normalizedBasePath}${Astro.url.pathname === '/' ? '/' : Astro.url.pathname}`;
 const canonicalURL = new URL(canonicalPath, siteOrigin).href;
@@ -135,7 +133,6 @@ const isComponentToolPage = bodyClassNames.some((className) => componentToolBody
 // and animations at once. Full preview keeps hover, so we disable
 // motion only for thumbnails.
 const isComponentThumbnail = bodyClassNames.includes('component-frame-thumbnail');
-const showDevLibraryLink = import.meta.env.DEV && !isComponentToolPage;
 
 // Identyfikatory są publiczne, ale środowisko preview może podmienić je bez zapisywania ich w repozytorium.
 const resolveAnalyticsId = (environmentValue: unknown, configuredValue: unknown) => {
@@ -276,11 +273,11 @@ const mainPaddingStyle = fullBleedTop
 		<!-- Content Security Policy -->
 		<meta http-equiv="Content-Security-Policy" content="
 			default-src 'self';
-			script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://unpkg.com https://www.clarity.ms https://static.cloudflareinsights.com http://localhost:8400;
+			script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://unpkg.com https://www.clarity.ms https://scripts.clarity.ms https://static.cloudflareinsights.com http://localhost:8400;
 			style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com;
 			font-src 'self' data: https://fonts.gstatic.com https://unpkg.com;
-			img-src 'self' data: blob: https://www.google-analytics.com https://www.facebook.com https://images.unsplash.com https://i.pravatar.cc;
-			connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms http://localhost:8400;
+			img-src 'self' data: blob: https://www.google-analytics.com https://www.google.pl https://www.facebook.com https://images.unsplash.com https://i.pravatar.cc;
+			connect-src 'self' https://www.google-analytics.com https://region1.analytics.google.com https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms http://localhost:8400;
 			frame-src 'self' https://open.spotify.com https://www.youtube.com https://www.google.com https://maps.google.com https://www.openstreetmap.org;
 			form-action 'self';
 			base-uri 'self';
@@ -328,16 +325,6 @@ const mainPaddingStyle = fullBleedTop
 				<navbarResolved.component layout={navbarResolved.layout} theme={navbarTheme} locale={locale} />
 			</div>
 		)}
-		{showDevLibraryLink && (
-			<a
-				href="/dev/components/"
-				class="fixed bottom-4 left-1/2 z-[1100] inline-flex size-11 -translate-x-[2.875rem] items-center justify-center rounded-md border border-brand-dark/15 bg-brand-light text-brand-dark shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-dark hover:text-brand-light focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-brand-primary/50"
-				aria-label={galleryCopy.title}
-				title={galleryCopy.title}
-			>
-				<Icon name="shapes" size="1.25rem" />
-			</a>
-		)}
 		<!-- Why: without transition:animate on main, view transitions can leave stale layout state
 		     (ClientRouter + zero directives). Astro swaps DOM without fading
 		     main, and scroll is reset by lenis.js after after-swap (behavior:instant),
@@ -379,10 +366,6 @@ const mainPaddingStyle = fullBleedTop
 	        {clientRuntime && <Toast />}
 	        {clientRuntime && <FloatingBar />}
 	        {clientRuntime && <ImageLightbox />}
-		{clientRuntime && import.meta.env.DEV && <VersionToolbar />}
-		{clientRuntime && import.meta.env.DEV && <FontSwitcherToolbar />}
-		{clientRuntime && import.meta.env.DEV && <DeveloperToolsDock />}
-
 	{
 		// Custom code from client at page end (chat widgets, scripts loaded at end).
 		customBodyEnd && <Fragment set:html={customBodyEnd} />

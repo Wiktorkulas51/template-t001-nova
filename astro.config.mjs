@@ -10,6 +10,9 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
 	output: 'static',
+  devToolbar: {
+    enabled: false,
+  },
   site: SITE_URL,
   base: undefined,
   compressHTML: true,
