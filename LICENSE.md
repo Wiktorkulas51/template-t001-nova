@@ -18,7 +18,11 @@ The rights in this section apply to this exact free release. They do not grant a
 
 ### Need to use Nova for multiple projects?
 
-Freelancers, developers and agencies may request free written permission to use Nova across multiple personal or commercial client projects. Email [kontakt@webscale.pl](mailto:kontakt@webscale.pl) with the subject `Nova multi-project license request`. You can simply ask for the license. The questions below are optional, and any brief feedback about the template is appreciated.
+The free license above lets you publish one finished website, for yourself or one client. If you are a freelancer, developer or agency and want to use Nova for additional personal or commercial client websites, you can request free written permission by emailing [kontakt@webscale.pl](mailto:kontakt@webscale.pl) with the subject `Nova multi-project license request`.
+
+I am sharing this free multi-project option with early users to learn how Nova is used and what would make it more useful. If you have tried the template, a short, honest opinion would help me decide what to improve and build next. You can request permission with a simple email. The questions below are optional, and you can answer only the ones you like. You do not need to have used Nova yet to ask.
+
+You are also welcome to send feedback even if you only use the one-project license and do not need multi-project permission.
 
 If you would like to share feedback, you can answer any of these questions:
 
@@ -31,7 +35,7 @@ If you would like to share feedback, you can answer any of these questions:
 
 Or [open a prefilled email with these questions](mailto:kontakt@webscale.pl?subject=Nova%20multi-project%20license%20request&body=Hi%20WebScale%2C%0A%0AI%27d%20like%20to%20request%20a%20free%20multi-project%20license%20for%20Nova.%0A%0A1.%20What%20best%20describes%20you%3F%20Freelancer%2C%20developer%2C%20agency%2C%20or%20other%3F%0A%0A2.%20Where%20did%20you%20find%20Nova%2C%20and%20what%20made%20you%20choose%20it%3F%0A%0A3.%20What%20types%20of%20projects%20do%20you%20plan%20to%20build%20with%20it%3F%0A%0A4.%20What%20would%20you%20improve%20after%20trying%20the%20template%3F%20Optional%20if%20you%20have%20not%20used%20it%20yet.%0A%0A5.%20When%20you%20first%20looked%20at%20Nova%2C%20what%20price%20would%20you%20have%20expected%20for%20multi-project%20use%3F%20Optional.%0A%0A6.%20What%20would%20be%20most%20useful%20to%20you%20in%20the%20future%3F%20Complete%20templates%2C%20website%20sections%2C%20UI%20components%2C%20or%20something%20else%3F%20Optional.%0A%0AThank%20you.). You can remove any questions you do not want to answer.
 
-A request does not grant multi-project permission automatically. If approved, written permission will replace the one-project limit in this section for the approved license holder. All restrictions in Section 3 continue to apply.
+A request does not grant multi-project permission automatically. If approved, written permission will allow the approved license holder to use Nova across multiple personal or commercial client websites. All restrictions in Section 3 continue to apply.
 
 ## 3. Restrictions
 
