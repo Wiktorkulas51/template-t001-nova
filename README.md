@@ -8,7 +8,7 @@ Have website projects that need extra delivery capacity? [Work with WebScale](ht
 
 ## Support Nova
 
-If Nova saved you time, you can support its development through [GitHub Sponsors](https://github.com/sponsors/Wiktorkulas51). Support is optional and does not include personal support or custom implementation.
+If Nova saved you time, you can support its development through [GitHub Sponsors](https://github.com/sponsors/Wiktorkulas51) or [Buy Me a Coffee](https://buymeacoffee.com/wiktorkulas). Support is optional and does not include personal support or custom implementation.
 
 ## Features
 
