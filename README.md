@@ -6,6 +6,10 @@ Nova is a responsive website template for creative agencies, design studios and 
 
 Have website projects that need extra delivery capacity? [Work with WebScale](https://webscale.pl/?utm_source=nova-readme&utm_medium=backlink&utm_campaign=t001-nova) for outsourced and white-label design, development and implementation support.
 
+## Support Nova
+
+If Nova saved you time, you can support its development through [GitHub Sponsors](https://github.com/sponsors/Wiktorkulas51). Support is optional and does not include personal support or custom implementation.
+
 ## Features
 
 - Bilingual homepage with English and Polish versions.
