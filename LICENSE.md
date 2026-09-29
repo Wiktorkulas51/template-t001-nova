@@ -10,7 +10,7 @@ The code, components, styles, scripts and original materials included in this pr
 
 ## 2. Free release grant
 
-The current Nova release is provided free of charge. WebScale grants a person or organization that lawfully obtains this exact release a non-exclusive license to use and modify the source code for one final website project.
+The current Nova release is provided free of charge. WebScale grants a person or organization that lawfully obtains this exact release from WebScale or an authorized distribution channel a non-exclusive license to use and modify the source code for one final website project.
 
 The license includes permission to adapt the code and content, configure the project for a brand, and publish the finished website for the license holder or one client.
 
@@ -35,19 +35,27 @@ If you would like to share feedback, you can answer any of these questions:
 
 Or [open a prefilled email with these questions](mailto:kontakt@webscale.pl?subject=Nova%20multi-project%20license%20request&body=Hi%20WebScale%2C%0A%0AI%27d%20like%20to%20request%20a%20free%20multi-project%20license%20for%20Nova.%0A%0A1.%20What%20best%20describes%20you%3F%20Freelancer%2C%20developer%2C%20agency%2C%20or%20other%3F%0A%0A2.%20Where%20did%20you%20find%20Nova%2C%20and%20what%20made%20you%20choose%20it%3F%0A%0A3.%20What%20types%20of%20projects%20do%20you%20plan%20to%20build%20with%20it%3F%0A%0A4.%20What%20would%20you%20improve%20after%20trying%20the%20template%3F%20Optional%20if%20you%20have%20not%20used%20it%20yet.%0A%0A5.%20When%20you%20first%20looked%20at%20Nova%2C%20what%20price%20would%20you%20have%20expected%20for%20multi-project%20use%3F%20Optional.%0A%0A6.%20What%20would%20be%20most%20useful%20to%20you%20in%20the%20future%3F%20Complete%20templates%2C%20website%20sections%2C%20UI%20components%2C%20or%20something%20else%3F%20Optional.%0A%0AThank%20you.). You can remove any questions you do not want to answer.
 
-A request does not grant multi-project permission automatically. If approved, written permission will allow the approved license holder to use Nova across multiple personal or commercial client websites. All restrictions in Section 3 continue to apply.
+A request does not grant multi-project permission automatically. If approved, written permission will allow the approved license holder to use Nova across multiple personal or commercial client websites.
+
+WebScale may invite early users, freelancers, developers or agencies to participate in an agency pilot. A participant is expected to share a short, honest account of their experience so WebScale can improve Nova and future releases. Any specific feedback commitment must be stated in the written approval. Feedback is not required for the one-project license.
+
+### Authorized distribution channels
+
+WebScale may authorize a marketplace, directory or other distribution platform to host and redistribute this exact source package as a free template. The authorized platform may make the package available for download, provided that it keeps this license with the package, does not sell or relicense the package as its own product, and does not change the copyright or author notices.
+
+Distribution by an authorized platform does not grant its users additional rights. Each user receives only the one-project license described above unless WebScale separately grants written multi-project permission.
 
 ## 3. Restrictions
 
-Without written permission from WebScale, you may not:
+Except for the authorized distribution rights described above, and without separate written permission from WebScale, you may not:
 
-- resell, sublicense or redistribute the source template package,
+- resell, sublicense or redistribute the source template package outside an authorized distribution channel,
 - provide the source code as a separate product or template library,
 - create a competing marketplace or template product based on this template,
 - remove copyright and author notices,
 - present WebScale materials as original materials created by you.
 
-You may publish finished websites built with the template. You may not distribute the source package as a separate product.
+You may publish finished websites built with the template. You may not distribute the source package as a separate product outside an authorized distribution channel.
 
 ## 4. Future versions and paid products
 
