@@ -11,7 +11,7 @@ This document describes the preparation status of `T001, Nova` for source templa
 
 ## Current distribution model
 
-The current release is a free product entry point. It may be used in one finished website project under `LICENSE.md`. Future versions, Pro editions and implementation services may be paid and may use different terms.
+The current release is a free product entry point. It may be used in unlimited personal and commercial website projects under `LICENSE.md`, and template marketplaces may redistribute the source package under the same license. Future versions, Pro editions and implementation services may be paid and may use different terms.
 
 ## Completed stages
 

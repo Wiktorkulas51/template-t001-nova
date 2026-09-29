@@ -2,8 +2,7 @@
 
 ## Unreleased
 
-- Clarify authorized marketplace distribution and the agency pilot feedback path.
-- Clarify the free multi-project license request and optional feedback questions.
+- Simplify the free license to allow unlimited website projects, marketplace distribution and optional user feedback.
 - Remove cookie settings controls and development-only toolbar entry points.
 - Allow the observed Google Analytics and Microsoft Clarity origins in the CSP.
 - Fix local preview asset paths while preserving production subdirectory paths.
