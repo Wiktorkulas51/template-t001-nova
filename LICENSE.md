@@ -20,6 +20,15 @@ The rights in this section apply to this exact free release. They do not grant a
 
 WebScale welcomes short, honest feedback from freelancers, developers, agencies and other users. Feedback is optional and is not a condition of this license. You can send feedback or questions to [kontakt@webscale.pl](mailto:kontakt@webscale.pl).
 
+Useful feedback can answer any of these questions:
+
+- What best describes you: freelancer, developer, agency or something else?
+- Where did you find Nova, and what made you choose it?
+- What types of projects do you plan to build with it?
+- What was difficult or unclear during installation, customization or deployment?
+- What would you improve after trying the template?
+- What would be most useful in the future: complete templates, website sections, UI components or something else?
+
 ### Marketplace and directory distribution
 
 Any template marketplace, directory or resource platform may host and redistribute this exact source package as a free template. The platform must keep this license with the package, must not sell or relicense the package as its own product, and must not change the copyright or author notices.
