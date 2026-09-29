@@ -49,9 +49,10 @@ RewriteRule (^|/)\.git - [F,L,NC]
     # Bez includeSubDomains, żeby nie zepsuć poddomen klienta spoza HTTPS.
     Header always set Strict-Transport-Security "max-age=31536000"
 
-    # Nagłówki bezpieczeństwa: chronią przed clickjackingiem, MIME-sniffingiem,
-    # wyciekiem referera i niepotrzebnymi API przeglądarki (kamera, mikrofon itd.).
-    Header always set X-Frame-Options "SAMEORIGIN"
+    # Podgląd jest osadzany w katalogu WebScale oraz podczas lokalnej pracy.
+    # frame-ancestors ogranicza osadzanie do znanych originów i zastępuje X-Frame-Options.
+    Header always unset X-Frame-Options
+    Header always set Content-Security-Policy "frame-ancestors 'self' https://webscale.pl http://localhost:4322 http://127.0.0.1:4322"
     Header always set X-Content-Type-Options "nosniff"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"

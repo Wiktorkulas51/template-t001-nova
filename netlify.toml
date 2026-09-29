@@ -18,8 +18,8 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
+    Content-Security-Policy = "frame-ancestors 'self' https://webscale.pl http://localhost:4322 http://127.0.0.1:4322"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     # Netlify zawsze serwuje po HTTPS, więc HSTS jest tu bezpieczny.
