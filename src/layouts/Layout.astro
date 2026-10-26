@@ -21,7 +21,7 @@ import FooterColumnsBlock from '@components/registry/shell/FooterColumnsBlock.as
 import FooterMinimalBlock from '@components/registry/shell/FooterMinimalBlock.astro';
 import FooterPromoBlock from '@components/registry/shell/FooterPromoBlock.astro';
 import NovaFooterBlock from '@components/registry/shell/NovaFooterBlock.astro';
-import TemplateDemoBadge from '@components/ui/molecules/TemplateDemoBadge.astro';
+import NovaDemoBanner from '@components/ui/molecules/NovaDemoBanner.astro';
 import type { NovaLocale } from '@utils/nova-i18n';
 
 
@@ -319,7 +319,7 @@ const mainPaddingStyle = fullBleedTop
 		data-review-project={reviewProject || undefined}
 	>
 		{clientRuntime && <MobileDrawer locale={locale} />}
-		{showShell && theme === 'nova' && <TemplateDemoBadge name="Nova" slug="nova" locale={locale === 'en' ? 'en' : 'pl'} />}
+		{showShell && theme === 'nova' && <NovaDemoBanner locale={locale} />}
 		{showShell && navbarResolved && (
 			<div class:list={theme === 'nova' ? ['relative'] : []}>
 				<navbarResolved.component layout={navbarResolved.layout} theme={navbarTheme} locale={locale} />
