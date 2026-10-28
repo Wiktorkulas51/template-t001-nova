@@ -1,0 +1,257 @@
+---
+// Why: dropdown skaluje się do wielu języków, a rząd linków "PL / EN" nie. Lista i ścieżki
+// biorą się z novaLocales, więc kolejny język pojawia się tu bez zmian w komponencie.
+// Przełącznik prowadzi na stronę główną danego języka, tak jak dotychczasowy rząd linków.
+import { getNovaCopy, getNovaLocalePath, novaLocaleMeta, novaLocales, type NovaLocale } from "@utils/nova-i18n";
+
+interface Props {
+	locale?: NovaLocale;
+	/** light: jasny nagłówek. dark: nagłówek na ciemnym hero lub ciemnym tle. */
+	tone?: "light" | "dark";
+	/** Unikalne id listy, bo na stronie są dwa nagłówki (statyczny i przyklejony). */
+	listId: string;
+}
+
+const { locale = "pl", tone = "light", listId } = Astro.props;
+const label = getNovaCopy(locale).navigation.languageLabel;
+const options = novaLocales.map((code) => ({
+	code,
+	...novaLocaleMeta[code],
+	href: getNovaLocalePath(code),
+	current: code === locale,
+}));
+---
+
+{options.length > 1 && (
+	<div class:list={["lang-dropdown", tone === "dark" && "lang-dropdown--dark"]} data-lang-menu>
+		<button
+			type="button"
+			class="lang-dropdown__toggle"
+			aria-expanded="false"
+			aria-controls={listId}
+			aria-label={`${label}: ${novaLocaleMeta[locale].label}`}
+			data-lang-toggle
+		>
+			<svg class="lang-dropdown__globe" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+				<circle cx="10" cy="10" r="7.25" />
+				<path d="M2.75 10h14.5M10 2.75c2 2 3 4.4 3 7.25s-1 5.25-3 7.25c-2-2-3-4.4-3-7.25s1-5.25 3-7.25Z" />
+			</svg>
+			<span>{novaLocaleMeta[locale].short}</span>
+			<svg class="lang-dropdown__caret" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg>
+		</button>
+		<ul class="lang-dropdown__list" id={listId}>
+			{options.map((option) => (
+				<li>
+					<a
+						href={option.href}
+						hreflang={option.code}
+						lang={option.code}
+						class:list={["lang-dropdown__option", option.current && "is-current"]}
+						aria-current={option.current ? "page" : undefined}
+					>
+						<span class="lang-dropdown__code">{option.short}</span>
+						<span class="lang-dropdown__name">{option.label}</span>
+						{option.current && (
+							<svg class="lang-dropdown__check" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3.5 8.5 3 3 6-7" /></svg>
+						)}
+					</a>
+				</li>
+			))}
+		</ul>
+	</div>
+)}
+
+<script>
+	// Delegacja na dokumencie, żeby menu działało po podmianie strony przez ClientRouter.
+	const setOpen = (menu: Element, open: boolean) => {
+		menu.classList.toggle("is-open", open);
+		menu.querySelector("[data-lang-toggle]")?.setAttribute("aria-expanded", String(open));
+	};
+
+	document.addEventListener("click", (event) => {
+		const target = event.target as HTMLElement;
+		const toggle = target.closest("[data-lang-toggle]");
+		const menu = toggle?.closest("[data-lang-menu]");
+		const wasOpen = menu?.classList.contains("is-open") ?? false;
+		document.querySelectorAll("[data-lang-menu].is-open").forEach((open) => {
+			if (open === menu || !open.contains(target)) setOpen(open, false);
+		});
+		if (menu && !wasOpen) setOpen(menu, true);
+	});
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key !== "Escape") return;
+		const open = document.querySelector("[data-lang-menu].is-open");
+		if (!open) return;
+		// Escape zamyka najpierw listę języków, a dopiero kolejny całe menu mobilne.
+		event.stopImmediatePropagation();
+		setOpen(open, false);
+		open.querySelector<HTMLElement>("[data-lang-toggle]")?.focus();
+	}, { capture: true });
+
+	document.addEventListener("focusout", (event) => {
+		const menu = (event.target as HTMLElement).closest("[data-lang-menu]");
+		const next = (event as FocusEvent).relatedTarget as Node | null;
+		if (menu && next && !menu.contains(next)) setOpen(menu, false);
+	});
+</script>
+
+<style>
+	/* Kolory w zmiennych, żeby tonacja ciemna zmieniała tylko je. Wartości z tokenów Nova. */
+	.lang-dropdown {
+		--lang-text: var(--color-brand-dark);
+		--lang-text-strong: var(--color-brand-dark);
+		--lang-hover: color-mix(in oklab, var(--color-brand-dark) 8%, transparent);
+		--lang-panel: var(--color-surface);
+		--lang-panel-border: color-mix(in oklab, var(--color-brand-dark) 10%, transparent);
+		--lang-code: color-mix(in oklab, var(--color-brand-dark) 7%, transparent);
+		--lang-current-bg: var(--color-brand-primary);
+		--lang-current-text: var(--color-on-primary);
+
+		position: relative;
+	}
+	.lang-dropdown--dark {
+		--lang-text: var(--color-on-primary);
+		--lang-text-strong: var(--color-on-primary);
+		--lang-hover: color-mix(in oklab, var(--color-on-primary) 12%, transparent);
+		--lang-panel: var(--color-brand-dark);
+		--lang-panel-border: color-mix(in oklab, var(--color-on-primary) 14%, transparent);
+		--lang-code: color-mix(in oklab, var(--color-on-primary) 10%, transparent);
+		--lang-current-bg: var(--color-on-primary);
+		--lang-current-text: var(--color-brand-dark);
+	}
+	.lang-dropdown__toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.375rem;
+		min-height: 2.75rem;
+		padding-inline: 0.75rem 0.625rem;
+		border: 0;
+		border-radius: var(--ui-radius-full);
+		background: transparent;
+		color: var(--lang-text);
+		font-family: var(--font-sans);
+		font-size: 0.8125rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		line-height: 1;
+		cursor: pointer;
+		transition:
+			background-color 250ms ease,
+			color 200ms ease;
+	}
+	.lang-dropdown__toggle:hover,
+	.lang-dropdown.is-open .lang-dropdown__toggle {
+		background: var(--lang-hover);
+		color: var(--lang-text-strong);
+	}
+	.lang-dropdown__toggle:focus-visible,
+	.lang-dropdown__option:focus-visible {
+		outline: 2px solid currentColor;
+		outline-offset: 2px;
+	}
+	.lang-dropdown__globe,
+	.lang-dropdown__caret,
+	.lang-dropdown__check {
+		stroke: currentColor;
+		stroke-width: 1.5;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+	.lang-dropdown__globe {
+		width: 1.125rem;
+		height: 1.125rem;
+	}
+	.lang-dropdown__caret {
+		width: 0.75rem;
+		height: 0.75rem;
+		stroke-width: 1.75;
+		transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+	}
+	.lang-dropdown.is-open .lang-dropdown__caret {
+		transform: rotate(180deg);
+	}
+	.lang-dropdown__list {
+		position: absolute;
+		top: calc(100% + 0.75rem);
+		right: 0;
+		z-index: 10;
+		display: grid;
+		gap: 0.125rem;
+		min-width: 12.5rem;
+		max-height: min(22rem, 60vh);
+		overflow-y: auto;
+		margin: 0;
+		padding: 0.375rem;
+		list-style: none;
+		border: 1px solid var(--lang-panel-border);
+		border-radius: var(--ui-radius-lg);
+		background: var(--lang-panel);
+		box-shadow: 0 1.5rem 3rem -1rem color-mix(in oklab, var(--color-brand-dark) 35%, transparent);
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(-0.5rem);
+		transition:
+			opacity 220ms ease,
+			transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+			visibility 0s linear 320ms;
+	}
+	.lang-dropdown.is-open .lang-dropdown__list {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+		transition:
+			opacity 220ms ease,
+			transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+			visibility 0s;
+	}
+	.lang-dropdown__option {
+		display: grid;
+		grid-template-columns: 2.25rem 1fr auto;
+		align-items: center;
+		gap: 0.625rem;
+		padding: 0.5rem 0.75rem 0.5rem 0.5rem;
+		border-radius: var(--ui-radius-md);
+		color: var(--lang-text-strong);
+		font-family: var(--font-sans);
+		font-size: 0.9375rem;
+		font-weight: 500;
+		text-decoration: none;
+		transition: background-color 200ms ease;
+	}
+	.lang-dropdown__option:hover,
+	.lang-dropdown__option:focus-visible {
+		background: var(--lang-hover);
+		outline: none;
+	}
+	.lang-dropdown__code {
+		display: grid;
+		place-items: center;
+		height: 1.75rem;
+		border-radius: var(--ui-radius-sm);
+		background: var(--lang-code);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+	}
+	.lang-dropdown__option.is-current {
+		font-weight: 650;
+	}
+	.lang-dropdown__option.is-current .lang-dropdown__code {
+		background: var(--lang-current-bg);
+		color: var(--lang-current-text);
+	}
+	.lang-dropdown__check {
+		width: 1rem;
+		height: 1rem;
+		stroke-width: 2;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.lang-dropdown__list,
+		.lang-dropdown__caret,
+		.lang-dropdown__toggle {
+			transition: none;
+		}
+	}
+</style>

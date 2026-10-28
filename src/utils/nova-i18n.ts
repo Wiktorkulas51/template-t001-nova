@@ -2,6 +2,14 @@ import copy from '@data/i18n/nova.json';
 
 export type NovaLocale = 'pl' | 'en';
 
+// Why: lista języków jest w jednym miejscu, żeby dropdown i ścieżki nie rozjechały się przy dodaniu języka.
+export const novaLocaleMeta: Record<NovaLocale, { label: string; short: string }> = {
+  pl: { label: 'Polski', short: 'PL' },
+  en: { label: 'English', short: 'EN' },
+};
+
+export const novaLocales = Object.keys(novaLocaleMeta) as NovaLocale[];
+
 export function getNovaCopy(locale: NovaLocale = 'pl') {
   return copy[locale] ?? copy.pl;
 }

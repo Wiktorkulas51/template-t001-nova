@@ -1,7 +1,7 @@
 ---
 import Logo from "@components/ui/atoms/Logo.astro";
 import MenuToggle from "@components/ui/molecules/Navbar/shared/MenuToggle.astro";
-import LanguageSwitch from "@components/ui/molecules/Navbar/shared/LanguageSwitch.astro";
+import LanguageDropdown from "@components/ui/molecules/Navbar/shared/LanguageDropdown.astro";
 import type { NavTheme } from "@components/ui/molecules/Navbar/shared/nav-theme-classes";
 import { formatInternalLink } from "@utils/url";
 import { getNovaCopy, getNovaNavigationPath, type NovaLocale } from "@utils/nova-i18n";
@@ -66,7 +66,7 @@ const fixedShellClass = isDark
 			</nav>
 
 			<div class="relative z-[1010] flex shrink-0 items-center gap-2 sm:gap-3">
-				<LanguageSwitch locale={locale} />
+				<LanguageDropdown locale={locale} tone={isDark ? "dark" : "light"} listId="lang-menu-list-static" />
 				<!-- Dlaczego: globalny wzorzec przycisku (ui-button ui-button-primary ui-nav-cta)
          instead of raw classes. Gives consistent hover (text swap + color slide) and dimensions
 				     z core.css. Wzorzec z NavbarMainCentered (layout Centered). -->
@@ -107,7 +107,7 @@ const fixedShellClass = isDark
 			</nav>
 
 			<div class="relative z-[1010] flex shrink-0 items-center gap-2 sm:gap-3">
-				<LanguageSwitch locale={locale} />
+				<LanguageDropdown locale={locale} tone={isDark ? "dark" : "light"} listId="lang-menu-list-fixed" />
 				<a href={formatInternalLink(headerData.cta.href)} class="ui-button ui-button-primary ui-nav-cta hidden sm:flex">
 					<span class="ui-button-text-wrap">
 						<span class="ui-button-text-default">{headerData.cta.label}</span>
