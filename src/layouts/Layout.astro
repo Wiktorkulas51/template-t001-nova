@@ -16,6 +16,7 @@ import MobileDrawer from '@components/ui/molecules/Navbar/shared/MobileDrawer.as
 import { SECTION_REGISTRY } from '@config/section-registry';
 import { ACTIVE_TEMPLATE } from '@/config/template';
 import { SITE_LOCALE } from '../../site.config.mjs';
+import { normalizePublicBasePath, resolvePublicBasePath } from '@utils/public-base-path.mjs';
 import Navbar from '@components/ui/molecules/Navbar.astro';
 import FooterColumnsBlock from '@components/registry/shell/FooterColumnsBlock.astro';
 import FooterMinimalBlock from '@components/registry/shell/FooterMinimalBlock.astro';
@@ -96,17 +97,17 @@ const theme = themeProp || urlTheme || (ACTIVE_TEMPLATE as string);
 // Why: siteUrl comes from company.json (SSOT of company data), Astro.site
 // (site.config.mjs) overrides it if set in build config.
 const publicSiteUrl = process.env.PUBLIC_SITE_URL || Astro.site || company.siteUrl;
-const configuredSitePath = new URL(publicSiteUrl).pathname;
-const basePath = process.env.PUBLIC_BASE_PATH
-	|| (configuredSitePath !== '/' ? configuredSitePath : import.meta.env.BASE_URL);
-const normalizedBasePath = basePath === '/'
-	? ''
-	: `/${basePath.replace(/^\/+|\/+$/g, '')}`;
-const assetBasePath = process.env.PUBLIC_BASE_PATH
-	|| (import.meta.env.DEV ? import.meta.env.BASE_URL : basePath);
-const normalizedAssetBasePath = assetBasePath === '/'
-	? ''
-	: `/${assetBasePath.replace(/^\/+|\/+$/g, '')}`;
+// Why: ta sama funkcja liczy bazę w prefix-base-assets.mjs, więc preload i url() w CSS
+// zawsze wskazują ten sam plik. Dev nie uruchamia skryptu, więc bierze BASE_URL.
+const sitePathBase = resolvePublicBasePath({
+	publicBasePath: process.env.PUBLIC_BASE_PATH,
+	publicSiteUrl,
+});
+const normalizedBasePath = sitePathBase ? `/${sitePathBase}` : '';
+const assetBasePath = import.meta.env.DEV && !process.env.PUBLIC_BASE_PATH
+	? normalizePublicBasePath(import.meta.env.BASE_URL)
+	: sitePathBase;
+const normalizedAssetBasePath = assetBasePath ? `/${assetBasePath}` : '';
 const publicAsset = (assetPath: string) => `${normalizedAssetBasePath}/${assetPath.replace(/^\/+/, '')}`;
 const siteOrigin = new URL(publicSiteUrl).origin;
 const canonicalPath = `${normalizedBasePath}${Astro.url.pathname === '/' ? '/' : Astro.url.pathname}`;
@@ -198,8 +199,6 @@ const mainPaddingStyle = fullBleedTop
 		{theme === 'nova' && (
 			<>
 				<!-- Nova uses these local fonts above the fold; preload prevents fallback text from changing the layout. -->
-				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/QGYvz_MVcBeNP4NJuktqQ4E.woff2')} crossorigin />
-				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/QGYvz_MVcBeNP4NJtEtq.woff2')} crossorigin />
 				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/satoshi-400.woff2')} crossorigin />
 				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/satoshi-500.woff2')} crossorigin />
 				<link rel="preload" as="font" type="font/woff2" href={publicAsset('/fonts/satoshi-700.woff2')} crossorigin />
