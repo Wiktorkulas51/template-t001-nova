@@ -7,9 +7,13 @@ import Heading from "@components/ui/atoms/Heading.astro";
 import Text from "@components/ui/atoms/Text.astro";
 import Button from "@components/ui/atoms/Button.astro";
 import notFound from "@data/pages/404.json";
+import { resolvePublicBasePath } from "@utils/public-base-path.mjs";
 
 const currentTemplate = getCurrentTemplate();
 const noIndex = true;
+// The preview is served from /preview/nova/, so a bare "/" would leave the demo.
+const basePath = resolvePublicBasePath({ publicBasePath: process.env.PUBLIC_BASE_PATH, publicSiteUrl: process.env.PUBLIC_SITE_URL });
+const homeHref = notFound.cta1.href === "/" && basePath ? `/${basePath}/` : notFound.cta1.href;
 ---
 
 <!-- Dlaczego: 404 korzysta z globalnego shellu Layoutu (floating navbar
@@ -39,7 +43,7 @@ const noIndex = true;
                 </Text>
 
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <Button href={notFound.cta1.href} variant="primary" class="w-full sm:w-auto" hoverText={notFound.cta1.hover || "Wracamy!"}>
+                    <Button href={homeHref} variant="primary" class="w-full sm:w-auto" hoverText={notFound.cta1.hover || "Wracamy!"}>
                         {notFound.cta1.label}
                     </Button>
                     <Button href={notFound.cta2.href} variant="outline" class="w-full sm:w-auto" hoverText={notFound.cta2.hover || "Napisz do nas"}>
