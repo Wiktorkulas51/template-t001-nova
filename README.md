@@ -2,9 +2,11 @@
 
 Nova is a responsive website template for creative agencies, design studios and ambitious brands. The project uses Astro, Tailwind CSS, TypeScript and JSON based content files.
 
+More templates for local businesses: [WebScale Astro templates](https://webscale.pl/en/astro-templates/?utm_source=github&utm_medium=readme&utm_campaign=nova-free).
+
 ## Need a white-label delivery partner?
 
-Have website projects that need extra delivery capacity? [Work with WebScale](https://webscale.pl/?utm_source=nova-readme&utm_medium=backlink&utm_campaign=t001-nova) for outsourced and white-label design, development and implementation support.
+Have website projects that need extra delivery capacity? [Work with WebScale](https://webscale.pl/?utm_source=github&utm_medium=readme&utm_campaign=nova-free) for outsourced and white-label design, development and implementation support.
 
 ## Support Nova
 
@@ -86,6 +88,10 @@ npm run package:marketplace
 ```
 
 The command creates `release/t001-nova.zip` from the current Git commit. Generated files, local dependencies and unrelated uncommitted changes are not included in the archive.
+
+## More WebScale templates
+
+WebScale publishes more templates for local businesses in its [Astro template catalog](https://webscale.pl/en/astro-templates/?utm_source=github&utm_medium=readme&utm_campaign=nova-free), with source code included. Each template can be adapted to your brand, content and sections. [Need it set up for your business?](https://webscale.pl/en/quote/?utm_source=github&utm_medium=readme&utm_campaign=nova-free)
 
 ## License
 
