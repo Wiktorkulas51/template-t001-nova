@@ -13,11 +13,12 @@ export interface Props {
 const { ariaBackToTop, ariaWhatsApp, ariaCall = "", ariaFacebook = "" } = Astro.props;
 
 // Dlaczego: etykiety paska czytamy z floating-bar.json (edytowalne w CMS),
-// props take precedence. WhatsApp number: company.json has no whatsapp field,
-// so the fallback is company.phone (always present in company data).
-const whatsappNumber = (company as any).whatsapp || company.phone;
-const phoneRaw = whatsappNumber.replace(/\D/g, "");
-const whatsappHref = `https://wa.me/${phoneRaw}`;
+// props take precedence. Przycisk WhatsApp pokazujemy tylko wtedy, gdy company.json
+// ma pole whatsapp. Telefonu nie używamy jako zastępstwa, bo demo linkowałoby wtedy
+// do zmyślonego numeru.
+const phoneRaw = company.phone.replace(/\D/g, "");
+const whatsappRaw = ((company as any).whatsapp || "").replace(/\D/g, "");
+const whatsappHref = whatsappRaw ? `https://wa.me/${whatsappRaw}` : "";
 const phoneHref = `tel:+${phoneRaw}`;
 const facebookHref = company.socials?.facebook || "";
 const backToTopLabel = ariaBackToTop || floatingBar.ariaBackToTop || "";
