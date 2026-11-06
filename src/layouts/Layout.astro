@@ -97,6 +97,8 @@ const theme = themeProp || urlTheme || (ACTIVE_TEMPLATE as string);
 // Why: siteUrl comes from company.json (SSOT of company data), Astro.site
 // (site.config.mjs) overrides it if set in build config.
 const publicSiteUrl = process.env.PUBLIC_SITE_URL || Astro.site || company.siteUrl;
+// Why: Vercel Web Analytics shows which catalog sends visitors to our demo; buyer deployments must not load it.
+const isWebScaleVercelDemo = new URL(publicSiteUrl).hostname === 'webscale-nova.vercel.app';
 // Why: ta sama funkcja liczy bazę w prefix-base-assets.mjs, więc preload i url() w CSS
 // zawsze wskazują ten sam plik. Dev nie uruchamia skryptu, więc bierze BASE_URL.
 const sitePathBase = resolvePublicBasePath({
@@ -310,6 +312,7 @@ const mainPaddingStyle = fullBleedTop
 			// Custom code from client (pixels, meta, analytics scripts).
 			customHead && <Fragment set:html={customHead} />
 		}
+		{isWebScaleVercelDemo && <script is:inline defer src="/_vercel/insights/script.js"></script>}
 
 	</head>
 	<body
