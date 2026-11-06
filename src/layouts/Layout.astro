@@ -4,6 +4,7 @@ import '@styles/global.css';
 // After build src/scripts/prune-phosphor-css.mjs removes unused rules from dist.
 import '@styles/.generated/phosphor.css';
 import { ClientRouter } from 'astro:transitions';
+import { IS_HTML_EXPORT } from '../../site.config.mjs';
 import seo from '@data/global/seo.json';
 import company from '@data/global/company.json';
 import customCode from '@data/global/custom-code.json';
@@ -269,16 +270,18 @@ const mainPaddingStyle = fullBleedTop
 				}, 3000);
 			}
 		</script>
-		{clientRuntime && <ClientRouter />}
+		{clientRuntime && !IS_HTML_EXPORT && <ClientRouter />}
+		{/* Without ClientRouter nothing fires astro:page-load on the first visit, so the export sends it once the page is ready. */}
+		{IS_HTML_EXPORT && <script is:inline>document.addEventListener('DOMContentLoaded', () => document.dispatchEvent(new Event('astro:page-load')));</script>}
 		<Schema template={schemaTemplate} />
 		<!-- Content Security Policy -->
 		<meta http-equiv="Content-Security-Policy" content="
 			default-src 'self';
-			script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://unpkg.com https://www.clarity.ms https://scripts.clarity.ms https://static.cloudflareinsights.com http://localhost:8400;
+			script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://unpkg.com https://www.clarity.ms https://scripts.clarity.ms https://static.cloudflareinsights.com;
 			style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com;
 			font-src 'self' data: https://fonts.gstatic.com https://unpkg.com;
-			img-src 'self' data: blob: https://www.google-analytics.com https://www.google.pl https://www.facebook.com https://images.unsplash.com https://i.pravatar.cc;
-			connect-src 'self' https://www.google-analytics.com https://region1.analytics.google.com https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms http://localhost:8400;
+			img-src 'self' data: blob: https://www.google-analytics.com https://www.google.pl https://www.facebook.com https://images.unsplash.com;
+			connect-src 'self' https://www.google-analytics.com https://region1.analytics.google.com https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms;
 			frame-src 'self' https://open.spotify.com https://www.youtube.com https://www.google.com https://maps.google.com https://www.openstreetmap.org;
 			form-action 'self';
 			base-uri 'self';

@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import { fileURLToPath, URL } from 'node:url';
-import { BUILD_SITE_URL } from './site.config.mjs';
+import { BUILD_SITE_URL, IS_HTML_EXPORT } from './site.config.mjs';
 
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
@@ -15,7 +15,7 @@ export default defineConfig({
   },
   site: BUILD_SITE_URL,
   base: undefined,
-  compressHTML: true,
+  compressHTML: !IS_HTML_EXPORT,
   image: {
     responsiveStyles: true,
   },
@@ -59,8 +59,8 @@ export default defineConfig({
       },
     },
     build: {
-      minify: 'esbuild',
-      cssMinify: 'lightningcss',
+      minify: IS_HTML_EXPORT ? false : 'esbuild',
+      cssMinify: IS_HTML_EXPORT ? false : 'lightningcss',
       // Common global CSS should be one request per page,
       // so that component sheets do not create a render blocking chain.
       cssCodeSplit: false,
