@@ -1,12 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { SITE_URL } from '../site.config.mjs';
+import { BUILD_SITE_URL } from '../site.config.mjs';
 import { resolvePublicBasePath } from '../src/utils/public-base-path.mjs';
 
-// Why: Layout dostaje adres z PUBLIC_SITE_URL albo Astro.site (= SITE_URL), więc skrypt czyta to samo.
+// Why: Layout dostaje adres z PUBLIC_SITE_URL albo Astro.site (= BUILD_SITE_URL), więc skrypt czyta to samo.
 const basePath = resolvePublicBasePath({
   publicBasePath: process.env.PUBLIC_BASE_PATH,
-  publicSiteUrl: process.env.PUBLIC_SITE_URL || SITE_URL,
+  publicSiteUrl: BUILD_SITE_URL,
 });
 if (!basePath) {
   console.log('prefix-base-assets: baza katalogu głównego, pomijam.');

@@ -2,6 +2,12 @@
 // Edit THIS file when changing domain.
 // Environment domain used during build.
 export const SITE_URL = 'https://webscale.pl/preview/nova/';
+// Why: a "Deploy to Vercel" clone has no PUBLIC_SITE_URL, so without this fallback
+// it would build with the /preview/nova/ asset prefix and break on the root domain.
+const vercelSiteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/`
+  : '';
+export const BUILD_SITE_URL = process.env.PUBLIC_SITE_URL || vercelSiteUrl || SITE_URL;
 export const ACTIVE_TEMPLATE = 'nova';
 
 // Nova currently ships English and Polish routes. SITE_LOCALE selects the

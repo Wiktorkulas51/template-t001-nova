@@ -3,7 +3,7 @@ import companyRaw from '@data/global/company.json';
 import seo from '@data/global/seo.json';
 import type { CompanyConfig } from '@/types/config';
 import { getSocialUrls } from '@utils/socials';
-import { SITE_URL } from '../../../../site.config.mjs';
+import { BUILD_SITE_URL } from '../../../../site.config.mjs';
 
 interface Props {
 	/** `affiliate` — tylko lekki WebSite (strona afiliacyjna), bez LocalBusiness z danych globalnych. */
@@ -18,7 +18,7 @@ const { template = 'default' } = Astro.props;
 const jsonLd = (data: object): string => JSON.stringify(data).replace(/</g, '\\u003c');
 
 const company = companyRaw as CompanyConfig;
-const siteBase = SITE_URL.replace(/\/$/, '');
+const siteBase = BUILD_SITE_URL.replace(/\/$/, '');
 const affiliateWebsiteSchema = {
 	'@context': 'https://schema.org',
 	'@type': 'WebSite',
