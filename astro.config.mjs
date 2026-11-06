@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import { fileURLToPath, URL } from 'node:url';
-import { SITE_URL } from './site.config.mjs';
+import { BUILD_SITE_URL } from './site.config.mjs';
 
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
@@ -13,7 +13,7 @@ export default defineConfig({
   devToolbar: {
     enabled: false,
   },
-  site: SITE_URL,
+  site: BUILD_SITE_URL,
   base: undefined,
   compressHTML: true,
   image: {

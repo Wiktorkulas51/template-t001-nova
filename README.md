@@ -2,6 +2,10 @@
 
 Nova is a responsive website template for creative agencies, design studios and ambitious brands. The project uses Astro, Tailwind CSS, TypeScript and JSON based content files.
 
+Live demo: https://webscale-nova.vercel.app/
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FWiktorkulas51%2Ftemplate-t001-nova&project-name=nova-astro-template&repository-name=nova-astro-template)
+
 More templates for local businesses: [WebScale Astro templates](https://webscale.pl/en/astro-templates/?utm_source=github&utm_medium=readme&utm_campaign=nova-free).
 
 ## Need a white-label delivery partner?
