@@ -2,8 +2,6 @@
 
 License version: free release candidate 0.1.0, 2026-09-13.
 
-This document is a working license draft and should be reviewed by a qualified lawyer before public distribution.
-
 ## 1. Copyright owner
 
 The code, components, styles, scripts and original materials included in this project are owned by WebScale and the project author, except for elements covered by separate third-party licenses.
