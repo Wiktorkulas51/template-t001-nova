@@ -108,9 +108,9 @@
         "tagline": "Opinie klientów",
         "avatarAltPrefix": "Zdjęcie",
         "items": [
-          { "quote": "Nowa strona uporządkowała naszą komunikację i od pierwszego tygodnia zaczęła przyciągać lepsze zapytania.", "author": "Anna Kowalska", "initials": "AK", "role": "Założycielka marki premium", "avatar": "https://i.pravatar.cc/150?u=anna-kowalska" },
-          { "quote": "Proces był konkretny, sprawny i bardzo dobrze prowadzony. Dostaliśmy stronę, która naprawdę pasuje do naszej marki.", "author": "Michał Nowak", "initials": "MN", "role": "Dyrektor operacyjny", "avatar": "https://i.pravatar.cc/150?u=michal-nowak" },
-          { "quote": "W końcu możemy pokazać nasze realizacje w sposób, który oddaje ich jakość. Klienci od razu to zauważyli.", "author": "Karolina Wójcik", "initials": "KW", "role": "Właścicielka studia", "avatar": "https://i.pravatar.cc/150?u=karolina-wojcik" }
+          { "quote": "Nowa strona uporządkowała naszą komunikację i od pierwszego tygodnia zaczęła przyciągać lepsze zapytania.", "author": "Anna Kowalska", "initials": "AK", "role": "Założycielka marki premium" },
+          { "quote": "Proces był konkretny, sprawny i bardzo dobrze prowadzony. Dostaliśmy stronę, która naprawdę pasuje do naszej marki.", "author": "Michał Nowak", "initials": "MN", "role": "Dyrektor operacyjny" },
+          { "quote": "W końcu możemy pokazać nasze realizacje w sposób, który oddaje ich jakość. Klienci od razu to zauważyli.", "author": "Karolina Wójcik", "initials": "KW", "role": "Właścicielka studia" }
         ]
       }
     },
@@ -249,9 +249,9 @@
         "tagline": "Client reviews",
         "avatarAltPrefix": "Photo of",
         "items": [
-          { "quote": "The new website finally gave our communication a clear structure and started bringing better enquiries from the first week.", "author": "Anna Kowalska", "initials": "AK", "role": "Founder of a premium brand", "avatar": "https://i.pravatar.cc/150?u=anna-kowalska" },
-          { "quote": "The process was focused, efficient and very well guided. We received a website that genuinely fits our brand.", "author": "Michal Nowak", "initials": "MN", "role": "Operations director", "avatar": "https://i.pravatar.cc/150?u=michal-nowak" },
-          { "quote": "We can finally present our work in a way that reflects its quality. Clients noticed the difference straight away.", "author": "Karolina Wojcik", "initials": "KW", "role": "Studio owner", "avatar": "https://i.pravatar.cc/150?u=karolina-wojcik" }
+          { "quote": "The new website finally gave our communication a clear structure and started bringing better enquiries from the first week.", "author": "Anna Kowalska", "initials": "AK", "role": "Founder of a premium brand" },
+          { "quote": "The process was focused, efficient and very well guided. We received a website that genuinely fits our brand.", "author": "Michal Nowak", "initials": "MN", "role": "Operations director" },
+          { "quote": "We can finally present our work in a way that reflects its quality. Clients noticed the difference straight away.", "author": "Karolina Wojcik", "initials": "KW", "role": "Studio owner" }
         ]
       }
     },

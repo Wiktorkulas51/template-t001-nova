@@ -55,7 +55,8 @@
     "qa:client": "tsx src/scripts/run-qa.ts client",
     "qa:help": "tsx src/scripts/run-qa.ts help",
     "audit:site": "tsx src/scripts/audit/index.ts",
-    "audit:lighthouse": "node src/scripts/lighthouse-audit.mjs"
+    "audit:lighthouse": "node src/scripts/lighthouse-audit.mjs",
+    "export:html": "node scripts/export-html.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
@@ -96,9 +97,11 @@
     "@google/design.md": "^0.1.1",
     "@types/js-yaml": "^4.0.9",
     "cheerio": "^1.2.0",
+    "esbuild": "^0.27.7",
     "husky": "^9.1.7",
     "js-yaml": "^4.1.1",
     "patch-package": "^8.0.1",
+    "prettier": "^3.9.6",
     "tsx": "^4.21.0",
     "vitest": "^4.1.5"
   }
