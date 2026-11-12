@@ -8,6 +8,10 @@ Live demo: https://webscale-nova.vercel.app/
 
 More templates for local businesses: [WebScale Astro templates](https://webscale.pl/en/astro-templates/?utm_source=github&utm_medium=readme&utm_campaign=nova-free).
 
+## Animated versions on onepaste
+
+Want these designs with scroll animations, micro-interactions and copy-paste prompts to rebuild them with AI (Lovable, v0, Bolt, Claude, Cursor)? We're developing them further at [onepaste](https://onepaste.dev/?utm_source=github&utm_medium=referral&utm_campaign=template-t001-nova). Some templates are free.
+
 ## Need a white-label delivery partner?
 
 Have website projects that need extra delivery capacity? [Work with WebScale](https://webscale.pl/?utm_source=github&utm_medium=readme&utm_campaign=nova-free) for outsourced and white-label design, development and implementation support.
