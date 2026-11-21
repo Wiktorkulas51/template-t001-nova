@@ -1,6 +1,3 @@
-import fs from 'node:fs';
-import path from 'node:path';
-
 // Single source of truth for site / client project configuration.
 // Edit THIS file when changing domain.
 // Environment domain used during build.
@@ -40,12 +37,6 @@ export const HTML_EXPORT = {
   slug: 'nova',
   title: 'Nova',
   description: 'Free Astro template for service companies, bilingual EN and PL.',
-  // Nova photos have no documented license in ASSETS-LICENSES.md, so the package replaces every photo variant with a placeholder.
-  // Listed from disk only for the export, so the normal build and tests never read the photo folder.
-  restrictedImages: IS_HTML_EXPORT
-    ? fs
-        .readdirSync(path.join(process.cwd(), 'public/assets/images/t001-nova'))
-        .filter((file) => /\.(avif|webp)$/.test(file))
-        .map((file) => `assets/images/t001-nova/${file}`)
-    : [],
+  // All photo variants are now AI-generated and documented in ASSETS-LICENSES.md.
+  restrictedImages: [],
 };
